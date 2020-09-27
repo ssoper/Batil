@@ -10,4 +10,4 @@ Connect to your preferred broker in functional Kotlin.
 
 ## So What’s a Batil Anyways
 
-The [Batil](https://www.naval-encyclopedia.com/medieval-ships/) was a coastal ship in use up until the 1950s. Serving primarily has a merchant vessel, it was ubiquitous throughout South Asia and the Middle East helping to create a resilient trade network.
+The [Batil](https://www.naval-encyclopedia.com/medieval-ships/) was a coastal ship in use for hundreds of years up until the 1950s. Serving primarily as a merchant vessel, it was ubiquitous throughout South Asia and the Middle East helping to create a resilient trade network.
