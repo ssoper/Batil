@@ -25,16 +25,18 @@ object Core {
             exitProcess(1)
         }
 
-        println("verbose set to ${parsed.verbose}")
-        println("config path set to ${parsed.pathToConfigFile}")
-
-        val path = Paths.get(System.getProperty("user.dir"), "batil.yaml")
-        val mapper = ObjectMapper(YAMLFactory())
-        mapper.registerModule(KotlinModule())
-
-        Files.newBufferedReader(path).use {
-            val stuff = mapper.readValue(it, Configuration::class.java)
-            println(stuff)
+        if (parsed.verbose) {
+            println("Verbose set to ${parsed.verbose}")
+            println("Config path set to ${parsed.pathToConfigFile}")
         }
+
+        val configuration = try {
+            IngestConfiguration(parsed).parse()
+        } catch (exception: ConfigFileInvalid) {
+            println(exception)
+            exitProcess(1)
+        }
+
+
     }
 }
