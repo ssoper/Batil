@@ -19,13 +19,13 @@ class CommandLineParser(private val args: Array<String>,
 
                 -help              Show documentation
                 -verbose           Show debugging output
-                -config=path       Path to configuration file, default is ./batil.config
+                -config=path       Path to configuration file, default is ./batil.yaml
         """.trimIndent()
         println(str)
     }
 
     fun parse(): Parsed {
-        val pathToConfigFile = getPath("config") ?: Paths.get(basePath,"batil.config")
+        val pathToConfigFile = getPath("config") ?: Paths.get(basePath,"batil.yaml")
 
         if (!File(pathToConfigFile.toString()).exists()) {
             throw ConfigFileNotFound()

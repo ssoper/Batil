@@ -140,4 +140,4 @@ gradle-app.setting
 !src/main/libs/*.jar
 github.properties
 .kotlintest
-batil.config
+batil.yaml
