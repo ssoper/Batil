@@ -1,11 +1,6 @@
 package com.seansoper.batil
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.module.kotlin.KotlinModule
-import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
+import okhttp3.OkHttpClient
 import kotlin.system.exitProcess
 
 object Core {
@@ -37,6 +32,7 @@ object Core {
             exitProcess(1)
         }
 
-
+        val client = OkHttpClient()
+        
     }
 }
