@@ -1,4 +1,4 @@
-package com.seansoper.batil
+package com.seansoper.batil.connectors
 
 /*
  * Copyright (C) 2015 Jake Wharton
