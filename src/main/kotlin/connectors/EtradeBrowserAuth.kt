@@ -13,6 +13,7 @@ import pl.wendigo.chrome.api.page.NavigateRequest
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ResponseFrame
 import pl.wendigo.chrome.targets.Target
+import java.lang.Exception
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.*
@@ -52,9 +53,13 @@ class EtradeBrowserAuth(key: String,
             tmpDirPath.toFile().mkdirs()
         }
 
-        val chrome = Browser.builder()
-                .withAddress(chromeUrl)
-                .build()
+        val chrome = try {
+            Browser.builder()
+                    .withAddress(chromeUrl)
+                    .build()
+        } catch (_: java.net.ConnectException) {
+            throw EtradeBrowserAuthNoConnection(chromeUrl)
+        }
 
         return chrome.use { browser ->
             browser.target("about:blank").use { target ->
@@ -175,3 +180,5 @@ class EtradeBrowserAuth(key: String,
         }
     }
 }
+
+class EtradeBrowserAuthNoConnection(chromiumUrl: String): Exception("Could not connect to chromium instance at $chromiumUrl")
