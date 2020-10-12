@@ -58,7 +58,8 @@ class EtradeInterceptor(private val keys: OauthKeys,
                 OAUTH_CALLBACK to OAUTH_CALLBACK_VALUE
         )
 
-        keys.accessToken?.let { parameters[OAUTH_TOKEN] = it }
+        keys.accessToken?.let { parameters[OAUTH_TOKEN] = it.encodeUtf8() }
+        keys.verifier?.let { parameters[OAUTH_VERIFIER] = it }
 
         // Copy query parameters into param map
         val url = request.url

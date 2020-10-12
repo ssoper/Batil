@@ -78,4 +78,39 @@ class Etrade(private val configuration: Configuration,
 
         return browserAuth.retrieve()
     }
+
+    fun accessToken(requestToken: EtradeAuthResponse, verifier: String): EtradeAuthResponse {
+        val keys = OauthKeys(
+                consumerKey = consumerKey,
+                consumerSecret = consumerSecret,
+                accessToken = requestToken.accessToken,
+                accessSecret = requestToken.accessSecret,
+                verifier = verifier
+        )
+
+        val client = OkHttpClient.Builder()
+                .addInterceptor(EtradeInterceptor(keys))
+                .build()
+
+        val request = Request.Builder()
+                .url(urlForPath(AUTH_ACCESS_TOKEN))
+                .build()
+
+        val response = client.newCall(request).execute()
+
+        return try {
+            EtradeAuthResponse.withResponse(response)
+        } catch (exception: EtradeAuthResponseError) {
+
+            if (verbose) {
+                exception.body?.apply {
+                    println("Response from service at ${request.url}")
+                    println(this)
+                }
+            }
+
+            throw exception
+        }
+    }
+
 }

@@ -33,12 +33,16 @@ object Core {
         }
 
         val client = Etrade(configuration, parsed.production, parsed.verbose)
-        val tokens = client.requestToken()
-        val code = client.verifierCode(tokens.accessToken)
+        val requestToken = client.requestToken()
+        val verifier = client.verifierCode(requestToken.accessToken)
 
         if (parsed.verbose) {
-            println("Verifier code is $code")
+            println("Verifier code is $verifier")
         }
+
+        println("token ${requestToken.accessToken} secret ${requestToken.accessSecret}")
+        val accessToken = client.accessToken(requestToken, verifier)
+        println(accessToken)
     }
 
 }
