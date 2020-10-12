@@ -43,6 +43,11 @@ object Core {
         println("token ${requestToken.accessToken} secret ${requestToken.accessSecret}")
         val accessToken = client.accessToken(requestToken, verifier)
         println(accessToken)
+
+        val data = client.optionsChain("AAPL", accessToken, verifier)
+        data?.let {
+            print(it)
+        }
     }
 
 }

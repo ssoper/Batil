@@ -113,4 +113,25 @@ class Etrade(private val configuration: Configuration,
         }
     }
 
+    fun optionsChain(symbol: String, accessToken: EtradeAuthResponse, verifier: String): String? {
+        val keys = OauthKeys(
+                consumerKey = consumerKey,
+                consumerSecret = consumerSecret,
+                accessToken = accessToken.accessToken,
+                accessSecret = accessToken.accessSecret,
+                verifier = verifier
+        )
+
+        val client = OkHttpClient.Builder()
+                .addInterceptor(EtradeInterceptor(keys))
+                .build()
+
+        val request = Request.Builder()
+                .url("https://apisb.etrade.com/v1/market/optionchains?symbol=AAPL&noOfStrikes=50&includeWeekly=true")
+                .build()
+
+        val response = client.newCall(request).execute()
+
+        return response.body?.string()
+    }
 }

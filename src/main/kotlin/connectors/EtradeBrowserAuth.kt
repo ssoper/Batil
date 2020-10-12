@@ -2,7 +2,6 @@ package com.seansoper.batil.connectors
 
 import com.seansoper.batil.Chromium
 import io.reactivex.Single
-import okio.ByteString.Companion.encodeUtf8
 import pl.wendigo.chrome.Browser
 import pl.wendigo.chrome.api.dom.*
 import pl.wendigo.chrome.api.input.DispatchMouseEventRequest
@@ -14,7 +13,6 @@ import pl.wendigo.chrome.api.page.NavigateRequest
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ResponseFrame
 import pl.wendigo.chrome.targets.Target
-import java.lang.Exception
 import java.net.URLEncoder
 import java.nio.file.Path
 import java.nio.file.Paths
