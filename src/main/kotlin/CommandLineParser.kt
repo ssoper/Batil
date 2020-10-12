@@ -9,9 +9,11 @@ class CommandLineParser(private val args: Array<String>,
 
     val shouldShowHelp: Boolean = args.any { it == "-help" }
     val verbose: Boolean = args.any { it == "-verbose" }
+    val production: Boolean = args.any { it == "-production" }
 
     data class Parsed(val pathToConfigFile: Path,
-                      val verbose: Boolean)
+                      val verbose: Boolean,
+                      val production: Boolean)
 
     fun showHelp() {
         val str = """
@@ -19,6 +21,7 @@ class CommandLineParser(private val args: Array<String>,
 
                 -help              Show documentation
                 -verbose           Show debugging output
+                -production        Use production endpoints, default is sandbox
                 -config=path       Path to configuration file, default is ./batil.yaml
         """.trimIndent()
         println(str)
@@ -31,7 +34,7 @@ class CommandLineParser(private val args: Array<String>,
             throw ConfigFileNotFound()
         }
 
-        return Parsed(pathToConfigFile, verbose)
+        return Parsed(pathToConfigFile, verbose, production)
     }
 
     private fun<T: Any> parseArguments(regex: Regex, transform: (String) -> T): List<T> {

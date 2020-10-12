@@ -1,11 +1,6 @@
 package com.seansoper.batil
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.module.kotlin.KotlinModule
-import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
+import com.seansoper.batil.connectors.Etrade
 import kotlin.system.exitProcess
 
 object Core {
@@ -37,6 +32,22 @@ object Core {
             exitProcess(1)
         }
 
+        val client = Etrade(configuration, parsed.production, parsed.verbose)
+        val requestToken = client.requestToken()
+        val verifier = client.verifierCode(requestToken.accessToken)
 
+        if (parsed.verbose) {
+            println("Verifier code is $verifier")
+        }
+
+        println("token ${requestToken.accessToken} secret ${requestToken.accessSecret}")
+        val accessToken = client.accessToken(requestToken, verifier)
+        println(accessToken)
+
+        val data = client.optionsChain("AAPL", accessToken, verifier)
+        data?.let {
+            print(it)
+        }
     }
+
 }
