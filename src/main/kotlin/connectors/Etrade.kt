@@ -9,7 +9,8 @@ data class EtradeAuthResponse(val accessToken: String,
                               val accessSecret: String)
 
 class Etrade(private val configuration: Configuration,
-             private val production: Boolean) {
+             private val production: Boolean,
+             private val verbose: Boolean = false) {
 
     private val consumerKey: String
         get() {
@@ -80,12 +81,24 @@ class Etrade(private val configuration: Configuration,
             }?.associate { it[0] to it[1] }
 
         return tokens?.let {
-            val token = it.get("oauth_token") ?: throw EtradeAuthResponseError("No token returned")
-            val secret = it.get("oauth_token_secret") ?: throw EtradeAuthResponseError("No secret returned")
+            val token = it["oauth_token"] ?: throw EtradeAuthResponseError("No token returned")
+            val secret = it["oauth_token_secret"] ?: throw EtradeAuthResponseError("No secret returned")
             EtradeAuthResponse(token, secret)
         } ?: throw EtradeAuthResponseError("Could not parse tokens from response")
     }
 
+    fun verifierCode(token: String): String {
+        val browserAuth = EtradeBrowserAuth(
+                consumerKey,
+                token,
+                configuration.etrade.username,
+                configuration.etrade.password,
+                configuration.chromium,
+                verbose
+        )
+
+        return browserAuth.retrieve()
+    }
 }
 
 class EtradeAuthResponseError(message: String? = "Error in auth response"): Exception(message)

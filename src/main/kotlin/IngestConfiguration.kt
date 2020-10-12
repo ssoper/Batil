@@ -7,6 +7,10 @@ import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import java.nio.file.Files
 import java.nio.file.Paths
 
+data class Chromium(val ip: String,
+                    val port: Int,
+                    val delay: Int)
+
 data class EtradeAuth(val key: String,
                       val secret: String)
 
@@ -15,7 +19,8 @@ data class EtradeConfiguration(val sandbox: EtradeAuth,
                                val username: String,
                                val password: String)
 
-data class Configuration(val etrade: EtradeConfiguration)
+data class Configuration(val etrade: EtradeConfiguration,
+                         val chromium: Chromium = Chromium("127.0.0.1", port = 9222, delay = 5))
 
 class IngestConfiguration(private val settings: CommandLineParser.Parsed,
                           private val basePath: String = System.getProperty("user.dir")) {
