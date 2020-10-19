@@ -38,13 +38,20 @@ object Core {
 
         if (parsed.verbose) {
             println("Verifier code is $verifier")
+
+
         }
 
-        println("token ${requestToken.accessToken} secret ${requestToken.accessSecret}")
-        val accessToken = client.accessToken(requestToken, verifier)
-        println(accessToken)
+        val oauthToken = client.accessToken(requestToken, verifier)
 
-        val data = client.optionsChain("AAPL", accessToken, verifier)
+        if (parsed.verbose) {
+            oauthToken.apply {
+                println("Access OAuth token is $accessToken")
+                println("Access OAuth secret is $accessSecret")
+            }
+        }
+
+        val data = client.optionsChain("AAPL", oauthToken, verifier)
         data?.let {
             print(it)
         }

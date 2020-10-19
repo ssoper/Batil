@@ -46,12 +46,16 @@ class EtradeBrowserAuth(key: String,
         VERIFIER_CODE
     }
 
+    fun logMessage(message: String) {
+        println("[Chromium] $message")
+    }
+
     fun retrieve(): String {
         val chromeUrl = "${configuration.ip}:${configuration.port}"
 
         if (verbose) {
-            println("Using chromium instance at $chromeUrl")
-            println("Screenshots will be saved to $tmpDirPath")
+            logMessage("Using instance at $chromeUrl")
+            logMessage("Screenshots will be saved to $tmpDirPath")
             tmpDirPath.toFile().mkdirs()
         }
 
@@ -71,21 +75,21 @@ class EtradeBrowserAuth(key: String,
                 }
 
                 target.Network.loadingFinished().subscribe(
-                    { value -> println("Loading event finished: $value") },
-                    { throwable -> println("Loading event error: $throwable") },
-                    { println("Loading event unsubscribed") }
+                    { value -> logMessage("Loading event finished: $value") },
+                    { throwable -> logMessage("Loading event error: $throwable") },
+                    { logMessage("Loading event unsubscribed") }
                 )
 
                 if (verbose) {
                     await {
                         target.Network.enable(EnableRequest())
                         target.Browser.getVersion().flatMap {
-                            println("User agent: ${it.userAgent}")
+                            logMessage("User agent: ${it.userAgent}")
                             Single.just(it)
                         }
                     }
 
-                    println("Navigating to $url")
+                    logMessage("Navigating to $url")
                 }
 
                 await { navigateTo(url, target) }
