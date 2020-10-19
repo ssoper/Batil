@@ -23,7 +23,7 @@ Connect to your preferred broker in functional Kotlin.
 * Using the sample provided, add a `batil.yaml` to the directory where you intend to run the JAR file substituting with the correct values.
 * Now you can run the JAR file.
 
-        java -jar path/to/Batil.main.jar -verbose -production
+        java -jar path/to/Batil.main.jar
 
 * By default the app runs in sandbox mode. Add the `-production` switch to use in production.
 
