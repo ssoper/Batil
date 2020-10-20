@@ -38,8 +38,6 @@ object Core {
 
         if (parsed.verbose) {
             println("Verifier code is $verifier")
-
-
         }
 
         val oauthToken = client.accessToken(requestToken, verifier)
