@@ -49,7 +49,7 @@ object Core {
             }
         }
 
-        val data = client.optionsChain("AAPL", oauthToken, verifier)
+        val data = client.ticker("AAPL", oauthToken, verifier)
         data?.let {
             print(it)
         }

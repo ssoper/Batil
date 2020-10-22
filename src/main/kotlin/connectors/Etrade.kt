@@ -1,8 +1,15 @@
 package com.seansoper.batil.connectors
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.module.SimpleModule
 import com.seansoper.batil.Configuration
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.jackson.JacksonConverterFactory
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Etrade(private val configuration: Configuration,
              private val production: Boolean,
@@ -113,7 +120,7 @@ class Etrade(private val configuration: Configuration,
         }
     }
 
-    fun optionsChain(symbol: String, accessToken: EtradeAuthResponse, verifier: String): String? {
+    fun ticker(symbol: String, accessToken: EtradeAuthResponse, verifier: String): TickerDataResponse? {
         val keys = OauthKeys(
                 consumerKey = consumerKey,
                 consumerSecret = consumerSecret,
@@ -123,15 +130,31 @@ class Etrade(private val configuration: Configuration,
         )
 
         val client = OkHttpClient.Builder()
-                .addInterceptor(EtradeInterceptor(keys))
-                .build()
+            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(JsonInterceptor())
 
-        val request = Request.Builder()
-                .url("https://apisb.etrade.com/v1/market/optionchains?symbol=AAPL&noOfStrikes=50&includeWeekly=true")
-                .build()
+        if (verbose) {
+            val logger = HttpLoggingInterceptor()
+            logger.level = HttpLoggingInterceptor.Level.BODY
+            client.addInterceptor(logger)
+        }
 
-        val response = client.newCall(request).execute()
+        val module = SimpleModule()
+        module.addDeserializer(GregorianCalendar::class.java, DateSerializer.Decode())
 
-        return response.body?.string()
+        val mapper = ObjectMapper()
+        mapper.dateFormat = SimpleDateFormat("HH:mm:ss zzz dd-MM-yyyy")
+        mapper.registerModule(module)
+
+        val retrofit = Retrofit.Builder()
+            .client(client.build())
+            .baseUrl("https://apisb.etrade.com")
+            .addConverterFactory(JacksonConverterFactory.create(mapper))
+            .build()
+
+        val service = retrofit.create(Market::class.java)
+        val response = service.getQuote(symbol).execute()
+
+        return response.body()
     }
 }
