@@ -1,0 +1,9 @@
+etrade:
+  sandbox:
+    key: sandboxKey
+    secret: sandboxSecret
+  production:
+    key: prodKey
+    secret: prodSecret
+  username: testUsername
+  password: testPassword

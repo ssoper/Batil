@@ -43,7 +43,6 @@ object DateSerializer {
     class Decode: JsonDeserializer<GregorianCalendar>() {
         @Throws(IOException::class, JsonProcessingException::class)
         override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): GregorianCalendar {
-            println("HELLLOO*****")
             return p?.text?.let {
                 val date = Formatter.parse(it)
                 val calendar = GregorianCalendar()

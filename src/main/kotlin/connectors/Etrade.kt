@@ -12,8 +12,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class Etrade(private val configuration: Configuration,
-             private val production: Boolean,
-             private val verbose: Boolean = false) {
+             private val production: Boolean = false,
+             private val verbose: Boolean = false,
+             private val baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com") {
 
     private val consumerKey: String
         get() {
@@ -33,15 +34,6 @@ class Etrade(private val configuration: Configuration,
             }
         }
 
-    private val domainPrefix: String
-        get() {
-            return if (production) {
-                "api"
-            } else {
-                "apisb"
-            }
-        }
-
     private val paths: HashMap<String, String> = hashMapOf (
         AUTH_REQUEST_TOKEN to "oauth/request_token",
         AUTH_ACCESS_TOKEN to "oauth/access_token"
@@ -50,10 +42,6 @@ class Etrade(private val configuration: Configuration,
     companion object {
         private const val AUTH_REQUEST_TOKEN = "auth_request_token"
         private const val AUTH_ACCESS_TOKEN = "auth_access_token"
-    }
-
-    private fun urlForPath(path: String): String {
-        return "https://${domainPrefix}.etrade.com/${paths[path]}"
     }
 
     fun requestToken(): EtradeAuthResponse {
@@ -66,8 +54,9 @@ class Etrade(private val configuration: Configuration,
             .addInterceptor(EtradeInterceptor(keys))
             .build()
 
+        val path = "$baseUrl/${paths[AUTH_REQUEST_TOKEN]}"
         val request = Request.Builder()
-            .url(urlForPath(AUTH_REQUEST_TOKEN))
+            .url(path)
             .build()
 
         return EtradeAuthResponse.withResponse(client.newCall(request).execute())
@@ -99,8 +88,9 @@ class Etrade(private val configuration: Configuration,
                 .addInterceptor(EtradeInterceptor(keys))
                 .build()
 
+        val path = "$baseUrl/${paths[AUTH_ACCESS_TOKEN]}"
         val request = Request.Builder()
-                .url(urlForPath(AUTH_ACCESS_TOKEN))
+                .url(path)
                 .build()
 
         val response = client.newCall(request).execute()
@@ -120,6 +110,7 @@ class Etrade(private val configuration: Configuration,
         }
     }
 
+    // make ticker vs tickers, use same back, pull out first
     fun ticker(symbol: String, accessToken: EtradeAuthResponse, verifier: String): TickerDataResponse? {
         val keys = OauthKeys(
                 consumerKey = consumerKey,
@@ -148,7 +139,7 @@ class Etrade(private val configuration: Configuration,
 
         val retrofit = Retrofit.Builder()
             .client(client.build())
-            .baseUrl("https://apisb.etrade.com")
+            .baseUrl(baseUrl)
             .addConverterFactory(JacksonConverterFactory.create(mapper))
             .build()
 
