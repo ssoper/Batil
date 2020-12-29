@@ -67,11 +67,11 @@ while read line; do
   match="${line%%,*}"
   if [ "${#match}" -lt "$minChar" ]; then
     spaces=$(( $minChar - ${#match} ))
-    echo -n "${match}" >> $result
+    echo -n "${match}," >> $result
     echo -n "$(seq -s " " $spaces | tr -d '[:digit:]')" >> $result
     echo "${line#*,}" >> $result
   else
-    echo line >> $result
+    echo $line >> $result
   fi
 done < "$tmp"
 
