@@ -2,6 +2,7 @@ import TestHelper.LoadConfig
 import TestHelper.MockResponseFile
 import com.seansoper.batil.connectors.Etrade
 import com.seansoper.batil.connectors.EtradeAuthResponse
+import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.string.shouldBeEqualIgnoringCase
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -29,6 +30,10 @@ class EtradeTest: StringSpec({
         val data = client.ticker("AAPL", oauth, "verifierCode") // server.hostName
 
         data.shouldNotBeNull()
+        data.tickerData.shouldNotBeNull()
+        data.tickerData.adjustedFlag!!.shouldBeFalse()
+        data.tickerData.ask!!.shouldBe(132.31f)
+        data.tickerData.bid!!.shouldBe(132.29f)
         server.takeRequest().path.shouldBe("/v1/market/quote/AAPL")
     }
 

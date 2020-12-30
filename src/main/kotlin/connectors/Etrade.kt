@@ -2,6 +2,7 @@ package com.seansoper.batil.connectors
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.seansoper.batil.Configuration
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -111,7 +112,7 @@ class Etrade(private val configuration: Configuration,
     }
 
     // make ticker vs tickers, use same back, pull out first
-    fun ticker(symbol: String, accessToken: EtradeAuthResponse, verifier: String): TickerDataResponse? {
+    fun ticker(symbol: String, accessToken: EtradeAuthResponse, verifier: String): QuoteData? {
         val keys = OauthKeys(
                 consumerKey = consumerKey,
                 consumerSecret = consumerSecret,
@@ -136,6 +137,7 @@ class Etrade(private val configuration: Configuration,
         val mapper = ObjectMapper()
         mapper.dateFormat = SimpleDateFormat("HH:mm:ss zzz dd-MM-yyyy")
         mapper.registerModule(module)
+        mapper.registerModule(KotlinModule())
 
         val retrofit = Retrofit.Builder()
             .client(client.build())
@@ -146,6 +148,6 @@ class Etrade(private val configuration: Configuration,
         val service = retrofit.create(Market::class.java)
         val response = service.getQuote(symbol).execute()
 
-        return response.body()
+        return response.body()?.response?.data?.first()
     }
 }
