@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Convert E*TRADE API documentation directly into Kotlin model
+# Convert E*TRADE API documentation directly into a Kotlin model
 #
 # Example
 # Copy and paste the API documentation into a file called quote_details.txt. Use content
@@ -42,10 +42,10 @@ sed -i.bak $'s/\t$//' $tmp
 sed -i.bak 's/^/val /' $tmp
 
 # Convert types to Kotlin equivalents
-sed -i.bak $'s/\tnumber.*\(\t\)/: Float'$declaration'/' $tmp
-sed -i.bak $'s/\tinteger.*\(\t\)/: Int'$declaration'/' $tmp
-sed -i.bak $'s/\tstring.*\(\t\)/: String'$declaration'/' $tmp
-sed -i.bak $'s/\tboolean.*\(\t\)/: Boolean'$declaration'/' $tmp
+sed -i.bak $'s/\tnumber.*\(\t\)/: Float?'$declaration'/' $tmp
+sed -i.bak $'s/\tinteger.*\(\t\)/: Int?'$declaration'/' $tmp
+sed -i.bak $'s/\tstring.*\(\t\)/: String?'$declaration'/' $tmp
+sed -i.bak $'s/\tboolean.*\(\t\)/: Boolean?'$declaration'/' $tmp
 sed -i.bak $'s/\t\(.*\)\(\t\)/: UNKNOWN'$declaration'/' $tmp
 
 # Prepend // to description
@@ -71,7 +71,7 @@ while read line; do
     echo -n "$(seq -s " " $spaces | tr -d '[:digit:]')" >> $result
     echo "${line#*,}" >> $result
   else
-    echo $line >> $result
+    echo "$line" >> $result
   fi
 done < "$tmp"
 
