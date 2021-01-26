@@ -111,8 +111,11 @@ class Etrade(private val configuration: Configuration,
         }
     }
 
-    // make ticker vs tickers, use same back, pull out first
     fun ticker(symbol: String, accessToken: EtradeAuthResponse, verifier: String): QuoteData? {
+        return tickers(listOf(symbol), accessToken, verifier)?.first()
+    }
+
+    fun tickers(symbols: List<String>, accessToken: EtradeAuthResponse, verifier: String): List<QuoteData>? {
         val keys = OauthKeys(
                 consumerKey = consumerKey,
                 consumerSecret = consumerSecret,
@@ -146,8 +149,8 @@ class Etrade(private val configuration: Configuration,
             .build()
 
         val service = retrofit.create(Market::class.java)
-        val response = service.getQuote(symbol).execute()
+        val response = service.getQuote(symbols.joinToString(",")).execute()
 
-        return response.body()?.response?.data?.first()
+        return response.body()?.response?.data
     }
 }
