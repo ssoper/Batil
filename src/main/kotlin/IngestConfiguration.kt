@@ -5,7 +5,6 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import java.nio.file.Files
-import java.nio.file.Paths
 
 data class Chromium(val ip: String,
                     val port: Int,
@@ -26,12 +25,11 @@ class IngestConfiguration(private val settings: CommandLineParser.Parsed,
                           private val basePath: String = System.getProperty("user.dir")) {
 
     fun parse(): Configuration {
-        val path = Paths.get(basePath, "batil.yaml")
         val mapper = ObjectMapper(YAMLFactory())
         mapper.registerModule(KotlinModule())
 
         return try {
-            Files.newBufferedReader(path).use {
+            Files.newBufferedReader(settings.pathToConfigFile).use {
                 mapper.readValue(it, Configuration::class.java)
             }
         } catch (exception: MissingKotlinParameterException) {
