@@ -49,7 +49,8 @@ object Core {
             }
         }
 
-        val data = client.ticker("AAPL", oauthToken, verifier)
+        // val data = client.ticker("AAPL", oauthToken, verifier)
+        val data = client.lookup("Game", oauthToken, verifier)
         data?.let {
             print(it)
         }

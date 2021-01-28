@@ -37,6 +37,7 @@ class EtradeTest: StringSpec({
             val data = client.ticker("AAPL", oauth, "verifierCode")
 
             data.shouldNotBeNull()
+            data.ahFlag.shouldBeFalse()
             data.tickerData.shouldNotBeNull()
             data.tickerData.symbolDescription.shouldBe("APPLE INC COM")
             data.tickerData.adjustedFlag!!.shouldBeFalse()
@@ -62,6 +63,18 @@ class EtradeTest: StringSpec({
         }
     }
 
+    "lookup ticker" {
+        createServer("apiResponses/market/lookup_ticker_success.json") {
+            val client = Etrade(config, baseUrl = it.url(".").toString())
+            val oauth = EtradeAuthResponse("token", "secret")
+            val data = client.lookup("Game", oauth, "verifierCode")
+
+            data.shouldNotBeNull()
+            data.size.shouldBe(10)
+            data.elementAt(6).symbol.shouldBe("GME")
+            it.takeRequest().path.shouldBe("/v1/market/lookup/Game")
+        }
+    }
 })
 
 
