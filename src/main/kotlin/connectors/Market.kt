@@ -136,6 +136,7 @@ data class TickerData(
 data class QuoteData(
     val dateTime: GregorianCalendar,
     val quoteStatus: QuoteStatus,
+    val ahFlag: Boolean,
 
     @JsonProperty("All")
     val tickerData: TickerData
@@ -153,9 +154,30 @@ data class TickerDataResponse(
     val response: QuoteResponse
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class LookupResult(
+    val symbol: String?,      // The market symbol for the security
+    val description: String?, // The text description of the security
+    val type: String?         // The symbol type
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class LookupData(
+    @JsonProperty("Data")
+    val data: List<LookupResult>
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class LookupDataResponse(
+    @JsonProperty("LookupResponse")
+    val response: LookupData
+)
+
 interface Market {
 
     @GET("v1/market/quote/{symbol}")
     fun getQuote(@Path("symbol") symbol: String): Call<TickerDataResponse>
 
+    @GET("v1/market/lookup/{search}")
+    fun lookup(@Path("search") search: String): Call<LookupDataResponse>
 }

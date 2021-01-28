@@ -153,4 +153,43 @@ class Etrade(private val configuration: Configuration,
 
         return response.body()?.response?.data
     }
+
+    fun lookup(search: String, accessToken: EtradeAuthResponse, verifier: String): List<LookupResult>? {
+        val keys = OauthKeys(
+            consumerKey = consumerKey,
+            consumerSecret = consumerSecret,
+            accessToken = accessToken.accessToken,
+            accessSecret = accessToken.accessSecret,
+            verifier = verifier
+        )
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(JsonInterceptor())
+
+        if (verbose) {
+            val logger = HttpLoggingInterceptor()
+            logger.level = HttpLoggingInterceptor.Level.BODY
+            client.addInterceptor(logger)
+        }
+
+        val module = SimpleModule()
+        module.addDeserializer(GregorianCalendar::class.java, DateSerializer.Decode())
+
+        val mapper = ObjectMapper()
+        mapper.dateFormat = SimpleDateFormat("HH:mm:ss zzz dd-MM-yyyy")
+        mapper.registerModule(module)
+        mapper.registerModule(KotlinModule())
+
+        val retrofit = Retrofit.Builder()
+            .client(client.build())
+            .baseUrl(baseUrl)
+            .addConverterFactory(JacksonConverterFactory.create(mapper))
+            .build()
+
+        val service = retrofit.create(Market::class.java)
+        val response = service.lookup(search).execute()
+
+        return response.body()?.response?.data
+    }
 }
