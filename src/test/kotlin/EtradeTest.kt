@@ -2,6 +2,8 @@ import TestHelper.LoadConfig
 import TestHelper.MockResponseFile
 import com.seansoper.batil.connectors.Etrade
 import com.seansoper.batil.connectors.EtradeAuthResponse
+import com.seansoper.batil.connectors.OptionCategory
+import com.seansoper.batil.connectors.OptionType
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -73,6 +75,36 @@ class EtradeTest: StringSpec({
             data.size.shouldBe(10)
             data.elementAt(6).symbol.shouldBe("GME")
             it.takeRequest().path.shouldBe("/v1/market/lookup/Game")
+        }
+    }
+
+    "option chain" {
+        createServer("apiResponses/market/option_chains_success.json") {
+            val client = Etrade(config, baseUrl = it.url(".").toString())
+            val oauth = EtradeAuthResponse("token", "secret")
+            val data = client.optionChains("AAPL", oauth, "verifierCode")
+
+            data.shouldNotBeNull()
+            data.pairs.size.shouldBe(72)
+
+            val pair = data.pairs.elementAt(0)
+            pair.call.symbol.shouldBe("AAPL")
+            pair.call.optionCategory.shouldBe(OptionCategory.STANDARD)
+            pair.call.optionType.shouldBe(OptionType.CALL)
+            pair.call.strikePrice.shouldBe(65.0f)
+            pair.call.bid.shouldBe(69.8f)
+            pair.call.ask.shouldBe(74.0f)
+            pair.call.greeks.vega.shouldBe(0.0014f)
+
+            pair.put.symbol.shouldBe("AAPL")
+            pair.put.optionCategory.shouldBe(OptionCategory.STANDARD)
+            pair.put.optionType.shouldBe(OptionType.PUT)
+            pair.put.strikePrice.shouldBe(65.0f)
+            pair.put.bid.shouldBe(0.0f)
+            pair.put.ask.shouldBe(0.01f)
+            pair.put.greeks.vega.shouldBe(0.0001f)
+
+            it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL")
         }
     }
 })

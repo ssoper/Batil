@@ -12,8 +12,10 @@ import com.fasterxml.jackson.databind.SerializerProvider
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import java.io.IOException
 import java.text.SimpleDateFormat
+import java.time.Instant
 import java.util.*
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -54,6 +56,15 @@ object DateSerializer {
     }
 
     class DeserializerException: JsonProcessingException("Could not parse JSON")
+}
+
+class TimestampDeserializer: JsonDeserializer<Instant>() {
+    @Throws(IOException::class, JsonProcessingException::class)
+    override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): Instant {
+        return p?.longValue?.let {
+            Instant.ofEpochSecond(it)
+        } ?: throw DateSerializer.DeserializerException()
+    }
 }
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -173,7 +184,80 @@ data class LookupDataResponse(
     val response: LookupData
 )
 
+enum class OptionCategory {
+    STANDARD, ALL, MINI
+}
+
+enum class OptionType {
+    CALL, PUT
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OptionGreeks(
+    val rho: Float?,
+    val vega: Float?,
+    val theta: Float?,
+    val delta: Float?,
+    val gamma: Float?,
+    val iv: Float?,
+    val currentValue: Boolean
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OptionDetails(
+    val optionCategory: OptionCategory?,  // STANDARD, ALL, MINI
+    val optionRootSymbol: String?,        // The root or underlying symbol of the option
+    val timeStamp: Instant?,              // The timestamp of the option
+    val adjustedFlag: Boolean?,           // Indicator signifying whether option is adjusted
+    val displaySymbol: String?,           // The display symbol
+    val optionType: OptionType?,          // The option type
+    val strikePrice: Float?,              // The agreed strike price for the option as stated in the contract
+    val symbol: String?,                  // The market symbol for the option
+    val bid: Float?,                      // The bid
+    val ask: Float?,                      // The ask
+    val bidSize: Int?,                    // The bid size
+    val askSize: Int?,                    // The ask size
+    val inTheMoney: String?,              // The "in the money" value; a put option is "in the money" when the strike price of the put is above the current market price of the stock
+    val volume: Int?,                     // The option volume
+    val openInterest: Int?,               // The open interest value
+    val netChange: Float?,                // The net change value
+    val lastPrice: Float?,                // The last price
+    val quoteDetail: String?,             // The option quote detail
+    val osiKey: String?,                  // The Options Symbology Initiative (OSI) key containing the option root symbol, expiration date, call/put indicator, and strike price
+
+    @JsonProperty("OptionGreeks")
+    val greeks: OptionGreeks
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OptionPair(
+    @JsonProperty("Call")
+    val call: OptionDetails,
+
+    @JsonProperty("Put")
+    val put: OptionDetails
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OptionChainResponse(
+    val timeStamp: Instant,
+    val quoteType: QuoteStatus,
+    val nearPrice: Float,
+
+    @JsonProperty("OptionPair")
+    val pairs: List<OptionPair>,
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OptionChainRoot(
+    @JsonProperty("OptionChainResponse")
+    val response: OptionChainResponse
+)
+
 interface Market {
+
+    @GET("v1/market/optionchains")
+    fun getOptionChains(@Query("symbol") symbol: String): Call<OptionChainRoot>
 
     @GET("v1/market/quote/{symbol}")
     fun getQuote(@Path("symbol") symbol: String): Call<TickerDataResponse>

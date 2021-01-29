@@ -10,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.text.SimpleDateFormat
+import java.time.Instant
 import java.util.*
 
 class Etrade(private val configuration: Configuration,
@@ -191,5 +192,43 @@ class Etrade(private val configuration: Configuration,
         val response = service.lookup(search).execute()
 
         return response.body()?.response?.data
+    }
+
+    fun optionChains(symbol: String, accessToken: EtradeAuthResponse, verifier: String): OptionChainResponse? {
+        val keys = OauthKeys(
+            consumerKey = consumerKey,
+            consumerSecret = consumerSecret,
+            accessToken = accessToken.accessToken,
+            accessSecret = accessToken.accessSecret,
+            verifier = verifier
+        )
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(JsonInterceptor())
+
+        if (verbose) {
+            val logger = HttpLoggingInterceptor()
+            logger.level = HttpLoggingInterceptor.Level.BODY
+            client.addInterceptor(logger)
+        }
+
+        val module = SimpleModule()
+        module.addDeserializer(Instant::class.java, TimestampDeserializer())
+
+        val mapper = ObjectMapper()
+        mapper.registerModule(module)
+        mapper.registerModule(KotlinModule())
+
+        val retrofit = Retrofit.Builder()
+            .client(client.build())
+            .baseUrl(baseUrl)
+            .addConverterFactory(JacksonConverterFactory.create(mapper))
+            .build()
+
+        val service = retrofit.create(Market::class.java)
+        val response = service.getOptionChains(symbol).execute()
+
+        return response.body()?.response
     }
 }
