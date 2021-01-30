@@ -10,6 +10,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import java.util.*
 
 fun createServer(pathToContent: String? = null, test: (server: MockWebServer) -> Unit) {
     val server = MockWebServer()
@@ -79,7 +80,7 @@ class EtradeTest: StringSpec({
     }
 
     "option chain" {
-        createServer("apiResponses/market/option_chains_success.json") {
+        createServer("apiResponses/market/option_chains/nearest_expiry_all_strikes_success.json") {
             val client = Etrade(config, baseUrl = it.url(".").toString())
             val oauth = EtradeAuthResponse("token", "secret")
             val data = client.optionChains("AAPL", oauth, "verifierCode")
@@ -105,6 +106,31 @@ class EtradeTest: StringSpec({
             pair.put.greeks.vega.shouldBe(0.0001f)
 
             it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL")
+        }
+    }
+
+    "option chain specific expiry strike" {
+        createServer("apiResponses/market/option_chains/specific_expiry_strike_distance_success.json") {
+            val client = Etrade(config, baseUrl = it.url(".").toString())
+            val oauth = EtradeAuthResponse("token", "secret")
+            val data = client.optionChains("AAPL", GregorianCalendar(2021, 2, 5), 131f, 1, oauth, "verifierCode")
+
+            data.shouldNotBeNull()
+            data.pairs.size.shouldBe(3)
+
+            val first = data.pairs.elementAt(0)
+            first.call.symbol.shouldBe("AAPL")
+            first.call.strikePrice.shouldBe(130.0f)
+
+            val second = data.pairs.elementAt(1)
+            second.call.symbol.shouldBe("AAPL")
+            second.call.strikePrice.shouldBe(131.0f)
+
+            val third = data.pairs.elementAt(2)
+            third.call.symbol.shouldBe("AAPL")
+            third.call.strikePrice.shouldBe(132.0f)
+
+            it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL&expiryYear=2021&expiryMonth=2&expiryDay=5&strikePriceNear=131&noOfStrikes=3")
         }
     }
 })

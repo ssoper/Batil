@@ -9,6 +9,9 @@ import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import retrofit2.http.Query
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.*
@@ -194,7 +197,23 @@ class Etrade(private val configuration: Configuration,
         return response.body()?.response?.data
     }
 
+    // Retrieves all options chains for the nearest expiry date
     fun optionChains(symbol: String, accessToken: EtradeAuthResponse, verifier: String): OptionChainResponse? {
+        return optionChains(symbol, expiryDate = null, strike = null, distance = null, accessToken = accessToken, verifier = verifier)
+    }
+
+    // Retrieves all options chains for the specified expiry date
+    fun optionChains(symbol: String, expiryDate: GregorianCalendar, accessToken: EtradeAuthResponse, verifier: String): OptionChainResponse? {
+        return optionChains(symbol, expiryDate = expiryDate, strike = null, distance = null, accessToken = accessToken, verifier = verifier)
+    }
+
+    // Retrieves all options chains for the specified expiry date, strike and distance from strike
+    fun optionChains(symbol: String,
+                     expiryDate: GregorianCalendar?,
+                     strike: Float?,
+                     distance: Int?,
+                     accessToken: EtradeAuthResponse,
+                     verifier: String): OptionChainResponse? {
         val keys = OauthKeys(
             consumerKey = consumerKey,
             consumerSecret = consumerSecret,
@@ -227,7 +246,27 @@ class Etrade(private val configuration: Configuration,
             .build()
 
         val service = retrofit.create(Market::class.java)
-        val response = service.getOptionChains(symbol).execute()
+
+        val options = mutableMapOf("symbol" to symbol)
+
+        expiryDate?.let {
+            options.putAll(mapOf(
+                "expiryYear" to it.get(Calendar.YEAR).toString(),
+                "expiryMonth" to it.get(Calendar.MONTH).toString(),
+                "expiryDay" to it.get(Calendar.DAY_OF_MONTH).toString()))
+        }
+
+        strike?.let {
+            val format = DecimalFormat("#.##")
+            format.roundingMode = RoundingMode.CEILING
+            options.put("strikePriceNear", format.format(strike))
+        }
+
+        distance?.let {
+            options.put("noOfStrikes", ((distance*2)+1).toString())
+        }
+
+        val response = service.getOptionChains(options).execute()
 
         return response.body()?.response
     }

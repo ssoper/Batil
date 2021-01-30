@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -257,7 +258,7 @@ data class OptionChainRoot(
 interface Market {
 
     @GET("v1/market/optionchains")
-    fun getOptionChains(@Query("symbol") symbol: String): Call<OptionChainRoot>
+    fun getOptionChains(@QueryMap options: Map<String, String>): Call<OptionChainRoot>
 
     @GET("v1/market/quote/{symbol}")
     fun getQuote(@Path("symbol") symbol: String): Call<TickerDataResponse>
