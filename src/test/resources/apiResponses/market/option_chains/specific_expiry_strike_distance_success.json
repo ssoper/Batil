@@ -1,0 +1,200 @@
+{
+  "OptionChainResponse": {
+    "timeStamp": 1611954000,
+    "quoteType": "CLOSING",
+    "nearPrice": 131.0,
+    "OptionPair": [
+      {
+        "Call": {
+          "optionCategory": "STANDARD",
+          "optionRootSymbol": "AAPL",
+          "timeStamp": 1611954001,
+          "adjustedFlag": false,
+          "displaySymbol": "AAPL Feb 05 '21 $130 Call",
+          "optionType": "CALL",
+          "strikePrice": 130.0,
+          "symbol": "AAPL",
+          "bid": 4.5,
+          "ask": 4.7,
+          "bidSize": 22,
+          "askSize": 1,
+          "inTheMoney": "y",
+          "volume": 16615,
+          "openInterest": 11199,
+          "netChange": -3.5,
+          "lastPrice": 4.55,
+          "quoteDetail": "https://api.etrade.com/v1/market/quote/AAPL:2021:2:5:CALL:130.000000",
+          "osiKey": "AAPL--210205C00130000",
+          "OptionGreeks": {
+            "rho": 0.0127,
+            "vega": 0.0712,
+            "theta": -0.27,
+            "delta": 0.5901,
+            "gamma": 0.0422,
+            "iv": 0.5092,
+            "currentValue": true
+          }
+        },
+        "Put": {
+          "optionCategory": "STANDARD",
+          "optionRootSymbol": "AAPL",
+          "timeStamp": 1611954001,
+          "adjustedFlag": false,
+          "displaySymbol": "AAPL Feb 05 '21 $130 Put",
+          "optionType": "PUT",
+          "strikePrice": 130.0,
+          "symbol": "AAPL",
+          "bid": 2.82,
+          "ask": 2.9,
+          "bidSize": 21,
+          "askSize": 4,
+          "inTheMoney": "n",
+          "volume": 37952,
+          "openInterest": 10621,
+          "netChange": 1.62,
+          "lastPrice": 2.82,
+          "quoteDetail": "https://api.etrade.com/v1/market/quote/AAPL:2021:2:5:PUT:130.000000",
+          "osiKey": "AAPL--210205P00130000",
+          "OptionGreeks": {
+            "rho": -0.0106,
+            "vega": 0.0713,
+            "theta": -0.2615,
+            "delta": -0.4173,
+            "gamma": 0.0428,
+            "iv": 0.4974,
+            "currentValue": true
+          }
+        }
+      },
+      {
+        "Call": {
+          "optionCategory": "STANDARD",
+          "optionRootSymbol": "AAPL",
+          "timeStamp": 1611954001,
+          "adjustedFlag": false,
+          "displaySymbol": "AAPL Feb 05 '21 $131 Call",
+          "optionType": "CALL",
+          "strikePrice": 131.0,
+          "symbol": "AAPL",
+          "bid": 3.95,
+          "ask": 4.1,
+          "bidSize": 66,
+          "askSize": 20,
+          "inTheMoney": "y",
+          "volume": 8255,
+          "openInterest": 4927,
+          "netChange": -3.16,
+          "lastPrice": 4.0,
+          "quoteDetail": "https://api.etrade.com/v1/market/quote/AAPL:2021:2:5:CALL:131.000000",
+          "osiKey": "AAPL--210205C00131000",
+          "OptionGreeks": {
+            "rho": 0.0119,
+            "vega": 0.0722,
+            "theta": -0.2744,
+            "delta": 0.5473,
+            "gamma": 0.0431,
+            "iv": 0.5077,
+            "currentValue": true
+          }
+        },
+        "Put": {
+          "optionCategory": "STANDARD",
+          "optionRootSymbol": "AAPL",
+          "timeStamp": 1611954001,
+          "adjustedFlag": false,
+          "displaySymbol": "AAPL Feb 05 '21 $131 Put",
+          "optionType": "PUT",
+          "strikePrice": 131.0,
+          "symbol": "AAPL",
+          "bid": 3.25,
+          "ask": 3.4,
+          "bidSize": 98,
+          "askSize": 30,
+          "inTheMoney": "n",
+          "volume": 14577,
+          "openInterest": 2852,
+          "netChange": 1.85,
+          "lastPrice": 3.3,
+          "quoteDetail": "https://api.etrade.com/v1/market/quote/AAPL:2021:2:5:PUT:131.000000",
+          "osiKey": "AAPL--210205P00131000",
+          "OptionGreeks": {
+            "rho": -0.0117,
+            "vega": 0.0725,
+            "theta": -0.2659,
+            "delta": -0.4608,
+            "gamma": 0.0436,
+            "iv": 0.4966,
+            "currentValue": true
+          }
+        }
+      },
+      {
+        "Call": {
+          "optionCategory": "STANDARD",
+          "optionRootSymbol": "AAPL",
+          "timeStamp": 1611954001,
+          "adjustedFlag": false,
+          "displaySymbol": "AAPL Feb 05 '21 $132 Call",
+          "optionType": "CALL",
+          "strikePrice": 132.0,
+          "symbol": "AAPL",
+          "bid": 3.5,
+          "ask": 3.6,
+          "bidSize": 7,
+          "askSize": 21,
+          "inTheMoney": "n",
+          "volume": 25736,
+          "openInterest": 2842,
+          "netChange": -3.1,
+          "lastPrice": 3.5,
+          "quoteDetail": "https://api.etrade.com/v1/market/quote/AAPL:2021:2:5:CALL:132.000000",
+          "osiKey": "AAPL--210205C00132000",
+          "OptionGreeks": {
+            "rho": 0.011,
+            "vega": 0.0728,
+            "theta": -0.2742,
+            "delta": 0.5039,
+            "gamma": 0.0437,
+            "iv": 0.5039,
+            "currentValue": true
+          }
+        },
+        "Put": {
+          "optionCategory": "STANDARD",
+          "optionRootSymbol": "AAPL",
+          "timeStamp": 1611954001,
+          "adjustedFlag": false,
+          "displaySymbol": "AAPL Feb 05 '21 $132 Put",
+          "optionType": "PUT",
+          "strikePrice": 132.0,
+          "symbol": "AAPL",
+          "bid": 3.75,
+          "ask": 3.9,
+          "bidSize": 93,
+          "askSize": 1,
+          "inTheMoney": "y",
+          "volume": 23953,
+          "openInterest": 5870,
+          "netChange": 2.07,
+          "lastPrice": 3.84,
+          "quoteDetail": "https://api.etrade.com/v1/market/quote/AAPL:2021:2:5:PUT:132.000000",
+          "osiKey": "AAPL--210205P00132000",
+          "OptionGreeks": {
+            "rho": -0.0129,
+            "vega": 0.0728,
+            "theta": -0.2682,
+            "delta": -0.5043,
+            "gamma": 0.0437,
+            "iv": 0.4986,
+            "currentValue": true
+          }
+        }
+      }
+    ],
+    "SelectedED": {
+      "month": 2,
+      "year": 2021,
+      "day": 5
+    }
+  }
+}

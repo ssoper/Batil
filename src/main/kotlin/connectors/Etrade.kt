@@ -2,15 +2,24 @@ package com.seansoper.batil.connectors
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.seansoper.batil.Configuration
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import retrofit2.http.Query
+import java.io.IOException
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
+import java.time.Instant
 import java.util.*
+import kotlin.jvm.Throws
 
 class Etrade(private val configuration: Configuration,
              private val production: Boolean = false,
@@ -191,5 +200,80 @@ class Etrade(private val configuration: Configuration,
         val response = service.lookup(search).execute()
 
         return response.body()?.response?.data
+    }
+
+    // Retrieves all options chains for the nearest expiry date
+    fun optionChains(symbol: String, accessToken: EtradeAuthResponse, verifier: String): OptionChainResponse? {
+        return optionChains(symbol, expiryDate = null, strike = null, distance = null, accessToken = accessToken, verifier = verifier)
+    }
+
+    // Retrieves all options chains for the specified expiry date
+    fun optionChains(symbol: String, expiryDate: GregorianCalendar, accessToken: EtradeAuthResponse, verifier: String): OptionChainResponse? {
+        return optionChains(symbol, expiryDate = expiryDate, strike = null, distance = null, accessToken = accessToken, verifier = verifier)
+    }
+
+    // Retrieves all options chains for the specified expiry date, strike and distance from strike
+    fun optionChains(symbol: String,
+                     expiryDate: GregorianCalendar?,
+                     strike: Float?,
+                     distance: Int?,
+                     accessToken: EtradeAuthResponse,
+                     verifier: String): OptionChainResponse? {
+        val keys = OauthKeys(
+            consumerKey = consumerKey,
+            consumerSecret = consumerSecret,
+            accessToken = accessToken.accessToken,
+            accessSecret = accessToken.accessSecret,
+            verifier = verifier
+        )
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(JsonInterceptor())
+            .addInterceptor(ErrorInterceptor())
+
+        if (verbose) {
+            val logger = HttpLoggingInterceptor()
+            logger.level = HttpLoggingInterceptor.Level.BODY
+            client.addInterceptor(logger)
+        }
+
+        val module = SimpleModule()
+        module.addDeserializer(Instant::class.java, TimestampDeserializer())
+
+        val mapper = ObjectMapper()
+        mapper.registerModule(module)
+        mapper.registerModule(KotlinModule())
+
+        val retrofit = Retrofit.Builder()
+            .client(client.build())
+            .baseUrl(baseUrl)
+            .addConverterFactory(JacksonConverterFactory.create(mapper))
+            .build()
+
+        val service = retrofit.create(Market::class.java)
+
+        val options = mutableMapOf("symbol" to symbol)
+
+        expiryDate?.let {
+            options.putAll(mapOf(
+                "expiryYear" to it.get(Calendar.YEAR).toString(),
+                "expiryMonth" to it.get(Calendar.MONTH).toString(),
+                "expiryDay" to it.get(Calendar.DAY_OF_MONTH).toString()))
+        }
+
+        strike?.let {
+            val format = DecimalFormat("#.##")
+            format.roundingMode = RoundingMode.CEILING
+            options.put("strikePriceNear", format.format(strike))
+        }
+
+        distance?.let {
+            options.put("noOfStrikes", ((distance*2)+1).toString())
+        }
+
+        val response = service.getOptionChains(options).execute()
+
+        return response.body()?.response
     }
 }
