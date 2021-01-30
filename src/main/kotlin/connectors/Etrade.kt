@@ -2,6 +2,7 @@ package com.seansoper.batil.connectors
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.seansoper.batil.Configuration
 import okhttp3.OkHttpClient
@@ -267,6 +268,13 @@ class Etrade(private val configuration: Configuration,
         }
 
         val response = service.getOptionChains(options).execute()
+
+        if (response.code() >= 400) {
+            response.errorBody()?.string()?.let {
+                val xmlMapper = XmlMapper()
+                throw xmlMapper.readValue(it, EtradeError::class.java)
+            }
+        }
 
         return response.body()?.response
     }

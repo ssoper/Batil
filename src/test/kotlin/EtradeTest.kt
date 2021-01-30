@@ -1,18 +1,19 @@
 import TestHelper.LoadConfig
 import TestHelper.MockResponseFile
-import com.seansoper.batil.connectors.Etrade
-import com.seansoper.batil.connectors.EtradeAuthResponse
-import com.seansoper.batil.connectors.OptionCategory
-import com.seansoper.batil.connectors.OptionType
+import com.seansoper.batil.connectors.*
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
+import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import java.util.*
 
-fun createServer(pathToContent: String? = null, test: (server: MockWebServer) -> Unit) {
+fun createServer(pathToContent: String? = null,
+                 header: Pair<String, String> = "Content-Type" to "application/json",
+                 code: Int = 200,
+                 test: (server: MockWebServer) -> Unit) {
     val server = MockWebServer()
     server.start()
 
@@ -21,7 +22,8 @@ fun createServer(pathToContent: String? = null, test: (server: MockWebServer) ->
         content.shouldNotBeNull()
 
         val response = MockResponse()
-            .addHeader("Content-Type", "application/json")
+            .addHeader(header.first, header.second)
+            .setResponseCode(code)
             .setBody(content)
         server.enqueue(response)
     }
@@ -32,11 +34,11 @@ fun createServer(pathToContent: String? = null, test: (server: MockWebServer) ->
 
 class EtradeTest: StringSpec({
     val config = LoadConfig().content
+    val oauth = EtradeAuthResponse("token", "secret")
 
     "single ticker" {
         createServer("apiResponses/market/quote/single_ticker_success.json") {
             val client = Etrade(config, baseUrl = it.url(".").toString())
-            val oauth = EtradeAuthResponse("token", "secret")
             val data = client.ticker("AAPL", oauth, "verifierCode")
 
             data.shouldNotBeNull()
@@ -53,7 +55,6 @@ class EtradeTest: StringSpec({
     "multiple tickers" {
         createServer("apiResponses/market/quote/multiple_tickers_success.json") {
             val client = Etrade(config, baseUrl = it.url(".").toString())
-            val oauth = EtradeAuthResponse("token", "secret")
             val data = client.tickers(listOf("AAPL", "GME"), oauth, "verifierCode")
 
             data.shouldNotBeNull()
@@ -69,7 +70,6 @@ class EtradeTest: StringSpec({
     "lookup ticker" {
         createServer("apiResponses/market/lookup_ticker_success.json") {
             val client = Etrade(config, baseUrl = it.url(".").toString())
-            val oauth = EtradeAuthResponse("token", "secret")
             val data = client.lookup("Game", oauth, "verifierCode")
 
             data.shouldNotBeNull()
@@ -82,7 +82,6 @@ class EtradeTest: StringSpec({
     "option chain" {
         createServer("apiResponses/market/option_chains/nearest_expiry_all_strikes_success.json") {
             val client = Etrade(config, baseUrl = it.url(".").toString())
-            val oauth = EtradeAuthResponse("token", "secret")
             val data = client.optionChains("AAPL", oauth, "verifierCode")
 
             data.shouldNotBeNull()
@@ -112,7 +111,6 @@ class EtradeTest: StringSpec({
     "option chain specific expiry strike" {
         createServer("apiResponses/market/option_chains/specific_expiry_strike_distance_success.json") {
             val client = Etrade(config, baseUrl = it.url(".").toString())
-            val oauth = EtradeAuthResponse("token", "secret")
             val data = client.optionChains("AAPL", GregorianCalendar(2021, 2, 5), 131f, 1, oauth, "verifierCode")
 
             data.shouldNotBeNull()
@@ -131,6 +129,22 @@ class EtradeTest: StringSpec({
             third.call.strikePrice.shouldBe(132.0f)
 
             it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL&expiryYear=2021&expiryMonth=2&expiryDay=5&strikePriceNear=131&noOfStrikes=3")
+        }
+    }
+
+    "options chain invalid expiry date" {
+        createServer("apiResponses/market/option_chains/expiry_date_error.xml",
+                     "Content-Type" to "application/xml",
+                     400) {
+            val client = Etrade(config, baseUrl = it.url(".").toString())
+            val exception = shouldThrow<EtradeError> {
+                client.optionChains("AAPL", GregorianCalendar(2021, 2, 4), oauth, "verifierCode")
+            }
+
+            exception.code.shouldBe(10031)
+            exception.message.shouldBe("There are no options for the given month.")
+
+            it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL&expiryYear=2021&expiryMonth=2&expiryDay=4")
         }
     }
 })
