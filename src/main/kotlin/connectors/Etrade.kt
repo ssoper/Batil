@@ -5,17 +5,21 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.seansoper.batil.Configuration
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import retrofit2.http.Query
+import java.io.IOException
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.*
+import kotlin.jvm.Throws
 
 class Etrade(private val configuration: Configuration,
              private val production: Boolean = false,
@@ -226,6 +230,7 @@ class Etrade(private val configuration: Configuration,
         val client = OkHttpClient.Builder()
             .addInterceptor(EtradeInterceptor(keys))
             .addInterceptor(JsonInterceptor())
+            .addInterceptor(ErrorInterceptor())
 
         if (verbose) {
             val logger = HttpLoggingInterceptor()
@@ -268,13 +273,6 @@ class Etrade(private val configuration: Configuration,
         }
 
         val response = service.getOptionChains(options).execute()
-
-        if (response.code() >= 400) {
-            response.errorBody()?.string()?.let {
-                val xmlMapper = XmlMapper()
-                throw xmlMapper.readValue(it, EtradeError::class.java)
-            }
-        }
 
         return response.body()?.response
     }

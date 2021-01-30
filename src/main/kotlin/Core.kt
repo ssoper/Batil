@@ -53,7 +53,7 @@ object Core {
         // val data = client.ticker("AAPL", oauthToken, verifier)
         // val data = client.lookup("Game", oauthToken, verifier)
         // val data = client.optionChains("AAPL", oauthToken, verifier)
-        val data = client.optionChains("AAPL", GregorianCalendar(2021, 2, 4), 131f, 1, oauthToken, verifier)
+        val data = client.optionChains("AAPL", GregorianCalendar(2021, 2, 5), 131f, 1, oauthToken, verifier)
         data?.let {
             print(it)
         }
