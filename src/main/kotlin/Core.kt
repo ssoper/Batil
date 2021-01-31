@@ -50,6 +50,8 @@ object Core {
             }
         }
 
+        client.renewAccessToken(oauthToken)
+
         // val data = client.ticker("AAPL", oauthToken, verifier)
         // val data = client.lookup("Game", oauthToken, verifier)
         // val data = client.optionChains("AAPL", oauthToken, verifier)
