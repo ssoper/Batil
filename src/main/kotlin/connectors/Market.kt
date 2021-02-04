@@ -34,15 +34,6 @@ object DateSerializer {
     private const val Format = "HH:mm:ss zzz dd-MM-yyyy"
     val Formatter = SimpleDateFormat(Format)
 
-    class Encode: JsonSerializer<GregorianCalendar>() {
-        @Throws(IOException::class, JsonProcessingException::class)
-        override fun serialize(value: GregorianCalendar?, gen: JsonGenerator?, serializers: SerializerProvider?) {
-            value?.apply {
-                gen?.writeString(Formatter.format(time))
-            }
-        }
-    }
-
     class Decode: JsonDeserializer<GregorianCalendar>() {
         @Throws(IOException::class, JsonProcessingException::class)
         override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): GregorianCalendar {
@@ -52,11 +43,11 @@ object DateSerializer {
                 calendar.time = date
 
                 calendar
-            } ?: throw DeserializerException()
+            } ?: throw DateDeserializerException()
         }
     }
 
-    class DeserializerException: JsonProcessingException("Could not parse JSON")
+    class DateDeserializerException: JsonProcessingException("Could not parse date from JSON")
 }
 
 class TimestampDeserializer: JsonDeserializer<Instant>() {
@@ -64,8 +55,10 @@ class TimestampDeserializer: JsonDeserializer<Instant>() {
     override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): Instant {
         return p?.longValue?.let {
             Instant.ofEpochSecond(it)
-        } ?: throw DateSerializer.DeserializerException()
+        } ?: throw TimestampDeserializerException()
     }
+
+    class TimestampDeserializerException: JsonProcessingException("Could not parse timestamp from JSON")
 }
 
 @JsonIgnoreProperties(ignoreUnknown = true)
