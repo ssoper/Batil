@@ -9,7 +9,12 @@ import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import java.io.ByteArrayOutputStream
+import java.io.FileOutputStream
+import java.io.ObjectOutputStream
 import java.math.RoundingMode
+import java.nio.charset.StandardCharsets
+import java.nio.file.Paths
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -50,7 +55,7 @@ class Etrade(private val configuration: Configuration,
         private const val RENEW_ACCESS_TOKEN = "renew_access_token"
     }
 
-    fun requestToken(): EtradeAuthResponse {
+    fun getRequestToken(): EtradeAuthResponse {
         val keys = OauthKeys(
             consumerKey = consumerKey,
             consumerSecret = consumerSecret
@@ -68,7 +73,7 @@ class Etrade(private val configuration: Configuration,
         return EtradeAuthResponse.withResponse(client.newCall(request).execute())
     }
 
-    fun verifierCode(token: String): String {
+    fun getVerifierCode(token: String): String {
         val browserAuth = EtradeBrowserAuth(
                 consumerKey,
                 token,
@@ -81,7 +86,7 @@ class Etrade(private val configuration: Configuration,
         return browserAuth.retrieve()
     }
 
-    fun accessToken(requestToken: EtradeAuthResponse, verifier: String): EtradeAuthResponse {
+    fun getAccessToken(requestToken: EtradeAuthResponse, verifier: String, saveToken: Boolean = false): EtradeAuthResponse {
         val keys = OauthKeys(
                 consumerKey = consumerKey,
                 consumerSecret = consumerSecret,
@@ -102,7 +107,11 @@ class Etrade(private val configuration: Configuration,
         val response = client.newCall(request).execute()
 
         return try {
-            EtradeAuthResponse.withResponse(response)
+            EtradeAuthResponse.withResponse(response).apply {
+                if (saveToken) {
+                    saveToken(this)
+                }
+            }
         } catch (exception: EtradeAuthResponseError) {
 
             if (verbose) {
@@ -114,6 +123,30 @@ class Etrade(private val configuration: Configuration,
 
             throw exception
         }
+    }
+
+    private fun saveToken(authResponse: EtradeAuthResponse) {
+        // check if directory exists, if not create it
+        val dirPath = Paths.get(System.getProperty("user.home"), ".batil")
+
+        if (!dirPath.toFile().exists()) {
+            dirPath.toFile().mkdir()
+        }
+
+        val keyFilePath = Paths.get(dirPath.toString(), "etrade")
+        val keys = "${authResponse.accessToken}|${authResponse.accessSecret}"
+//        val bytes = keys.byteInputStream(StandardCharsets.UTF_8)
+        val stream = FileOutputStream(keyFilePath.toFile())
+
+        val s2 = ByteArrayOutputStream()
+        val o2 = ObjectOutputStream(s2)
+        o2.writeObject(authResponse)
+        o2.flush()
+
+        stream.write(s2.toByteArray())
+
+        // if key file exists, delete it
+        // create new key file with keys
     }
 
     fun renewAccessToken(requestToken: EtradeAuthResponse): Boolean {

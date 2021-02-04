@@ -1,10 +1,11 @@
 package com.seansoper.batil.connectors
 
 import okhttp3.Response
+import java.io.Serializable
 import java.net.URLDecoder
 
 data class EtradeAuthResponse(val accessToken: String,
-                              val accessSecret: String) {
+                              val accessSecret: String): Serializable {
 
     companion object {
         fun withResponse(response: Response): EtradeAuthResponse {
