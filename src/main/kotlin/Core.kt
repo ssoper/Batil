@@ -47,10 +47,11 @@ object Core {
         }
 
         val cachedToken = CachedToken(CachedToken.Provider.ETRADE)
-        cachedToken.saveEntry("access", "this is on you dude")
+        cachedToken.setEntry("access", "My man! How you doing?")
+        cachedToken.setEntry("secret", "This is going to be good")
 
-        val entry = cachedToken.getEntry("access")
-        println("entry $entry")
+        print(cachedToken.getEntry("access"))
+        print(cachedToken.getEntry("secret"))
 
 /*
         val auth = EtradeAuthResponse("3N4jVTyisOWT272T3QVIsDCEgL7iyAd71Vgm98FFy4w=",
