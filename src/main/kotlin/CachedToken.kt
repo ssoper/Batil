@@ -72,7 +72,7 @@ class CachedToken(val provider: Provider,
         val protection = KeyStore.PasswordProtection(password)
         val secret = keyStore.getEntry(getEntryKey(entry), protection)
 
-        // Can’t use optionals because getEntry is incorrectly marked as NonNullable
+        // Can’t rely on optionals because getEntry is incorrectly marked as NonNullable
         return if (secret != null) {
             String((secret as KeyStore.SecretKeyEntry).secretKey.encoded)
         } else {
