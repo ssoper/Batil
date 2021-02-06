@@ -4,6 +4,7 @@ import com.seansoper.batil.connectors.Etrade
 import java.util.*
 import kotlin.system.exitProcess
 
+
 object Core {
     @JvmStatic fun main(args: Array<String>) {
         val cli = CommandLineParser(args)
@@ -34,14 +35,14 @@ object Core {
         }
 
         val client = Etrade(configuration, parsed.production, parsed.verbose)
-        val requestToken = client.requestToken()
-        val verifier = client.verifierCode(requestToken.accessToken)
+        val requestToken = client.getRequestToken()
+        val verifier = client.getVerifierCode(requestToken.accessToken)
 
         if (parsed.verbose) {
             println("Verifier code is $verifier")
         }
 
-        val oauthToken = client.accessToken(requestToken, verifier)
+        val oauthToken = client.getAccessToken(requestToken, verifier, true)
 
         if (parsed.verbose) {
             oauthToken.apply {
