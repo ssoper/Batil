@@ -10,7 +10,7 @@ import java.security.KeyStore
 import java.util.*
 import javax.crypto.spec.SecretKeySpec
 
-// TODO: Handle java.io.IOException: Integrity check failed: java.security.UnrecoverableKeyException: Failed PKCS12 integrity checking
+class CachedTokenException(keyStorePath: Path): Exception("Corrupted KeyStore at ${keyStorePath.toAbsolutePath()}")
 
 class CachedToken(val provider: Provider,
                   private val keyStorePath: Path = Paths.get(System.getProperty("user.home"), ".batil", "key.store"),
@@ -25,7 +25,11 @@ class CachedToken(val provider: Provider,
 
         if (keyStoreFile.exists()) {
             val stream = FileInputStream(keyStoreFile)
-            keyStore.load(stream, password)
+            try {
+                keyStore.load(stream, password)
+            } catch (exception: java.io.IOException) {
+                throw CachedTokenException(keyStorePath)
+            }
         } else {
             keyStore.load(null, password)
         }

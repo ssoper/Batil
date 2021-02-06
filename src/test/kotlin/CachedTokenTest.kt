@@ -1,5 +1,7 @@
 import com.seansoper.batil.CachedToken
+import com.seansoper.batil.CachedTokenException
 import io.kotlintest.shouldBe
+import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -44,6 +46,21 @@ class CachedTokenTest: StringSpec({
         provider.destroy()
         keyStorePath.toFile().exists().shouldBe(false)
         passwordPath.toFile().exists().shouldBe(false)
+
+        dirPath.toFile().deleteRecursively()
+    }
+
+    "invalid password" {
+        val (dirPath, keyStorePath, passwordPath) = getPaths()
+        val provider = CachedToken(CachedToken.Provider.ETRADE, keyStorePath, passwordPath)
+        val secret = randomString(30)
+        provider.setEntry("topsecret", secret)
+
+        val badPasswordPath = Paths.get(dirPath.toString(), "key.badpassword")
+        val newProvider = CachedToken(CachedToken.Provider.ETRADE, keyStorePath, badPasswordPath)
+        shouldThrow<CachedTokenException> {
+            newProvider.getEntry("topsecret")
+        }
 
         dirPath.toFile().deleteRecursively()
     }
