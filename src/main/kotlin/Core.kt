@@ -1,20 +1,8 @@
 package com.seansoper.batil
 
 import com.seansoper.batil.connectors.Etrade
-import com.seansoper.batil.connectors.EtradeAuthResponse
-import java.io.ByteArrayOutputStream
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.ObjectOutputStream
-import java.nio.file.Paths
-import java.security.KeyStore
 import java.util.*
-import javax.crypto.SecretKey
-import javax.crypto.spec.SecretKeySpec
 import kotlin.system.exitProcess
-import javax.crypto.KeyGenerator
-
-
 
 
 object Core {
