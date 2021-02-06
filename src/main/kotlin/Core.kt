@@ -45,14 +45,6 @@ object Core {
             println(exception)
             exitProcess(1)
         }
-/*
-        val cachedToken = CachedToken(CachedToken.Provider.ETRADE)
-        cachedToken.setEntry("access", "My man! How you doing?")
-        cachedToken.setEntry("secret", "This is going to be good")
-
-        print(cachedToken.getEntry("access"))
-        print(cachedToken.getEntry("secret"))
-*/
 
         val client = Etrade(configuration, parsed.production, parsed.verbose)
         val requestToken = client.getRequestToken()
