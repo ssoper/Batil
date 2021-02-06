@@ -3,6 +3,7 @@ package com.seansoper.batil
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.security.KeyStore
@@ -92,4 +93,9 @@ class CachedToken(val provider: Provider,
         }
     }
 
+    // Removes the key store and password files but keeps the directory
+    fun destroy() {
+        Files.deleteIfExists(keyStorePath)
+        Files.deleteIfExists(passwordPath)
+    }
 }

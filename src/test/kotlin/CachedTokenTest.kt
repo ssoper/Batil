@@ -16,12 +16,18 @@ fun tmpDirPath(): Path {
     return Paths.get("/tmp", "batil", randomString())
 }
 
+fun getPaths(): Triple<Path, Path, Path> {
+    val dirPath = tmpDirPath()
+
+    return Triple(dirPath,
+                  Paths.get(dirPath.toString(), "key.store"),
+                  Paths.get(dirPath.toString(), "key.password"))
+}
+
 class CachedTokenTest: StringSpec({
 
     "should store values securely" {
-        val dirPath = tmpDirPath()
-        val keyStorePath = Paths.get(dirPath.toString(), "key.store")
-        val passwordPath = Paths.get(dirPath.toString(), "key.password")
+        val (dirPath, keyStorePath, passwordPath) = getPaths()
         val provider = CachedToken(CachedToken.Provider.ETRADE, keyStorePath, passwordPath)
         val secret = randomString(30)
         provider.setEntry("topsecret", secret)
@@ -30,4 +36,15 @@ class CachedTokenTest: StringSpec({
         dirPath.toFile().deleteRecursively()
     }
 
+    "should delete key store files" {
+        val (dirPath, keyStorePath, passwordPath) = getPaths()
+        val provider = CachedToken(CachedToken.Provider.ETRADE, keyStorePath, passwordPath)
+        val secret = randomString(30)
+        provider.setEntry("topsecret", secret)
+        provider.destroy()
+        keyStorePath.toFile().exists().shouldBe(false)
+        passwordPath.toFile().exists().shouldBe(false)
+
+        dirPath.toFile().deleteRecursively()
+    }
 })

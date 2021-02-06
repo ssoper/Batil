@@ -45,21 +45,15 @@ object Core {
             println(exception)
             exitProcess(1)
         }
-
+/*
         val cachedToken = CachedToken(CachedToken.Provider.ETRADE)
         cachedToken.setEntry("access", "My man! How you doing?")
         cachedToken.setEntry("secret", "This is going to be good")
 
         print(cachedToken.getEntry("access"))
         print(cachedToken.getEntry("secret"))
-
-/*
-        val auth = EtradeAuthResponse("3N4jVTyisOWT272T3QVIsDCEgL7iyAd71Vgm98FFy4w=",
-                                      "Plm7K2ApiPacgM1KJk7ZEYba6o7hJwV8VyCFmK46OAg=")
-        val verifier = "3D8ZO"
-        saveToken(auth, verifier)
 */
-        /*
+
         val client = Etrade(configuration, parsed.production, parsed.verbose)
         val requestToken = client.getRequestToken()
         val verifier = client.getVerifierCode(requestToken.accessToken)
@@ -86,8 +80,6 @@ object Core {
         data?.let {
             print(it)
         }
-
-         */
     }
 
 }
