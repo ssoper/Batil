@@ -1,6 +1,8 @@
 import TestHelper.LoadConfig
 import TestHelper.MockResponseFile
 import com.seansoper.batil.connectors.*
+import com.seansoper.batil.connectors.etrade.Market
+import com.seansoper.batil.connectors.etrade.Session
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -38,8 +40,9 @@ class EtradeTest: StringSpec({
 
     "single ticker" {
         createServer("apiResponses/market/quote/single_ticker_success.json") {
-            val client = Etrade(config, baseUrl = it.url(".").toString())
-            val data = client.ticker("AAPL", oauth, "verifierCode")
+            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
+            val service = Market(session)
+            val data = service.ticker("AAPL")
 
             data.shouldNotBeNull()
             data.ahFlag.shouldBeFalse()
@@ -54,8 +57,9 @@ class EtradeTest: StringSpec({
 
     "multiple tickers" {
         createServer("apiResponses/market/quote/multiple_tickers_success.json") {
-            val client = Etrade(config, baseUrl = it.url(".").toString())
-            val data = client.tickers(listOf("AAPL", "GME"), oauth, "verifierCode")
+            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
+            val service = Market(session)
+            val data = service.tickers(listOf("AAPL", "GME"))
 
             data.shouldNotBeNull()
             data.size.shouldBe(2)
@@ -69,8 +73,9 @@ class EtradeTest: StringSpec({
 
     "lookup ticker" {
         createServer("apiResponses/market/lookup_ticker_success.json") {
-            val client = Etrade(config, baseUrl = it.url(".").toString())
-            val data = client.lookup("Game", oauth, "verifierCode")
+            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
+            val service = Market(session)
+            val data = service.lookup("Game")
 
             data.shouldNotBeNull()
             data.size.shouldBe(10)
@@ -81,8 +86,9 @@ class EtradeTest: StringSpec({
 
     "option chain" {
         createServer("apiResponses/market/option_chains/nearest_expiry_all_strikes_success.json") {
-            val client = Etrade(config, baseUrl = it.url(".").toString())
-            val data = client.optionChains("AAPL", oauth, "verifierCode")
+            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
+            val service = Market(session)
+            val data = service.optionChains("AAPL")
 
             data.shouldNotBeNull()
             data.pairs.size.shouldBe(72)
@@ -110,8 +116,9 @@ class EtradeTest: StringSpec({
 
     "option chain specific expiry strike" {
         createServer("apiResponses/market/option_chains/specific_expiry_strike_distance_success.json") {
-            val client = Etrade(config, baseUrl = it.url(".").toString())
-            val data = client.optionChains("AAPL", GregorianCalendar(2021, 2, 5), 131f, 1, oauth, "verifierCode")
+            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
+            val service = Market(session)
+            val data = service.optionChains("AAPL", GregorianCalendar(2021, 2, 5), 131f, 1)
 
             data.shouldNotBeNull()
             data.pairs.size.shouldBe(3)
@@ -136,9 +143,10 @@ class EtradeTest: StringSpec({
         createServer("apiResponses/market/option_chains/expiry_date_error.xml",
                      "Content-Type" to "application/xml",
                      400) {
-            val client = Etrade(config, baseUrl = it.url(".").toString())
+            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
+            val service = Market(session)
             val exception = shouldThrow<EtradeError> {
-                client.optionChains("AAPL", GregorianCalendar(2021, 2, 4), oauth, "verifierCode")
+                service.optionChains("AAPL", GregorianCalendar(2021, 2, 4))
             }
 
             exception.code.shouldBe(10031)

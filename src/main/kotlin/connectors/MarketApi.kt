@@ -248,7 +248,7 @@ data class OptionChainRoot(
     val response: OptionChainResponse
 )
 
-interface Market {
+interface MarketApi {
 
     @GET("v1/market/optionchains")
     fun getOptionChains(@QueryMap options: Map<String, String>): Call<OptionChainRoot>
