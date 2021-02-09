@@ -35,13 +35,11 @@ fun createServer(pathToContent: String? = null,
 }
 
 class EtradeTest: StringSpec({
-    val config = LoadConfig().content
-    val oauth = EtradeAuthResponse("token", "secret")
+    val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
 
     "single ticker" {
         createServer("apiResponses/market/quote/single_ticker_success.json") {
-            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
-            val service = Market(session)
+            val service = Market(session, baseUrl = it.url(".").toString())
             val data = service.ticker("AAPL")
 
             data.shouldNotBeNull()
@@ -57,8 +55,7 @@ class EtradeTest: StringSpec({
 
     "multiple tickers" {
         createServer("apiResponses/market/quote/multiple_tickers_success.json") {
-            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
-            val service = Market(session)
+            val service = Market(session, baseUrl = it.url(".").toString())
             val data = service.tickers(listOf("AAPL", "GME"))
 
             data.shouldNotBeNull()
@@ -73,8 +70,7 @@ class EtradeTest: StringSpec({
 
     "lookup ticker" {
         createServer("apiResponses/market/lookup_ticker_success.json") {
-            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
-            val service = Market(session)
+            val service = Market(session, baseUrl = it.url(".").toString())
             val data = service.lookup("Game")
 
             data.shouldNotBeNull()
@@ -86,8 +82,7 @@ class EtradeTest: StringSpec({
 
     "option chain" {
         createServer("apiResponses/market/option_chains/nearest_expiry_all_strikes_success.json") {
-            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
-            val service = Market(session)
+            val service = Market(session, baseUrl = it.url(".").toString())
             val data = service.optionChains("AAPL")
 
             data.shouldNotBeNull()
@@ -116,8 +111,7 @@ class EtradeTest: StringSpec({
 
     "option chain specific expiry strike" {
         createServer("apiResponses/market/option_chains/specific_expiry_strike_distance_success.json") {
-            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
-            val service = Market(session)
+            val service = Market(session, baseUrl = it.url(".").toString())
             val data = service.optionChains("AAPL", GregorianCalendar(2021, 2, 5), 131f, 1)
 
             data.shouldNotBeNull()
@@ -143,8 +137,7 @@ class EtradeTest: StringSpec({
         createServer("apiResponses/market/option_chains/expiry_date_error.xml",
                      "Content-Type" to "application/xml",
                      400) {
-            val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
-            val service = Market(session)
+            val service = Market(session, baseUrl = it.url(".").toString())
             val exception = shouldThrow<EtradeError> {
                 service.optionChains("AAPL", GregorianCalendar(2021, 2, 4))
             }
