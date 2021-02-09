@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors
+package com.seansoper.batil.connectors.etrade
 
 /*
  * Copyright (C) 2015 Jake Wharton
@@ -37,9 +37,9 @@ data class OauthKeys(val consumerKey: String,
                      val accessSecret: String? = null,
                      val verifier: String? = null)
 
-class EtradeInterceptor(private val keys: OauthKeys,
-                        private val nonce: String = UUID.randomUUID().toString(),
-                        private val timestamp: Long = System.currentTimeMillis() / 1000L) : Interceptor {
+class HttpInterceptor(private val keys: OauthKeys,
+                      private val nonce: String = UUID.randomUUID().toString(),
+                      private val timestamp: Long = System.currentTimeMillis() / 1000L) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

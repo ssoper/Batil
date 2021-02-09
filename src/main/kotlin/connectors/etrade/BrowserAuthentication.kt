@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors
+package com.seansoper.batil.connectors.etrade
 
 import com.seansoper.batil.Chromium
 import io.reactivex.Single
@@ -18,12 +18,12 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.*
 
-class EtradeBrowserAuth(key: String,
-                        token: String,
-                        private val username: String,
-                        private val password: String,
-                        private val configuration: Chromium,
-                        private val verbose: Boolean = false) {
+class BrowserAuthentication(key: String,
+                            token: String,
+                            private val username: String,
+                            private val password: String,
+                            private val configuration: Chromium,
+                            private val verbose: Boolean = false) {
 
     private val url = "https://us.etrade.com/e/t/etws/authorize?key=${key.encodeUtf8()}&token=${token.encodeUtf8()}"
     private val delay = (configuration.delay*1000).toLong()

@@ -1,7 +1,7 @@
 import TestHelper.MockResponseFile
-import com.seansoper.batil.connectors.EtradeError
-import com.seansoper.batil.connectors.OptionCategory
-import com.seansoper.batil.connectors.OptionType
+import com.seansoper.batil.connectors.etrade.ApiError
+import com.seansoper.batil.connectors.etrade.OptionCategory
+import com.seansoper.batil.connectors.etrade.OptionType
 import com.seansoper.batil.connectors.etrade.Market
 import com.seansoper.batil.connectors.etrade.Session
 import io.kotlintest.matchers.boolean.shouldBeFalse
@@ -139,7 +139,7 @@ class EtradeTest: StringSpec({
                      "Content-Type" to "application/xml",
                      400) {
             val service = Market(session, baseUrl = it.url(".").toString())
-            val exception = shouldThrow<EtradeError> {
+            val exception = shouldThrow<ApiError> {
                 service.optionChains("AAPL", GregorianCalendar(2021, 2, 4))
             }
 

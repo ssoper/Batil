@@ -3,10 +3,9 @@ package com.seansoper.batil.connectors.etrade
 import com.seansoper.batil.CachedToken
 import com.seansoper.batil.CachedTokenException
 import com.seansoper.batil.Configuration
-import com.seansoper.batil.connectors.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.util.HashMap
+import java.util.*
 
 class Authorization(private val configuration: Configuration,
                     private val production: Boolean = false,
@@ -48,14 +47,14 @@ class Authorization(private val configuration: Configuration,
         private const val CACHED_KEY_CODE = "code"
     }
 
-    fun getRequestToken(): EtradeAuthResponse {
+    fun getRequestToken(): AuthResponse {
         val keys = OauthKeys(
             consumerKey = consumerKey,
             consumerSecret = consumerSecret
         )
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(HttpInterceptor(keys))
             .build()
 
         val path = "$baseUrl/${paths[GET_REQUEST_TOKEN]}"
@@ -63,11 +62,11 @@ class Authorization(private val configuration: Configuration,
             .url(path)
             .build()
 
-        return EtradeAuthResponse.withResponse(client.newCall(request).execute())
+        return AuthResponse.withResponse(client.newCall(request).execute())
     }
 
     fun getVerifierCode(token: String): String {
-        val browserAuth = EtradeBrowserAuth(
+        val browserAuth = BrowserAuthentication(
             consumerKey,
             token,
             configuration.etrade.username,
@@ -79,7 +78,7 @@ class Authorization(private val configuration: Configuration,
         return browserAuth.retrieve()
     }
 
-    fun getAccessToken(requestToken: EtradeAuthResponse, verifier: String): EtradeAuthResponse {
+    fun getAccessToken(requestToken: AuthResponse, verifier: String): AuthResponse {
         val keys = OauthKeys(
             consumerKey = consumerKey,
             consumerSecret = consumerSecret,
@@ -89,7 +88,7 @@ class Authorization(private val configuration: Configuration,
         )
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(HttpInterceptor(keys))
             .build()
 
         val path = "$baseUrl/${paths[GET_ACCESS_TOKEN]}"
@@ -100,8 +99,8 @@ class Authorization(private val configuration: Configuration,
         val response = client.newCall(request).execute()
 
         return try {
-            EtradeAuthResponse.withResponse(response)
-        } catch (exception: EtradeAuthResponseError) {
+            AuthResponse.withResponse(response)
+        } catch (exception: AuthResponseError) {
 
             if (verbose) {
                 exception.body?.apply {
@@ -114,7 +113,7 @@ class Authorization(private val configuration: Configuration,
         }
     }
 
-    fun getSession(requestToken: EtradeAuthResponse, verifier: String, cacheTokens: Boolean = true): Session {
+    fun getSession(requestToken: AuthResponse, verifier: String, cacheTokens: Boolean = true): Session {
         return getAccessToken(requestToken, verifier).let {
             if (cacheTokens) {
                 cachedToken.setEntry(CACHED_KEY_SECRET, it.accessSecret)
@@ -133,7 +132,7 @@ class Authorization(private val configuration: Configuration,
         return getSession(requestToken, verifier)
     }
 
-    fun renewAccessToken(requestToken: EtradeAuthResponse): Boolean {
+    fun renewAccessToken(requestToken: AuthResponse): Boolean {
         val keys = OauthKeys(
             consumerKey = consumerKey,
             consumerSecret = consumerSecret,
@@ -142,7 +141,7 @@ class Authorization(private val configuration: Configuration,
         )
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(HttpInterceptor(keys))
             .build()
 
         val path = "$baseUrl/${paths[RENEW_ACCESS_TOKEN]}"
@@ -161,7 +160,7 @@ class Authorization(private val configuration: Configuration,
             val code = cachedToken.getEntry(CACHED_KEY_CODE)
 
             if (token != null && secret != null && code != null) {
-                val requestToken = EtradeAuthResponse(token, secret)
+                val requestToken = AuthResponse(token, secret)
 
                 if (renewAccessToken(requestToken)) {
                     Session(consumerKey, consumerSecret, token, secret, code)

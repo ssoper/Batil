@@ -3,7 +3,6 @@ package com.seansoper.batil.connectors.etrade
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.seansoper.batil.connectors.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -33,7 +32,7 @@ class Market(private val session: Session,
         )
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(HttpInterceptor(keys))
             .addInterceptor(JsonInterceptor())
 
         if (verbose) {
@@ -72,7 +71,7 @@ class Market(private val session: Session,
         )
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(HttpInterceptor(keys))
             .addInterceptor(JsonInterceptor())
 
         if (verbose) {
@@ -125,7 +124,7 @@ class Market(private val session: Session,
         )
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(EtradeInterceptor(keys))
+            .addInterceptor(HttpInterceptor(keys))
             .addInterceptor(JsonInterceptor())
             .addInterceptor(ErrorInterceptor())
 
