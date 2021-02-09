@@ -1,6 +1,7 @@
-import TestHelper.LoadConfig
 import TestHelper.MockResponseFile
-import com.seansoper.batil.connectors.*
+import com.seansoper.batil.connectors.EtradeError
+import com.seansoper.batil.connectors.OptionCategory
+import com.seansoper.batil.connectors.OptionType
 import com.seansoper.batil.connectors.etrade.Market
 import com.seansoper.batil.connectors.etrade.Session
 import io.kotlintest.matchers.boolean.shouldBeFalse

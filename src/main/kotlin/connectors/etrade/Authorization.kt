@@ -126,6 +126,13 @@ class Authorization(private val configuration: Configuration,
         }
     }
 
+    fun createSession(): Session {
+        val requestToken = getRequestToken()
+        val verifier = getVerifierCode(requestToken.accessToken)
+
+        return getSession(requestToken, verifier)
+    }
+
     fun renewAccessToken(requestToken: EtradeAuthResponse): Boolean {
         val keys = OauthKeys(
             consumerKey = consumerKey,
