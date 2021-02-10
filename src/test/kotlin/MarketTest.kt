@@ -1,41 +1,13 @@
-import TestHelper.MockResponseFile
-import com.seansoper.batil.connectors.etrade.ApiError
-import com.seansoper.batil.connectors.etrade.OptionCategory
-import com.seansoper.batil.connectors.etrade.OptionType
-import com.seansoper.batil.connectors.etrade.Market
-import com.seansoper.batil.connectors.etrade.Session
+import TestHelper.MockHelper.createServer
+import com.seansoper.batil.connectors.etrade.*
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
 import java.util.*
 
-fun createServer(pathToContent: String? = null,
-                 header: Pair<String, String> = "Content-Type" to "application/json",
-                 code: Int = 200,
-                 test: (server: MockWebServer) -> Unit) {
-    val server = MockWebServer()
-    server.start()
-
-    pathToContent?.let {
-        val content = MockResponseFile(it).content
-        content.shouldNotBeNull()
-
-        val response = MockResponse()
-            .addHeader(header.first, header.second)
-            .setResponseCode(code)
-            .setBody(content)
-        server.enqueue(response)
-    }
-
-    test(server)
-    server.close()
-}
-
-class EtradeTest: StringSpec({
+class MarketTest: StringSpec({
     val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
 
     "single ticker" {
