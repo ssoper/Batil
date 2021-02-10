@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors
+package com.seansoper.batil.connectors.etrade
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import okhttp3.Interceptor
@@ -15,12 +15,14 @@ class ErrorInterceptor: Interceptor {
         if (response.code >= 400) {
             response.body?.string()?.let {
                 val xmlMapper = XmlMapper()
-                throw xmlMapper.readValue(it, EtradeError::class.java)
+                throw xmlMapper.readValue(it, ApiError::class.java)
             }
 
-            throw EtradeError(response.code, "HTTP Error: ${original.url}")
+            throw ApiError(response.code, "HTTP Error: ${original.url}")
         }
 
         return response
     }
 }
+
+class ApiError(val code: Int = 0, override val message: String = "Error from E*TRADE API"): Error(message)

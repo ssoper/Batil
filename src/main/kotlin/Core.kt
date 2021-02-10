@@ -1,6 +1,7 @@
 package com.seansoper.batil
 
-import com.seansoper.batil.connectors.Etrade
+import com.seansoper.batil.connectors.etrade.Authorization
+import com.seansoper.batil.connectors.etrade.Market
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -34,32 +35,27 @@ object Core {
             exitProcess(1)
         }
 
-        val client = Etrade(configuration, parsed.production, parsed.verbose)
-        val requestToken = client.getRequestToken()
-        val verifier = client.getVerifierCode(requestToken.accessToken)
+        val client = Authorization(configuration, parsed.production, parsed.verbose)
+        val session = client.renewSession() ?: client.createSession()
 
         if (parsed.verbose) {
-            println("Verifier code is $verifier")
-        }
-
-        val oauthToken = client.getAccessToken(requestToken, verifier, true)
-
-        if (parsed.verbose) {
-            oauthToken.apply {
+            session.apply {
                 println("Access OAuth token is $accessToken")
                 println("Access OAuth secret is $accessSecret")
+                println("Verifier code is $verifier")
             }
         }
 
-        client.renewAccessToken(oauthToken)
-
+        val service = Market(session, parsed.production, parsed.verbose)
         // val data = client.ticker("AAPL", oauthToken, verifier)
         // val data = client.lookup("Game", oauthToken, verifier)
         // val data = client.optionChains("AAPL", oauthToken, verifier)
-        val data = client.optionChains("AAPL", GregorianCalendar(2021, 2, 5), 131f, 1, oauthToken, verifier)
+        val data = service.optionChains("AAPL", GregorianCalendar(2021, 2, 12), 131f, 1)
+
         data?.let {
             print(it)
         }
+
     }
 
 }

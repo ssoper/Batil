@@ -16,7 +16,16 @@ data class EtradeAuth(val key: String,
 data class EtradeConfiguration(val sandbox: EtradeAuth,
                                val production: EtradeAuth,
                                val username: String,
-                               val password: String)
+                               val password: String) {
+
+    operator fun get(env: String): EtradeAuth {
+        return if(env == "production") {
+            production
+        } else {
+            sandbox
+        }
+    }
+}
 
 data class Configuration(val etrade: EtradeConfiguration,
                          val chromium: Chromium = Chromium("127.0.0.1", port = 9222, delay = 5))

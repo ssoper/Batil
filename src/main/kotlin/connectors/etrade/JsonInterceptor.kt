@@ -1,9 +1,8 @@
-package com.seansoper.batil.connectors
+package com.seansoper.batil.connectors.etrade
 
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
-import kotlin.jvm.Throws
 
 class JsonInterceptor: Interceptor {
 
