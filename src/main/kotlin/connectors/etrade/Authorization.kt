@@ -5,7 +5,6 @@ import com.seansoper.batil.CachedTokenException
 import com.seansoper.batil.Configuration
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.util.*
 
 class Authorization(private val configuration: Configuration,
                     private val production: Boolean = false,
@@ -33,15 +32,34 @@ class Authorization(private val configuration: Configuration,
     private val paths: HashMap<String, String> = hashMapOf (
         GET_REQUEST_TOKEN to "oauth/request_token",
         GET_ACCESS_TOKEN to "oauth/access_token",
-        RENEW_ACCESS_TOKEN to "oauth/renew_access_token"
+        RENEW_ACCESS_TOKEN to "oauth/renew_access_token",
+        REVOKE_ACCESS_TOKEN to "oauth/revoke_access_token"
     )
 
-    private val cachedToken = CachedToken(CachedToken.Provider.ETRADE)
+    private val tokenStore = CachedToken(CachedToken.Provider.ETRADE)
+
+    private val cachedTokens: Triple<String, String, String>?
+        get() {
+            return try {
+                val token = tokenStore.getEntry(CACHED_KEY_TOKEN)
+                val secret = tokenStore.getEntry(CACHED_KEY_SECRET)
+                val code = tokenStore.getEntry(CACHED_KEY_CODE)
+
+                if (token != null && secret != null && code != null) {
+                    Triple(token, secret, code)
+                } else {
+                    null
+                }
+            } catch(exception: CachedTokenException) {
+                null
+            }
+        }
 
     companion object {
         private const val GET_REQUEST_TOKEN = "get_request_token"
         private const val GET_ACCESS_TOKEN = "get_access_token"
         private const val RENEW_ACCESS_TOKEN = "renew_access_token"
+        private const val REVOKE_ACCESS_TOKEN = "revoke_access_token"
         private const val CACHED_KEY_TOKEN = "token"
         private const val CACHED_KEY_SECRET = "secret"
         private const val CACHED_KEY_CODE = "code"
@@ -113,25 +131,6 @@ class Authorization(private val configuration: Configuration,
         }
     }
 
-    fun getSession(requestToken: AuthResponse, verifier: String, cacheTokens: Boolean = true): Session {
-        return getAccessToken(requestToken, verifier).let {
-            if (cacheTokens) {
-                cachedToken.setEntry(CACHED_KEY_SECRET, it.accessSecret)
-                cachedToken.setEntry(CACHED_KEY_TOKEN, it.accessToken)
-                cachedToken.setEntry(CACHED_KEY_CODE, verifier)
-            }
-
-            Session(consumerKey, consumerSecret, it.accessToken, it.accessSecret, verifier)
-        }
-    }
-
-    fun createSession(): Session {
-        val requestToken = getRequestToken()
-        val verifier = getVerifierCode(requestToken.accessToken)
-
-        return getSession(requestToken, verifier)
-    }
-
     fun renewAccessToken(requestToken: AuthResponse): Boolean {
         val keys = OauthKeys(
             consumerKey = consumerKey,
@@ -153,25 +152,63 @@ class Authorization(private val configuration: Configuration,
         return response.code == 200
     }
 
+    fun revokeAccessToken(requestToken: AuthResponse): Boolean {
+        val keys = OauthKeys(
+            consumerKey = consumerKey,
+            consumerSecret = consumerSecret,
+            accessToken = requestToken.accessToken,
+            accessSecret = requestToken.accessSecret
+        )
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(HttpInterceptor(keys))
+            .build()
+
+        val path = "$baseUrl/${paths[REVOKE_ACCESS_TOKEN]}"
+        val request = Request.Builder()
+            .url(path)
+            .build()
+
+        val response = client.newCall(request).execute()
+        return response.code == 200
+    }
+
+    // Session
+
+    fun createSession(cacheTokens: Boolean = true): Session {
+        val requestToken = getRequestToken()
+        val verifier = getVerifierCode(requestToken.accessToken)
+
+        return getAccessToken(requestToken, verifier).let {
+            if (cacheTokens) {
+                tokenStore.setEntry(CACHED_KEY_SECRET, it.accessSecret)
+                tokenStore.setEntry(CACHED_KEY_TOKEN, it.accessToken)
+                tokenStore.setEntry(CACHED_KEY_CODE, verifier)
+            }
+
+            Session(consumerKey, consumerSecret, it.accessToken, it.accessSecret, verifier)
+        }
+    }
+
     fun renewSession(): Session? {
-        return try {
-            val token = cachedToken.getEntry(CACHED_KEY_TOKEN)
-            val secret = cachedToken.getEntry(CACHED_KEY_SECRET)
-            val code = cachedToken.getEntry(CACHED_KEY_CODE)
+        return cachedTokens?.let {
+            val requestToken = AuthResponse(it.first, it.second)
 
-            if (token != null && secret != null && code != null) {
-                val requestToken = AuthResponse(token, secret)
-
-                if (renewAccessToken(requestToken)) {
-                    Session(consumerKey, consumerSecret, token, secret, code)
-                } else {
-                    null
-                }
+            if (renewAccessToken(requestToken)) {
+                Session(consumerKey, consumerSecret, it.first, it.second, it.third)
             } else {
                 null
             }
-        } catch(exception: CachedTokenException) {
+        } ?: run {
             null
+        }
+    }
+
+    fun destroySession() {
+        cachedTokens?.let {
+            val requestToken = AuthResponse(it.first, it.second)
+            revokeAccessToken(requestToken)
+            tokenStore.destroy()
         }
     }
 }

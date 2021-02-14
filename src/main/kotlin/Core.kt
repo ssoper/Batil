@@ -56,6 +56,7 @@ object Core {
             print(it)
         }
 
+        client.destroySession()
     }
 
 }
