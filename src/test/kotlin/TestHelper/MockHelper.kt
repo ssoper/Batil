@@ -4,6 +4,7 @@ import io.kotlintest.matchers.types.shouldNotBeNull
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import java.io.InputStreamReader
+import java.nio.file.Path
 
 data class MockHelper(val path: String) {
     val content: String
@@ -15,24 +16,29 @@ data class MockHelper(val path: String) {
     }
 }
 
-fun createServer(pathToContent: String? = null,
+fun createServer(content: String,
                  header: Pair<String, String> = "Content-Type" to "application/json",
                  code: Int = 200,
                  test: (server: MockWebServer) -> Unit) {
     val server = MockWebServer()
     server.start()
 
-    pathToContent?.let {
-        val content = MockHelper(it).content
-        content.shouldNotBeNull()
+    content.shouldNotBeNull()
 
-        val response = MockResponse()
-            .addHeader(header.first, header.second)
-            .setResponseCode(code)
-            .setBody(content)
-        server.enqueue(response)
-    }
+    val response = MockResponse()
+        .addHeader(header.first, header.second)
+        .setResponseCode(code)
+        .setBody(content)
+    server.enqueue(response)
 
     test(server)
     server.close()
+}
+
+fun createServer(path: Path,
+                 header: Pair<String, String> = "Content-Type" to "application/json",
+                 code: Int = 200,
+                 test: (server: MockWebServer) -> Unit) {
+    val content = MockHelper(path.toString()).content
+    createServer(content, header, code, test)
 }
