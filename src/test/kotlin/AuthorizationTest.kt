@@ -72,4 +72,18 @@ class AuthorizationTest: StringSpec({
             it.takeRequest().path.shouldContain("oauth/renew_access_token")
         }
     }
+
+    "revoke access token" {
+        createServer("","Content-Type" to "text/plain", 200) {
+            val service = Authorization(config.content, baseUrl = it.url(".").toString())
+            val requestToken = mockAuthResponse()
+            val data = service.revokeAccessToken(requestToken)
+
+            data.shouldNotBeNull()
+            data.shouldBeInstanceOf<Boolean>()
+            data.shouldBe(true)
+
+            it.takeRequest().path.shouldContain("oauth/revoke_access_token")
+        }
+    }
 })

@@ -131,21 +131,6 @@ class Authorization(private val configuration: Configuration,
         }
     }
 
-    fun createSession(cacheTokens: Boolean = true): Session {
-        val requestToken = getRequestToken()
-        val verifier = getVerifierCode(requestToken.accessToken)
-
-        return getAccessToken(requestToken, verifier).let {
-            if (cacheTokens) {
-                tokenStore.setEntry(CACHED_KEY_SECRET, it.accessSecret)
-                tokenStore.setEntry(CACHED_KEY_TOKEN, it.accessToken)
-                tokenStore.setEntry(CACHED_KEY_CODE, verifier)
-            }
-
-            Session(consumerKey, consumerSecret, it.accessToken, it.accessSecret, verifier)
-        }
-    }
-
     fun renewAccessToken(requestToken: AuthResponse): Boolean {
         val keys = OauthKeys(
             consumerKey = consumerKey,
@@ -167,6 +152,44 @@ class Authorization(private val configuration: Configuration,
         return response.code == 200
     }
 
+    fun revokeAccessToken(requestToken: AuthResponse): Boolean {
+        val keys = OauthKeys(
+            consumerKey = consumerKey,
+            consumerSecret = consumerSecret,
+            accessToken = requestToken.accessToken,
+            accessSecret = requestToken.accessSecret
+        )
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(HttpInterceptor(keys))
+            .build()
+
+        val path = "$baseUrl/${paths[REVOKE_ACCESS_TOKEN]}"
+        val request = Request.Builder()
+            .url(path)
+            .build()
+
+        val response = client.newCall(request).execute()
+        return response.code == 200
+    }
+
+    // Session
+
+    fun createSession(cacheTokens: Boolean = true): Session {
+        val requestToken = getRequestToken()
+        val verifier = getVerifierCode(requestToken.accessToken)
+
+        return getAccessToken(requestToken, verifier).let {
+            if (cacheTokens) {
+                tokenStore.setEntry(CACHED_KEY_SECRET, it.accessSecret)
+                tokenStore.setEntry(CACHED_KEY_TOKEN, it.accessToken)
+                tokenStore.setEntry(CACHED_KEY_CODE, verifier)
+            }
+
+            Session(consumerKey, consumerSecret, it.accessToken, it.accessSecret, verifier)
+        }
+    }
+
     fun renewSession(): Session? {
         return cachedTokens?.let {
             val requestToken = AuthResponse(it.first, it.second)
@@ -183,23 +206,8 @@ class Authorization(private val configuration: Configuration,
 
     fun destroySession() {
         cachedTokens?.let {
-            val keys = OauthKeys(
-                consumerKey = consumerKey,
-                consumerSecret = consumerSecret,
-                accessToken = it.first,
-                accessSecret = it.second
-            )
-
-            val client = OkHttpClient.Builder()
-                .addInterceptor(HttpInterceptor(keys))
-                .build()
-
-            val path = "$baseUrl/${paths[REVOKE_ACCESS_TOKEN]}"
-            val request = Request.Builder()
-                .url(path)
-                .build()
-
-            client.newCall(request).execute()
+            val requestToken = AuthResponse(it.first, it.second)
+            revokeAccessToken(requestToken)
             tokenStore.destroy()
         }
     }
