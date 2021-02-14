@@ -4,6 +4,7 @@ import TestHelper.PathHelper.randomString
 import com.seansoper.batil.connectors.etrade.AuthResponse
 import com.seansoper.batil.connectors.etrade.Authorization
 import io.kotlintest.matchers.string.shouldContain
+import io.kotlintest.matchers.types.shouldBeInstanceOf
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
@@ -55,6 +56,20 @@ class AuthorizationTest: StringSpec({
             data.accessSecret.shouldBe(mock.second)
 
             it.takeRequest().path.shouldContain("oauth/access_token")
+        }
+    }
+
+    "renew access token" {
+        createServer("","Content-Type" to "text/plain", 200) {
+            val service = Authorization(config.content, baseUrl = it.url(".").toString())
+            val requestToken = mockAuthResponse()
+            val data = service.renewAccessToken(requestToken)
+
+            data.shouldNotBeNull()
+            data.shouldBeInstanceOf<Boolean>()
+            data.shouldBe(true)
+
+            it.takeRequest().path.shouldContain("oauth/renew_access_token")
         }
     }
 })

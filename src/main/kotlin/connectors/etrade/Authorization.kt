@@ -131,7 +131,10 @@ class Authorization(private val configuration: Configuration,
         }
     }
 
-    fun getSession(requestToken: AuthResponse, verifier: String, cacheTokens: Boolean = true): Session {
+    fun createSession(cacheTokens: Boolean = true): Session {
+        val requestToken = getRequestToken()
+        val verifier = getVerifierCode(requestToken.accessToken)
+
         return getAccessToken(requestToken, verifier).let {
             if (cacheTokens) {
                 tokenStore.setEntry(CACHED_KEY_SECRET, it.accessSecret)
@@ -141,13 +144,6 @@ class Authorization(private val configuration: Configuration,
 
             Session(consumerKey, consumerSecret, it.accessToken, it.accessSecret, verifier)
         }
-    }
-
-    fun createSession(): Session {
-        val requestToken = getRequestToken()
-        val verifier = getVerifierCode(requestToken.accessToken)
-
-        return getSession(requestToken, verifier)
     }
 
     fun renewAccessToken(requestToken: AuthResponse): Boolean {
@@ -169,22 +165,6 @@ class Authorization(private val configuration: Configuration,
 
         val response = client.newCall(request).execute()
         return response.code == 200
-    }
-
-    private fun getTokensFromCache(): Triple<String, String, String>? {
-        return try {
-            val token = tokenStore.getEntry(CACHED_KEY_TOKEN)
-            val secret = tokenStore.getEntry(CACHED_KEY_SECRET)
-            val code = tokenStore.getEntry(CACHED_KEY_CODE)
-
-            if (token != null && secret != null && code != null) {
-                Triple(token, secret, code)
-            } else {
-                null
-            }
-        } catch(exception: CachedTokenException) {
-            null
-        }
     }
 
     fun renewSession(): Session? {
