@@ -7,9 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
-import java.text.SimpleDateFormat
 import java.time.Instant
-import java.util.*
 
 class Accounts(private val session: Session,
                private val production: Boolean = false,
