@@ -1,5 +1,9 @@
 import TestHelper.MockHelper.createServer
-import com.seansoper.batil.connectors.etrade.*
+import TestHelper.MockHelper.mockSession
+import com.seansoper.batil.connectors.etrade.ApiError
+import com.seansoper.batil.connectors.etrade.Market
+import com.seansoper.batil.connectors.etrade.OptionCategory
+import com.seansoper.batil.connectors.etrade.OptionType
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -9,13 +13,12 @@ import java.nio.file.Paths
 import java.util.*
 
 class MarketTest: StringSpec({
-    val session = Session("consumerKey", "consumerSecret", "token", "secret", "code")
 
     "single ticker" {
         val path = Paths.get("apiResponses/market/quote/single_ticker_success.json")
 
         createServer(path) {
-            val service = Market(session, baseUrl = it.url(".").toString())
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
             val data = service.ticker("AAPL")
 
             data.shouldNotBeNull()
@@ -33,7 +36,7 @@ class MarketTest: StringSpec({
         val path = Paths.get("apiResponses/market/quote/multiple_tickers_success.json")
 
         createServer(path) {
-            val service = Market(session, baseUrl = it.url(".").toString())
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
             val data = service.tickers(listOf("AAPL", "GME"))
 
             data.shouldNotBeNull()
@@ -50,7 +53,7 @@ class MarketTest: StringSpec({
         val path = Paths.get("apiResponses/market/lookup_ticker_success.json")
 
         createServer(path) {
-            val service = Market(session, baseUrl = it.url(".").toString())
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
             val data = service.lookup("Game")
 
             data.shouldNotBeNull()
@@ -64,7 +67,7 @@ class MarketTest: StringSpec({
         val path = Paths.get("apiResponses/market/option_chains/nearest_expiry_all_strikes_success.json")
 
         createServer(path) {
-            val service = Market(session, baseUrl = it.url(".").toString())
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
             val data = service.optionChains("AAPL")
 
             data.shouldNotBeNull()
@@ -95,7 +98,7 @@ class MarketTest: StringSpec({
         val path = Paths.get("apiResponses/market/option_chains/specific_expiry_strike_distance_success.json")
 
         createServer(path) {
-            val service = Market(session, baseUrl = it.url(".").toString())
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
             val data = service.optionChains("AAPL", GregorianCalendar(2021, 2, 5), 131f, 1)
 
             data.shouldNotBeNull()
@@ -121,7 +124,7 @@ class MarketTest: StringSpec({
         val path = Paths.get("apiResponses/market/option_chains/expiry_date_error.xml")
 
         createServer(path, "Content-Type" to "application/xml", 400) {
-            val service = Market(session, baseUrl = it.url(".").toString())
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
             val exception = shouldThrow<ApiError> {
                 service.optionChains("AAPL", GregorianCalendar(2021, 2, 4))
             }

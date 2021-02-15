@@ -1,5 +1,6 @@
 package TestHelper.MockHelper
 
+import com.seansoper.batil.connectors.etrade.Session
 import io.kotlintest.matchers.types.shouldNotBeNull
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -41,4 +42,8 @@ fun createServer(path: Path,
                  test: (server: MockWebServer) -> Unit) {
     val content = MockHelper(path.toString()).content
     createServer(content, header, code, test)
+}
+
+fun mockSession(): Session {
+    return Session("consumerKey", "consumerSecret", "token", "secret", "code")
 }

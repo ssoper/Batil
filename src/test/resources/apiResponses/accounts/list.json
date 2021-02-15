@@ -1,0 +1,30 @@
+{
+  "AccountListResponse": {
+    "Accounts": {
+      "Account": [
+        {
+          "accountId": "99991111",
+          "accountIdKey": "-h06qS59IOXHUSjq3xhGVE",
+          "accountMode": "CASH",
+          "accountDesc": "Individual Brokerage",
+          "accountName": "",
+          "accountType": "INDIVIDUAL",
+          "institutionType": "BROKERAGE",
+          "accountStatus": "ACTIVE",
+          "closedDate": 0
+        },
+        {
+          "accountId": "11112222",
+          "accountIdKey": "NrIsvkTYqulM7TdbG14UbA",
+          "accountMode": "CASH",
+          "accountDesc": "Retirement IRA",
+          "accountName": "Retirement IRA",
+          "accountType": "IRA_ROLLOVER",
+          "institutionType": "BROKERAGE",
+          "accountStatus": "CLOSED",
+          "closedDate": 1400756700
+        }
+      ]
+    }
+  }
+}

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import retrofit2.Call
 import retrofit2.http.GET
+import java.time.Instant
 
 enum class AccountMode {
     CASH, MARGIN
@@ -27,17 +28,40 @@ data class AccountList(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Account(
-    val instNo: Int?,
     val accountId: String?,             // The user's account ID
     val accountIdKey: String?,          // The unique account key
-    val accountMode: AccountMode?,
-    val accountDesc: String?,           // Description of account
-    val accountName: String?,           // The nickname for the account
     val accountType: String?,           // The account type
     val institutionType: String?,       // BROKERAGE
-    val accountStatus: AccountStatus?,
-    val closedDate: Int?,               // The date when the account was closed
-)
+
+    @JsonProperty("closedDate")
+    val closedDateRaw: Int,           // The date when the account was closed
+
+    @JsonProperty("accountMode")
+    val mode: AccountMode?,
+
+    @JsonProperty("accountDesc")  // Description of account
+    val description: String?,
+
+    @JsonProperty("accountName")  // The nickname for the account
+    val name: String?,
+
+    @JsonProperty("accountStatus")
+    val status: AccountStatus?
+) {
+    val dateClosed: Instant?
+        get() {
+            return if (closedDateRaw > 0) {
+                Instant.ofEpochSecond(closedDateRaw.toLong())
+            } else {
+                null
+            }
+        }
+
+    val closed: Boolean
+        get() {
+            return closedDateRaw != 0
+        }
+}
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class AccountListResponse(
