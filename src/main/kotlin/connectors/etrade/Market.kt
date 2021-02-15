@@ -42,10 +42,10 @@ class Market(private val session: Session,
         }
 
         val module = SimpleModule()
-        module.addDeserializer(GregorianCalendar::class.java, DateSerializer.Decode())
+        module.addDeserializer(GregorianCalendar::class.java, DateTimeDeserializer())
 
         val mapper = ObjectMapper()
-        mapper.dateFormat = SimpleDateFormat("HH:mm:ss zzz dd-MM-yyyy")
+        mapper.dateFormat = SimpleDateFormat("HH:mm:ss zzz dd-MM-yyyy") // Don't think we need this
         mapper.registerModule(module)
         mapper.registerModule(KotlinModule())
 
@@ -81,7 +81,7 @@ class Market(private val session: Session,
         }
 
         val module = SimpleModule()
-        module.addDeserializer(GregorianCalendar::class.java, DateSerializer.Decode())
+        module.addDeserializer(GregorianCalendar::class.java, DateTimeDeserializer())
 
         val mapper = ObjectMapper()
         mapper.dateFormat = SimpleDateFormat("HH:mm:ss zzz dd-MM-yyyy")
@@ -148,7 +148,6 @@ class Market(private val session: Session,
             .build()
 
         val service = retrofit.create(MarketApi::class.java)
-
         val options = mutableMapOf("symbol" to symbol)
 
         expiryDate?.let {

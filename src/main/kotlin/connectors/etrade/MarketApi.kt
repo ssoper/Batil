@@ -24,39 +24,6 @@ enum class QuoteStatus {
     REALTIME, DELAYED, CLOSING, EH_REALTIME, EH_BEFORE_OPEN, EH_CLOSED, UNKNOWN
 }
 
-val defaultDate = GregorianCalendar(1970, 1, 1, 1, 0, 0)
-
-object DateSerializer {
-    private const val Format = "HH:mm:ss zzz dd-MM-yyyy"
-    val Formatter = SimpleDateFormat(Format)
-
-    class Decode: JsonDeserializer<GregorianCalendar>() {
-        @Throws(IOException::class, JsonProcessingException::class)
-        override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): GregorianCalendar {
-            return p?.text?.let {
-                val date = Formatter.parse(it)
-                val calendar = GregorianCalendar()
-                calendar.time = date
-
-                calendar
-            } ?: throw DateDeserializerException()
-        }
-    }
-
-    class DateDeserializerException: JsonProcessingException("Could not parse date from JSON")
-}
-
-class TimestampDeserializer: JsonDeserializer<Instant>() {
-    @Throws(IOException::class, JsonProcessingException::class)
-    override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): Instant {
-        return p?.longValue?.let {
-            Instant.ofEpochSecond(it)
-        } ?: throw TimestampDeserializerException()
-    }
-
-    class TimestampDeserializerException: JsonProcessingException("Could not parse timestamp from JSON")
-}
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TickerData(
     val adjustedFlag: Boolean?,           // Indicates whether an option has been adjusted due to a corporate action (for example, a dividend or stock split)

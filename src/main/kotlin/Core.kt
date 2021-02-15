@@ -1,5 +1,6 @@
 package com.seansoper.batil
 
+import com.seansoper.batil.connectors.etrade.Accounts
 import com.seansoper.batil.connectors.etrade.Authorization
 import com.seansoper.batil.connectors.etrade.Market
 import java.util.*
@@ -50,13 +51,20 @@ object Core {
         // val data = client.ticker("AAPL", oauthToken, verifier)
         // val data = client.lookup("Game", oauthToken, verifier)
         // val data = client.optionChains("AAPL", oauthToken, verifier)
-        val data = service.optionChains("AAPL", GregorianCalendar(2021, 2, 12), 131f, 1)
+        // modify to use third friday from whatever today is
+        val data = service.optionChains("AAPL", GregorianCalendar(2021, 3, 12), 131f, 1)
 
         data?.let {
             print(it)
         }
 
-        client.destroySession()
+        val accountSrvc = Accounts(session, parsed.production, parsed.verbose)
+        accountSrvc.list()?.let {
+            print("Account retrieved")
+            print(it)
+        }
+
+        // client.destroySession()
     }
 
 }
