@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.QueryMap
 import java.time.Instant
 
 enum class AccountMode {
@@ -30,6 +31,24 @@ enum class OptionLevel {
 enum class QuoteMode {
     QUOTE_REALTIME, QUOTE_DELAYED, QUOTE_CLOSING, QUOTE_AHT_REALTIME, QUOTE_AHT_BEFORE_OPEN, QUOTE_AHT_CLOSING, QUOTE_NONE
 }
+
+enum class SecurityType {
+    BOND, EQ, INDX, MF, MMF, OPTN;
+
+    val description: String
+        get() {
+            return when (this) {
+               BOND -> "Bond"
+               EQ   -> "Equity"
+               INDX -> "Index"
+               MF   -> "Mutual Fund"
+               MMF  -> "Managed Mutual Fund"
+               OPTN -> "Option"
+            }
+        }
+}
+
+typealias TransactionId = Long
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class AccountRoot(
@@ -174,6 +193,50 @@ data class BalanceResponse(
     val response: AccountBalance
 )
 
+// Corresponds to Brokerage
+// https://apisb.etrade.com/docs/api/account/api-transaction-v1.html#/definitions/Brokerage
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class TransactionTrade(
+    val quantity: Float?,            // Item count; for example, share count
+    val price: Float?,               // Price per item if applicable; for example, price per share
+    val settlementCurrency: String?, // Settlement currency
+    val paymentCurrency: String?,    // Payment currency
+    val fee: Float?,                 // The brokerage fee
+    val displaySymbole: String?,
+    val settlementDate: Instant?
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class Transaction(
+    val transactionId: TransactionId,
+    val accountId: String?,            // Numeric account ID
+    val transactionDate: Instant?,     // Date of the specified transaction
+    val postDate: Instant?,            // The post date
+    val amount: Float?,                // Total cost of transaction, including commission if any
+    val description: String?,          // The transaction description
+    val transactionType: String?,      // Description of type of transaction i.e. "Sold Short"
+
+    @JsonProperty("brokerage")
+    val trade: TransactionTrade,    // The brokerage involved in the transaction
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class TransactionResponse(
+    val marker: String,
+    val moreTransactions: Boolean,
+    val transactionCount: Int,
+    val totalCount: Int,
+
+    @JsonProperty("Transaction")
+    val transactions: List<Transaction>
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class TransactionDetailsResponse(
+    @JsonProperty("TransactionListResponse")
+    val response: TransactionResponse
+)
+
 interface AccountsApi {
 
     @GET("v1/accounts/list")
@@ -181,5 +244,9 @@ interface AccountsApi {
 
     @GET("/v1/accounts/{accountIdKey}/balance?instType=BROKERAGE&realTimeNAV=true")
     fun getBalance(@Path("accountIdKey") accountIdKey: String): Call<BalanceResponse>
+
+    @GET("/v1/accounts/{accountIdKey}/transactions")
+    fun listTransactions(@Path("accountIdKey") accountIdKey: String,
+                         @QueryMap options: Map<String, String>): Call<TransactionDetailsResponse>
 
 }

@@ -71,10 +71,16 @@ object Core {
             print(it)
 
             it.first().accountIdKey?.let {
-                accountSrvc.getBalance(it)?.let {
-                    print("Account balance")
+
+                accountSrvc.listTransactions(it)?.let {
+                    print("Transactions")
                     print(it)
                 }
+
+//                accountSrvc.getBalance(it)?.let {
+//                    print("Account balance")
+//                    print(it)
+//                }
             }
         }
 

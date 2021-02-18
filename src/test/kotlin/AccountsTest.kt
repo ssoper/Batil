@@ -79,4 +79,22 @@ class AccountsTest: StringSpec({
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/balance?instType=BROKERAGE&realTimeNAV=true")
         }
     }
+
+    "list 50 transactions" {
+        val path = Paths.get("apiResponses/accounts/list_transactions.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.listTransactions(accountIdKey)
+
+            data.shouldNotBeNull()
+            data.transactions.count().shouldBe(data.transactionCount)
+
+            val first = data.transactions.first()
+            first.transactionId.shouldBe(21048101297804L)
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50")
+        }
+    }
 })

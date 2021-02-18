@@ -1,0 +1,1368 @@
+{
+  "TransactionListResponse": {
+    "next": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions?count=50&marker=21022101008159_1611302400",
+    "marker": "21022101008159_1611302400",
+    "pageMarkers": "eNptjksOgjAUReesogsg4bXhZ9J0wohEjVE3UOHFGLGNhc5YvEDBaGHSpPfenlPCT%2FKOhbaqK1UhjbYtNoLxaCsOCL%2FqTjZnrLSpp1YkGY9W4TL8Qkailwyb8XK0rxuaC74tqgoFhBDSkA0nuD94fUDcs7LeP9oRQubgIM0TjWAU4pwCZbssh7jve0eZ22BZO6qgv46JHXnwlcy3MTrYIIEU0i3bn475Os%2F3AUaWfoU%3D",
+    "moreTransactions": false,
+    "transactionCount": 50,
+    "totalCount": 57,
+    "Transaction": [
+      {
+        "transactionId": "21048101297804",
+        "accountId": "45645298",
+        "transactionDate": 1613548800000,
+        "postDate": 1613635200000,
+        "amount": 1138.42,
+        "description": "3 PLTR Mar 12 '21 $29 Put(PLTR) PALANTIR TECHNOLOGIES INC CL ASHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "PLTR",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 3,
+            "expiryDay": 12,
+            "strikePrice": 29.0
+          },
+          "quantity": -3,
+          "price": 3.8,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1.5,
+          "displaySymbol": "PLTR Mar 12 '21 $29 Put",
+          "settlementDate": 1613635200000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21048101297804?storeId=0"
+      },
+      {
+        "transactionId": "21048101297803",
+        "accountId": "45645298",
+        "transactionDate": 1613548800000,
+        "postDate": 1613635200000,
+        "amount": -95.51,
+        "description": "1 QS Mar 05 '21 $45 Put(QS) QUANTUMSCAPE CORP COM CL A COVER SHORT",
+        "transactionType": "Bought To Cover",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "QS",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 3,
+            "expiryDay": 5,
+            "strikePrice": 45.0
+          },
+          "quantity": 1,
+          "price": 0.95,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0.5,
+          "displaySymbol": "QS Mar 05 '21 $45 Put",
+          "settlementDate": 1613635200000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21048101297803?storeId=0"
+      },
+      {
+        "transactionId": "21048101297802",
+        "accountId": "45645298",
+        "transactionDate": 1613548800000,
+        "postDate": 1613548800000,
+        "amount": -1281.25,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1613548800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21048101297802?storeId=0"
+      },
+      {
+        "transactionId": "21048101297800",
+        "accountId": "45645298",
+        "transactionDate": 1613548800000,
+        "postDate": 1613548800000,
+        "amount": 1281.25,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1613548800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21048101297800?storeId=0"
+      },
+      {
+        "transactionId": "21047101922247",
+        "accountId": "45645298",
+        "transactionDate": 1613462400000,
+        "postDate": 1613462400000,
+        "amount": -205,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1613462400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21047101922247?storeId=0"
+      },
+      {
+        "transactionId": "21047101922244",
+        "accountId": "45645298",
+        "transactionDate": 1613462400000,
+        "postDate": 1613462400000,
+        "amount": 205,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1613462400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21047101922244?storeId=0"
+      },
+      {
+        "transactionId": "21043107376074",
+        "accountId": "45645298",
+        "transactionDate": 1613116800000,
+        "postDate": 1613116800000,
+        "amount": 1902.42,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1613116800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21043107376074?storeId=0"
+      },
+      {
+        "transactionId": "21043107376071",
+        "accountId": "45645298",
+        "transactionDate": 1613116800000,
+        "postDate": 1613116800000,
+        "amount": -2,
+        "description": "***BIONTECH SE AMERICAN DEPOSITARY SHARE ADR CUSTODY FEE JANUARY 2021",
+        "transactionType": "Fee",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "BNTX",
+            "securityType": "EQ"
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "displaySymbol": "BNTX",
+          "settlementDate": 1613116800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21043107376071?storeId=0"
+      },
+      {
+        "transactionId": "21043107376070",
+        "accountId": "45645298",
+        "transactionDate": 1613116800000,
+        "postDate": 1613116800000,
+        "amount": -1902.42,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1613116800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21043107376070?storeId=0"
+      },
+      {
+        "transactionId": "21042102490789",
+        "accountId": "45645298",
+        "transactionDate": 1613030400000,
+        "postDate": 1613116800000,
+        "amount": 2097.37,
+        "description": "5 PLTR Mar 05 '21 $33 Put(PLTR) PALANTIR TECHNOLOGIES INC CL ASHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "PLTR",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 3,
+            "expiryDay": 5,
+            "strikePrice": 33.0
+          },
+          "quantity": -5,
+          "price": 4.2,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 2.5,
+          "displaySymbol": "PLTR Mar 05 '21 $33 Put",
+          "settlementDate": 1613116800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21042102490789?storeId=0"
+      },
+      {
+        "transactionId": "21042102490788",
+        "accountId": "45645298",
+        "transactionDate": 1613030400000,
+        "postDate": 1613116800000,
+        "amount": -490.51,
+        "description": "1 QS Feb 12 '21 $50 Put(QS) QUANTUMSCAPE CORP COM CL A COVER SHORT",
+        "transactionType": "Bought To Cover",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "QS",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 12,
+            "strikePrice": 50.0
+          },
+          "quantity": 1,
+          "price": 4.9,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0.5,
+          "displaySymbol": "QS Feb 12 '21 $50 Put",
+          "settlementDate": 1613116800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21042102490788?storeId=0"
+      },
+      {
+        "transactionId": "21042102490787",
+        "accountId": "45645298",
+        "transactionDate": 1613030400000,
+        "postDate": 1613116800000,
+        "amount": -425.03,
+        "description": "2 LI Feb 12 '21 $34.50 Put(LI) LI AUTO INC SPONSORED ADS COVER SHORT",
+        "transactionType": "Bought To Cover",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "LI",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 12,
+            "strikePrice": 34.5
+          },
+          "quantity": 2,
+          "price": 2.12,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1,
+          "displaySymbol": "LI Feb 12 '21 $34.50 Put",
+          "settlementDate": 1613116800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21042102490787?storeId=0"
+      },
+      {
+        "transactionId": "21042102490786",
+        "accountId": "45645298",
+        "transactionDate": 1613030400000,
+        "postDate": 1613030400000,
+        "amount": 9336.08,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1613030400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21042102490786?storeId=0"
+      },
+      {
+        "transactionId": "21042102490783",
+        "accountId": "45645298",
+        "transactionDate": 1613030400000,
+        "postDate": 1613030400000,
+        "amount": -9336.08,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1613030400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21042102490783?storeId=0"
+      },
+      {
+        "transactionId": "21041101325169",
+        "accountId": "45645298",
+        "transactionDate": 1612944000000,
+        "postDate": 1613030400000,
+        "amount": 629.47,
+        "description": "1 QS Mar 05 '21 $45 Put(QS) QUANTUMSCAPE CORP COM CL A SHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "QS",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 3,
+            "expiryDay": 5,
+            "strikePrice": 45.0
+          },
+          "quantity": -1,
+          "price": 6.3,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0.5,
+          "displaySymbol": "QS Mar 05 '21 $45 Put",
+          "settlementDate": 1613030400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21041101325169?storeId=0"
+      },
+      {
+        "transactionId": "21041101325168",
+        "accountId": "45645298",
+        "transactionDate": 1612944000000,
+        "postDate": 1613030400000,
+        "amount": 868.95,
+        "description": "2 PLTR Mar 05 '21 $35 Put(PLTR) PALANTIR TECHNOLOGIES INC CL ASHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "PLTR",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 3,
+            "expiryDay": 5,
+            "strikePrice": 35.0
+          },
+          "quantity": -2,
+          "price": 4.35,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1,
+          "displaySymbol": "PLTR Mar 05 '21 $35 Put",
+          "settlementDate": 1613030400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21041101325168?storeId=0"
+      },
+      {
+        "transactionId": "21041101325167",
+        "accountId": "45645298",
+        "transactionDate": 1612944000000,
+        "postDate": 1612944000000,
+        "amount": -5637.49,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612944000000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21041101325167?storeId=0"
+      },
+      {
+        "transactionId": "21041101325164",
+        "accountId": "45645298",
+        "transactionDate": 1612944000000,
+        "postDate": 1612944000000,
+        "amount": 5637.49,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612944000000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21041101325164?storeId=0"
+      },
+      {
+        "transactionId": "21040101285464",
+        "accountId": "45645298",
+        "transactionDate": 1612857600000,
+        "postDate": 1612944000000,
+        "amount": -100.51,
+        "description": "1 NIO Feb 19 '21 $56 Put(NIO) NIO INC SPON ADS COVER SHORT",
+        "transactionType": "Bought To Cover",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "NIO",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 19,
+            "strikePrice": 56.0
+          },
+          "quantity": 1,
+          "price": 1,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0.5,
+          "displaySymbol": "NIO Feb 19 '21 $56 Put",
+          "settlementDate": 1612944000000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21040101285464?storeId=0"
+      },
+      {
+        "transactionId": "21040101285463",
+        "accountId": "45645298",
+        "transactionDate": 1612857600000,
+        "postDate": 1612857600000,
+        "amount": -330,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612857600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21040101285463?storeId=0"
+      },
+      {
+        "transactionId": "21040101285461",
+        "accountId": "45645298",
+        "transactionDate": 1612857600000,
+        "postDate": 1612857600000,
+        "amount": 330,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612857600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21040101285461?storeId=0"
+      },
+      {
+        "transactionId": "21039101359162",
+        "accountId": "45645298",
+        "transactionDate": 1612771200000,
+        "postDate": 1612771200000,
+        "amount": 277.59,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612771200000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21039101359162?storeId=0"
+      },
+      {
+        "transactionId": "21039101359159",
+        "accountId": "45645298",
+        "transactionDate": 1612771200000,
+        "postDate": 1612771200000,
+        "amount": -277.59,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612771200000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21039101359159?storeId=0"
+      },
+      {
+        "transactionId": "21036101388978",
+        "accountId": "45645298",
+        "transactionDate": 1612512000000,
+        "postDate": 1612771200000,
+        "amount": 718.95,
+        "description": "2 LAZR Feb 26 '21 $33.50 Put(LAZR) LUMINAR TECHNOLOGIES INC COM CSHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "LAZR",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 26,
+            "strikePrice": 33.5
+          },
+          "quantity": -2,
+          "price": 3.6,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1,
+          "displaySymbol": "LAZR Feb 26 '21 $33.50 Put",
+          "settlementDate": 1612771200000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21036101388978?storeId=0"
+      },
+      {
+        "transactionId": "21036101388977",
+        "accountId": "45645298",
+        "transactionDate": 1612512000000,
+        "postDate": 1612771200000,
+        "amount": -226.54,
+        "description": "3 RIOT Feb 19 '21 $19 Put(RIOT) RIOT BLOCKCHAIN INC COM COVER SHORT",
+        "transactionType": "Bought To Cover",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "RIOT",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 19,
+            "strikePrice": 19.0
+          },
+          "quantity": 3,
+          "price": 0.75,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1.5,
+          "displaySymbol": "RIOT Feb 19 '21 $19 Put",
+          "settlementDate": 1612771200000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21036101388977?storeId=0"
+      },
+      {
+        "transactionId": "21036101388976",
+        "accountId": "45645298",
+        "transactionDate": 1612512000000,
+        "postDate": 1612512000000,
+        "amount": -3535.47,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612512000000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21036101388976?storeId=0"
+      },
+      {
+        "transactionId": "21036101388974",
+        "accountId": "45645298",
+        "transactionDate": 1612512000000,
+        "postDate": 1612512000000,
+        "amount": 3535.47,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612512000000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21036101388974?storeId=0"
+      },
+      {
+        "transactionId": "21035101317870",
+        "accountId": "45645298",
+        "transactionDate": 1612425600000,
+        "postDate": 1612512000000,
+        "amount": -81.03,
+        "description": "2 MARA Feb 12 '21 $18 Put(MARA) MARATHON PATENT GROUP INC COM COVER SHORT",
+        "transactionType": "Bought To Cover",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "MARA",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 12,
+            "strikePrice": 18.0
+          },
+          "quantity": 2,
+          "price": 0.4,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1,
+          "displaySymbol": "MARA Feb 12 '21 $18 Put",
+          "settlementDate": 1612512000000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21035101317870?storeId=0"
+      },
+      {
+        "transactionId": "21035101317869",
+        "accountId": "45645298",
+        "transactionDate": 1612425600000,
+        "postDate": 1612425600000,
+        "amount": 4775.05,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612425600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21035101317869?storeId=0"
+      },
+      {
+        "transactionId": "21035101317867",
+        "accountId": "45645298",
+        "transactionDate": 1612425600000,
+        "postDate": 1612425600000,
+        "amount": -4775.05,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612425600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21035101317867?storeId=0"
+      },
+      {
+        "transactionId": "21034101501632",
+        "accountId": "45645298",
+        "transactionDate": 1612339200000,
+        "postDate": 1612339200000,
+        "amount": 0,
+        "description": "CAPITAL ONE FINANCIAL CORP RAND 332672381",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "COF",
+            "securityType": "EQ"
+          },
+          "quantity": 1.6006,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "displaySymbol": "COF",
+          "settlementDate": 1612339200000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21034101501632?storeId=0"
+      },
+      {
+        "transactionId": "21034101501631",
+        "accountId": "45645298",
+        "transactionDate": 1612339200000,
+        "postDate": 1612425600000,
+        "amount": 808.95,
+        "description": "2 PLTR Feb 26 '21 $32 Put(PLTR) PALANTIR TECHNOLOGIES INC CL ASHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "PLTR",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 26,
+            "strikePrice": 32.0
+          },
+          "quantity": -2,
+          "price": 4.05,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1,
+          "displaySymbol": "PLTR Feb 26 '21 $32 Put",
+          "settlementDate": 1612425600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21034101501631?storeId=0"
+      },
+      {
+        "transactionId": "21033101741678",
+        "accountId": "45645298",
+        "transactionDate": 1612252800000,
+        "postDate": 1612252800000,
+        "amount": -11199.74,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612252800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21033101741678?storeId=0"
+      },
+      {
+        "transactionId": "21033101741676",
+        "accountId": "45645298",
+        "transactionDate": 1612252800000,
+        "postDate": 1612252800000,
+        "amount": 11199.74,
+        "description": "TFR MARGIN TO CASH",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612252800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21033101741676?storeId=0"
+      },
+      {
+        "transactionId": "21032102501132",
+        "accountId": "45645298",
+        "transactionDate": 1612166400000,
+        "postDate": 1612252800000,
+        "amount": 11199.74,
+        "description": "***BIONTECH SE AMERICAN DEPOSITARY SHARE OPTION ASSIGNMENT CALL BNTX 01/29/21 112",
+        "transactionType": "Sold",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "BNTX",
+            "securityType": "EQ"
+          },
+          "quantity": -100,
+          "price": 112,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "displaySymbol": "BNTX",
+          "settlementDate": 1612252800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21032102501132?storeId=0"
+      },
+      {
+        "transactionId": "21032102501131",
+        "accountId": "45645298",
+        "transactionDate": 1612166400000,
+        "postDate": 1612166400000,
+        "amount": 0,
+        "description": "1 BNTX Jan 29 '21 $112 Call(BNTX) BIONTECH SE SPONSORED ADS",
+        "transactionType": "Option Assignment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "BNTX",
+            "securityType": "OPTN",
+            "callPut": "CALL",
+            "expiryYear": 21,
+            "expiryMonth": 1,
+            "expiryDay": 29,
+            "strikePrice": 112.0
+          },
+          "quantity": 1,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "displaySymbol": "BNTX Jan 29 '21 $112 Call",
+          "settlementDate": 1612166400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21032102501131?storeId=0"
+      },
+      {
+        "transactionId": "21032102501130",
+        "accountId": "45645298",
+        "transactionDate": 1612166400000,
+        "postDate": 1612166400000,
+        "amount": 5055.53,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612166400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21032102501130?storeId=0"
+      },
+      {
+        "transactionId": "21032102501128",
+        "accountId": "45645298",
+        "transactionDate": 1612166400000,
+        "postDate": 1612166400000,
+        "amount": -5055.53,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1612166400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21032102501128?storeId=0"
+      },
+      {
+        "transactionId": "21029102891018",
+        "accountId": "45645298",
+        "transactionDate": 1611907200000,
+        "postDate": 1612166400000,
+        "amount": 544.47,
+        "description": "1 NIO Feb 19 '21 $56 Put(NIO) NIO INC SPON ADS SHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "NIO",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 19,
+            "strikePrice": 56.0
+          },
+          "quantity": -1,
+          "price": 5.45,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0.5,
+          "displaySymbol": "NIO Feb 19 '21 $56 Put",
+          "settlementDate": 1612166400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21029102891018?storeId=0"
+      },
+      {
+        "transactionId": "21028101326862",
+        "accountId": "45645298",
+        "transactionDate": 1611820800000,
+        "postDate": 1611820800000,
+        "amount": 4501.58,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1611820800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21028101326862?storeId=0"
+      },
+      {
+        "transactionId": "21028101326860",
+        "accountId": "45645298",
+        "transactionDate": 1611820800000,
+        "postDate": 1611820800000,
+        "amount": -4501.58,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1611820800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21028101326860?storeId=0"
+      },
+      {
+        "transactionId": "21027101533529",
+        "accountId": "45645298",
+        "transactionDate": 1611734400000,
+        "postDate": 1611820800000,
+        "amount": 1198.42,
+        "description": "3 RIOT Feb 19 '21 $19 Put(RIOT) RIOT BLOCKCHAIN INC COM SHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "RIOT",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 19,
+            "strikePrice": 19.0
+          },
+          "quantity": -3,
+          "price": 4,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1.5,
+          "displaySymbol": "RIOT Feb 19 '21 $19 Put",
+          "settlementDate": 1611820800000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21027101533529?storeId=0"
+      },
+      {
+        "transactionId": "21026103664752",
+        "accountId": "45645298",
+        "transactionDate": 1611648000000,
+        "postDate": 1611648000000,
+        "amount": 0.12,
+        "description": "EXTENDED INSURANCE SWEEP DEPOSIT ACCOUNT INTEREST",
+        "transactionType": "Interest",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+            "symbol": "#2145605",
+            "securityType": "EQ"
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "displaySymbol": "#2145605",
+          "settlementDate": 1611648000000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21026103664752?storeId=0"
+      },
+      {
+        "transactionId": "21025101591606",
+        "accountId": "45645298",
+        "transactionDate": 1611561600000,
+        "postDate": 1611561600000,
+        "amount": 3239.15,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1611561600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21025101591606?storeId=0"
+      },
+      {
+        "transactionId": "21025101591603",
+        "accountId": "45645298",
+        "transactionDate": 1611561600000,
+        "postDate": 1611561600000,
+        "amount": -3239.15,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 0,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1611561600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21025101591603?storeId=0"
+      },
+      {
+        "transactionId": "21022101008164",
+        "accountId": "45645298",
+        "transactionDate": 1611302400000,
+        "postDate": 1611561600000,
+        "amount": 638.95,
+        "description": "2 LI Feb 12 '21 $34.50 Put(LI) LI AUTO INC SPONSORED ADS SHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 1,
+        "brokerage": {
+          "product": {
+            "symbol": "LI",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 12,
+            "strikePrice": 34.5
+          },
+          "quantity": -2,
+          "price": 3.2,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 1,
+          "displaySymbol": "LI Feb 12 '21 $34.50 Put",
+          "settlementDate": 1611561600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21022101008164?storeId=1"
+      },
+      {
+        "transactionId": "21022101008163",
+        "accountId": "45645298",
+        "transactionDate": 1611302400000,
+        "postDate": 1611561600000,
+        "amount": -432.57,
+        "description": "5 PLTR Feb 05 '21 $27 Put(PLTR) PALANTIR TECHNOLOGIES INC CL ACOVER SHORT",
+        "transactionType": "Bought To Cover",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 1,
+        "brokerage": {
+          "product": {
+            "symbol": "PLTR",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 5,
+            "strikePrice": 27.0
+          },
+          "quantity": 5,
+          "price": 0.86,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 2.5,
+          "displaySymbol": "PLTR Feb 05 '21 $27 Put",
+          "settlementDate": 1611561600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21022101008163?storeId=1"
+      },
+      {
+        "transactionId": "21022101008162",
+        "accountId": "45645298",
+        "transactionDate": 1611302400000,
+        "postDate": 1611561600000,
+        "amount": 659.47,
+        "description": "1 QS Feb 12 '21 $50 Put(QS) QUANTUMSCAPE CORP COM CL A SHORT",
+        "transactionType": "Sold Short",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 1,
+        "brokerage": {
+          "product": {
+            "symbol": "QS",
+            "securityType": "OPTN",
+            "callPut": "PUT",
+            "expiryYear": 21,
+            "expiryMonth": 2,
+            "expiryDay": 12,
+            "strikePrice": 50.0
+          },
+          "quantity": -1,
+          "price": 6.6,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0.5,
+          "displaySymbol": "QS Feb 12 '21 $50 Put",
+          "settlementDate": 1611561600000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21022101008162?storeId=1"
+      },
+      {
+        "transactionId": "21022101008161",
+        "accountId": "45645298",
+        "transactionDate": 1611302400000,
+        "postDate": 1611302400000,
+        "amount": 2956.05,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 1,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1611302400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21022101008161?storeId=1"
+      },
+      {
+        "transactionId": "21022101008159",
+        "accountId": "45645298",
+        "transactionDate": 1611302400000,
+        "postDate": 1611302400000,
+        "amount": -2956.05,
+        "description": "TFR CASH TO MARGIN",
+        "transactionType": "Adjustment",
+        "memo": "",
+        "imageFlag": false,
+        "instType": "BROKERAGE",
+        "storeId": 1,
+        "brokerage": {
+          "product": {
+          },
+          "quantity": 0,
+          "price": 0,
+          "settlementCurrency": "USD",
+          "paymentCurrency": "USD",
+          "fee": 0,
+          "settlementDate": 1611302400000
+        },
+        "detailsURI": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/transactions/21022101008159?storeId=1"
+      }
+    ]
+  }
+}
