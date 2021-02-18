@@ -26,6 +26,7 @@ object Core {
 
         if (parsed.verbose) {
             println("Verbose set to ${parsed.verbose}")
+            println("Using ${if (parsed.production) { "production" } else { "sandbox" } }")
             println("Config path set to ${parsed.pathToConfigFile}")
         }
 
@@ -37,7 +38,13 @@ object Core {
         }
 
         val client = Authorization(configuration, parsed.production, parsed.verbose)
-        val session = client.renewSession() ?: client.createSession()
+        val session = client.renewSession() ?: run {
+            if (parsed.verbose) {
+                println("No valid keys found, re-authorizing")
+            }
+
+            client.createSession()
+        }
 
         if (parsed.verbose) {
             session.apply {
@@ -62,6 +69,13 @@ object Core {
         accountSrvc.list()?.let {
             print("Account retrieved")
             print(it)
+
+            it.first().accountIdKey?.let {
+                accountSrvc.getBalance(it)?.let {
+                    print("Account balance")
+                    print(it)
+                }
+            }
         }
 
         // client.destroySession()
