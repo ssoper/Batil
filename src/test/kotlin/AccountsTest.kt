@@ -1,7 +1,10 @@
 import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
+import TestHelper.PathHelper.randomString
+import com.seansoper.batil.connectors.etrade.AccountMode
 import com.seansoper.batil.connectors.etrade.AccountType
 import com.seansoper.batil.connectors.etrade.Accounts
+import com.seansoper.batil.connectors.etrade.QuoteMode
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -36,4 +39,44 @@ class AccountsTest: StringSpec({
         }
     }
 
+    "get balance" {
+        val path = Paths.get("apiResponses/accounts/balance.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.getBalance(accountIdKey)
+
+            data.shouldNotBeNull()
+            data.accountType.shouldBe(AccountType.MARGIN)
+            data.description.shouldBe("NAOMI NAGATA")
+            data.optionLevelValue.shouldBe(3)
+            data.quoteModeValue.shouldBe(QuoteMode.QUOTE_REALTIME)
+            data.accountMode.shouldBe(AccountMode.MARGIN)
+
+            val cash = data.cash
+            cash.fundsForOpenOrdersCash.shouldBe(0.0f)
+            cash.moneyMktBalance.shouldBe(6934.52f)
+
+            val balances = data.balances
+            balances.cashAvailableForInvestment.shouldBe(7685.52f)
+            balances.netCash.shouldBe(7685.52f)
+            balances.marginBuyingPower.shouldBe(15371.04f)
+            balances.marginBalance.shouldBe(37388.25f)
+            balances.regtEquity.shouldBe(44322.77f)
+
+            val openCalls = balances.openCalls
+            openCalls.minEquityCall.shouldBe(0.0f)
+            openCalls.fedCall.shouldBe(0.0f)
+            openCalls.cashCall.shouldBe(0.0f)
+            openCalls.houseCall.shouldBe(0.0f)
+
+            val realTimeValues = balances.realTimeValues
+            realTimeValues.totalAccountValue.shouldBe(37645.27f)
+            realTimeValues.netMv.shouldBe(-6677.5f)
+            realTimeValues.totalLongValue.shouldBeNull()
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/balance?instType=BROKERAGE&realTimeNAV=true")
+        }
+    }
 })
