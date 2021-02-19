@@ -1,16 +1,15 @@
 import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
 import TestHelper.PathHelper.randomString
-import com.seansoper.batil.connectors.etrade.AccountMode
-import com.seansoper.batil.connectors.etrade.AccountType
-import com.seansoper.batil.connectors.etrade.Accounts
-import com.seansoper.batil.connectors.etrade.QuoteMode
+import com.seansoper.batil.connectors.etrade.*
+import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import java.nio.file.Paths
 import java.time.Instant
+import java.util.*
 
 class AccountsTest: StringSpec({
 
@@ -93,6 +92,28 @@ class AccountsTest: StringSpec({
 
             val first = data.transactions.first()
             first.transactionId.shouldBe(21048101297804L)
+            first.accountId.shouldBe("45645298")
+            first.transactionDate.shouldBe(Instant.ofEpochSecond(1613548800000L))
+            first.postDate.shouldBe(Instant.ofEpochSecond(1613635200000L))
+            first.amount.shouldBe(1138.42f)
+            first.description.shouldContain("PALANTIR TECHNOLOGIES INC CL A")
+            first.transactionType.shouldBe("Sold Short")
+
+            val trade = first.trade
+            trade.quantity.shouldBe(-3.0f)
+            trade.price.shouldBe(3.8f)
+            trade.settlementCurrency.shouldBe("USD")
+            trade.paymentCurrency.shouldBe("USD")
+            trade.fee.shouldBe(1.5f)
+            trade.displaySymbol.shouldContain("PLTR")
+            trade.settlementDate.shouldBe(Instant.ofEpochSecond(1613635200000))
+
+            val strike = trade.strike
+            strike.symbol.shouldBe("PLTR")
+            strike.securityType!!.description.shouldBe("Option")
+            strike.callPut.shouldBe(OptionType.PUT)
+            strike.expiry.shouldBe(GregorianCalendar(2021, 3, 12))
+            strike.price.shouldBe(29.0f)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50")
         }

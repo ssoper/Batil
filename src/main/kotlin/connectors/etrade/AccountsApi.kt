@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
 import java.time.Instant
+import java.util.*
 
 enum class AccountMode {
     CASH, MARGIN
@@ -193,6 +194,30 @@ data class BalanceResponse(
     val response: AccountBalance
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class TransactionStrike(
+    val symbol: String?,           // The symbol for which the quote details are being accessed
+    val securitySubType: String?,  // The subtype of the security
+    val expiryYear: Int?,          // The four-digit year the option will expire
+    val expiryMonth: Int?,         // The month (1-12) the option will expire
+    val expiryDay: Int?,           // The day (1-31) the option will expire
+    val expiryType: String?,       // The expiration type for the option
+    val callPut: OptionType?,
+    val securityType: SecurityType?,
+
+    @JsonProperty("strikePrice")
+    val price: Float?,
+) {
+    val expiry: GregorianCalendar?
+        get() {
+            return if (expiryYear != null && expiryMonth != null && expiryDay != null) {
+                GregorianCalendar(expiryYear+2000, expiryMonth, expiryDay)
+            } else {
+                null
+            }
+        }
+}
+
 // Corresponds to Brokerage
 // https://apisb.etrade.com/docs/api/account/api-transaction-v1.html#/definitions/Brokerage
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -202,8 +227,11 @@ data class TransactionTrade(
     val settlementCurrency: String?, // Settlement currency
     val paymentCurrency: String?,    // Payment currency
     val fee: Float?,                 // The brokerage fee
-    val displaySymbole: String?,
-    val settlementDate: Instant?
+    val displaySymbol: String?,
+    val settlementDate: Instant?,
+
+    @JsonProperty("product")
+    val strike: TransactionStrike
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
