@@ -72,11 +72,19 @@ object Core {
 
             it.first().accountIdKey?.let {
 
-                accountSrvc.listTransactions(it)?.let {
+                // Last 50 transactions
+//                accountSrvc.listTransactions(it)?.let {
+//                    print("Transactions")
+//                    print(it)
+//                }
+
+                // Transactions between 10/1/2020 and 10/3/2020
+                val startDate = GregorianCalendar(2020, 9, 1)
+                val endDate = GregorianCalendar(2020, 9, 3)
+                accountSrvc.listTransactions(it, startDate, endDate)?.let {
                     print("Transactions")
                     print(it)
                 }
-
 //                accountSrvc.getBalance(it)?.let {
 //                    print("Account balance")
 //                    print(it)

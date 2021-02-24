@@ -118,4 +118,26 @@ class AccountsTest: StringSpec({
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50")
         }
     }
+
+    "list transactions by date" {
+        val path = Paths.get("apiResponses/accounts/list_transactions_by_date.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val startDate = GregorianCalendar(2020, 9, 1)
+            val endDate = GregorianCalendar(2020, 9, 3)
+            val data = service.listTransactions(accountIdKey, startDate, endDate)
+
+            data.shouldNotBeNull()
+            data.transactions.count().shouldBe(data.transactionCount)
+
+            // Sweeps have 2 transactions each
+            data.transactions[0].transactionDate.shouldBe(Instant.ofEpochSecond(1601622000000)) // Oct 2, 2020
+            data.transactions[2].transactionDate.shouldBe(Instant.ofEpochSecond(1601535600000)) // Oct 1, 2020
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50&startDate=10012020&endDate=10032020")
+        }
+    }
+
 })

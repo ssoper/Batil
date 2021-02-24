@@ -1,6 +1,7 @@
 package com.seansoper.batil.connectors.etrade
 
 import com.fasterxml.jackson.databind.module.SimpleModule
+import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.*
 
@@ -31,12 +32,25 @@ class Accounts(session: Session,
         return listTransactions(accountIdKey, startDate = null, endDate = null, sortOrder = null, startAt = null)
     }
 
-    // TODO: Fully consume transaction model
+    fun listTransactions(accountIdKey: String,
+                         startDate: GregorianCalendar,
+                         endDate: GregorianCalendar): TransactionResponse? {
+        return listTransactions(accountIdKey, startDate = startDate, endDate = endDate, sortOrder = null, startAt = null)
+    }
+
+    // x TODO: Fully consume transaction model
+    // x TODO: List most recent 50 transactions
+    // x TODO: Implement date querying
     // TODO: List first 50 transactions
     // TODO: Implement marker
-    // TODO: Implement date querying
     // TODO: Implement varying count
     // TODO: Implement sort
+
+    fun formatDate(date: GregorianCalendar): String {
+        val formatter = SimpleDateFormat("MMddyyyy")
+        formatter.calendar = date
+        return formatter.format(date.time)
+    }
 
     fun listTransactions(accountIdKey: String,
                          startDate: GregorianCalendar?,
@@ -46,6 +60,18 @@ class Accounts(session: Session,
                          count: Int? = 50): TransactionResponse? {
 
         val options = mutableMapOf("count" to count.toString())
+
+        startDate?.let {
+            options.putAll(mapOf(
+                "startDate" to formatDate(startDate)
+            ))
+        }
+
+        endDate?.let {
+            options.putAll(mapOf(
+                "endDate" to formatDate(endDate)
+            ))
+        }
 
         val module = SimpleModule()
         module.addDeserializer(Instant::class.java, TimestampDeserializer())

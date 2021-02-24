@@ -250,7 +250,7 @@ data class Transaction(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TransactionResponse(
-    val marker: String,
+    val marker: String?,
     val moreTransactions: Boolean,
     val transactionCount: Int,
     val totalCount: Int,
