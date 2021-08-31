@@ -93,8 +93,8 @@ class AccountsTest: StringSpec({
             val first = data.transactions.first()
             first.transactionId.shouldBe(21048101297804L)
             first.accountId.shouldBe("45645298")
-            first.transactionDate.shouldBe(Instant.ofEpochSecond(1613548800000L))
-            first.postDate.shouldBe(Instant.ofEpochSecond(1613635200000L))
+            first.transactionDate.shouldBe(Instant.ofEpochMilli(1613548800000L))
+            first.postDate.shouldBe(Instant.ofEpochMilli(1613635200000L))
             first.amount.shouldBe(1138.42f)
             first.description.shouldContain("PALANTIR TECHNOLOGIES INC CL A")
             first.transactionType.shouldBe("Sold Short")
@@ -106,7 +106,7 @@ class AccountsTest: StringSpec({
             trade.paymentCurrency.shouldBe("USD")
             trade.fee.shouldBe(1.5f)
             trade.displaySymbol.shouldContain("PLTR")
-            trade.settlementDate.shouldBe(Instant.ofEpochSecond(1613635200000))
+            trade.settlementDate.shouldBe(Instant.ofEpochMilli(1613635200000))
 
             val strike = trade.strike
             strike.symbol.shouldBe("PLTR")
@@ -133,8 +133,8 @@ class AccountsTest: StringSpec({
             data.transactions.count().shouldBe(data.transactionCount)
 
             // Sweeps have 2 transactions each
-            data.transactions[0].transactionDate.shouldBe(Instant.ofEpochSecond(1601622000000)) // Oct 2, 2020
-            data.transactions[2].transactionDate.shouldBe(Instant.ofEpochSecond(1601535600000)) // Oct 1, 2020
+            data.transactions[0].transactionDate.shouldBe(Instant.ofEpochMilli(1601622000000)) // Oct 2, 2020
+            data.transactions[2].transactionDate.shouldBe(Instant.ofEpochMilli(1601535600000)) // Oct 1, 2020
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50&startDate=10012020&endDate=10032020")
         }
@@ -151,7 +151,7 @@ class AccountsTest: StringSpec({
             data.shouldNotBeNull()
             data.transactions.count().shouldBe(data.transactionCount)
 
-            data.transactions[0].transactionDate.shouldBe(Instant.ofEpochSecond(1611561600000)) // Jan 25, 2021
+            data.transactions[0].transactionDate.shouldBe(Instant.ofEpochMilli(1611561600000)) // Jan 25, 2021
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=5&sortOrder=DESC")
         }

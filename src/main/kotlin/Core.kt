@@ -63,15 +63,15 @@ object Core {
         val data = service.optionChains("AAPL", GregorianCalendar(2021, 9, 10), 131f, 1)
 
         data?.let {
-            print(it)
+            println(it)
         }
 
         val accountSrvc = Accounts(session, parsed.production, parsed.verbose)
         accountSrvc.list()?.let {
-            print("Account retrieved")
-            print(it)
+            println("Account retrieved")
+            println(it)
 
-            it.first().accountIdKey?.let {
+            it.first().accountIdKey?.let { accountIdKey ->
 
                 // Last 50 transactions
 //                accountSrvc.listTransactions(it)?.let {
@@ -88,9 +88,9 @@ object Core {
 //                }
 
                 // Sort
-                accountSrvc.listTransactions(it, null, null, TransactionSortOrder.DESC, null, 5)?.let {
-                    print("Sorted")
-                    print(it)
+                accountSrvc.listTransactions(accountIdKey, null, null, TransactionSortOrder.DESC, null, 5)?.let {
+                    println("Sorted")
+                    println(it)
                 }
 
             //                accountSrvc.getBalance(it)?.let {

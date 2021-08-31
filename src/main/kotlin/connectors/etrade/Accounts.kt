@@ -42,7 +42,6 @@ class Accounts(session: Session,
     // x TODO: Fully consume transaction model
     // x TODO: List most recent 50 transactions
     // x TODO: Implement date querying
-    // TODO: List first 50 transactions
     // TODO: Implement marker
     // x TODO: Implement varying count
     // x TODO: Implement sort
