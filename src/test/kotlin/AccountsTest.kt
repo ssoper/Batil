@@ -140,4 +140,20 @@ class AccountsTest: StringSpec({
         }
     }
 
+    "list 5 transactions sorted ascending" {
+        val path = Paths.get("apiResponses/accounts/list_transactions_sort_asc.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.listTransactions(accountIdKey, null, null, TransactionSortOrder.DESC, null, 5)
+
+            data.shouldNotBeNull()
+            data.transactions.count().shouldBe(data.transactionCount)
+
+            data.transactions[0].transactionDate.shouldBe(Instant.ofEpochSecond(1611561600000)) // Jan 25, 2021
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=5&sortOrder=DESC")
+        }
+    }
 })

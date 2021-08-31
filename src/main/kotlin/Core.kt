@@ -3,6 +3,7 @@ package com.seansoper.batil
 import com.seansoper.batil.connectors.etrade.Accounts
 import com.seansoper.batil.connectors.etrade.Authorization
 import com.seansoper.batil.connectors.etrade.Market
+import com.seansoper.batil.connectors.etrade.TransactionSortOrder
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -79,13 +80,20 @@ object Core {
 //                }
 
                 // Transactions between 10/1/2020 and 10/3/2020
-                val startDate = GregorianCalendar(2020, 9, 1)
-                val endDate = GregorianCalendar(2020, 9, 3)
-                accountSrvc.listTransactions(it, startDate, endDate)?.let {
-                    print("Transactions")
+//                val startDate = GregorianCalendar(2020, 9, 1)
+//                val endDate = GregorianCalendar(2020, 9, 3)
+//                accountSrvc.listTransactions(it, startDate, endDate)?.let {
+//                    print("Transactions")
+//                    print(it)
+//                }
+
+                // Sort
+                accountSrvc.listTransactions(it, null, null, TransactionSortOrder.DESC, null, 5)?.let {
+                    print("Sorted")
                     print(it)
                 }
-//                accountSrvc.getBalance(it)?.let {
+
+            //                accountSrvc.getBalance(it)?.let {
 //                    print("Account balance")
 //                    print(it)
 //                }

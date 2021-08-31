@@ -6,7 +6,8 @@ import java.time.Instant
 import java.util.*
 
 enum class TransactionSortOrder {
-    ASC, DESC
+    ASC,
+    DESC // Default
 }
 
 class Accounts(session: Session,
@@ -43,8 +44,8 @@ class Accounts(session: Session,
     // x TODO: Implement date querying
     // TODO: List first 50 transactions
     // TODO: Implement marker
-    // TODO: Implement varying count
-    // TODO: Implement sort
+    // x TODO: Implement varying count
+    // x TODO: Implement sort
 
     fun formatDate(date: GregorianCalendar): String {
         val formatter = SimpleDateFormat("MMddyyyy")
@@ -70,6 +71,12 @@ class Accounts(session: Session,
         endDate?.let {
             options.putAll(mapOf(
                 "endDate" to formatDate(endDate)
+            ))
+        }
+
+        sortOrder?.let {
+            options.putAll(mapOf(
+                "sortOrder" to sortOrder.toString()
             ))
         }
 
