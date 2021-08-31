@@ -60,7 +60,7 @@ object Core {
         // val data = client.lookup("Game", oauthToken, verifier)
         // val data = client.optionChains("AAPL", oauthToken, verifier)
         // modify to use third friday from whatever today is
-        val data = service.optionChains("AAPL", GregorianCalendar(2021, 3, 12), 131f, 1)
+        val data = service.optionChains("AAPL", GregorianCalendar(2021, 9, 10), 131f, 1)
 
         data?.let {
             print(it)
