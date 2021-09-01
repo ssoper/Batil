@@ -5,6 +5,8 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
+// TODO: Add support to intercept the 204 calls which are not strictly errors but can indicate issues lack no data
+
 class ErrorInterceptor: Interceptor {
 
     @Throws(IOException::class)

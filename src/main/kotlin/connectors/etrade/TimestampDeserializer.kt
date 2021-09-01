@@ -11,7 +11,7 @@ class TimestampDeserializer: JsonDeserializer<Instant>() {
     @Throws(IOException::class, JsonProcessingException::class)
     override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): Instant {
         return p?.longValue?.let {
-            Instant.ofEpochSecond(it)
+            Instant.ofEpochMilli(it)
         } ?: throw TimestampDeserializerException()
     }
 
