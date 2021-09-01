@@ -1,7 +1,10 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.10"
+    kotlin("jvm") version "1.5.30"
     id("maven-publish")
 }
+
+val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+compileKotlin.kotlinOptions.jvmTarget = "11"
 
 repositories {
     mavenCentral()
@@ -9,6 +12,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.2")
