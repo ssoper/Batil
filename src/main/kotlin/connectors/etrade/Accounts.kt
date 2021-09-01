@@ -39,12 +39,7 @@ class Accounts(session: Session,
         return listTransactions(accountIdKey, startDate = startDate, endDate = endDate, sortOrder = null, startAt = null)
     }
 
-    // x TODO: Fully consume transaction model
-    // x TODO: List most recent 50 transactions
-    // x TODO: Implement date querying
     // TODO: Implement marker
-    // x TODO: Implement varying count
-    // x TODO: Implement sort
 
     fun formatDate(date: GregorianCalendar): String {
         val formatter = SimpleDateFormat("MMddyyyy")
