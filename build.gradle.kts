@@ -3,9 +3,6 @@ plugins {
     id("maven-publish")
 }
 
-val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
-compileKotlin.kotlinOptions.jvmTarget = "11"
-
 repositories {
     mavenCentral()
 }
@@ -23,6 +20,14 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-jackson:2.9.0")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
+}
+
+tasks.compileKotlin {
+    this.kotlinOptions.jvmTarget = "11"
+}
+
+tasks.compileTestKotlin {
+    this.kotlinOptions.jvmTarget = "11"
 }
 
 tasks.withType<Test> {

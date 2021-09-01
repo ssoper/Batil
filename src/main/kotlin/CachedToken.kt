@@ -66,7 +66,7 @@ class CachedToken(val provider: Provider,
     }
 
     private fun getEntryKey(entry: String): String {
-        return "${provider.name.toLowerCase()}.${entry.toLowerCase()}"
+        return "${provider.name.lowercase(Locale.getDefault())}.${entry.lowercase(Locale.getDefault())}"
     }
 
     fun getEntry(entry: String): String? {
