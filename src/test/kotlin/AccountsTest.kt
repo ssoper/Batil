@@ -1,16 +1,15 @@
 import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
 import TestHelper.PathHelper.randomString
-import com.seansoper.batil.connectors.etrade.AccountMode
-import com.seansoper.batil.connectors.etrade.AccountType
-import com.seansoper.batil.connectors.etrade.Accounts
-import com.seansoper.batil.connectors.etrade.QuoteMode
+import com.seansoper.batil.connectors.etrade.*
+import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import java.nio.file.Paths
 import java.time.Instant
+import java.util.*
 
 class AccountsTest: StringSpec({
 
@@ -77,6 +76,84 @@ class AccountsTest: StringSpec({
             realTimeValues.totalLongValue.shouldBeNull()
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/balance?instType=BROKERAGE&realTimeNAV=true")
+        }
+    }
+
+    "list 50 transactions" {
+        val path = Paths.get("apiResponses/accounts/list_transactions.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.listTransactions(accountIdKey)
+
+            data.shouldNotBeNull()
+            data.transactions.count().shouldBe(data.transactionCount)
+
+            val first = data.transactions.first()
+            first.transactionId.shouldBe(21048101297804L)
+            first.accountId.shouldBe("45645298")
+            first.transactionDate.shouldBe(Instant.ofEpochMilli(1613548800000L))
+            first.postDate.shouldBe(Instant.ofEpochMilli(1613635200000L))
+            first.amount.shouldBe(1138.42f)
+            first.description.shouldContain("PALANTIR TECHNOLOGIES INC CL A")
+            first.transactionType.shouldBe("Sold Short")
+
+            val trade = first.trade
+            trade.quantity.shouldBe(-3.0f)
+            trade.price.shouldBe(3.8f)
+            trade.settlementCurrency.shouldBe("USD")
+            trade.paymentCurrency.shouldBe("USD")
+            trade.fee.shouldBe(1.5f)
+            trade.displaySymbol.shouldContain("PLTR")
+            trade.settlementDate.shouldBe(Instant.ofEpochMilli(1613635200000))
+
+            val strike = trade.strike
+            strike.symbol.shouldBe("PLTR")
+            strike.securityType!!.description.shouldBe("Option")
+            strike.callPut.shouldBe(OptionType.PUT)
+            strike.expiry.shouldBe(GregorianCalendar(2021, 3, 12))
+            strike.price.shouldBe(29.0f)
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50")
+        }
+    }
+
+    "list transactions by date" {
+        val path = Paths.get("apiResponses/accounts/list_transactions_by_date.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val startDate = GregorianCalendar(2020, 9, 1)
+            val endDate = GregorianCalendar(2020, 9, 3)
+            val data = service.listTransactions(accountIdKey, startDate, endDate)
+
+            data.shouldNotBeNull()
+            data.transactions.count().shouldBe(data.transactionCount)
+
+            // Sweeps have 2 transactions each
+            data.transactions[0].transactionDate.shouldBe(Instant.ofEpochMilli(1601622000000)) // Oct 2, 2020
+            data.transactions[2].transactionDate.shouldBe(Instant.ofEpochMilli(1601535600000)) // Oct 1, 2020
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50&startDate=10012020&endDate=10032020")
+        }
+    }
+
+    "list 5 transactions sorted ascending" {
+        val path = Paths.get("apiResponses/accounts/list_transactions_sort_asc.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.listTransactions(accountIdKey, null, null, TransactionSortOrder.DESC, null, 5)
+
+            data.shouldNotBeNull()
+            data.transactions.count().shouldBe(data.transactionCount)
+
+            data.transactions[0].transactionDate.shouldBe(Instant.ofEpochMilli(1611561600000)) // Jan 25, 2021
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=5&sortOrder=DESC")
         }
     }
 })

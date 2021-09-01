@@ -3,6 +3,7 @@ package com.seansoper.batil
 import com.seansoper.batil.connectors.etrade.Accounts
 import com.seansoper.batil.connectors.etrade.Authorization
 import com.seansoper.batil.connectors.etrade.Market
+import com.seansoper.batil.connectors.etrade.TransactionSortOrder
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -59,21 +60,22 @@ object Core {
         // val data = client.lookup("Game", oauthToken, verifier)
         // val data = client.optionChains("AAPL", oauthToken, verifier)
         // modify to use third friday from whatever today is
-        val data = service.optionChains("AAPL", GregorianCalendar(2021, 3, 12), 131f, 1)
+        val data = service.optionChains("AAPL", GregorianCalendar(2021, 9, 10), 131f, 1)
 
         data?.let {
-            print(it)
+            println(it)
         }
 
         val accountSrvc = Accounts(session, parsed.production, parsed.verbose)
         accountSrvc.list()?.let {
-            print("Account retrieved")
-            print(it)
+            println("Account retrieved")
+            println(it)
 
-            it.first().accountIdKey?.let {
-                accountSrvc.getBalance(it)?.let {
-                    print("Account balance")
-                    print(it)
+            it.first().accountIdKey?.let { accountIdKey ->
+                // Retrieve 5 most recent transactions
+                accountSrvc.listTransactions(accountIdKey, null, null, TransactionSortOrder.DESC, null, 5)?.let {
+                    println("Sorted")
+                    println(it)
                 }
             }
         }
