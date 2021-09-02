@@ -1,3 +1,8 @@
+val buildGroupId = "com.seansoper"
+val buildArtifactId = "batil"
+val buildVersion = "1.0.0"
+val buildJvmTarget = "11"
+
 plugins {
     kotlin("jvm") version "1.5.30"
     id("maven-publish")
@@ -22,12 +27,23 @@ dependencies {
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
 }
 
+tasks.jar {
+    manifest {
+        attributes(mapOf(
+            "Main-Class" to "$buildGroupId.$buildArtifactId.Core",
+            "Manifest-Version" to "1.0",
+            "Implementation-Version" to buildVersion))
+    }
+
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+}
+
 tasks.compileKotlin {
-    this.kotlinOptions.jvmTarget = "11"
+    this.kotlinOptions.jvmTarget = buildJvmTarget
 }
 
 tasks.compileTestKotlin {
-    this.kotlinOptions.jvmTarget = "11"
+    this.kotlinOptions.jvmTarget = buildJvmTarget
 }
 
 tasks.withType<Test> {
@@ -38,9 +54,9 @@ publishing {
     publications {
         create<MavenPublication>("gpr") {
             run {
-                groupId = "com.seansoper"
-                artifactId = "batil"
-                version = "1.0.0"
+                groupId = buildGroupId
+                artifactId = buildArtifactId
+                version = buildVersion
             }
         }
     }
