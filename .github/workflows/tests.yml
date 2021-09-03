@@ -1,0 +1,16 @@
+name: tests
+on: [push]
+jobs:
+  run:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup Java  
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11.0.4'
+          java-package: jdk
+      - name: Run tests
+        run: |
+          ./gradlew test
