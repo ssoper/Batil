@@ -15,9 +15,9 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.0")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.4")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.4")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.4")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.5")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.5")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.5")
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
     implementation("pl.wendigo:chrome-reactive-kotlin:0.6.1")
