@@ -22,6 +22,10 @@ Connect to your preferred broker in functional Kotlin.
 
         docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" about:blank
 
+* Note that if you are on Apple Silicon (M1) you should use this image built with arm64:
+
+        docker container run -d -p 9222:9222 avidtraveler/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" about:blank
+
 * Using the sample provided, add a `batil.yaml` to the directory where you intend to run the JAR file substituting with the correct values.
 * Now you can run the JAR file.
 
