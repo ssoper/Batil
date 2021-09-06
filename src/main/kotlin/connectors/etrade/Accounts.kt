@@ -82,4 +82,16 @@ class Accounts(session: Session,
 
         return response.body()?.response
     }
+
+    fun getTransaction(accountIdKey: String,
+                       transactionId: TransactionId): Transaction? {
+        val module = SimpleModule()
+        module.addDeserializer(Instant::class.java, TimestampDeserializer())
+
+        val service = createClient(AccountsApi::class.java, module)
+        val response = service.getTransaction(accountIdKey, transactionId.toString()).execute()
+
+        return response.body()?.response
+    }
+
 }

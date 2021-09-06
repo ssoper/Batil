@@ -1,5 +1,6 @@
 package com.seansoper.batil.connectors.etrade
 
+import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import retrofit2.Call
@@ -231,6 +232,7 @@ data class TransactionTrade(
     val settlementDate: Instant?,
 
     @JsonProperty("product")
+    @JsonAlias("Product")
     val strike: TransactionStrike
 )
 
@@ -245,6 +247,7 @@ data class Transaction(
     val transactionType: String?,      // Description of type of transaction i.e. "Sold Short"
 
     @JsonProperty("brokerage")
+    @JsonAlias("Brokerage")
     val trade: TransactionTrade,    // The brokerage involved in the transaction
 )
 
@@ -260,9 +263,15 @@ data class TransactionResponse(
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class TransactionDetailsResponse(
+data class TransactionListResponse(
     @JsonProperty("TransactionListResponse")
     val response: TransactionResponse
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class TransactionDetailsResponse(
+    @JsonProperty("TransactionDetailsResponse")
+    val response: Transaction
 )
 
 interface AccountsApi {
@@ -275,6 +284,10 @@ interface AccountsApi {
 
     @GET("/v1/accounts/{accountIdKey}/transactions")
     fun listTransactions(@Path("accountIdKey") accountIdKey: String,
-                         @QueryMap options: Map<String, String>): Call<TransactionDetailsResponse>
+                         @QueryMap options: Map<String, String>): Call<TransactionListResponse>
+
+    @GET("/v1/accounts/{accountIdKey}/transactions/{transactionId}")
+    fun getTransaction(@Path("accountIdKey") accountIdKey: String,
+                       @Path("transactionId") transactionId: String): Call<TransactionDetailsResponse>
 
 }

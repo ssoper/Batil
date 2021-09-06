@@ -10,6 +10,7 @@ import io.kotlintest.specs.StringSpec
 import java.nio.file.Paths
 import java.time.Instant
 import java.util.*
+import kotlin.random.Random.Default.nextLong
 
 class AccountsTest: StringSpec({
 
@@ -108,7 +109,7 @@ class AccountsTest: StringSpec({
             trade.displaySymbol.shouldContain("PLTR")
             trade.settlementDate.shouldBe(Instant.ofEpochMilli(1613635200000))
 
-            val strike = trade.strike
+            val strike = trade.strike!!
             strike.symbol.shouldBe("PLTR")
             strike.securityType!!.description.shouldBe("Option")
             strike.callPut.shouldBe(OptionType.PUT)
@@ -154,6 +155,22 @@ class AccountsTest: StringSpec({
             data.transactions[0].transactionDate.shouldBe(Instant.ofEpochMilli(1611561600000)) // Jan 25, 2021
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=5&sortOrder=DESC")
+        }
+    }
+
+    "get transaction details" {
+        val path = Paths.get("apiResponses/accounts/get_transaction_details.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val transactionId = nextLong()
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.getTransaction(accountIdKey, transactionId)
+            data.shouldNotBeNull()
+            data.description.shouldBe("MegaCorp IRA")
+            data.transactionDate.shouldBe(Instant.ofEpochMilli(1630652400000)) // 2021-09-03
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions/$transactionId")
         }
     }
 })
