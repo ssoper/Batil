@@ -76,6 +76,12 @@ object Core {
                 accountSrvc.listTransactions(accountIdKey, null, null, TransactionSortOrder.DESC, null, 5)?.let {
                     println("Sorted")
                     println(it)
+
+                    // Get details for most recent transaction
+                    accountSrvc.getTransaction(accountIdKey, it.transactions.first().transactionId)?.let {
+                        println("Recent transaction")
+                        println(it)
+                    }
                 }
             }
         }
