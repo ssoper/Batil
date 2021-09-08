@@ -60,11 +60,13 @@ class Accounts(session: Session,
         return formatter.format(date.time)
     }
 
+    // TODO: Implement startAt
+    // TODO: Move to default null for count and other fields
     fun listTransactions(accountIdKey: String,
                          startDate: GregorianCalendar?,
                          endDate: GregorianCalendar?,
                          sortOrder: TransactionSortOrder?,
-                         startAt: TransactionId?, // TODO: Implement
+                         startAt: TransactionId?,
                          count: Int? = 50): TransactionResponse? {
 
         val options = mutableMapOf("count" to count.toString())
