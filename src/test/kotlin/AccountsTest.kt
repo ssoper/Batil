@@ -50,8 +50,9 @@ class AccountsTest: StringSpec({
             data.shouldNotBeNull()
             data.accountType.shouldBe(AccountType.MARGIN)
             data.description.shouldBe("NAOMI NAGATA")
-            data.optionLevelValue.shouldBe(3)
-            data.quoteModeValue.shouldBe(QuoteMode.QUOTE_REALTIME)
+            data.optionLevel.ordinal.shouldBe(3)
+            data.optionLevel.shouldBe(OptionLevel.LEVEL_3)
+            data.quoteStatus.shouldBe(QuoteMode.REALTIME)
             data.accountMode.shouldBe(AccountMode.MARGIN)
 
             val cash = data.cash
@@ -171,6 +172,19 @@ class AccountsTest: StringSpec({
             data.transactionDate.shouldBe(Instant.ofEpochMilli(1630652400000)) // 2021-09-03
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions/$transactionId")
+        }
+    }
+
+    "view portfolio" {
+        val path = Paths.get("apiResponses/accounts/view_portfolio.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.viewPortfolio(accountIdKey)
+            data.shouldNotBeNull()
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/portfolio")
         }
     }
 })
