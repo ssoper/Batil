@@ -45,6 +45,10 @@ enum class ProductType {
     EQUITY, OPTION, MUTUAL_FUND, INDEX, MONEY_MARKET_FUND, BOND, UNKNOWN, WILDCARD, MOVE, ETF, EQUITY_OPTION_ETF, EQUITY_ETF, CLOSED_END_FUND, PREFERRED, EQUITY_OPTN, EXCHANGE_TRADED_FUND, MUTUAL_FUND_MONEY_MARKET_FUND
 }
 
+enum class PositionIndicatorType {
+    TYPE1, TYPE2, TYPE5, UNDEFINED
+}
+
 enum class SecurityType {
     BOND, EQ, INDX, MF, MMF, OPTN;
 
@@ -469,7 +473,7 @@ data class PortfolioPosition(
     val commissions: Float?,             // The commissions paid for the position
     val otherFees: Float?,               // The other fees paid to acquire the position
     val quantity: Float?,                // The quantity
-    val positionIndicator: String?,      // TYPE1, TYPE2, TYPE5, UNDEFINED
+    val positionIndicator: PositionIndicatorType?,
     val positionType: String?,           // The position type
     val change: Float?,                  // The change
     val changePct: Float?,               // The percentage change
