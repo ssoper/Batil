@@ -184,6 +184,28 @@ class AccountsTest: StringSpec({
             val data = service.viewPortfolio(accountIdKey)
             data.shouldNotBeNull()
 
+            // Stock
+            val lazr = data.accountPortfolio.first().positions.first()
+            lazr.symbolDescription.shouldBe("LAZR")
+            lazr.positionIndicator.shouldBe(PositionIndicatorType.TYPE2)
+            lazr.quantity.shouldBe(200.0f)
+            lazr.product!!.symbol.shouldBe("LAZR")
+            lazr.product!!.securityType.shouldBe(SecurityType.EQ)
+            lazr.quick!!.lastTrade.shouldBe(17.22f)
+            lazr.quick!!.lastTradeTime.shouldBe(Instant.ofEpochSecond(1631044800)) // 9-7-2021
+            lazr.quick!!.quoteStatus.shouldBe(QuoteMode.CLOSING)
+
+            // Short Option
+            val riot = data.accountPortfolio.first().positions[1]
+            riot.symbolDescription.shouldBe("RIOT Sep 24 '21 $34 Put")
+            riot.positionIndicator.shouldBe(PositionIndicatorType.TYPE2)
+            riot.quantity.shouldBe(-2f)
+            riot.product!!.symbol.shouldBe("RIOT")
+            riot.product!!.securityType.shouldBe(SecurityType.OPTN)
+            riot.quick!!.lastTrade.shouldBe(4.07f)
+            riot.quick!!.lastTradeTime.shouldBe(Instant.ofEpochSecond(1631044798)) // 9-7-2021
+            riot.quick!!.quoteStatus.shouldBe(QuoteMode.REALTIME)
+
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/portfolio")
         }
     }

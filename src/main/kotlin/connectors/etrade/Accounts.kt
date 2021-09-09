@@ -162,7 +162,7 @@ class Accounts(session: Session,
         }
 
         val module = SimpleModule()
-        module.addDeserializer(Instant::class.java, TimestampDeserializer())
+        module.addDeserializer(Instant::class.java, TimestampDeserializer(false))
 
         val service = createClient(AccountsApi::class.java, module)
         val response = service.viewPortfolio(accountIdKey, options).execute()

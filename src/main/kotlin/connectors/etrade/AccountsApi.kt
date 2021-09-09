@@ -323,17 +323,17 @@ data class PerformanceView(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class FundamentalView(
-    val lastTrade: Float?,      // The last trade total
-    val lastTradeTime: Int?,    // The time of the last trade
-    val change: Float?,         // The change
-    val changePct: Float?,      // The change percentage
-    val peRatio: Float?,        // The Price to Earnings (P/E) ratio
-    val eps: Float?,            // The earnings per share
-    val dividend: Float?,       // The dividend
-    val divYield: Float?,       // The dividend yield
-    val marketCap: Float?,      // The market cap
-    val week52Range: String?,   // The 52 week range
-    val quoteStatus: QuoteMode? // REALTIME, DELAYED, CLOSING, EH_REALTIME, EH_BEFORE_OPEN, EH_CLOSED
+    val lastTrade: Float?,       // The last trade total
+    val lastTradeTime: Instant?, // The time of the last trade
+    val change: Float?,          // The change
+    val changePct: Float?,       // The change percentage
+    val peRatio: Float?,         // The Price to Earnings (P/E) ratio
+    val eps: Float?,             // The earnings per share
+    val dividend: Float?,        // The dividend
+    val divYield: Float?,        // The dividend yield
+    val marketCap: Float?,       // The market cap
+    val week52Range: String?,    // The 52 week range
+    val quoteStatus: QuoteMode?  // REALTIME, DELAYED, CLOSING, EH_REALTIME, EH_BEFORE_OPEN, EH_CLOSED
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -350,7 +350,7 @@ data class OptionsWatchView(
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class QuickView(
     val lastTrade: Float?,               // The last trade
-    val lastTradeTime: Int?,             // The time of the last trade
+    val lastTradeTime: Instant?,         // The time of the last trade
     val change: Float?,                  // The change
     val changePct: Float?,               // The change percentage
     val volume: Int?,                    // The total volume
@@ -464,6 +464,7 @@ data class PositionLot(
 data class PortfolioPosition(
     val positionId: Long,                // The position ID
     val accountId: String?,              // Numeric account ID
+    @JsonProperty("Product")
     val product: TransactionStrike?,     // The product
     val osiKey: String?,                 // The Options Symbology Initiative (OSI) key containing the option root symbol, expiration date, call/put indicator, and strike price
     val symbolDescription: String?,      // The symbol description
@@ -495,6 +496,7 @@ data class PortfolioPosition(
     val performance: PerformanceView?,   // The performance view
     val fundamental: FundamentalView?,   // The fundamental view
     val optionsWatch: OptionsWatchView?, // The options watch view
+    @JsonProperty("Quick")
     val quick: QuickView?,               // The quick view
     val complete: CompleteView?,         // The complete view
     val lotsDetails: String?,            // The lots details
