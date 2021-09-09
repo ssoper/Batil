@@ -50,8 +50,9 @@ class AccountsTest: StringSpec({
             data.shouldNotBeNull()
             data.accountType.shouldBe(AccountType.MARGIN)
             data.description.shouldBe("NAOMI NAGATA")
-            data.optionLevelValue.shouldBe(3)
-            data.quoteModeValue.shouldBe(QuoteMode.QUOTE_REALTIME)
+            data.optionLevel.ordinal.shouldBe(3)
+            data.optionLevel.shouldBe(OptionLevel.LEVEL_3)
+            data.quoteStatus.shouldBe(QuoteMode.REALTIME)
             data.accountMode.shouldBe(AccountMode.MARGIN)
 
             val cash = data.cash
@@ -171,6 +172,41 @@ class AccountsTest: StringSpec({
             data.transactionDate.shouldBe(Instant.ofEpochMilli(1630652400000)) // 2021-09-03
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions/$transactionId")
+        }
+    }
+
+    "view portfolio" {
+        val path = Paths.get("apiResponses/accounts/view_portfolio.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.viewPortfolio(accountIdKey)
+            data.shouldNotBeNull()
+
+            // Stock
+            val lazr = data.accountPortfolio.first().positions.first()
+            lazr.symbolDescription.shouldBe("LAZR")
+            lazr.positionIndicator.shouldBe(PositionIndicatorType.TYPE2)
+            lazr.quantity.shouldBe(200.0f)
+            lazr.product!!.symbol.shouldBe("LAZR")
+            lazr.product!!.securityType.shouldBe(SecurityType.EQ)
+            lazr.quick!!.lastTrade.shouldBe(17.22f)
+            lazr.quick!!.lastTradeTime.shouldBe(Instant.ofEpochSecond(1631044800)) // 9-7-2021
+            lazr.quick!!.quoteStatus.shouldBe(QuoteMode.CLOSING)
+
+            // Short Option
+            val riot = data.accountPortfolio.first().positions[1]
+            riot.symbolDescription.shouldBe("RIOT Sep 24 '21 $34 Put")
+            riot.positionIndicator.shouldBe(PositionIndicatorType.TYPE2)
+            riot.quantity.shouldBe(-2f)
+            riot.product!!.symbol.shouldBe("RIOT")
+            riot.product!!.securityType.shouldBe(SecurityType.OPTN)
+            riot.quick!!.lastTrade.shouldBe(4.07f)
+            riot.quick!!.lastTradeTime.shouldBe(Instant.ofEpochSecond(1631044798)) // 9-7-2021
+            riot.quick!!.quoteStatus.shouldBe(QuoteMode.REALTIME)
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/portfolio")
         }
     }
 })

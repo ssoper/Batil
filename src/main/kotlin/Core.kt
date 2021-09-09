@@ -72,6 +72,14 @@ object Core {
             println(it)
 
             it.first().accountIdKey?.let { accountIdKey ->
+
+                // View portfolio
+                accountSrvc.viewPortfolio(accountIdKey)?.let {
+                    println("View portfolio")
+                    println(it)
+                }
+
+                /*
                 // Retrieve 5 most recent transactions
                 accountSrvc.listTransactions(accountIdKey, null, null, TransactionSortOrder.DESC, null, 5)?.let {
                     println("Sorted")
@@ -83,6 +91,7 @@ object Core {
                         println(it)
                     }
                 }
+                */
             }
         }
 
