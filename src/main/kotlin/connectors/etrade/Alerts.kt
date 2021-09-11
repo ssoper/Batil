@@ -88,4 +88,19 @@ class Alerts(session: Session,
 
         return response.body()?.response
     }
+
+    fun delete(alertId: Int): DeleteAlertsResponse? {
+        return delete(listOf(alertId))
+    }
+
+    fun delete(alertId: List<Int>): DeleteAlertsResponse? {
+
+        val service = createClient(AlertsApi::class.java)
+        return try {
+            service.delete(alertId.joinToString(",")).execute().body()?.response
+        } catch (e: ServiceUnavailableError) {
+            // Strangely, the E*TRADE API returns a non-available service error on non-existent alert IDs
+            null
+        }
+    }
 }

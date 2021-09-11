@@ -72,6 +72,11 @@ object Core {
                 alerts.get(it.alerts.first().id)?.let {
                     println("Details for alert")
                     println(it)
+
+                    alerts.delete(listOf(907,908))?.let {
+                        println("Deleted alert")
+                        println(it)
+                    }
                 }
             }
         }
