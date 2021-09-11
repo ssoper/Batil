@@ -69,4 +69,23 @@ class Alerts(session: Session,
         return response.body()?.response
     }
 
+    fun get(alertId: Int,
+            htmlTags: Boolean? = null): AlertDetails? {
+
+        val options: MutableMap<String, String> = mutableMapOf()
+
+        htmlTags?.let {
+            options.putAll(mapOf(
+                "htmlTags" to it.toString()
+            ))
+        }
+
+        val module = SimpleModule()
+        module.addDeserializer(Instant::class.java, TimestampDeserializer(false))
+
+        val service = createClient(AlertsApi::class.java, module)
+        val response = service.getAlertDetails(alertId.toString(), options).execute()
+
+        return response.body()?.response
+    }
 }

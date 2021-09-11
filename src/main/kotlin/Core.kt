@@ -68,6 +68,11 @@ object Core {
             println("Total Alerts: ${it.totalAlerts}")
             if (it.totalAlerts > 0) {
                 println(it.alerts)
+
+                alerts.get(it.alerts.first().id)?.let {
+                    println("Details for alert")
+                    println(it)
+                }
             }
         }
 
