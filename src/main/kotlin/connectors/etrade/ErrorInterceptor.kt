@@ -15,16 +15,20 @@ class ErrorInterceptor: Interceptor {
         val response = chain.proceed(original)
 
         if (response.code >= 400) {
-            response.body?.string()?.let {
-                val xmlMapper = XmlMapper()
-                throw xmlMapper.readValue(it, ApiError::class.java)
-            }
+            throw response.body?.string()?.let {
+                val error = XmlMapper().readValue(it, ApiError::class.java)
 
-            throw ApiError(response.code, "HTTP Error: ${original.url}")
+                when (error.code) {
+                    100 -> ServiceUnavailableError()
+                    else -> error
+                }
+            } ?: ApiError(response.code, "HTTP Error: ${original.url}")
         }
 
         return response
     }
 }
 
-class ApiError(val code: Int = 0, override val message: String = "Error from E*TRADE API"): Error(message)
+open class ApiError(val code: Int = 0, override val message: String = "Error from E*TRADE API"): Error(message)
+
+class ServiceUnavailableError: ApiError(100, "The requested service is not currently available")

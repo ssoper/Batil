@@ -1,9 +1,6 @@
 package com.seansoper.batil
 
-import com.seansoper.batil.connectors.etrade.Accounts
-import com.seansoper.batil.connectors.etrade.Authorization
-import com.seansoper.batil.connectors.etrade.Market
-import com.seansoper.batil.connectors.etrade.TransactionSortOrder
+import com.seansoper.batil.connectors.etrade.*
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -60,12 +57,31 @@ object Core {
         // val data = client.lookup("Game", oauthToken, verifier)
         // val data = client.optionChains("AAPL", oauthToken, verifier)
         // modify to use third friday from whatever today is
-        val data = service.optionChains("AAPL", GregorianCalendar(2021, 9, 10), 131f, 1)
+        val data = service.optionChains("AAPL", GregorianCalendar(2021, 9, 17), 131f, 1)
 
         data?.let {
             println(it)
         }
 
+        val alerts = Alerts(session, parsed.production, parsed.verbose)
+        alerts.list()?.let {
+            println("Total Alerts: ${it.totalAlerts}")
+            if (it.totalAlerts > 0) {
+                println(it.alerts)
+
+                alerts.get(it.alerts.first().id)?.let {
+                    println("Details for alert")
+                    println(it)
+
+                    alerts.delete(listOf(907,908))?.let {
+                        println("Deleted alert")
+                        println(it)
+                    }
+                }
+            }
+        }
+
+        /*
         val accountSrvc = Accounts(session, parsed.production, parsed.verbose)
         accountSrvc.list()?.let {
             println("Account retrieved")
@@ -79,7 +95,6 @@ object Core {
                     println(it)
                 }
 
-                /*
                 // Retrieve 5 most recent transactions
                 accountSrvc.listTransactions(accountIdKey, null, null, TransactionSortOrder.DESC, null, 5)?.let {
                     println("Sorted")
@@ -91,9 +106,10 @@ object Core {
                         println(it)
                     }
                 }
-                */
+
             }
         }
+        */
 
         // client.destroySession()
     }
