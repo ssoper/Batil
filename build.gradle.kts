@@ -6,6 +6,7 @@ val buildJvmTarget = "11"
 plugins {
     kotlin("jvm") version "1.5.30"
     id("maven-publish")
+    id("org.jetbrains.dokka") version "1.5.0"
 }
 
 repositories {
@@ -48,6 +49,22 @@ tasks.compileTestKotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.dokkaHtml.configure {
+    dokkaSourceSets {
+        named("main") {
+            moduleName.set("Batil")
+            jdkVersion.set(buildJvmTarget.toInt())
+            includes.from("package.md")
+
+            sourceLink {
+                localDirectory.set(file("./src/main/kotlin"))
+                remoteUrl.set(uri("https://github.com/ssoper/Batil/tree/master/src/main/kotlin").toURL())
+                remoteLineSuffix.set("#L")
+            }
+        }
+    }
 }
 
 publishing {

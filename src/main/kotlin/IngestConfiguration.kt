@@ -6,6 +6,10 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import java.nio.file.Files
 
+// TODO: Put this in its own package named Configuration
+// TODO: Etrade* classes should be in the etrade package and use a protocol like BrokerConfiguration
+// TODO: Rename connectors package to brokers and BrokerConfiguration would live there
+
 data class Chromium(val ip: String,
                     val port: Int,
                     val delay: Int)
