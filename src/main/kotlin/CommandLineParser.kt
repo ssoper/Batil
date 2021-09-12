@@ -6,6 +6,9 @@ import kotlinx.cli.default
 import java.io.File
 import java.nio.file.Path
 
+/**
+ * @suppress
+ */
 class CommandLineParser(private val args: Array<String>) {
 
     data class Parsed(val pathToConfigFile: Path,
@@ -30,4 +33,7 @@ class CommandLineParser(private val args: Array<String>) {
 
 }
 
+/**
+ * @suppress
+ */
 class ConfigFileNotFound: Exception("Configuration file not found")
