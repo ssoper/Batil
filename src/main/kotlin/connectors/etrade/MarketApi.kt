@@ -197,7 +197,7 @@ data class OptionPair(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OptionChainResponse(
-    val timeStamp: Instant,
+    val timeStamp: Instant,     // TODO: Appears to null in some sandbox returns
     val quoteType: QuoteStatus,
     val nearPrice: Float,
 
