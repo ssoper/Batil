@@ -2,7 +2,7 @@ package com.seansoper.batil.connectors.etrade
 
 import com.seansoper.batil.CachedToken
 import com.seansoper.batil.CachedTokenException
-import config.GlobalConfig
+import com.seansoper.batil.config.GlobalConfig
 import okhttp3.OkHttpClient
 import okhttp3.Request
 

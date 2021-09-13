@@ -1,7 +1,7 @@
 package TestHelper
 
-import config.GlobalConfig
-import config.RuntimeConfig
+import com.seansoper.batil.config.GlobalConfig
+import com.seansoper.batil.config.RuntimeConfig
 import java.nio.file.Paths
 
 class LoadConfig {

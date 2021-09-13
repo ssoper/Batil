@@ -52,12 +52,14 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+// TODO: Exclude *Api.kt from documentation
 tasks.dokkaHtml.configure {
     dokkaSourceSets {
         named("main") {
             moduleName.set("Batil")
             jdkVersion.set(buildJvmTarget.toInt())
             includes.from("package.md")
+            samples.from("src/main/kotlin/Samples.kt")
 
             sourceLink {
                 localDirectory.set(file("./src/main/kotlin"))

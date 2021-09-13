@@ -1,4 +1,4 @@
-package config
+package com.seansoper.batil.config
 
 import java.nio.file.Path
 import java.nio.file.Paths

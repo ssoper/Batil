@@ -2,16 +2,10 @@ package com.seansoper.batil.connectors.etrade
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.DeserializationContext
-import com.fasterxml.jackson.databind.JsonDeserializer
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
-import java.io.IOException
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.*
 
@@ -20,6 +14,7 @@ data class Message(val description: String,
                    val code: Int,
                    val type: String)
 
+// TODO: Merge with AccountsApi QuoteMode
 enum class QuoteStatus {
     REALTIME, DELAYED, CLOSING, EH_REALTIME, EH_BEFORE_OPEN, EH_CLOSED, UNKNOWN
 }
@@ -146,7 +141,7 @@ enum class OptionCategory {
 }
 
 enum class OptionType {
-    CALL, PUT
+    CALL, PUT, CALLPUT
 }
 
 @JsonIgnoreProperties(ignoreUnknown = true)

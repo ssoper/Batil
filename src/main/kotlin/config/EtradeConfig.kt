@@ -1,4 +1,4 @@
-package config
+package com.seansoper.batil.config
 
 data class EtradeConfig(val sandbox: EtradeAuth,
                         val production: EtradeAuth,

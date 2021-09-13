@@ -1,3 +1,5 @@
+package com.seansoper.batil
+
 import java.time.DayOfWeek
 import java.time.ZoneId
 import java.time.ZonedDateTime

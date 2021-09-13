@@ -1,6 +1,6 @@
 package com.seansoper.batil
 
-import config.RuntimeConfig
+import com.seansoper.batil.config.RuntimeConfig
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default

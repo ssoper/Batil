@@ -1,6 +1,6 @@
 package com.seansoper.batil.connectors.etrade
 
-import config.Chromium
+import com.seansoper.batil.config.Chromium
 import io.reactivex.Single
 import pl.wendigo.chrome.Browser
 import pl.wendigo.chrome.api.dom.*

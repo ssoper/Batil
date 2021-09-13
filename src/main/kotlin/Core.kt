@@ -1,9 +1,9 @@
 package com.seansoper.batil
 
+import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.connectors.etrade.Alerts
 import com.seansoper.batil.connectors.etrade.Authorization
 import com.seansoper.batil.connectors.etrade.Market
-import config.GlobalConfig
 import java.util.*
 
 object Core {
