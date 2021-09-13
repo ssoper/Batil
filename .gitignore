@@ -141,6 +141,7 @@ gradle-app.setting
 github.properties
 .kotlintest
 batil.yaml
+batil.yml
 .idea/codeStyles/Project.xml
 .idea/codeStyles/codeStyleConfig.xml
 .idea/.DS_Store

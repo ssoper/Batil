@@ -2,11 +2,11 @@ package com.seansoper.batil.connectors.etrade
 
 import com.seansoper.batil.CachedToken
 import com.seansoper.batil.CachedTokenException
-import com.seansoper.batil.Configuration
+import com.seansoper.batil.config.GlobalConfig
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
-class Authorization(private val configuration: Configuration,
+class Authorization(private val configuration: GlobalConfig,
                     private val production: Boolean = false,
                     private val verbose: Boolean = false,
                     private val baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com") {

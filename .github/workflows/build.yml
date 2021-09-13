@@ -1,0 +1,32 @@
+name: build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+      - name: Setup Java 🛠
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Grant execute permission for gradlew 👮‍
+        run: chmod +x gradlew
+      - name: Build and run tests 🏃‍
+        run: ./gradlew build
+      - name: Generate API documentation 📔
+        if: ${{github.event_name == 'push'}}
+        run: ./gradlew dokkaHtml
+      - name: Deploy API documentation to Github Pages 🚦
+        if: ${{github.event_name == 'push'}}
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build/dokka/html
