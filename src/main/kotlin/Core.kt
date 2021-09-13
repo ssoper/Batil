@@ -3,8 +3,8 @@ package com.seansoper.batil
 import com.seansoper.batil.connectors.etrade.Alerts
 import com.seansoper.batil.connectors.etrade.Authorization
 import com.seansoper.batil.connectors.etrade.Market
+import config.GlobalConfig
 import java.util.*
-import kotlin.system.exitProcess
 
 object Core {
     @JvmStatic fun main(args: Array<String>) {
@@ -16,13 +16,7 @@ object Core {
             println("Config path set to ${parsed.pathToConfigFile}")
         }
 
-        val configuration = try {
-            IngestConfiguration(parsed).parse()
-        } catch (exception: ConfigFileInvalid) {
-            println(exception)
-            exitProcess(1)
-        }
-
+        val configuration = GlobalConfig.parse(parsed)
         val client = Authorization(configuration, parsed.production, parsed.verbose)
         val session = client.renewSession() ?: run {
             if (parsed.verbose) {

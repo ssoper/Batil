@@ -1,5 +1,6 @@
 package com.seansoper.batil
 
+import config.RuntimeConfig
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
@@ -16,7 +17,7 @@ class CommandLineParser(private val args: Array<String>) {
                       val production: Boolean)
 
     @Throws(ConfigFileNotFound::class)
-    fun parse(): Parsed {
+    fun parse(): RuntimeConfig {
         val parser = ArgParser("Batil")
         val config by parser.option(ArgType.String, description = "Path to YAML configuration file").default("batil.yaml")
         val verbose by parser.option(ArgType.Boolean, description = "Show additional debugging output").default(false)
@@ -28,7 +29,7 @@ class CommandLineParser(private val args: Array<String>) {
             throw ConfigFileNotFound()
         }
 
-        return Parsed(configFile.toPath(), verbose, production)
+        return RuntimeConfig(configFile.toPath(), verbose, production)
     }
 
 }
