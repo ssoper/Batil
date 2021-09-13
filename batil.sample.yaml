@@ -1,9 +1,0 @@
-etrade:
-  sandbox:
-    key: SANDBOX_KEY
-    secret: SANDBOX_SECRET
-  production:
-    key: PRODUCTION_KEY
-    secret: PRODUCTION_SECRET
-  username: USERNAME
-  password: PASSWORD
