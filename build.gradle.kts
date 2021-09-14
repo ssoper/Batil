@@ -7,6 +7,7 @@ plugins {
     kotlin("jvm") version "1.5.30"
     id("maven-publish")
     id("org.jetbrains.dokka") version "1.5.0"
+    id("org.jmailen.kotlinter") version "3.6.0"
 }
 
 repositories {
