@@ -17,10 +17,12 @@ data class MockHelper(val path: String) {
     }
 }
 
-fun createServer(content: String,
-                 header: Pair<String, String> = "Content-Type" to "application/json",
-                 code: Int = 200,
-                 test: (server: MockWebServer) -> Unit) {
+fun createServer(
+    content: String,
+    header: Pair<String, String> = "Content-Type" to "application/json",
+    code: Int = 200,
+    test: (server: MockWebServer) -> Unit
+) {
     val server = MockWebServer()
     server.start()
 
@@ -36,10 +38,12 @@ fun createServer(content: String,
     server.close()
 }
 
-fun createServer(path: Path,
-                 header: Pair<String, String> = "Content-Type" to "application/json",
-                 code: Int = 200,
-                 test: (server: MockWebServer) -> Unit) {
+fun createServer(
+    path: Path,
+    header: Pair<String, String> = "Content-Type" to "application/json",
+    code: Int = 200,
+    test: (server: MockWebServer) -> Unit
+) {
     val content = MockHelper(path.toString()).content
     createServer(content, header, code, test)
 }

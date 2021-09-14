@@ -7,7 +7,7 @@ import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import java.nio.file.Paths
 
-class GlobalConfigTest: StringSpec({
+class GlobalConfigTest : StringSpec({
 
     "success" {
         val path = Paths.get(this.javaClass.classLoader.getResource("batil.test.yaml")!!.toURI())

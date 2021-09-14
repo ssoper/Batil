@@ -10,9 +10,9 @@ import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import java.nio.file.Paths
-import java.util.*
+import java.util.GregorianCalendar
 
-class MarketTest: StringSpec({
+class MarketTest : StringSpec({
 
     "single ticker" {
         val path = Paths.get("apiResponses/market/quote/single_ticker_success.json")
@@ -136,5 +136,3 @@ class MarketTest: StringSpec({
         }
     }
 })
-
-

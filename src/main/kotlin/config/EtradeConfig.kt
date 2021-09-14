@@ -1,9 +1,11 @@
 package com.seansoper.batil.config
 
-data class EtradeConfig(val sandbox: EtradeAuth,
-                        val production: EtradeAuth,
-                        val username: String,
-                        val password: String) {
+data class EtradeConfig(
+    val sandbox: EtradeAuth,
+    val production: EtradeAuth,
+    val username: String,
+    val password: String
+) {
 
     operator fun get(env: String): EtradeAuth {
         return if (env == "production") {
@@ -14,5 +16,7 @@ data class EtradeConfig(val sandbox: EtradeAuth,
     }
 }
 
-data class EtradeAuth(val key: String,
-                      val secret: String)
+data class EtradeAuth(
+    val key: String,
+    val secret: String
+)

@@ -7,6 +7,7 @@ plugins {
     kotlin("jvm") version "1.5.30"
     id("maven-publish")
     id("org.jetbrains.dokka") version "1.5.0"
+    id("org.jmailen.kotlinter") version "3.6.0"
 }
 
 repositories {
@@ -14,8 +15,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.5")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.5")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.5")
@@ -37,6 +36,7 @@ tasks.jar {
             "Implementation-Version" to buildVersion))
     }
 
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 }
 

@@ -3,7 +3,12 @@ package com.seansoper.batil.connectors.etrade
 import com.seansoper.batil.config.Chromium
 import io.reactivex.Single
 import pl.wendigo.chrome.Browser
-import pl.wendigo.chrome.api.dom.*
+import pl.wendigo.chrome.api.dom.GetAttributesRequest
+import pl.wendigo.chrome.api.dom.GetBoxModelRequest
+import pl.wendigo.chrome.api.dom.GetDocumentRequest
+import pl.wendigo.chrome.api.dom.Node
+import pl.wendigo.chrome.api.dom.QuerySelectorRequest
+import pl.wendigo.chrome.api.dom.SetAttributeValueRequest
 import pl.wendigo.chrome.api.input.DispatchMouseEventRequest
 import pl.wendigo.chrome.api.input.MouseButton
 import pl.wendigo.chrome.api.network.EnableRequest
@@ -16,26 +21,28 @@ import pl.wendigo.chrome.targets.Target
 import java.net.URLEncoder
 import java.nio.file.Path
 import java.nio.file.Paths
-import java.util.*
+import java.util.Base64
 
-class BrowserAuthentication(key: String,
-                            token: String,
-                            private val username: String,
-                            private val password: String,
-                            private val configuration: Chromium,
-                            private val verbose: Boolean = false) {
+class BrowserAuthentication(
+    key: String,
+    token: String,
+    private val username: String,
+    private val password: String,
+    private val configuration: Chromium,
+    private val verbose: Boolean = false
+) {
 
     private val url = "https://us.etrade.com/e/t/etws/authorize?key=${key.encodeUtf8()}&token=${token.encodeUtf8()}"
-    private val delay = (configuration.delay*1000).toLong()
+    private val delay = (configuration.delay * 1000).toLong()
 
     private fun String.encodeUtf8() = URLEncoder.encode(this, "UTF-8").replace("+", "%2B")
 
     private val tmpDirPath: Path by lazy {
-        val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+        val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
         val randomString = (1..15)
-                .map { kotlin.random.Random.nextInt(0, charPool.size) }
-                .map(charPool::get)
-                .joinToString("")
+            .map { kotlin.random.Random.nextInt(0, charPool.size) }
+            .map(charPool::get)
+            .joinToString("")
 
         Paths.get("/tmp", "batil", randomString)
     }
@@ -61,8 +68,8 @@ class BrowserAuthentication(key: String,
 
         val chrome = try {
             Browser.builder()
-                    .withAddress(chromeUrl)
-                    .build()
+                .withAddress(chromeUrl)
+                .build()
         } catch (_: java.net.ConnectException) {
             throw EtradeBrowserAuthNoConnection(chromeUrl)
         }
@@ -158,18 +165,25 @@ class BrowserAuthentication(key: String,
     private fun clickElement(rootNode: Node, selector: String, target: Target): Single<ResponseFrame> {
         return target.DOM.querySelector(QuerySelectorRequest(rootNode.nodeId, selector)).flatMap { (button) ->
             target.DOM.getBoxModel(GetBoxModelRequest(button)).flatMap { (box) ->
-                val coordinates = Pair(box.content[0]+1, box.content[1]+1)
+                val coordinates = Pair(box.content[0] + 1, box.content[1] + 1)
 
                 target.Input.dispatchMouseEvent(
-                        DispatchMouseEventRequest("mousePressed",
-                                coordinates.first,
-                                coordinates.second,
-                                button = MouseButton.LEFT,
-                                clickCount = 1)).flatMap {
-                    target.Input.dispatchMouseEvent(DispatchMouseEventRequest("mouseReleased",
+                    DispatchMouseEventRequest(
+                        "mousePressed",
+                        coordinates.first,
+                        coordinates.second,
+                        button = MouseButton.LEFT,
+                        clickCount = 1
+                    )
+                ).flatMap {
+                    target.Input.dispatchMouseEvent(
+                        DispatchMouseEventRequest(
+                            "mouseReleased",
                             coordinates.first,
                             coordinates.second,
-                            button = MouseButton.LEFT))
+                            button = MouseButton.LEFT
+                        )
+                    )
                 }
             }
         }
@@ -179,7 +193,7 @@ class BrowserAuthentication(key: String,
         return target.DOM.querySelector(QuerySelectorRequest(rootNode.nodeId, selector)).flatMap { (element) ->
             target.DOM.getAttributes(GetAttributesRequest(element)).flatMap { (attributes) ->
                 attributes.indexOf("value").let {
-                    val found = attributes[it+1].trim()
+                    val found = attributes[it + 1].trim()
                     Single.just(found)
                 }
             }
@@ -187,4 +201,4 @@ class BrowserAuthentication(key: String,
     }
 }
 
-class EtradeBrowserAuthNoConnection(chromiumUrl: String): Exception("Could not connect to chromium instance at $chromiumUrl")
+class EtradeBrowserAuthNoConnection(chromiumUrl: String) : Exception("Could not connect to chromium instance at $chromiumUrl")

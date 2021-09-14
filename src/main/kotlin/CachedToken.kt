@@ -7,14 +7,17 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.security.KeyStore
-import java.util.*
+import java.util.Locale
+import java.util.UUID
 import javax.crypto.spec.SecretKeySpec
 
-class CachedTokenException(keyStorePath: Path): Exception("Corrupted KeyStore at ${keyStorePath.toAbsolutePath()}")
+class CachedTokenException(keyStorePath: Path) : Exception("Corrupted KeyStore at ${keyStorePath.toAbsolutePath()}")
 
-class CachedToken(val provider: Provider,
-                  private val keyStorePath: Path = Paths.get(System.getProperty("user.home"), ".batil", "key.store"),
-                  private val passwordPath: Path = Paths.get(System.getProperty("user.home"), ".batil", "key.password")) {
+class CachedToken(
+    val provider: Provider,
+    private val keyStorePath: Path = Paths.get(System.getProperty("user.home"), ".batil", "key.store"),
+    private val passwordPath: Path = Paths.get(System.getProperty("user.home"), ".batil", "key.password")
+) {
 
     enum class Provider {
         ETRADE

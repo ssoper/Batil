@@ -7,7 +7,7 @@ import java.io.IOException
 
 // TODO: Add support to intercept the 204 calls which are not strictly errors but can indicate issues lack no data
 
-class ErrorInterceptor: Interceptor {
+class ErrorInterceptor : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -29,6 +29,6 @@ class ErrorInterceptor: Interceptor {
     }
 }
 
-open class ApiError(val code: Int = 0, override val message: String = "Error from E*TRADE API"): Error(message)
+open class ApiError(val code: Int = 0, override val message: String = "Error from E*TRADE API") : Error(message)
 
-class ServiceUnavailableError: ApiError(100, "The requested service is not currently available")
+class ServiceUnavailableError : ApiError(100, "The requested service is not currently available")

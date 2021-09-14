@@ -4,8 +4,10 @@ import okhttp3.Response
 import java.io.Serializable
 import java.net.URLDecoder
 
-data class AuthResponse(val accessToken: String,
-                        val accessSecret: String): Serializable {
+data class AuthResponse(
+    val accessToken: String,
+    val accessSecret: String
+) : Serializable {
 
     companion object {
         fun withResponse(response: Response): AuthResponse {
@@ -27,7 +29,6 @@ data class AuthResponse(val accessToken: String,
 
         private fun String.decodeUtf8() = URLDecoder.decode(this, "UTF-8").replace("%2B", "+")
     }
-
 }
 
-class AuthResponseError(message: String? = "Error in auth response", val body: String? = null): Exception(message)
+class AuthResponseError(message: String? = "Error in auth response", val body: String? = null) : Exception(message)

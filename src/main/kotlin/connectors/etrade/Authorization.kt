@@ -6,10 +6,12 @@ import com.seansoper.batil.config.GlobalConfig
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
-class Authorization(private val configuration: GlobalConfig,
-                    private val production: Boolean = false,
-                    private val verbose: Boolean = false,
-                    private val baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com") {
+class Authorization(
+    private val configuration: GlobalConfig,
+    private val production: Boolean = false,
+    private val verbose: Boolean = false,
+    private val baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com"
+) {
 
     private val consumerKey: String
         get() {
@@ -29,7 +31,7 @@ class Authorization(private val configuration: GlobalConfig,
             }
         }
 
-    private val paths: HashMap<String, String> = hashMapOf (
+    private val paths: HashMap<String, String> = hashMapOf(
         GET_REQUEST_TOKEN to "oauth/request_token",
         GET_ACCESS_TOKEN to "oauth/access_token",
         RENEW_ACCESS_TOKEN to "oauth/renew_access_token",
@@ -50,7 +52,7 @@ class Authorization(private val configuration: GlobalConfig,
                 } else {
                     null
                 }
-            } catch(exception: CachedTokenException) {
+            } catch (exception: CachedTokenException) {
                 null
             }
         }

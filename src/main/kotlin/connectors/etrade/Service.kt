@@ -8,10 +8,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 
-open class Service(session: Session,
-                   _production: Boolean?,
-                   _verbose: Boolean?,
-                   _baseUrl: String?) {
+open class Service(
+    session: Session,
+    _production: Boolean?,
+    _verbose: Boolean?,
+    _baseUrl: String?
+) {
 
     private val production = _production ?: false
     private val verbose = _verbose ?: false
@@ -53,5 +55,4 @@ open class Service(session: Session,
 
         return retrofit.create(javaClass)
     }
-
 }

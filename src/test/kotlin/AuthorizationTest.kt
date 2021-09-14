@@ -24,13 +24,13 @@ fun mockAuthResponse(): AuthResponse {
     return AuthResponse(accessToken = token, accessSecret = secret)
 }
 
-class AuthorizationTest: StringSpec({
+class AuthorizationTest : StringSpec({
     val config = LoadConfig()
 
     "get request token" {
         val mock = mockTokens()
 
-        createServer(mock.third,"Content-Type" to "application/x-www-form-urlencoded") {
+        createServer(mock.third, "Content-Type" to "application/x-www-form-urlencoded") {
             val service = Authorization(config.content, baseUrl = it.url(".").toString())
             val data = service.getRequestToken()
 
@@ -45,7 +45,7 @@ class AuthorizationTest: StringSpec({
     "get access token" {
         val mock = mockTokens()
 
-        createServer(mock.third,"Content-Type" to "application/x-www-form-urlencoded") {
+        createServer(mock.third, "Content-Type" to "application/x-www-form-urlencoded") {
             val service = Authorization(config.content, baseUrl = it.url(".").toString())
             val requestToken = mockAuthResponse()
             val verifier = randomString(6)
@@ -60,7 +60,7 @@ class AuthorizationTest: StringSpec({
     }
 
     "renew access token" {
-        createServer("","Content-Type" to "text/plain", 200) {
+        createServer("", "Content-Type" to "text/plain", 200) {
             val service = Authorization(config.content, baseUrl = it.url(".").toString())
             val requestToken = mockAuthResponse()
             val data = service.renewAccessToken(requestToken)
@@ -74,7 +74,7 @@ class AuthorizationTest: StringSpec({
     }
 
     "revoke access token" {
-        createServer("","Content-Type" to "text/plain", 200) {
+        createServer("", "Content-Type" to "text/plain", 200) {
             val service = Authorization(config.content, baseUrl = it.url(".").toString())
             val requestToken = mockAuthResponse()
             val data = service.revokeAccessToken(requestToken)

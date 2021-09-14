@@ -1,9 +1,7 @@
 package com.seansoper.batil.connectors.etrade
 
 import com.fasterxml.jackson.databind.module.SimpleModule
-import java.text.SimpleDateFormat
 import java.time.Instant
-import java.util.*
 
 enum class Category {
     STOCK,
@@ -17,47 +15,41 @@ enum class Status {
     UNDELETED
 }
 
-class Alerts(session: Session,
-             production: Boolean? = null,
-             verbose: Boolean? = null,
-             baseUrl: String? = null): Service(session, production, verbose, baseUrl) {
+class Alerts(
+    session: Session,
+    production: Boolean? = null,
+    verbose: Boolean? = null,
+    baseUrl: String? = null
+) : Service(session, production, verbose, baseUrl) {
 
-    fun list(category: Category? = null,
-             status: Status? = null,
-             direction: TransactionSortOrder? = null,
-             search: String? = null,
-             count: Int? = null): AlertsResponse? {
+    fun list(
+        category: Category? = null,
+        status: Status? = null,
+        direction: TransactionSortOrder? = null,
+        search: String? = null,
+        count: Int? = null
+    ): AlertsResponse? {
 
         val options: MutableMap<String, String> = mutableMapOf()
 
         category?.let {
-            options.putAll(mapOf(
-                "category" to it.toString()
-            ))
+            options.put("category", it.toString())
         }
 
         status?.let {
-            options.putAll(mapOf(
-                "status" to it.toString()
-            ))
+            options.put("status", it.toString())
         }
 
         direction?.let {
-            options.putAll(mapOf(
-                "direction" to it.toString()
-            ))
+            options.put("direction", it.toString())
         }
 
         search?.let {
-            options.putAll(mapOf(
-                "search" to it
-            ))
+            options.put("search", it)
         }
 
         count?.let {
-            options.putAll(mapOf(
-                "count" to it.toString()
-            ))
+            options.put("count", it.toString())
         }
 
         val module = SimpleModule()
@@ -69,15 +61,15 @@ class Alerts(session: Session,
         return response.body()?.response
     }
 
-    fun get(alertId: Int,
-            htmlTags: Boolean? = null): AlertDetails? {
+    fun get(
+        alertId: Int,
+        htmlTags: Boolean? = null
+    ): AlertDetails? {
 
         val options: MutableMap<String, String> = mutableMapOf()
 
         htmlTags?.let {
-            options.putAll(mapOf(
-                "htmlTags" to it.toString()
-            ))
+            options.put("htmlTags", it.toString())
         }
 
         val module = SimpleModule()

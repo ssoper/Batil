@@ -4,7 +4,7 @@ import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.connectors.etrade.Alerts
 import com.seansoper.batil.connectors.etrade.Authorization
 import com.seansoper.batil.connectors.etrade.Market
-import java.util.*
+import java.util.GregorianCalendar
 
 object Core {
     @JvmStatic fun main(args: Array<String>) {
@@ -55,7 +55,7 @@ object Core {
                     println("Details for alert")
                     println(it)
 
-                    alerts.delete(listOf(907,908))?.let {
+                    alerts.delete(listOf(907, 908))?.let {
                         println("Deleted alert")
                         println(it)
                     }
@@ -95,5 +95,4 @@ object Core {
 
         // client.destroySession()
     }
-
 }

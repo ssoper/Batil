@@ -12,9 +12,11 @@ import java.nio.file.Path
  */
 class CommandLineParser(private val args: Array<String>) {
 
-    data class Parsed(val pathToConfigFile: Path,
-                      val verbose: Boolean,
-                      val production: Boolean)
+    data class Parsed(
+        val pathToConfigFile: Path,
+        val verbose: Boolean,
+        val production: Boolean
+    )
 
     @Throws(ConfigFileNotFound::class)
     fun parse(): RuntimeConfig {
@@ -31,10 +33,9 @@ class CommandLineParser(private val args: Array<String>) {
 
         return RuntimeConfig(configFile.toPath(), verbose, production)
     }
-
 }
 
 /**
  * @suppress
  */
-class ConfigFileNotFound: Exception("Configuration file not found")
+class ConfigFileNotFound : Exception("Configuration file not found")

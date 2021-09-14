@@ -11,7 +11,7 @@ import io.kotlintest.specs.StringSpec
 import java.nio.file.Paths
 import java.time.Instant
 
-class AlertsTest: StringSpec({
+class AlertsTest : StringSpec({
 
     "list alerts" {
         val path = Paths.get("apiResponses/alerts/list.json")
