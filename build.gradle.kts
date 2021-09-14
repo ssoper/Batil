@@ -36,6 +36,7 @@ tasks.jar {
             "Implementation-Version" to buildVersion))
     }
 
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 }
 
