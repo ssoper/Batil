@@ -1,7 +1,7 @@
 import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
-import com.seansoper.batil.connectors.etrade.Alerts
-import com.seansoper.batil.connectors.etrade.Status
+import com.seansoper.batil.brokers.etrade.Alerts
+import com.seansoper.batil.brokers.etrade.Status
 import io.kotlintest.matchers.collections.shouldContain
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull

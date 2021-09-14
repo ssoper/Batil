@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors.etrade
+package com.seansoper.batil.brokers.etrade
 
 /*
  * Copyright (C) 2015 Jake Wharton

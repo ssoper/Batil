@@ -1,9 +1,9 @@
 package com.seansoper.batil
 
+import com.seansoper.batil.brokers.etrade.Authorization
+import com.seansoper.batil.brokers.etrade.Market
 import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig
-import com.seansoper.batil.connectors.etrade.Authorization
-import com.seansoper.batil.connectors.etrade.Market
 import java.util.GregorianCalendar
 
 /**

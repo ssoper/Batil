@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors.etrade
+package com.seansoper.batil.brokers.etrade
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.core.JsonProcessingException

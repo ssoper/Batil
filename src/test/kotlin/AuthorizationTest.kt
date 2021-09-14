@@ -1,8 +1,8 @@
 import TestHelper.LoadConfig
 import TestHelper.MockHelper.createServer
 import TestHelper.PathHelper.randomString
-import com.seansoper.batil.connectors.etrade.AuthResponse
-import com.seansoper.batil.connectors.etrade.Authorization
+import com.seansoper.batil.brokers.etrade.AuthResponse
+import com.seansoper.batil.brokers.etrade.Authorization
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeInstanceOf
 import io.kotlintest.matchers.types.shouldNotBeNull
