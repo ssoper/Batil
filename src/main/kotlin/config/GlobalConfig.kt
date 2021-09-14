@@ -32,8 +32,10 @@ data class GlobalConfig(
     }
 }
 
-data class Chromium(val ip: String,
-                    val port: Int,
-                    val delay: Int)
+data class Chromium(
+    val ip: String,
+    val port: Int,
+    val delay: Int
+)
 
-class ConfigFileInvalid(message: String? = "Error loading configuration file, ensure all fields have values"): Exception(message)
+class ConfigFileInvalid(message: String? = "Error loading configuration file, ensure all fields have values") : Exception(message)

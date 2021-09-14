@@ -3,7 +3,7 @@ package com.seansoper.batil.connectors.etrade
 import com.fasterxml.jackson.databind.module.SimpleModule
 import java.text.SimpleDateFormat
 import java.time.Instant
-import java.util.*
+import java.util.GregorianCalendar
 
 enum class TransactionSortOrder {
     ASC,
@@ -23,10 +23,12 @@ enum class PortfolioView {
     PERFORMANCE, FUNDAMENTAL, OPTIONSWATCH, QUICK, COMPLETE
 }
 
-class Accounts(session: Session,
-               production: Boolean? = null,
-               verbose: Boolean? = null,
-               baseUrl: String? = null): Service(session, production, verbose, baseUrl) {
+class Accounts(
+    session: Session,
+    production: Boolean? = null,
+    verbose: Boolean? = null,
+    baseUrl: String? = null
+) : Service(session, production, verbose, baseUrl) {
 
     fun list(): List<Account>? {
         val service = createClient(AccountsApi::class.java)
@@ -46,9 +48,11 @@ class Accounts(session: Session,
         return listTransactions(accountIdKey, startDate = null, endDate = null, sortOrder = null, startAt = null)
     }
 
-    fun listTransactions(accountIdKey: String,
-                         startDate: GregorianCalendar,
-                         endDate: GregorianCalendar): TransactionResponse? {
+    fun listTransactions(
+        accountIdKey: String,
+        startDate: GregorianCalendar,
+        endDate: GregorianCalendar
+    ): TransactionResponse? {
         return listTransactions(accountIdKey, startDate = startDate, endDate = endDate, sortOrder = null, startAt = null)
     }
 
@@ -62,31 +66,39 @@ class Accounts(session: Session,
 
     // TODO: Implement startAt
     // TODO: Move to default null for count and other fields
-    fun listTransactions(accountIdKey: String,
-                         startDate: GregorianCalendar?,
-                         endDate: GregorianCalendar?,
-                         sortOrder: TransactionSortOrder?,
-                         startAt: TransactionId?,
-                         count: Int? = 50): TransactionResponse? {
+    fun listTransactions(
+        accountIdKey: String,
+        startDate: GregorianCalendar?,
+        endDate: GregorianCalendar?,
+        sortOrder: TransactionSortOrder?,
+        startAt: TransactionId?,
+        count: Int? = 50
+    ): TransactionResponse? {
 
         val options = mutableMapOf("count" to count.toString())
 
         startDate?.let {
-            options.putAll(mapOf(
-                "startDate" to formatDate(it)
-            ))
+            options.putAll(
+                mapOf(
+                    "startDate" to formatDate(it)
+                )
+            )
         }
 
         endDate?.let {
-            options.putAll(mapOf(
-                "endDate" to formatDate(it)
-            ))
+            options.putAll(
+                mapOf(
+                    "endDate" to formatDate(it)
+                )
+            )
         }
 
         sortOrder?.let {
-            options.putAll(mapOf(
-                "sortOrder" to it.toString()
-            ))
+            options.putAll(
+                mapOf(
+                    "sortOrder" to it.toString()
+                )
+            )
         }
 
         val module = SimpleModule()
@@ -98,8 +110,10 @@ class Accounts(session: Session,
         return response.body()?.response
     }
 
-    fun getTransaction(accountIdKey: String,
-                       transactionId: TransactionId): Transaction? {
+    fun getTransaction(
+        accountIdKey: String,
+        transactionId: TransactionId
+    ): Transaction? {
         val module = SimpleModule()
         module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
@@ -109,56 +123,44 @@ class Accounts(session: Session,
         return response.body()?.response
     }
 
-    fun viewPortfolio(accountIdKey: String,
-                      sortBy: PortfolioSortBy? = null,
-                      sortOrder: TransactionSortOrder? = null,
-                      marketSession: MarketSession? = null,
-                      totalsRequired: Boolean? = null,
-                      lotsRequired: Boolean? = null,
-                      count: Int? = null): Portfolio? {
+    fun viewPortfolio(
+        accountIdKey: String,
+        sortBy: PortfolioSortBy? = null,
+        sortOrder: TransactionSortOrder? = null,
+        marketSession: MarketSession? = null,
+        totalsRequired: Boolean? = null,
+        lotsRequired: Boolean? = null,
+        count: Int? = null
+    ): Portfolio? {
 
         val options: MutableMap<String, String> = mutableMapOf()
 
         sortBy?.let {
-            options.putAll(mapOf(
-                "sortBy" to it.name
-            ))
+            options.put("sortBy", it.name)
         }
 
         sortOrder?.let {
-            options.putAll(mapOf(
-                "sortOrder" to it.name
-            ))
+            options.put("sortOrder", it.name)
         }
 
         sortOrder?.let {
-            options.putAll(mapOf(
-                "sortOrder" to it.name
-            ))
+            options.put("sortOrder", it.name)
         }
 
         marketSession?.let {
-            options.putAll(mapOf(
-                "marketSession" to it.name
-            ))
+            options.put("marketSession", it.name)
         }
 
         totalsRequired?.let {
-            options.putAll(mapOf(
-                "totalsRequired" to it.toString()
-            ))
+            options.put("totalsRequired", it.toString())
         }
 
         lotsRequired?.let {
-            options.putAll(mapOf(
-                "lotsRequired" to it.toString()
-            ))
+            options.put("lotsRequired", it.toString())
         }
 
         count?.let {
-            options.putAll(mapOf(
-                "count" to count.toString()
-            ))
+            options.put("count", count.toString())
         }
 
         val module = SimpleModule()
@@ -169,5 +171,4 @@ class Accounts(session: Session,
 
         return response.body()?.response
     }
-
 }

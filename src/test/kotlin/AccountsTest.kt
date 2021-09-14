@@ -1,7 +1,15 @@
 import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
 import TestHelper.PathHelper.randomString
-import com.seansoper.batil.connectors.etrade.*
+import com.seansoper.batil.connectors.etrade.AccountMode
+import com.seansoper.batil.connectors.etrade.AccountType
+import com.seansoper.batil.connectors.etrade.Accounts
+import com.seansoper.batil.connectors.etrade.OptionLevel
+import com.seansoper.batil.connectors.etrade.OptionType
+import com.seansoper.batil.connectors.etrade.PositionIndicatorType
+import com.seansoper.batil.connectors.etrade.QuoteMode
+import com.seansoper.batil.connectors.etrade.SecurityType
+import com.seansoper.batil.connectors.etrade.TransactionSortOrder
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
@@ -9,10 +17,10 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import java.nio.file.Paths
 import java.time.Instant
-import java.util.*
+import java.util.GregorianCalendar
 import kotlin.random.Random.Default.nextLong
 
-class AccountsTest: StringSpec({
+class AccountsTest : StringSpec({
 
     "list accounts" {
         val path = Paths.get("apiResponses/accounts/list.json")

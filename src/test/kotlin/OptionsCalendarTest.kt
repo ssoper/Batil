@@ -6,7 +6,7 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.temporal.TemporalAdjusters
 
-class OptionsCalendarTest: StringSpec({
+class OptionsCalendarTest : StringSpec({
 
     val now = ZonedDateTime.now(ZoneId.of("America/New_York"))
 
@@ -33,6 +33,4 @@ class OptionsCalendarTest: StringSpec({
         result.month.shouldBe(expected.month)
         result.dayOfMonth.shouldBe(expected.dayOfMonth)
     }
-
 })
-

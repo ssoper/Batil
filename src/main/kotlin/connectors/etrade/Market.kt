@@ -4,16 +4,19 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.time.Instant
-import java.util.*
+import java.util.Calendar
+import java.util.GregorianCalendar
 
 enum class PriceType {
     ATNM, ALL
 }
 
-class Market(session: Session,
-             production: Boolean? = null,
-             verbose: Boolean? = null,
-             baseUrl: String? = null): Service(session, production, verbose, baseUrl) {
+class Market(
+    session: Session,
+    production: Boolean? = null,
+    verbose: Boolean? = null,
+    baseUrl: String? = null
+) : Service(session, production, verbose, baseUrl) {
 
     fun ticker(symbol: String): QuoteData? {
         return tickers(listOf(symbol))?.first()
@@ -52,22 +55,27 @@ class Market(session: Session,
      * @param[priceType] Default is ATNM.
      * @sample com.seansoper.batil.Samples.getOptionsChain
      */
-    fun optionChains(symbol: String,
-                     expiryDate: GregorianCalendar? = null,
-                     strike: Float? = null,
-                     distance: Int? = null,
-                     includeWeekly: Boolean? = null,
-                     category: OptionCategory? = null,
-                     chainType: OptionType? = null,
-                     priceType: PriceType? = null): OptionChainResponse? {
+    fun optionChains(
+        symbol: String,
+        expiryDate: GregorianCalendar? = null,
+        strike: Float? = null,
+        distance: Int? = null,
+        includeWeekly: Boolean? = null,
+        category: OptionCategory? = null,
+        chainType: OptionType? = null,
+        priceType: PriceType? = null
+    ): OptionChainResponse? {
 
         val options = mutableMapOf("symbol" to symbol)
 
         expiryDate?.let {
-            options.putAll(mapOf(
-                "expiryYear" to it.get(Calendar.YEAR).toString(),
-                "expiryMonth" to it.get(Calendar.MONTH).toString(),
-                "expiryDay" to it.get(Calendar.DAY_OF_MONTH).toString()))
+            options.putAll(
+                mapOf(
+                    "expiryYear" to it.get(Calendar.YEAR).toString(),
+                    "expiryMonth" to it.get(Calendar.MONTH).toString(),
+                    "expiryDay" to it.get(Calendar.DAY_OF_MONTH).toString()
+                )
+            )
         }
 
         strike?.let {
@@ -77,7 +85,7 @@ class Market(session: Session,
         }
 
         distance?.let {
-            options.put("noOfStrikes", ((it*2)+1).toString())
+            options.put("noOfStrikes", ((it * 2) + 1).toString())
         }
 
         includeWeekly?.let {
@@ -104,5 +112,4 @@ class Market(session: Session,
 
         return response.body()?.response
     }
-
 }

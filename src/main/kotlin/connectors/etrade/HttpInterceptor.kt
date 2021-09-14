@@ -27,19 +27,23 @@ import okio.ByteString
 import java.io.IOException
 import java.net.URLEncoder
 import java.security.GeneralSecurityException
-import java.util.*
+import java.util.UUID
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
-data class OauthKeys(val consumerKey: String,
-                     val consumerSecret: String,
-                     val accessToken: String? = null,
-                     val accessSecret: String? = null,
-                     val verifier: String? = null)
+data class OauthKeys(
+    val consumerKey: String,
+    val consumerSecret: String,
+    val accessToken: String? = null,
+    val accessSecret: String? = null,
+    val verifier: String? = null
+)
 
-class HttpInterceptor(private val keys: OauthKeys,
-                      private val nonce: String = UUID.randomUUID().toString(),
-                      private val timestamp: Long = System.currentTimeMillis() / 1000L) : Interceptor {
+class HttpInterceptor(
+    private val keys: OauthKeys,
+    private val nonce: String = UUID.randomUUID().toString(),
+    private val timestamp: Long = System.currentTimeMillis() / 1000L
+) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -50,12 +54,12 @@ class HttpInterceptor(private val keys: OauthKeys,
     fun signRequest(request: Request): Request {
         // Set default parameters that will be sent with authorization header
         val parameters = hashMapOf(
-                OAUTH_CONSUMER_KEY to keys.consumerKey,
-                OAUTH_NONCE to nonce,
-                OAUTH_SIGNATURE_METHOD to OAUTH_SIGNATURE_METHOD_VALUE,
-                OAUTH_TIMESTAMP to timestamp.toString(),
-                OAUTH_VERSION to OAUTH_VERSION_VALUE,
-                OAUTH_CALLBACK to OAUTH_CALLBACK_VALUE
+            OAUTH_CONSUMER_KEY to keys.consumerKey,
+            OAUTH_NONCE to nonce,
+            OAUTH_SIGNATURE_METHOD to OAUTH_SIGNATURE_METHOD_VALUE,
+            OAUTH_TIMESTAMP to timestamp.toString(),
+            OAUTH_VERSION to OAUTH_VERSION_VALUE,
+            OAUTH_CALLBACK to OAUTH_CALLBACK_VALUE
         )
 
         keys.accessToken?.let { parameters[OAUTH_TOKEN] = it.encodeUtf8() }
@@ -70,25 +74,25 @@ class HttpInterceptor(private val keys: OauthKeys,
         // Copy form body into param map
         request.body?.let {
             it.asString().split('&')
-                    .takeIf { it.isNotEmpty() }
-                    ?.map { it.split('=', limit = 2) }
-                    ?.filter {
-                        (it.size == 2).also { hasTwoParts ->
-                            if (!hasTwoParts) throw IllegalStateException("Key with no value: ${it.getOrNull(0)}")
-                        }
+                .takeIf { it.isNotEmpty() }
+                ?.map { it.split('=', limit = 2) }
+                ?.filter {
+                    (it.size == 2).also { hasTwoParts ->
+                        if (!hasTwoParts) throw IllegalStateException("Key with no value: ${it.getOrNull(0)}")
                     }
-                    ?.associate {
-                        val (key, value) = it
-                        key to value
-                    }
-                    ?.also { parameters.putAll(it) }
+                }
+                ?.associate {
+                    val (key, value) = it
+                    key to value
+                }
+                ?.also { parameters.putAll(it) }
         }
 
         // Create signature
         val method = request.method.encodeUtf8()
         val baseUrl = request.url.newBuilder().query(null).build().toString().encodeUtf8()
         val signingKey = "${keys.consumerSecret.encodeUtf8()}&${keys.accessSecret?.encodeUtf8()
-                ?: ""}"
+            ?: ""}"
         val params = parameters.encodeForSignature()
         val dataToSign = "$method&$baseUrl&$params"
         parameters[OAUTH_SIGNATURE] = sign(signingKey, dataToSign).encodeUtf8()
@@ -116,21 +120,20 @@ class HttpInterceptor(private val keys: OauthKeys,
     private fun String.toBytesUtf8() = this.toByteArray()
 
     private fun HashMap<String, String>.toHeaderFormat() =
-            filter { it.key in baseKeys }
-                    .toList()
-                    .sortedBy { (key, _) -> key }
-                    .toMap()
-                    .map { "${it.key}=\"${it.value}\"" }
-                    .joinToString(", ")
-
+        filter { it.key in baseKeys }
+            .toList()
+            .sortedBy { (key, _) -> key }
+            .toMap()
+            .map { "${it.key}=\"${it.value}\"" }
+            .joinToString(", ")
 
     private fun HashMap<String, String>.encodeForSignature() =
-            toList()
-                    .sortedBy { (key, _) -> key }
-                    .toMap()
-                    .map { "${it.key}=${it.value}" }
-                    .joinToString("&")
-                    .encodeUtf8()
+        toList()
+            .sortedBy { (key, _) -> key }
+            .toMap()
+            .map { "${it.key}=${it.value}" }
+            .joinToString("&")
+            .encodeUtf8()
 
     private fun String.encodeUtf8() = URLEncoder.encode(this, "UTF-8").replace("+", "%2B")
 
@@ -149,14 +152,15 @@ class HttpInterceptor(private val keys: OauthKeys,
         private const val OAUTH_VERIFIER = "oauth_verifier"
 
         private val baseKeys = arrayListOf(
-                OAUTH_CONSUMER_KEY,
-                OAUTH_NONCE,
-                OAUTH_SIGNATURE,
-                OAUTH_SIGNATURE_METHOD,
-                OAUTH_TIMESTAMP,
-                OAUTH_TOKEN,
-                OAUTH_VERSION,
-                OAUTH_CALLBACK,
-                OAUTH_VERIFIER)
+            OAUTH_CONSUMER_KEY,
+            OAUTH_NONCE,
+            OAUTH_SIGNATURE,
+            OAUTH_SIGNATURE_METHOD,
+            OAUTH_TIMESTAMP,
+            OAUTH_TOKEN,
+            OAUTH_VERSION,
+            OAUTH_CALLBACK,
+            OAUTH_VERIFIER
+        )
     }
 }

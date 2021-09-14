@@ -4,7 +4,7 @@ import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig
 import com.seansoper.batil.connectors.etrade.Authorization
 import com.seansoper.batil.connectors.etrade.Market
-import java.util.*
+import java.util.GregorianCalendar
 
 /**
  * @suppress
@@ -24,5 +24,4 @@ class Samples {
             println(it)
         }
     }
-
 }

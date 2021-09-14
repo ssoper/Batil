@@ -20,6 +20,8 @@ jobs:
         run: chmod +x gradlew
       - name: Build and run tests 🏃‍
         run: ./gradlew build
+      - name: Lint 🧼
+        run: ./gradlew lintKotlin
       - name: Generate API documentation 📔
         if: ${{github.event_name == 'push'}}
         run: ./gradlew dokkaHtml

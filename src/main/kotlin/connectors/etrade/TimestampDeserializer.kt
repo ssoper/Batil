@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer
 import java.io.IOException
 import java.time.Instant
 
-class TimestampDeserializer(val useMilliseconds: Boolean = true): JsonDeserializer<Instant>() {
+class TimestampDeserializer(val useMilliseconds: Boolean = true) : JsonDeserializer<Instant>() {
     @Throws(IOException::class, JsonProcessingException::class)
     override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): Instant {
         return p?.longValue?.let {
@@ -19,5 +19,5 @@ class TimestampDeserializer(val useMilliseconds: Boolean = true): JsonDeserializ
         } ?: throw TimestampDeserializerException()
     }
 
-    class TimestampDeserializerException: JsonProcessingException("Could not parse timestamp from JSON")
+    class TimestampDeserializerException : JsonProcessingException("Could not parse timestamp from JSON")
 }

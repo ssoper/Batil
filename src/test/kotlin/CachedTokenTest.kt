@@ -7,7 +7,7 @@ import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import java.nio.file.Paths
 
-class CachedTokenTest: StringSpec({
+class CachedTokenTest : StringSpec({
 
     "should store values securely" {
         val (dirPath, keyStorePath, passwordPath) = getPaths()
