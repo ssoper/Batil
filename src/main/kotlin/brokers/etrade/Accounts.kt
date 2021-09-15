@@ -72,33 +72,29 @@ class Accounts(
         endDate: GregorianCalendar?,
         sortOrder: TransactionSortOrder?,
         startAt: TransactionId?,
-        count: Int? = 50
+        count: Int? = null,
     ): TransactionResponse? {
 
         val options = mutableMapOf("count" to count.toString())
 
         startDate?.let {
-            options.putAll(
-                mapOf(
-                    "startDate" to formatDate(it)
-                )
-            )
+            options.put("startDate", formatDate(it))
         }
 
         endDate?.let {
-            options.putAll(
-                mapOf(
-                    "endDate" to formatDate(it)
-                )
-            )
+            options.put("endDate", formatDate(it))
         }
 
         sortOrder?.let {
-            options.putAll(
-                mapOf(
-                    "sortOrder" to it.toString()
-                )
-            )
+            options.put("sortOrder", it.toString())
+        }
+
+        startAt?.let {
+            options.put("startAt", it.toString())
+        }
+
+        count?.let {
+            options.put("count", it.toString())
         }
 
         val module = SimpleModule()
