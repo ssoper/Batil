@@ -44,38 +44,22 @@ class Accounts(
         return response.body()?.response
     }
 
-    fun listTransactions(accountIdKey: String): TransactionResponse? {
-        return listTransactions(accountIdKey, startDate = null, endDate = null, sortOrder = null, startAt = null)
-    }
-
-    fun listTransactions(
-        accountIdKey: String,
-        startDate: GregorianCalendar,
-        endDate: GregorianCalendar
-    ): TransactionResponse? {
-        return listTransactions(accountIdKey, startDate = startDate, endDate = endDate, sortOrder = null, startAt = null)
-    }
-
-    // TODO: Implement marker
-
     fun formatDate(date: GregorianCalendar): String {
         val formatter = SimpleDateFormat("MMddyyyy")
         formatter.calendar = date
         return formatter.format(date.time)
     }
 
-    // TODO: Implement startAt
-    // TODO: Move to default null for count and other fields
     fun listTransactions(
         accountIdKey: String,
-        startDate: GregorianCalendar?,
-        endDate: GregorianCalendar?,
-        sortOrder: TransactionSortOrder?,
-        startAt: TransactionId?,
+        startDate: GregorianCalendar? = null,
+        endDate: GregorianCalendar? = null,
+        sortOrder: TransactionSortOrder? = null,
+        startAt: TransactionId? = null,
         count: Int? = null,
     ): TransactionResponse? {
 
-        val options = mutableMapOf("count" to count.toString())
+        val options: MutableMap<String, String> = mutableMapOf()
 
         startDate?.let {
             options.put("startDate", formatDate(it))

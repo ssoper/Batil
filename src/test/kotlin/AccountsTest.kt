@@ -95,7 +95,7 @@ class AccountsTest : StringSpec({
         createServer(path) {
             val accountIdKey = randomString(6)
             val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
-            val data = service.listTransactions(accountIdKey)
+            val data = service.listTransactions(accountIdKey, count = 50)
 
             data.shouldNotBeNull()
             data.transactions.count().shouldBe(data.transactionCount)
@@ -146,7 +146,7 @@ class AccountsTest : StringSpec({
             data.transactions[0].transactionDate.shouldBe(Instant.ofEpochMilli(1601622000000)) // Oct 2, 2020
             data.transactions[2].transactionDate.shouldBe(Instant.ofEpochMilli(1601535600000)) // Oct 1, 2020
 
-            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50&startDate=10012020&endDate=10032020")
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?startDate=10012020&endDate=10032020")
         }
     }
 
@@ -163,7 +163,7 @@ class AccountsTest : StringSpec({
 
             data.transactions[0].transactionDate.shouldBe(Instant.ofEpochMilli(1611561600000)) // Jan 25, 2021
 
-            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=5&sortOrder=DESC")
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?sortOrder=DESC&count=5")
         }
     }
 
