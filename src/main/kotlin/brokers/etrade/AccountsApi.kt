@@ -215,6 +215,7 @@ data class Product(
     val type: ProductType
 )
 
+// TODO: Come up with a better name
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TransactionStrike(
     val symbol: String?, // The symbol for which the quote details are being accessed

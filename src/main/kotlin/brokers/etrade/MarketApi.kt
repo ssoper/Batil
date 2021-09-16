@@ -16,6 +16,12 @@ data class Message(
     val type: String
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class MessagesResponse(
+    @JsonProperty("message")
+    val messages: List<Message>
+)
+
 // TODO: Merge with AccountsApi QuoteMode
 enum class QuoteStatus {
     REALTIME, DELAYED, CLOSING, EH_REALTIME, EH_BEFORE_OPEN, EH_CLOSED, UNKNOWN

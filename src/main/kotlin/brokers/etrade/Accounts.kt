@@ -1,7 +1,6 @@
 package com.seansoper.batil.brokers.etrade
 
 import com.fasterxml.jackson.databind.module.SimpleModule
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.GregorianCalendar
 
@@ -42,12 +41,6 @@ class Accounts(
         val response = service.getBalance(accountIdKey).execute()
 
         return response.body()?.response
-    }
-
-    fun formatDate(date: GregorianCalendar): String {
-        val formatter = SimpleDateFormat("MMddyyyy")
-        formatter.calendar = date
-        return formatter.format(date.time)
     }
 
     fun listTransactions(
