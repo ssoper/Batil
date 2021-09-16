@@ -159,7 +159,7 @@ data class OrderDetail(
 data class Order(
     val orderId: Int?, // ID number assigned to this order
     val details: String?, // The order details
-    val orderType: String?, // EQ, OPTN, SPREADS, BUY_WRITES, BUTTERFLY, IRON_BUTTERFLY, CONDOR, IRON_CONDOR, MF, MMF
+    val orderType: OrderType?, // EQ, OPTN, SPREADS, BUY_WRITES, BUTTERFLY, IRON_BUTTERFLY, CONDOR, IRON_CONDOR, MF, MMF
     val totalOrderValue: Float?, // The total order value
     val totalCommission: Float?, // The total commission
     val orderDetail: OrderDetail, // The order confirmation ID for the placed order
