@@ -48,18 +48,6 @@ class OrdersTest : StringSpec({
             product.securityType.shouldBe(SecurityType.OPTN)
             product.callPut.shouldBe(OptionType.CALL)
             product.expiry.shouldBe(GregorianCalendar(2021, 10, 8))
-//            data.count().shouldBe(2)
-//            data[0].accountId.shouldBe("99991111")
-//            data[0].dateClosed.shouldBeNull()
-//            data[0].closed.shouldBe(false)
-//            data[0].accountType.shouldBe(AccountType.INDIVIDUAL)
-//
-//            data[1].accountId.shouldBe("11112222")
-//            data[1].dateClosed.shouldNotBeNull()
-//            data[1].closed.shouldBe(true)
-//            val dateClosed = Instant.ofEpochSecond(1400756700L) // 2014-05-22T11:05:00Z
-//            data[1].dateClosed.shouldBe(dateClosed)
-//            data[1].accountType.shouldBe(AccountType.IRA_ROLLOVER)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders")
         }
