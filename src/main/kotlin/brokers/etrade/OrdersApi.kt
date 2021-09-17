@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
+import java.time.Instant
 
 enum class OrderType {
     EQ, OPTN, SPREADS, BUY_WRITES, BUTTERFLY, IRON_BUTTERFLY, CONDOR, IRON_CONDOR, MF, MMF
@@ -68,7 +69,7 @@ data class MutualFundQuantity(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Lot(
-    val id: Int?, // The lot ID of the lot selected to sell
+    val id: Int, // The lot ID of the lot selected to sell
     val size: Float?, // The number of shares to sell for the selected lot
 )
 
@@ -79,6 +80,7 @@ data class LotsResponse(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Instrument(
+    @JsonProperty("Product")
     val product: TransactionStrike?, // The product details for the security
     val symbolDescription: String?, // The text description of the security being bought or sold
     val orderAction: OrderActionType?, // BUY, SELL, BUY_TO_COVER, SELL_SHORT, BUY_OPEN, BUY_CLOSE, SELL_OPEN, SELL_CLOSE, EXCHANGE
@@ -94,7 +96,7 @@ data class Instrument(
     val ask: Float?, // The ask price
     val lastprice: Float?, // The last price
     val currency: String?, // USD, EUR, GBP, HKD, JPY, CAD
-    val lots: LotsResponse, // The object for the position lot
+    val lots: LotsResponse?, // The object for the position lot
     val mfQuantity: MutualFundQuantity?, // The object for the mutual fund quantity
     val osiKey: String?, // The Options Symbology Initiative (OSI) key containing the option root symbol, expiration date, call/put indicator, and strike price
     val mfTransaction: String?, // BUY, SELL
@@ -106,9 +108,9 @@ data class Instrument(
 data class OrderDetail(
     val orderNumber: Int?, // The numeric ID for this order in the E*TRADE system
     val accountId: String?, // The numeric account ID
-    val previewTime: Int?, // The time of the order preview
-    val placedTime: Int?, // The time the order was placed (UTC)
-    val executedTime: Int?, // The time the order was executed (UTC)
+    val previewTime: Instant?, // The time of the order preview
+    val placedTime: Instant?, // The time the order was placed (UTC)
+    val executedTime: Instant?, // The time the order was executed (UTC)
     val orderValue: Float?, // Total cost or proceeds, including commission
     val status: OrderStatus?, // OPEN, EXECUTED, CANCELLED, INDIVIDUAL_FILLS, CANCEL_REQUESTED, EXPIRED, REJECTED, PARTIAL, DO_NOT_EXERCISE, DONE_TRADE_EXECUTED
     val orderType: OrderType?, // EQ, OPTN, SPREADS, BUY_WRITES, BUTTERFLY, IRON_BUTTERFLY, CONDOR, IRON_CONDOR, MF, MMF
@@ -135,8 +137,9 @@ data class OrderDetail(
     val replacesOrderId: Int?, // In the event of a change order request, the order ID of the order that the new order is replacing.
     val allOrNone: Boolean?, // If TRUE, the transactions specified in the order must be executed all at once or not at all; default is FALSE
     val previewId: Int?, // This parameter is required and must specify the numeric preview ID from the preview and the other parameters of this request must match the parameters of the preview.
-    val instrument: Instrument, // The object for the instrument
-    val messages: MessagesResponse, // The object for the messages
+    @JsonProperty("Instrument")
+    val instrument: List<Instrument>?, // The object for the instrument
+    val messages: MessagesResponse?, // The object for the messages
     val preClearanceCode: String?, // The preclearance code
     val overrideRestrictedCd: Int?, // The overrides restricted code
     val investmentAmount: Float?, // The amount of the investment
@@ -157,13 +160,14 @@ data class OrderDetail(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Order(
-    val orderId: Int?, // ID number assigned to this order
+    val orderId: Int, // ID number assigned to this order
     val details: String?, // The order details
     val orderType: OrderType?, // EQ, OPTN, SPREADS, BUY_WRITES, BUTTERFLY, IRON_BUTTERFLY, CONDOR, IRON_CONDOR, MF, MMF
     val totalOrderValue: Float?, // The total order value
     val totalCommission: Float?, // The total commission
-    val orderDetail: OrderDetail, // The order confirmation ID for the placed order
-    val events: EventsResponse, // The events in the placed order
+    @JsonProperty("OrderDetail")
+    val orderDetail: List<OrderDetail>?, // The order confirmation ID for the placed order
+    val events: EventsResponse?, // The events in the placed order
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -183,8 +187,9 @@ data class EventsResponse(
 data class OrdersResponse(
     val marker: String?, // Specifies the desired starting point of the set of items to return. Used for paging as described in the Notes below.
     val next: String?, // The next order
-    val order: List<Order>, // The order response
-    val messages: MessagesResponse, // The messages associated with the order
+    @JsonProperty("Order")
+    val orders: List<Order>?, // The order response
+    val messages: MessagesResponse?, // The messages associated with the order
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -195,7 +200,7 @@ data class OrdersResponseEnvelope(
 
 interface OrdersApi {
 
-    @GET("/v1/accounts/{accountIdKey}/transactions")
+    @GET("/v1/accounts/{accountIdKey}/orders")
     fun list(
         @Path("accountIdKey") accountIdKey: String,
         @QueryMap options: Map<String, String>

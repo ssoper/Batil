@@ -236,7 +236,12 @@ data class TransactionStrike(
     val expiry: GregorianCalendar?
         get() {
             return if (expiryYear != null && expiryMonth != null && expiryDay != null) {
-                GregorianCalendar(expiryYear + 2000, expiryMonth, expiryDay)
+                if (expiryYear < 100) {
+                    // Sometimes years are returned as 2 digits because reasons
+                    GregorianCalendar(expiryYear + 2000, expiryMonth, expiryDay)
+                } else {
+                    GregorianCalendar(expiryYear, expiryMonth, expiryDay)
+                }
             } else {
                 null
             }

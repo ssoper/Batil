@@ -1,6 +1,8 @@
 package com.seansoper.batil
 
+import com.seansoper.batil.brokers.etrade.Accounts
 import com.seansoper.batil.brokers.etrade.Authorization
+import com.seansoper.batil.brokers.etrade.Orders
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {
@@ -28,6 +30,18 @@ object Core {
                 println("Access OAuth token is $accessToken")
                 println("Access OAuth secret is $accessSecret")
                 println("Verifier code is $verifier")
+            }
+        }
+
+        val accounts = Accounts(session, parsed.production, parsed.verbose)
+
+        accounts.list()?.let {
+            it.first().accountIdKey?.let { accountIdKey ->
+                val service = Orders(session, parsed.production, parsed.verbose)
+                service.list(accountIdKey)?.let {
+                    println("Orders for account $accountIdKey")
+                    println(it)
+                }
             }
         }
 

@@ -1,0 +1,1214 @@
+{
+  "OrdersResponse": {
+    "marker": "1629918202327",
+    "next": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders?marker=1629918202327",
+    "Order": [
+      {
+        "orderId": 389,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/389",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631886307542,
+            "executedTime": 1631887342448,
+            "orderValue": 94.4853,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.95,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "SPCE Oct 08 '21 $27 Call",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 1,
+                "filledQuantity": 1.0,
+                "averageExecutionPrice": 0.95,
+                "estimatedCommission": 0.5142,
+                "estimatedFees": 0.0004,
+                "Product": {
+                  "symbol": "SPCE",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 8,
+                  "strikePrice": 27,
+                  "productId": {
+                    "symbol": "SPCE--211008C00027000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 388,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/388",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631809343060,
+            "orderValue": 49.4855,
+            "status": "EXPIRED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.5,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "SPCE Oct 08 '21 $29 Call",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 1,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 0.5142,
+                "estimatedFees": 0.0002,
+                "Product": {
+                  "symbol": "SPCE",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 8,
+                  "strikePrice": 29,
+                  "productId": {
+                    "symbol": "SPCE--211008C00029000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 387,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/387",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631638856613,
+            "orderValue": 139.6017,
+            "status": "OPEN",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 0.15,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "PLTR Oct 08 '21 $28 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 9,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 4.6017,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "PLTR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 8,
+                  "strikePrice": 28,
+                  "productId": {
+                    "symbol": "PLTR--211008C00028000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 386,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/386",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631627512903,
+            "executedTime": 1631629201750,
+            "orderValue": 424.4836,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 4.25,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "AMC Oct 08 '21 $46 Put",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 1,
+                "filledQuantity": 1.0,
+                "averageExecutionPrice": 4.25,
+                "estimatedCommission": 0.5142,
+                "estimatedFees": 0.0021,
+                "Product": {
+                  "symbol": "AMC",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 8,
+                  "strikePrice": 46,
+                  "productId": {
+                    "symbol": "AMC---211008P00046000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 385,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/385",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631626767547,
+            "executedTime": 1631626767737,
+            "orderValue": 138.9726,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.7,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "LAZR Oct 08 '21 $17.50 Call",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 2.0,
+                "averageExecutionPrice": 0.7,
+                "estimatedCommission": 1.0266,
+                "estimatedFees": 0.0007,
+                "Product": {
+                  "symbol": "LAZR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 8,
+                  "strikePrice": 17.5,
+                  "productId": {
+                    "symbol": "LAZR--211008C00017500",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 384,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/384",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631626735411,
+            "executedTime": 1631627296643,
+            "orderValue": 535.3775,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.6,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "PLTR Oct 08 '21 $28 Call",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 9,
+                "filledQuantity": 9.0,
+                "averageExecutionPrice": 0.6,
+                "estimatedCommission": 4.6197,
+                "estimatedFees": 0.0027,
+                "Product": {
+                  "symbol": "PLTR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 8,
+                  "strikePrice": 28,
+                  "productId": {
+                    "symbol": "PLTR--211008C00028000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 383,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/383",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631546313556,
+            "executedTime": 1631548053794,
+            "orderValue": 202.6017,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.22,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "PLTR Oct 01 '21 $28 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 9,
+                "filledQuantity": 9.0,
+                "averageExecutionPrice": 0.22,
+                "estimatedCommission": 4.6017,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "PLTR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 1,
+                  "strikePrice": 28,
+                  "productId": {
+                    "symbol": "PLTR--211001C00028000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 382,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/382",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631302344842,
+            "orderValue": 120.5122,
+            "status": "OPEN",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 1.2,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "EDIT Oct 01 '21 $55 Put",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 1,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 0.5122,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "EDIT",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 1,
+                  "strikePrice": 55,
+                  "productId": {
+                    "symbol": "EDIT--211001P00055000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 381,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/381",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631299090758,
+            "executedTime": 1631302123965,
+            "orderValue": 329.4841,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 3.3,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "EDIT Oct 01 '21 $55 Put",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 1,
+                "filledQuantity": 1.0,
+                "averageExecutionPrice": 3.3,
+                "estimatedCommission": 0.5142,
+                "estimatedFees": 0.0016,
+                "Product": {
+                  "symbol": "EDIT",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 1,
+                  "strikePrice": 55,
+                  "productId": {
+                    "symbol": "EDIT--211001P00055000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 380,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/380",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631205990901,
+            "executedTime": 1631298896323,
+            "orderValue": 41.0226,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 0.2,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "replacesOrderId": 371,
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "LAZR Sep 17 '21 $17.50 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 2.0,
+                "averageExecutionPrice": 0.2,
+                "estimatedCommission": 1.0226,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "LAZR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 17.5,
+                  "productId": {
+                    "symbol": "LAZR--210917C00017500",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 379,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/379",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631196412464,
+            "executedTime": 1631197728061,
+            "orderValue": 400.3782,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.45,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "PLTR Oct 01 '21 $28 Call",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 9,
+                "filledQuantity": 9.0,
+                "averageExecutionPrice": 0.45,
+                "estimatedCommission": 4.6197,
+                "estimatedFees": 0.002,
+                "Product": {
+                  "symbol": "PLTR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 1,
+                  "strikePrice": 28,
+                  "productId": {
+                    "symbol": "PLTR--211001C00028000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 378,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/378",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1631108151767,
+            "orderValue": 39.4855,
+            "status": "EXPIRED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.4,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "SPCE Oct 01 '21 $33 Call",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 1,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 0.5142,
+                "estimatedFees": 0.0002,
+                "Product": {
+                  "symbol": "SPCE",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 1,
+                  "strikePrice": 33,
+                  "productId": {
+                    "symbol": "SPCE--211001C00033000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 377,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/377",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630685684758,
+            "executedTime": 1630686392101,
+            "orderValue": 89.0226,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 0.44,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "replacesOrderId": 374,
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "MARA Sep 17 '21 $35 Put",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 2.0,
+                "averageExecutionPrice": 0.44,
+                "estimatedCommission": 1.0226,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "MARA",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 35,
+                  "productId": {
+                    "symbol": "MARA--210917P00035000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 376,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/376",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630526137362,
+            "orderValue": 101.0226,
+            "status": "OPEN",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 0.5,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "RIOT Sep 24 '21 $34 Put",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 1.0226,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "RIOT",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 24,
+                  "strikePrice": 34,
+                  "productId": {
+                    "symbol": "RIOT--210924P00034000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 375,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/375",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630510017521,
+            "executedTime": 1630510231629,
+            "orderValue": 418.9712,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 2.1,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "RIOT Sep 24 '21 $34 Put",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 2.0,
+                "averageExecutionPrice": 2.1,
+                "estimatedCommission": 1.0266,
+                "estimatedFees": 0.0021,
+                "Product": {
+                  "symbol": "RIOT",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 24,
+                  "strikePrice": 34,
+                  "productId": {
+                    "symbol": "RIOT--210924P00034000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 374,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/374",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630417031631,
+            "orderValue": 81.0226,
+            "status": "CANCELLED",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 0.4,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "replacedByOrderId": 377,
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "MARA Sep 17 '21 $35 Put",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 1.0226,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "MARA",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 35,
+                  "productId": {
+                    "symbol": "MARA--210917P00035000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 373,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/373",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630329360298,
+            "executedTime": 1630676349457,
+            "orderValue": 20.5122,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 0.2,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "SPCE Sep 10 '21 $28 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 1,
+                "filledQuantity": 1.0,
+                "averageExecutionPrice": 0.2,
+                "estimatedCommission": 0.5122,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "SPCE",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 10,
+                  "strikePrice": 28,
+                  "productId": {
+                    "symbol": "SPCE--210910C00028000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 372,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/372",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630329322752,
+            "orderValue": 81.0244,
+            "status": "EXPIRED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.4,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "MARA Sep 17 '21 $35 Put",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 1.0244,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "MARA",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 35,
+                  "productId": {
+                    "symbol": "MARA--210917P00035000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 371,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/371",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630329272671,
+            "orderValue": 31.0244,
+            "status": "CANCELLED",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 0.15,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "replacedByOrderId": 380,
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "LAZR Sep 17 '21 $17.50 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 1.0244,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "LAZR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 17.5,
+                  "productId": {
+                    "symbol": "LAZR--210917C00017500",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 370,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/370",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630071108494,
+            "executedTime": 1631111769456,
+            "orderValue": 139.6098,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_UNTIL_CANCEL",
+            "priceType": "LIMIT",
+            "limitPrice": 0.15,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "PLTR Sep 17 '21 $27.50 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 9,
+                "filledQuantity": 9.0,
+                "averageExecutionPrice": 0.15,
+                "estimatedCommission": 4.6098,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "PLTR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 27.5,
+                  "productId": {
+                    "symbol": "PLTR--210917C00027500",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 369,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/369",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1629990505742,
+            "orderValue": 45.5122,
+            "status": "EXPIRED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.45,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "SPCE Sep 10 '21 $28 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 1,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 0.5122,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "SPCE",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 10,
+                  "strikePrice": 28,
+                  "productId": {
+                    "symbol": "SPCE--210910C00028000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 368,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/368",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1629974382484,
+            "orderValue": 139.6098,
+            "status": "EXPIRED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.15,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "PLTR Sep 17 '21 $27.50 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 9,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 4.6098,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "PLTR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 27.5,
+                  "productId": {
+                    "symbol": "PLTR--210917C00027500",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 367,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/367",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1629974299925,
+            "orderValue": 81.0244,
+            "status": "EXPIRED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.4,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "LAZR Sep 17 '21 $17.50 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 1.0244,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "LAZR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 17.5,
+                  "productId": {
+                    "symbol": "LAZR--210917C00017500",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 366,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/366",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1629919779102,
+            "executedTime": 1629920073472,
+            "orderValue": 458.9692,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 2.3,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "MARA Sep 17 '21 $35 Put",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 2.0,
+                "averageExecutionPrice": 2.3,
+                "estimatedCommission": 1.0284,
+                "estimatedFees": 0.0023,
+                "Product": {
+                  "symbol": "MARA",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 35,
+                  "productId": {
+                    "symbol": "MARA--210917P00035000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 365,
+        "details": "https://api.etrade.com/v1/accounts/-h06qT12IOXHUSjq3xeYYU/orders/365",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1629918202327,
+            "executedTime": 2129352816,
+            "orderValue": 229.6098,
+            "status": "EXPIRED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 0.25,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "PLTR Sep 17 '21 $27.50 Call",
+                "orderAction": "BUY_CLOSE",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 9,
+                "filledQuantity": 0.0,
+                "estimatedCommission": 4.6098,
+                "estimatedFees": 0.0,
+                "Product": {
+                  "symbol": "PLTR",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 17,
+                  "strikePrice": 27.5,
+                  "productId": {
+                    "symbol": "PLTR--210917C00027500",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

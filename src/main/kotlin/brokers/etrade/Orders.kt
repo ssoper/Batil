@@ -1,5 +1,7 @@
 package com.seansoper.batil.brokers.etrade
 
+import com.fasterxml.jackson.databind.module.SimpleModule
+import java.time.Instant
 import java.util.GregorianCalendar
 
 enum class OrderStatus {
@@ -67,7 +69,10 @@ class Orders(
             options.put("marketSession", it.name)
         }
 
-        val service = createClient(OrdersApi::class.java)
+        val module = SimpleModule()
+        module.addDeserializer(Instant::class.java, TimestampDeserializer())
+
+        val service = createClient(OrdersApi::class.java, module)
         val response = service.list(accountIdKey, options).execute()
 
         return response.body()?.response
