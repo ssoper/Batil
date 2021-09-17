@@ -5,6 +5,7 @@ import com.seansoper.batil.brokers.etrade.Accounts
 import com.seansoper.batil.brokers.etrade.Alerts
 import com.seansoper.batil.brokers.etrade.Authorization
 import com.seansoper.batil.brokers.etrade.Market
+import com.seansoper.batil.brokers.etrade.Orders
 import com.seansoper.batil.brokers.etrade.TransactionSortOrder
 import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig
@@ -160,6 +161,29 @@ class Accounts {
                         println("Most recent transaction")
                         println(it)
                     }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @suppress
+ */
+class Orders {
+
+    fun list(runtime: RuntimeConfig = RuntimeConfig.default()) {
+        val configuration = GlobalConfig.parse(runtime)
+        val client = Authorization(configuration, runtime.production, runtime.verbose)
+        val session = client.renewSession() ?: client.createSession()
+        val accounts = Accounts(session, runtime.production, runtime.verbose)
+
+        accounts.list()?.let {
+            it.first().accountIdKey?.let { accountIdKey ->
+                val service = Orders(session, runtime.production, runtime.verbose)
+                service.list(accountIdKey)?.let {
+                    println("Orders for account $accountIdKey")
+                    println(it)
                 }
             }
         }
