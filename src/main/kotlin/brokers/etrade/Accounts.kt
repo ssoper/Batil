@@ -29,6 +29,10 @@ class Accounts(
     baseUrl: String? = null
 ) : Service(session, production, verbose, baseUrl) {
 
+    /**
+     * List user’s accounts
+     * @sample com.seansoper.batil.samples.Accounts.list
+     */
     fun list(): List<Account>? {
         val service = createClient(AccountsApi::class.java)
         val response = service.getAccounts().execute()
@@ -36,6 +40,7 @@ class Accounts(
         return response.body()?.response?.accountRoot?.accounts
     }
 
+    // TODO: Document with sample
     fun getBalance(accountIdKey: String): AccountBalance? {
         val service = createClient(AccountsApi::class.java)
         val response = service.getBalance(accountIdKey).execute()
@@ -43,6 +48,16 @@ class Accounts(
         return response.body()?.response
     }
 
+    /**
+     * List transactions for an account
+     * @param[accountIdKey] The unique account key
+     * @param[startDate] The earliest date to include in the date range, history is available for two years
+     * @param[endDate] The latest date to include in the date range
+     * @param[sortOrder] Sort order for results
+     * @param[startAt] Specifies the desired starting point of the set of items to return, used for paging
+     * @param[count] Number of transactions to return in the response, defaults to 50, used for paging
+     * @sample com.seansoper.batil.samples.Accounts.listTransactions
+     */
     fun listTransactions(
         accountIdKey: String,
         startDate: GregorianCalendar? = null,
@@ -83,6 +98,12 @@ class Accounts(
         return response.body()?.response
     }
 
+    /**
+     * List transactions for an account
+     * @param[accountIdKey] The unique account key
+     * @param[transactionId] [TransactionId] of the transaction to return
+     * @sample com.seansoper.batil.samples.Accounts.getTransaction
+     */
     fun getTransaction(
         accountIdKey: String,
         transactionId: TransactionId
@@ -96,6 +117,17 @@ class Accounts(
         return response.body()?.response
     }
 
+    /**
+     * List transactions for an account
+     * @param[accountIdKey] The unique account key
+     * @param[sortBy] Field to sort by
+     * @param[sortOrder] Sort order for results, defaults to [TransactionSortOrder.DESC]
+     * @param[marketSession] Market session, defaults to [MarketSession.REGULAR]
+     * @param[totalsRequired] Returns the total values of the portfolio, defaults to false
+     * @param[lotsRequired] Returns lot positions of the portfolio, defaults to false
+     * @param[count] Number of transactions to return in the response, defaults to 50, used for paging
+     * @sample com.seansoper.batil.samples.Accounts.viewPortfolio
+     */
     fun viewPortfolio(
         accountIdKey: String,
         sortBy: PortfolioSortBy? = null,
