@@ -1,10 +1,7 @@
 package com.seansoper.batil
 
-import com.seansoper.batil.brokers.etrade.Alerts
 import com.seansoper.batil.brokers.etrade.Authorization
-import com.seansoper.batil.brokers.etrade.Market
 import com.seansoper.batil.config.GlobalConfig
-import java.util.GregorianCalendar
 
 object Core {
     @JvmStatic fun main(args: Array<String>) {

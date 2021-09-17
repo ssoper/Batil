@@ -1,10 +1,10 @@
 package com.seansoper.batil.samples
 
 import com.seansoper.batil.OptionsCalendar
+import com.seansoper.batil.brokers.etrade.Accounts
+import com.seansoper.batil.brokers.etrade.Alerts
 import com.seansoper.batil.brokers.etrade.Authorization
 import com.seansoper.batil.brokers.etrade.Market
-import com.seansoper.batil.brokers.etrade.Alerts
-import com.seansoper.batil.brokers.etrade.Accounts
 import com.seansoper.batil.brokers.etrade.TransactionSortOrder
 import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig
@@ -28,7 +28,6 @@ class Market {
             println(it)
         }
     }
-
 }
 
 /**
@@ -96,7 +95,6 @@ class Alerts {
             }
         }
     }
-
 }
 
 /**
@@ -166,5 +164,4 @@ class Accounts {
             }
         }
     }
-
 }
