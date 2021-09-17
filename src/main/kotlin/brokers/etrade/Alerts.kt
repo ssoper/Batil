@@ -22,6 +22,15 @@ class Alerts(
     baseUrl: String? = null
 ) : Service(session, production, verbose, baseUrl) {
 
+    /**
+     * Retrieve a user’s alerts
+     * @param[category] Alert category
+     * @param[status] Alert status
+     * @param[direction] Sort order of alerts
+     * @param[search] Search is done based on the subject
+     * @param[count] Max amount of alerts returned, default is 25, max is 300
+     * @sample com.seansoper.batil.samples.Alerts.list
+     */
     fun list(
         category: Category? = null,
         status: Status? = null,
@@ -61,6 +70,12 @@ class Alerts(
         return response.body()?.response
     }
 
+    /**
+     * Retrieve details for a single a alert
+     * @param[alertId] The id of the alert
+     * @param[htmlTags] Indicates whether the returned text should have HTML tags included, default is false
+     * @sample com.seansoper.batil.samples.Alerts.get
+     */
     fun get(
         alertId: Int,
         htmlTags: Boolean? = null
@@ -81,10 +96,20 @@ class Alerts(
         return response.body()?.response
     }
 
+    /**
+     * Delete single alert
+     * @param[alertId] The id of the alert to delete
+     * @sample com.seansoper.batil.samples.Alerts.deleteSingle
+     */
     fun delete(alertId: Int): DeleteAlertsResponse? {
         return delete(listOf(alertId))
     }
 
+    /**
+     * Delete multiple alerts
+     * @param[alertId] The ids of the alerts to delete
+     * @sample com.seansoper.batil.samples.Alerts.deleteMultiple
+     */
     fun delete(alertId: List<Int>): DeleteAlertsResponse? {
 
         val service = createClient(AlertsApi::class.java)

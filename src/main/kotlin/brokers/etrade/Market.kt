@@ -53,7 +53,7 @@ class Market(
      * @param[category] Default is STANDARD.
      * @param[chainType] Default is CALLPUT.
      * @param[priceType] Default is ATNM.
-     * @sample com.seansoper.batil.Samples.getOptionsChain
+     * @sample com.seansoper.batil.samples.Market.getOptionsChain
      */
     fun optionChains(
         symbol: String,
