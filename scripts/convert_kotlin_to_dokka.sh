@@ -15,5 +15,5 @@ mkdir $dir
 
 cp $1 $tmp
 sed -i.bak $'/@Json.*/d' $tmp
-sed -i.bak -E 's/^[[:space:]]*va[l|r] ([[:alpha:]]+)[^\/]+\/\//* @param [\1]/i' $tmp
+sed -i.bak -E 's/^[[:space:]]*va[l|r] ([[:alpha:]]+)[^\/]+\/\//* @param[\1]/i' $tmp
 cat $tmp
