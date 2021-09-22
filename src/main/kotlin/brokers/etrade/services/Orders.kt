@@ -1,23 +1,15 @@
 package com.seansoper.batil.brokers.etrade.services
 
+import brokers.etrade.api.orderPreview.PreviewRequest
 import com.fasterxml.jackson.databind.module.SimpleModule
-import com.seansoper.batil.OptionsCalendar
-import com.seansoper.batil.brokers.etrade.api.OptionType
-import com.seansoper.batil.brokers.etrade.api.OrderActionType
-import com.seansoper.batil.brokers.etrade.api.OrderType
 import com.seansoper.batil.brokers.etrade.api.OrdersApi
 import com.seansoper.batil.brokers.etrade.api.OrdersResponse
-import com.seansoper.batil.brokers.etrade.api.PreviewInstrumentOption
-import com.seansoper.batil.brokers.etrade.api.PreviewOrderLimit
 import com.seansoper.batil.brokers.etrade.api.PreviewOrderResponse
-import com.seansoper.batil.brokers.etrade.api.PreviewProductOption
-import com.seansoper.batil.brokers.etrade.api.PreviewRequest
 import com.seansoper.batil.brokers.etrade.api.PreviewRequestEnvelope
 import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
 import java.time.Instant
-import java.time.ZonedDateTime
 import java.util.GregorianCalendar
 
 enum class OrderStatus {
@@ -110,63 +102,13 @@ class Orders(
         return response.body()?.response
     }
 
-    // try to create just the bare minimum option
-    // send typed json data
-    // send xml
-    // TODO: Create order
-    // TODO: Preview order
-    // TODO: Place order
-    // TODO: Equities, options, Spreads to start
-    // TODO: Investigate use of original Order API classes + Builder pattern vs. specific classes for creating Preview
-    // TODO: Or possibly better use of Jackson annotations https://www.baeldung.com/jackson-annotations
-    // TODO: Or using constructors with the general nullable classes but then we lose our int conversion
     fun createPreview(
         accountIdKey: String,
-        symbol: String,
-        limitPrice: Float,
-        strikePrice: Float,
-        quantity: Int,
-        expiry: ZonedDateTime = OptionsCalendar.nextMonthly(),
-        clientOrderId: String = randomString()
+        request: PreviewRequest
     ): PreviewOrderResponse? {
-
-        val body = PreviewRequest(
-            orderType = OrderType.OPTN,
-            clientOrderId = clientOrderId,
-            orders = listOf(
-                PreviewOrderLimit(
-                    limitPrice = limitPrice,
-                    instruments = listOf(
-                        PreviewInstrumentOption(
-                            orderAction = OrderActionType.BUY_OPEN,
-                            quantity = quantity,
-                            product = PreviewProductOption(
-                                symbol,
-                                OptionType.CALL,
-                                expiry,
-                                strikePrice
-                            )
-                        )
-                    )
-                )
-            )
-        )
-
-        val request = PreviewRequestEnvelope(
-            request = body
-        )
-
         val service = createClient(OrdersApi::class.java)
-        val response = service.createPreview(accountIdKey, request).execute()
+        val response = service.createPreview(accountIdKey, PreviewRequestEnvelope(request)).execute()
 
         return response.body()?.response
-    }
-
-    private fun randomString(length: Int = 20): String {
-        val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-        return (1..length)
-            .map { kotlin.random.Random.nextInt(0, charPool.size) }
-            .map(charPool::get)
-            .joinToString("")
     }
 }

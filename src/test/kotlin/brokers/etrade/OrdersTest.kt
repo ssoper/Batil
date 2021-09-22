@@ -1,3 +1,5 @@
+import brokers.etrade.services.orderPreview.buyCallOptionLimit
+import brokers.etrade.services.orderPreview.buyCallOptionMarket
 import com.seansoper.batil.brokers.etrade.api.MarginLevel
 import com.seansoper.batil.brokers.etrade.api.MessageType
 import com.seansoper.batil.brokers.etrade.api.OptionLevel
@@ -9,6 +11,7 @@ import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.services.OrderStatus
 import com.seansoper.batil.brokers.etrade.services.Orders
 import io.kotlintest.matchers.string.shouldContain
+import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
@@ -60,8 +63,8 @@ class OrdersTest : StringSpec({
         }
     }
 
-    "create preview to buy call limit option" {
-        val path = Paths.get("brokers/etrade/orders/create_preview_buy_call_limit_option.json")
+    "create preview to buy call option limit" {
+        val path = Paths.get("brokers/etrade/orders/create_preview_buy_call_option_limit.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)
@@ -74,9 +77,9 @@ class OrdersTest : StringSpec({
                 LocalTime.of(16, 0),
                 ZoneId.of("America/New_York")
             )
-            val clientOrderId = randomString(20)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val data = service.createPreview(accountIdKey, symbol, 0.95f, 30f, 1, expiry, clientOrderId)
+            val request = buyCallOptionLimit(symbol, 0.95f, 30f, 1, expiry)
+            val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()
 
@@ -92,6 +95,39 @@ class OrdersTest : StringSpec({
             data.marginLevel.shouldBe(MarginLevel.MARGIN_TRADING_ALLOWED)
             data.margin!!.marginable!!.currentBuyingPower.shouldBe(27825.10f)
             data.optionLevel.shouldBe(OptionLevel.LEVEL_3)
+        }
+    }
+
+    "create preview to buy call option market" {
+        val path = Paths.get("brokers/etrade/orders/create_preview_buy_call_option_market.json")
+
+        createServer(path) {
+            val accountIdKey = randomString(6)
+            val symbol = "AAPL"
+            val strike = 150f
+            val year = 2021
+            val month = 10
+            val day = 15
+            val expiry = ZonedDateTime.of(
+                LocalDate.of(year, month, day),
+                LocalTime.of(16, 0),
+                ZoneId.of("America/New_York")
+            )
+
+            val service = Orders(mockSession(), baseUrl = it.url(".").toString())
+            val request = buyCallOptionMarket(symbol, 1f, 0.5f, strike, 1, expiry)
+            val data = service.createPreview(accountIdKey, request)
+
+            data.shouldNotBeNull()
+
+            data.orders.first().messages.shouldBeNull()
+
+            val product = data.orders.first().instrument!!.first().product!!
+            product.symbol.shouldBe(symbol)
+            product.expiry.shouldBe(GregorianCalendar(year, month, day))
+
+            val osi = "$symbol--${year-2000}$month${day}C00${strike.toInt()}000"
+            product.product!!.symbol.shouldBe(osi)
         }
     }
 })
