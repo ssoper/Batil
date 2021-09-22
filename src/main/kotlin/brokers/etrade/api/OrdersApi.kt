@@ -1,8 +1,8 @@
 package com.seansoper.batil.brokers.etrade.api
 
-import brokers.etrade.api.orderPreview.PreviewRequest
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewRequest
 import com.seansoper.batil.brokers.etrade.services.MarketSession
 import com.seansoper.batil.brokers.etrade.services.OrderStatus
 import retrofit2.Call

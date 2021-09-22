@@ -1,12 +1,12 @@
 package com.seansoper.batil.brokers.etrade.services
 
-import brokers.etrade.api.orderPreview.PreviewRequest
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.seansoper.batil.brokers.etrade.api.OrdersApi
 import com.seansoper.batil.brokers.etrade.api.OrdersResponse
 import com.seansoper.batil.brokers.etrade.api.PreviewOrderResponse
 import com.seansoper.batil.brokers.etrade.api.PreviewRequestEnvelope
 import com.seansoper.batil.brokers.etrade.api.SecurityType
+import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewRequest
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
 import java.time.Instant

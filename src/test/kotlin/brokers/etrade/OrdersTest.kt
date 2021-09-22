@@ -1,5 +1,3 @@
-import brokers.etrade.services.orderPreview.buyCallOptionLimit
-import brokers.etrade.services.orderPreview.buyCallOptionMarket
 import com.seansoper.batil.brokers.etrade.api.MarginLevel
 import com.seansoper.batil.brokers.etrade.api.MessageType
 import com.seansoper.batil.brokers.etrade.api.OptionLevel
@@ -10,6 +8,8 @@ import com.seansoper.batil.brokers.etrade.api.OrderType
 import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.services.OrderStatus
 import com.seansoper.batil.brokers.etrade.services.Orders
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionLimit
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull

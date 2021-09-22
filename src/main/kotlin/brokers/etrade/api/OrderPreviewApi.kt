@@ -1,4 +1,4 @@
-package brokers.etrade.api.orderPreview
+package com.seansoper.batil.brokers.etrade.api.orderPreview
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.seansoper.batil.brokers.etrade.api.OptionType
