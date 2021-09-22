@@ -456,7 +456,7 @@ data class PreviewProductOption(
         symbol = symbol,
         callPut = callPut,
         expiryYear = expiry.year.toString(),
-        expiryMonth = expiry.month.toString(),
+        expiryMonth = expiry.monthValue.toString(),
         expiryDay = expiry.dayOfMonth.toString(),
         strikePrice = strikePrice.toString()
     )
