@@ -60,7 +60,7 @@ class OrdersTest : StringSpec({
     }
 
     "create preview to buy call limit option" {
-        val path = Paths.get("apiResponses/orders/create_preview.json")
+        val path = Paths.get("apiResponses/orders/create_preview_buy_call_limit_option.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)
