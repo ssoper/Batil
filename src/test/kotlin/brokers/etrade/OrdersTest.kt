@@ -126,7 +126,7 @@ class OrdersTest : StringSpec({
             product.symbol.shouldBe(symbol)
             product.expiry.shouldBe(GregorianCalendar(year, month, day))
 
-            val osi = "$symbol--${year-2000}$month${day}C00${strike.toInt()}000"
+            val osi = "$symbol--${year - 2000}$month${day}C00${strike.toInt()}000"
             product.product!!.symbol.shouldBe(osi)
         }
     }
