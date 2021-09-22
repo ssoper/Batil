@@ -425,21 +425,11 @@ data class PreviewOrderResponse(
     val previewIds: List<PreviewId>,
     @JsonProperty("marginLevelCd")
     val marginLevel: MarginLevel?,
-    val optionLevelCd: Int?,
+    @JsonProperty("optionLevelCd")
+    val optionLevel: OptionLevel?,
     @JsonProperty("marginBpDetails")
     val margin: Margin?
-) {
-    val optionLevel: OptionLevel?
-        get() {
-            return optionLevelCd?.let {
-                if (it >= 0 || it <= 4) {
-                    OptionLevel.values()[it]
-                } else {
-                    null
-                }
-            }
-        }
-}
+)
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class PreviewOrderResponseEnvelope(
