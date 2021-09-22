@@ -483,11 +483,13 @@ data class PreviewOrderLimit(
 
     val limitPrice: String
 ) : PreviewOrder {
-    constructor(allOrNone: Boolean = false,
-                orderTerm: OrderTerm = OrderTerm.default,
-                marketSession: MarketSession = MarketSession.default,
-                limitPrice: Float,
-                instruments: List<PreviewInstrument>) : this(
+    constructor(
+        allOrNone: Boolean = false,
+        orderTerm: OrderTerm = OrderTerm.default,
+        marketSession: MarketSession = MarketSession.default,
+        limitPrice: Float,
+        instruments: List<PreviewInstrument>
+    ) : this(
         allOrNone = allOrNone.toString(),
         orderTerm = orderTerm,
         marketSession = marketSession,
@@ -507,12 +509,14 @@ data class PreviewOrderMarket(
     val limitPrice: String,
     val stopPrice: String
 ) : PreviewOrder {
-    constructor(allOrNone: Boolean = false,
-                orderTerm: OrderTerm = OrderTerm.default,
-                marketSession: MarketSession = MarketSession.default,
-                limitPrice: Float,
-                stopPrice: Float,
-                instruments: List<PreviewInstrument>) : this(
+    constructor(
+        allOrNone: Boolean = false,
+        orderTerm: OrderTerm = OrderTerm.default,
+        marketSession: MarketSession = MarketSession.default,
+        limitPrice: Float,
+        stopPrice: Float,
+        instruments: List<PreviewInstrument>
+    ) : this(
         allOrNone = allOrNone.toString(),
         orderTerm = orderTerm,
         marketSession = marketSession,

@@ -2,8 +2,6 @@ package com.seansoper.batil.brokers.etrade.services
 
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.seansoper.batil.OptionsCalendar
-import com.seansoper.batil.brokers.etrade.api.PreviewRequestEnvelope
-import com.seansoper.batil.brokers.etrade.api.PreviewRequest
 import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderType
@@ -13,6 +11,8 @@ import com.seansoper.batil.brokers.etrade.api.PreviewInstrumentOption
 import com.seansoper.batil.brokers.etrade.api.PreviewOrderLimit
 import com.seansoper.batil.brokers.etrade.api.PreviewOrderResponse
 import com.seansoper.batil.brokers.etrade.api.PreviewProductOption
+import com.seansoper.batil.brokers.etrade.api.PreviewRequest
+import com.seansoper.batil.brokers.etrade.api.PreviewRequestEnvelope
 import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
