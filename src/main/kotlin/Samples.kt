@@ -8,6 +8,7 @@ import com.seansoper.batil.brokers.etrade.services.Market
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.TransactionSortOrder
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
 import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig
 import java.time.LocalDate
@@ -215,7 +216,33 @@ class Orders {
             expiry = expiry
         )
         service.createPreview(accountIdKey, request)?.let {
-            println("Preview purchase of AAPL--211015C00150000")
+            println("Preview of Buy to Open order of AAPL--211015C00150000")
+            println(it)
+        }
+    }
+
+    fun sellCallOptionLimit(runtime: RuntimeConfig = RuntimeConfig.default()) {
+        val configuration = GlobalConfig.parse(runtime)
+        val client = Authorization(configuration, runtime.production, runtime.verbose)
+        val session = client.renewSession() ?: client.createSession()
+        val service = Orders(session, runtime.production, runtime.verbose)
+        val accountIdKey = "ACCOUNT_ID_KEY"
+        val expiry = ZonedDateTime.of(
+            LocalDate.of(2021, 10, 15),
+            LocalTime.of(16, 0),
+            ZoneId.of("America/New_York")
+        )
+
+        val request = sellCallOptionMarket(
+            symbol = "AAPL",
+            limitPrice = 5f,
+            stopPrice = 2.5f,
+            strikePrice = 150f,
+            quantity = 1,
+            expiry = expiry
+        )
+        service.createPreview(accountIdKey, request)?.let {
+            println("Preview of Sell to Open order of AAPL--211015C00150000")
             println(it)
         }
     }

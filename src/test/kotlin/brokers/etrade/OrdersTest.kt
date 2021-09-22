@@ -10,6 +10,8 @@ import com.seansoper.batil.brokers.etrade.services.OrderStatus
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionLimit
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
@@ -18,6 +20,7 @@ import io.kotlintest.specs.StringSpec
 import testHelper.MockHelper.createServer
 import testHelper.MockHelper.mockSession
 import testHelper.PathHelper.randomString
+import testHelper.TestOption
 import java.nio.file.Paths
 import java.time.Instant
 import java.time.LocalDate
@@ -27,12 +30,26 @@ import java.time.ZonedDateTime
 import java.util.GregorianCalendar
 
 class OrdersTest : StringSpec({
+    val accountIdKey = randomString(6)
+
+    val virginGalactic = TestOption(
+        "SPCE",
+        2021,
+        10,
+        8
+    )
+
+    val apple = TestOption(
+        "AAPL",
+        2021,
+        10,
+        15
+    )
 
     "list orders" {
         val path = Paths.get("brokers/etrade/orders/list.json")
 
         createServer(path) {
-            val accountIdKey = randomString(6)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
             val data = service.list(accountIdKey)
 
@@ -63,11 +80,12 @@ class OrdersTest : StringSpec({
         }
     }
 
+    // TODO: Consider using Buy To Open (BTO) vs. just Buy
     "create preview to buy call option limit" {
         val path = Paths.get("brokers/etrade/orders/create_preview_buy_call_option_limit.json")
 
         createServer(path) {
-            val accountIdKey = randomString(6)
+
             val symbol = "SPCE"
             val year = 2021
             val month = 10
@@ -88,9 +106,35 @@ class OrdersTest : StringSpec({
             message.code.shouldBe(9011)
             message.type.shouldBe(MessageType.WARNING)
 
-            val product = data.orders.first().instrument!!.first().product!!
+            val instrument = data.orders.first().instrument!!.first()
+            instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
+
+            val product = instrument.product!!
             product.symbol.shouldBe(symbol)
             product.expiry.shouldBe(GregorianCalendar(year, month, day))
+
+            data.marginLevel.shouldBe(MarginLevel.MARGIN_TRADING_ALLOWED)
+            data.margin!!.marginable!!.currentBuyingPower.shouldBe(27825.10f)
+            data.optionLevel.shouldBe(OptionLevel.LEVEL_3)
+        }
+    }
+
+    "create preview to sell call option limit" {
+        val path = Paths.get("brokers/etrade/orders/create_preview_sell_call_option_limit.json")
+
+        createServer(path) {
+            val service = Orders(mockSession(), baseUrl = it.url(".").toString())
+            val request = sellCallOptionLimit(virginGalactic.symbol, 0.95f, 30f, 1, virginGalactic.expiry)
+            val data = service.createPreview(accountIdKey, request)
+
+            data.shouldNotBeNull()
+
+            val instrument = data.orders.first().instrument!!.first()
+            instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
+
+            val product = instrument.product!!
+            product.symbol.shouldBe(virginGalactic.symbol)
+            product.expiry.shouldBe(GregorianCalendar(virginGalactic.year, virginGalactic.month, virginGalactic.day))
 
             data.marginLevel.shouldBe(MarginLevel.MARGIN_TRADING_ALLOWED)
             data.margin!!.marginable!!.currentBuyingPower.shouldBe(27825.10f)
@@ -102,31 +146,48 @@ class OrdersTest : StringSpec({
         val path = Paths.get("brokers/etrade/orders/create_preview_buy_call_option_market.json")
 
         createServer(path) {
-            val accountIdKey = randomString(6)
-            val symbol = "AAPL"
             val strike = 150f
-            val year = 2021
-            val month = 10
-            val day = 15
-            val expiry = ZonedDateTime.of(
-                LocalDate.of(year, month, day),
-                LocalTime.of(16, 0),
-                ZoneId.of("America/New_York")
-            )
-
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = buyCallOptionMarket(symbol, 1f, 0.5f, strike, 1, expiry)
+            val request = buyCallOptionMarket(apple.symbol, 1f, 0.5f, strike, 1, apple.expiry)
             val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()
 
             data.orders.first().messages.shouldBeNull()
 
-            val product = data.orders.first().instrument!!.first().product!!
-            product.symbol.shouldBe(symbol)
-            product.expiry.shouldBe(GregorianCalendar(year, month, day))
+            val instrument = data.orders.first().instrument!!.first()
+            instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
 
-            val osi = "$symbol--${year - 2000}$month${day}C00${strike.toInt()}000"
+            val product = instrument.product!!
+            product.symbol.shouldBe(apple.symbol)
+            product.expiry.shouldBe(GregorianCalendar(apple.year, apple.month, apple.day))
+
+            val osi = "${apple.symbol}--${apple.year - 2000}${apple.month}${apple.day}C00${strike.toInt()}000"
+            product.product!!.symbol.shouldBe(osi)
+        }
+    }
+
+    "create preview to sell call option market" {
+        val path = Paths.get("brokers/etrade/orders/create_preview_sell_call_option_market.json")
+
+        createServer(path) {
+            val strike = 150f
+            val service = Orders(mockSession(), baseUrl = it.url(".").toString())
+            val request = sellCallOptionMarket(apple.symbol, 1f, 0.5f, strike, 1, apple.expiry)
+            val data = service.createPreview(accountIdKey, request)
+
+            data.shouldNotBeNull()
+
+            data.orders.first().messages.shouldBeNull()
+
+            val instrument = data.orders.first().instrument!!.first()
+            instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
+
+            val product = instrument.product!!
+            product.symbol.shouldBe(apple.symbol)
+            product.expiry.shouldBe(GregorianCalendar(apple.year, apple.month, apple.day))
+
+            val osi = "${apple.symbol}--${apple.year - 2000}${apple.month}${apple.day}C00${strike.toInt()}000"
             product.product!!.symbol.shouldBe(osi)
         }
     }

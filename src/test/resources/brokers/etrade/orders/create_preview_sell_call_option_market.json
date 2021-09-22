@@ -1,0 +1,75 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "OPTN",
+    "totalOrderValue": 164.5122,
+    "previewTime": 1632338931868,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 10071.43
+      },
+      "marginable": {
+        "currentBp": 27824.6,
+        "currentOor": 350.27,
+        "currentNetBp": 27474.33,
+        "currentOrderImpact": 329.02,
+        "netBp": 27145.3
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "MARKET",
+        "limitPrice": 0,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 0.5,
+        "estimatedTotalAmount": 164.5122,
+        "netPrice": 0,
+        "netBid": 0,
+        "netAsk": 0,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "AAPL Oct 15 '21 $150 Call",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 1,
+            "cancelQuantity": 0.0,
+            "osiKey": "AAPL--211015C00150000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "AAPL",
+              "securityType": "OPTN",
+              "callPut": "CALL",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 150.0,
+              "productId": {
+                "symbol": "AAPL--211015C00150000",
+                "typeCode": "OPTION"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1007340737106
+      }
+    ],
+    "Disclosure": {
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}

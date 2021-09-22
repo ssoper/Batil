@@ -3,7 +3,7 @@ package com.seansoper.batil
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionLimit
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {
@@ -40,8 +40,8 @@ object Core {
             it.first().accountIdKey?.let { accountIdKey ->
                 val service = Orders(session, parsed.production, parsed.verbose)
 
-                // val request = buyCallOptionLimit("AAPL", 1f, 150f, 1)
-                val request = buyCallOptionMarket("AAPL", 5f, stopPrice = 2.5f, 150f, 1)
+                val request = sellCallOptionLimit("GSAT", .05f, 0.5f, 1)
+                // val request = buyCallOptionMarket("AAPL", 5f, stopPrice = 2.5f, 150f, 1)
                 service.createPreview(accountIdKey, request)?.let {
                     println(it)
                 }
