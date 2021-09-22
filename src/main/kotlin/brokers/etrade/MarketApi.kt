@@ -13,12 +13,12 @@ import java.util.GregorianCalendar
 data class Message(
     val description: String,
     val code: Int,
-    val type: String
+    val type: String // TODO: Could be a type
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class MessagesResponse(
-    @JsonProperty("message")
+    @JsonProperty("Message")
     val messages: List<Message>
 )
 

@@ -201,8 +201,6 @@ class Authorization(
             } else {
                 null
             }
-        } ?: run {
-            null
         }
     }
 

@@ -38,10 +38,14 @@ object Core {
         accounts.list()?.let {
             it.first().accountIdKey?.let { accountIdKey ->
                 val service = Orders(session, parsed.production, parsed.verbose)
-                service.list(accountIdKey)?.let {
-                    println("Orders for account $accountIdKey")
+
+                service.createPreview(accountIdKey, "AAPL", 1f, 150f, 1)?.let {
                     println(it)
                 }
+//                service.list(accountIdKey)?.let {
+//                    println("Orders for account $accountIdKey")
+//                    println(it)
+//                }
             }
         }
 

@@ -72,20 +72,22 @@ class HttpInterceptor(
         }
 
         // Copy form body into param map
-        request.body?.let {
-            it.asString().split('&')
-                .takeIf { it.isNotEmpty() }
-                ?.map { it.split('=', limit = 2) }
-                ?.filter {
-                    (it.size == 2).also { hasTwoParts ->
-                        if (!hasTwoParts) throw IllegalStateException("Key with no value: ${it.getOrNull(0)}")
+        if (request.method == "GET") {
+            request.body?.let {
+                it.asString().split('&')
+                    .takeIf { it.isNotEmpty() }
+                    ?.map { it.split('=', limit = 2) }
+                    ?.filter {
+                        (it.size == 2).also { hasTwoParts ->
+                            if (!hasTwoParts) throw IllegalStateException("Key with no value: ${it.getOrNull(0)}")
+                        }
                     }
-                }
-                ?.associate {
-                    val (key, value) = it
-                    key to value
-                }
-                ?.also { parameters.putAll(it) }
+                    ?.associate {
+                        val (key, value) = it
+                        key to value
+                    }
+                    ?.also { parameters.putAll(it) }
+            }
         }
 
         // Create signature

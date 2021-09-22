@@ -215,7 +215,7 @@ data class Product(
     val type: ProductType
 )
 
-// TODO: Come up with a better name
+// TODO: Come up with a better name, this is sometimes referred to as Product
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TransactionStrike(
     val symbol: String?, // The symbol for which the quote details are being accessed
@@ -230,7 +230,7 @@ data class TransactionStrike(
     @JsonProperty("productId")
     val product: Product?,
 
-    @JsonProperty("strikePrice")
+    @JsonProperty("strikePrice") // TODO: might want to make this the name again
     val price: Float?, // The strike price for the option
 ) {
     val expiry: GregorianCalendar?

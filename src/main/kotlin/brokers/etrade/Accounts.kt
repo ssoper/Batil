@@ -14,8 +14,13 @@ enum class PortfolioSortBy {
 }
 
 enum class MarketSession {
-    REGULAR, // Default
-    EXTENDED
+    REGULAR,
+    EXTENDED;
+
+    companion object {
+        val default: MarketSession
+            get() = REGULAR
+    }
 }
 
 enum class PortfolioView {
