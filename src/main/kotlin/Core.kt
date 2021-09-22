@@ -1,10 +1,9 @@
 package com.seansoper.batil
 
+import com.seansoper.batil.brokers.etrade.Accounts
+import com.seansoper.batil.brokers.etrade.Authorization
+import com.seansoper.batil.brokers.etrade.Orders
 import com.seansoper.batil.config.GlobalConfig
-import com.seansoper.batil.connectors.etrade.Alerts
-import com.seansoper.batil.connectors.etrade.Authorization
-import com.seansoper.batil.connectors.etrade.Market
-import java.util.GregorianCalendar
 
 object Core {
     @JvmStatic fun main(args: Array<String>) {
@@ -34,64 +33,21 @@ object Core {
             }
         }
 
-        val service = Market(session, parsed.production, parsed.verbose)
-        // val data = client.ticker("AAPL", oauthToken, verifier)
-        // val data = client.lookup("Game", oauthToken, verifier)
-        // val data = client.optionChains("AAPL", oauthToken, verifier)
-        // modify to use third friday from whatever today is
-        val data = service.optionChains("AAPL", GregorianCalendar(2021, 9, 17), 131f, 1)
+        val accounts = Accounts(session, parsed.production, parsed.verbose)
 
-        data?.let {
-            println(it)
-        }
-
-        val alerts = Alerts(session, parsed.production, parsed.verbose)
-        alerts.list()?.let {
-            println("Total Alerts: ${it.totalAlerts}")
-            if (it.totalAlerts > 0) {
-                println(it.alerts)
-
-                alerts.get(it.alerts.first().id)?.let {
-                    println("Details for alert")
-                    println(it)
-
-                    alerts.delete(listOf(907, 908))?.let {
-                        println("Deleted alert")
-                        println(it)
-                    }
-                }
-            }
-        }
-
-        /*
-        val accountSrvc = Accounts(session, parsed.production, parsed.verbose)
-        accountSrvc.list()?.let {
-            println("Account retrieved")
-            println(it)
-
+        accounts.list()?.let {
             it.first().accountIdKey?.let { accountIdKey ->
+                val service = Orders(session, parsed.production, parsed.verbose)
 
-                // View portfolio
-                accountSrvc.viewPortfolio(accountIdKey)?.let {
-                    println("View portfolio")
+                service.createPreview(accountIdKey, "AAPL", 1f, 150f, 1)?.let {
                     println(it)
                 }
-
-                // Retrieve 5 most recent transactions
-                accountSrvc.listTransactions(accountIdKey, null, null, TransactionSortOrder.DESC, null, 5)?.let {
-                    println("Sorted")
-                    println(it)
-
-                    // Get details for most recent transaction
-                    accountSrvc.getTransaction(accountIdKey, it.transactions.first().transactionId)?.let {
-                        println("Recent transaction")
-                        println(it)
-                    }
-                }
-
+//                service.list(accountIdKey)?.let {
+//                    println("Orders for account $accountIdKey")
+//                    println(it)
+//                }
             }
         }
-        */
 
         // client.destroySession()
     }

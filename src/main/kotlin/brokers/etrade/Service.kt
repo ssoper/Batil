@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors.etrade
+package com.seansoper.batil.brokers.etrade
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
@@ -7,6 +7,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import java.text.SimpleDateFormat
+import java.util.GregorianCalendar
 
 open class Service(
     session: Session,
@@ -54,5 +56,13 @@ open class Service(
             .build()
 
         return retrofit.create(javaClass)
+    }
+
+    companion object {
+        fun formatDate(date: GregorianCalendar): String {
+            val formatter = SimpleDateFormat("MMddyyyy")
+            formatter.calendar = date
+            return formatter.format(date.time)
+        }
     }
 }

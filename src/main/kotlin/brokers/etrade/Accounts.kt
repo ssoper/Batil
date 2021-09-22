@@ -1,7 +1,6 @@
-package com.seansoper.batil.connectors.etrade
+package com.seansoper.batil.brokers.etrade
 
 import com.fasterxml.jackson.databind.module.SimpleModule
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.GregorianCalendar
 
@@ -15,8 +14,13 @@ enum class PortfolioSortBy {
 }
 
 enum class MarketSession {
-    REGULAR, // Default
-    EXTENDED
+    REGULAR,
+    EXTENDED;
+
+    companion object {
+        val default: MarketSession
+            get() = REGULAR
+    }
 }
 
 enum class PortfolioView {
@@ -30,6 +34,10 @@ class Accounts(
     baseUrl: String? = null
 ) : Service(session, production, verbose, baseUrl) {
 
+    /**
+     * List user’s accounts
+     * @sample com.seansoper.batil.samples.Accounts.list
+     */
     fun list(): List<Account>? {
         val service = createClient(AccountsApi::class.java)
         val response = service.getAccounts().execute()
@@ -37,6 +45,7 @@ class Accounts(
         return response.body()?.response?.accountRoot?.accounts
     }
 
+    // TODO: Document with sample
     fun getBalance(accountIdKey: String): AccountBalance? {
         val service = createClient(AccountsApi::class.java)
         val response = service.getBalance(accountIdKey).execute()
@@ -44,61 +53,45 @@ class Accounts(
         return response.body()?.response
     }
 
-    fun listTransactions(accountIdKey: String): TransactionResponse? {
-        return listTransactions(accountIdKey, startDate = null, endDate = null, sortOrder = null, startAt = null)
-    }
-
+    /**
+     * List transactions for an account
+     * @param[accountIdKey] The unique account key
+     * @param[startDate] The earliest date to include in the date range, history is available for two years
+     * @param[endDate] The latest date to include in the date range
+     * @param[sortOrder] Sort order for results
+     * @param[startAt] Specifies the desired starting point of the set of items to return, used for paging
+     * @param[count] Number of transactions to return in the response, defaults to 50, used for paging
+     * @sample com.seansoper.batil.samples.Accounts.listTransactions
+     */
     fun listTransactions(
         accountIdKey: String,
-        startDate: GregorianCalendar,
-        endDate: GregorianCalendar
-    ): TransactionResponse? {
-        return listTransactions(accountIdKey, startDate = startDate, endDate = endDate, sortOrder = null, startAt = null)
-    }
-
-    // TODO: Implement marker
-
-    fun formatDate(date: GregorianCalendar): String {
-        val formatter = SimpleDateFormat("MMddyyyy")
-        formatter.calendar = date
-        return formatter.format(date.time)
-    }
-
-    // TODO: Implement startAt
-    // TODO: Move to default null for count and other fields
-    fun listTransactions(
-        accountIdKey: String,
-        startDate: GregorianCalendar?,
-        endDate: GregorianCalendar?,
-        sortOrder: TransactionSortOrder?,
-        startAt: TransactionId?,
-        count: Int? = 50
+        startDate: GregorianCalendar? = null,
+        endDate: GregorianCalendar? = null,
+        sortOrder: TransactionSortOrder? = null,
+        startAt: TransactionId? = null,
+        count: Int? = null,
     ): TransactionResponse? {
 
-        val options = mutableMapOf("count" to count.toString())
+        val options: MutableMap<String, String> = mutableMapOf()
 
         startDate?.let {
-            options.putAll(
-                mapOf(
-                    "startDate" to formatDate(it)
-                )
-            )
+            options.put("startDate", formatDate(it))
         }
 
         endDate?.let {
-            options.putAll(
-                mapOf(
-                    "endDate" to formatDate(it)
-                )
-            )
+            options.put("endDate", formatDate(it))
         }
 
         sortOrder?.let {
-            options.putAll(
-                mapOf(
-                    "sortOrder" to it.toString()
-                )
-            )
+            options.put("sortOrder", it.toString())
+        }
+
+        startAt?.let {
+            options.put("startAt", it.toString())
+        }
+
+        count?.let {
+            options.put("count", it.toString())
         }
 
         val module = SimpleModule()
@@ -110,6 +103,12 @@ class Accounts(
         return response.body()?.response
     }
 
+    /**
+     * List transactions for an account
+     * @param[accountIdKey] The unique account key
+     * @param[transactionId] [TransactionId] of the transaction to return
+     * @sample com.seansoper.batil.samples.Accounts.getTransaction
+     */
     fun getTransaction(
         accountIdKey: String,
         transactionId: TransactionId
@@ -123,6 +122,17 @@ class Accounts(
         return response.body()?.response
     }
 
+    /**
+     * List transactions for an account
+     * @param[accountIdKey] The unique account key
+     * @param[sortBy] Field to sort by
+     * @param[sortOrder] Sort order for results, defaults to [TransactionSortOrder.DESC]
+     * @param[marketSession] Market session, defaults to [MarketSession.REGULAR]
+     * @param[totalsRequired] Returns the total values of the portfolio, defaults to false
+     * @param[lotsRequired] Returns lot positions of the portfolio, defaults to false
+     * @param[count] Number of transactions to return in the response, defaults to 50, used for paging
+     * @sample com.seansoper.batil.samples.Accounts.viewPortfolio
+     */
     fun viewPortfolio(
         accountIdKey: String,
         sortBy: PortfolioSortBy? = null,

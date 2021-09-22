@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors.etrade
+package com.seansoper.batil.brokers.etrade
 
 import com.seansoper.batil.CachedToken
 import com.seansoper.batil.CachedTokenException
@@ -201,8 +201,6 @@ class Authorization(
             } else {
                 null
             }
-        } ?: run {
-            null
         }
     }
 

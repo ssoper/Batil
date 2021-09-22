@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors.etrade
+package com.seansoper.batil.brokers.etrade
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -9,11 +9,21 @@ import retrofit2.http.QueryMap
 import java.time.Instant
 import java.util.GregorianCalendar
 
+enum class MessageType {
+    WARNING, INFO, INFO_HOLD, ERROR
+}
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Message(
     val description: String,
     val code: Int,
-    val type: String
+    val type: MessageType
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class MessagesResponse(
+    @JsonProperty("Message")
+    val messages: List<Message>
 )
 
 // TODO: Merge with AccountsApi QuoteMode

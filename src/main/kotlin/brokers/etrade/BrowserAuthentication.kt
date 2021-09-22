@@ -1,4 +1,4 @@
-package com.seansoper.batil.connectors.etrade
+package com.seansoper.batil.brokers.etrade
 
 import com.seansoper.batil.config.Chromium
 import io.reactivex.Single
