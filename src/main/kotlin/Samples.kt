@@ -212,7 +212,8 @@ class Orders {
             stopPrice = 2.5f,
             strikePrice = 150f,
             quantity = 1,
-            expiry = expiry)
+            expiry = expiry
+        )
         service.createPreview(accountIdKey, request)?.let {
             println("Preview purchase of AAPL--211015C00150000")
             println(it)
