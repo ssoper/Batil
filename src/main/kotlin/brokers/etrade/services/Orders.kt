@@ -2,8 +2,8 @@ package com.seansoper.batil.brokers.etrade.services
 
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.seansoper.batil.OptionsCalendar
-import com.seansoper.batil.brokers.etrade.api.CreatePreviewEnvelope
-import com.seansoper.batil.brokers.etrade.api.CreatePreviewRequest
+import com.seansoper.batil.brokers.etrade.api.PreviewRequestEnvelope
+import com.seansoper.batil.brokers.etrade.api.PreviewRequest
 import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderType
@@ -127,10 +127,10 @@ class Orders(
         strikePrice: Float,
         quantity: Int,
         expiry: ZonedDateTime = OptionsCalendar.nextMonthly(),
-        clientOrderId: String = randomString(20)
+        clientOrderId: String = randomString()
     ): PreviewOrderResponse? {
 
-        val body = CreatePreviewRequest(
+        val body = PreviewRequest(
             orderType = OrderType.OPTN,
             clientOrderId = clientOrderId,
             orders = listOf(
@@ -152,7 +152,7 @@ class Orders(
             )
         )
 
-        val request = CreatePreviewEnvelope(
+        val request = PreviewRequestEnvelope(
             request = body
         )
 
@@ -162,7 +162,7 @@ class Orders(
         return response.body()?.response
     }
 
-    private fun randomString(length: Int = 15): String {
+    private fun randomString(length: Int = 20): String {
         val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
         return (1..length)
             .map { kotlin.random.Random.nextInt(0, charPool.size) }
