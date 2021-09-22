@@ -1,7 +1,6 @@
 import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
 import TestHelper.PathHelper.randomString
-import com.seansoper.batil.brokers.etrade.CreatePreviewRequest
 import com.seansoper.batil.brokers.etrade.MarginLevel
 import com.seansoper.batil.brokers.etrade.OptionType
 import com.seansoper.batil.brokers.etrade.OrderActionType
@@ -9,9 +8,6 @@ import com.seansoper.batil.brokers.etrade.OrderStatus
 import com.seansoper.batil.brokers.etrade.OrderTerm
 import com.seansoper.batil.brokers.etrade.OrderType
 import com.seansoper.batil.brokers.etrade.Orders
-import com.seansoper.batil.brokers.etrade.PreviewInstrumentOption
-import com.seansoper.batil.brokers.etrade.PreviewOrderLimit
-import com.seansoper.batil.brokers.etrade.PreviewProductOption
 import com.seansoper.batil.brokers.etrade.SecurityType
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldNotBeNull
@@ -95,6 +91,4 @@ class OrdersTest : StringSpec({
             data.margin!!.marginable!!.currentBuyingPower.shouldBe(27825.10f)
         }
     }
-
 })
-

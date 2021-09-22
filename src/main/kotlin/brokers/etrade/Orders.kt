@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 import com.seansoper.batil.OptionsCalendar
 import java.time.Instant
 import java.time.ZonedDateTime
-import java.util.Calendar
 import java.util.GregorianCalendar
 
 enum class OrderStatus {
@@ -120,19 +119,23 @@ class Orders(
         val body = CreatePreviewRequest(
             orderType = OrderType.OPTN,
             clientOrderId = clientOrderId,
-            orders = listOf(PreviewOrderLimit(
-                limitPrice = limitPrice,
-                instruments = listOf(PreviewInstrumentOption(
-                    orderAction = OrderActionType.BUY_OPEN,
-                    quantity = quantity,
-                    product = PreviewProductOption(
-                        symbol,
-                        OptionType.CALL,
-                        expiry,
-                        strikePrice
+            orders = listOf(
+                PreviewOrderLimit(
+                    limitPrice = limitPrice,
+                    instruments = listOf(
+                        PreviewInstrumentOption(
+                            orderAction = OrderActionType.BUY_OPEN,
+                            quantity = quantity,
+                            product = PreviewProductOption(
+                                symbol,
+                                OptionType.CALL,
+                                expiry,
+                                strikePrice
+                            )
+                        )
                     )
-                ))
-            ))
+                )
+            )
         )
 
         val request = CreatePreviewEnvelope(

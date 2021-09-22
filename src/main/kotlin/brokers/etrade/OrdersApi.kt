@@ -451,8 +451,8 @@ data class PreviewProductOption(
     val expiryMonth: String,
     val expiryDay: String,
     val strikePrice: String
-): PreviewProduct {
-    constructor(symbol: String, callPut: OptionType, expiry: ZonedDateTime, strikePrice: Float): this(
+) : PreviewProduct {
+    constructor(symbol: String, callPut: OptionType, expiry: ZonedDateTime, strikePrice: Float) : this(
         symbol = symbol,
         callPut = callPut,
         expiryYear = expiry.year.toString(),
@@ -474,8 +474,8 @@ data class PreviewInstrumentOption(
 
     val orderedQuantity: String,
     val quantity: String
-): PreviewInstrument {
-    constructor(orderAction: OrderActionType, quantity: Int, product: PreviewProduct): this(
+) : PreviewInstrument {
+    constructor(orderAction: OrderActionType, quantity: Int, product: PreviewProduct) : this(
         orderAction = orderAction,
         orderedQuantity = quantity.toString(),
         quantity = quantity.toString(),
@@ -500,8 +500,8 @@ data class PreviewOrderLimit(
     override val instruments: List<PreviewInstrument>,
 
     val limitPrice: String
-): PreviewOrder {
-    constructor(allOrNone: Boolean = false, limitPrice: Float, instruments: List<PreviewInstrument>): this(
+) : PreviewOrder {
+    constructor(allOrNone: Boolean = false, limitPrice: Float, instruments: List<PreviewInstrument>) : this(
         allOrNone = allOrNone.toString(),
         limitPrice = limitPrice.toString(),
         instruments = instruments
@@ -533,5 +533,4 @@ interface OrdersApi {
         @Path("accountIdKey") accountIdKey: String,
         @Body body: CreatePreviewEnvelope
     ): Call<PreviewOrderResponseEnvelope>
-
 }
