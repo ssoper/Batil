@@ -3,6 +3,7 @@ import TestHelper.MockHelper.mockSession
 import TestHelper.PathHelper.randomString
 import com.seansoper.batil.brokers.etrade.MarginLevel
 import com.seansoper.batil.brokers.etrade.MessageType
+import com.seansoper.batil.brokers.etrade.OptionLevel
 import com.seansoper.batil.brokers.etrade.OptionType
 import com.seansoper.batil.brokers.etrade.OrderActionType
 import com.seansoper.batil.brokers.etrade.OrderStatus
@@ -90,6 +91,7 @@ class OrdersTest : StringSpec({
 
             data.marginLevel.shouldBe(MarginLevel.MARGIN_TRADING_ALLOWED)
             data.margin!!.marginable!!.currentBuyingPower.shouldBe(27825.10f)
+            data.optionLevel.shouldBe(OptionLevel.LEVEL_3)
         }
     }
 })
