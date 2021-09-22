@@ -1,20 +1,20 @@
-import TestHelper.MockHelper.createServer
-import TestHelper.MockHelper.mockSession
-import TestHelper.PathHelper.randomString
-import com.seansoper.batil.brokers.etrade.MarginLevel
-import com.seansoper.batil.brokers.etrade.MessageType
-import com.seansoper.batil.brokers.etrade.OptionLevel
-import com.seansoper.batil.brokers.etrade.OptionType
-import com.seansoper.batil.brokers.etrade.OrderActionType
-import com.seansoper.batil.brokers.etrade.OrderStatus
-import com.seansoper.batil.brokers.etrade.OrderTerm
-import com.seansoper.batil.brokers.etrade.OrderType
-import com.seansoper.batil.brokers.etrade.Orders
-import com.seansoper.batil.brokers.etrade.SecurityType
+import com.seansoper.batil.brokers.etrade.api.MarginLevel
+import com.seansoper.batil.brokers.etrade.api.MessageType
+import com.seansoper.batil.brokers.etrade.api.OptionLevel
+import com.seansoper.batil.brokers.etrade.api.OptionType
+import com.seansoper.batil.brokers.etrade.api.OrderActionType
+import com.seansoper.batil.brokers.etrade.api.OrderTerm
+import com.seansoper.batil.brokers.etrade.api.OrderType
+import com.seansoper.batil.brokers.etrade.api.SecurityType
+import com.seansoper.batil.brokers.etrade.services.OrderStatus
+import com.seansoper.batil.brokers.etrade.services.Orders
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
+import testHelper.MockHelper.createServer
+import testHelper.MockHelper.mockSession
+import testHelper.PathHelper.randomString
 import java.nio.file.Paths
 import java.time.Instant
 import java.time.LocalDate
@@ -26,7 +26,7 @@ import java.util.GregorianCalendar
 class OrdersTest : StringSpec({
 
     "list orders" {
-        val path = Paths.get("apiResponses/orders/list.json")
+        val path = Paths.get("brokers/etrade/orders/list.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)
@@ -61,7 +61,7 @@ class OrdersTest : StringSpec({
     }
 
     "create preview to buy call limit option" {
-        val path = Paths.get("apiResponses/orders/create_preview_buy_call_limit_option.json")
+        val path = Paths.get("brokers/etrade/orders/create_preview_buy_call_limit_option.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)

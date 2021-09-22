@@ -1,10 +1,10 @@
-import TestHelper.PathHelper.getPaths
-import TestHelper.PathHelper.randomString
 import com.seansoper.batil.CachedToken
 import com.seansoper.batil.CachedTokenException
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
+import testHelper.PathHelper.getPaths
+import testHelper.PathHelper.randomString
 import java.nio.file.Paths
 
 class CachedTokenTest : StringSpec({

@@ -1,6 +1,15 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.services
 
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.seansoper.batil.brokers.etrade.api.LookupResult
+import com.seansoper.batil.brokers.etrade.api.MarketApi
+import com.seansoper.batil.brokers.etrade.api.OptionCategory
+import com.seansoper.batil.brokers.etrade.api.OptionChainResponse
+import com.seansoper.batil.brokers.etrade.api.OptionType
+import com.seansoper.batil.brokers.etrade.api.QuoteData
+import com.seansoper.batil.brokers.etrade.auth.Session
+import com.seansoper.batil.brokers.etrade.deserializers.DateTimeDeserializer
+import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.time.Instant

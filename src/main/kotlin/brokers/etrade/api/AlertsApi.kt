@@ -1,7 +1,8 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.api
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.seansoper.batil.brokers.etrade.services.AlertStatus
 import retrofit2.Call
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -14,7 +15,7 @@ data class Alert(
     val id: Int, // The numeric alert ID
     val createTime: Instant?, // The date and time the alert was issued, in Epoch time
     val subject: String, // The subject of the alert
-    val status: Status, // UNREAD, READ, DELETED, UNDELETED
+    val status: AlertStatus, // UNREAD, READ, DELETED, UNDELETED
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)

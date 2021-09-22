@@ -1,4 +1,4 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.api
 
 import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -260,6 +260,7 @@ data class TransactionTrade(
     val displaySymbol: String?,
     val settlementDate: Instant?,
 
+    // TODO: Consider renaming back to Product
     @JsonProperty("product")
     @JsonAlias("Product")
     val strike: TransactionStrike

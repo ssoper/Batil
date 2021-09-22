@@ -1,20 +1,20 @@
-import TestHelper.MockHelper.createServer
-import TestHelper.MockHelper.mockSession
-import TestHelper.PathHelper.randomString
-import com.seansoper.batil.brokers.etrade.AccountMode
-import com.seansoper.batil.brokers.etrade.AccountType
-import com.seansoper.batil.brokers.etrade.Accounts
-import com.seansoper.batil.brokers.etrade.OptionLevel
-import com.seansoper.batil.brokers.etrade.OptionType
-import com.seansoper.batil.brokers.etrade.PositionIndicatorType
-import com.seansoper.batil.brokers.etrade.QuoteMode
-import com.seansoper.batil.brokers.etrade.SecurityType
-import com.seansoper.batil.brokers.etrade.TransactionSortOrder
+import com.seansoper.batil.brokers.etrade.api.AccountMode
+import com.seansoper.batil.brokers.etrade.api.AccountType
+import com.seansoper.batil.brokers.etrade.api.OptionLevel
+import com.seansoper.batil.brokers.etrade.api.OptionType
+import com.seansoper.batil.brokers.etrade.api.PositionIndicatorType
+import com.seansoper.batil.brokers.etrade.api.QuoteMode
+import com.seansoper.batil.brokers.etrade.api.SecurityType
+import com.seansoper.batil.brokers.etrade.services.Accounts
+import com.seansoper.batil.brokers.etrade.services.TransactionSortOrder
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
+import testHelper.MockHelper.createServer
+import testHelper.MockHelper.mockSession
+import testHelper.PathHelper.randomString
 import java.nio.file.Paths
 import java.time.Instant
 import java.util.GregorianCalendar
@@ -23,7 +23,7 @@ import kotlin.random.Random.Default.nextLong
 class AccountsTest : StringSpec({
 
     "list accounts" {
-        val path = Paths.get("apiResponses/accounts/list.json")
+        val path = Paths.get("brokers/etrade/accounts/list.json")
 
         createServer(path) {
             val service = Accounts(mockSession(), baseUrl = it.url(".").toString())
@@ -48,7 +48,7 @@ class AccountsTest : StringSpec({
     }
 
     "get balance" {
-        val path = Paths.get("apiResponses/accounts/balance.json")
+        val path = Paths.get("brokers/etrade/accounts/balance.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)
@@ -90,7 +90,7 @@ class AccountsTest : StringSpec({
     }
 
     "list 50 transactions" {
-        val path = Paths.get("apiResponses/accounts/list_transactions.json")
+        val path = Paths.get("brokers/etrade/accounts/list_transactions.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)
@@ -118,7 +118,7 @@ class AccountsTest : StringSpec({
             trade.displaySymbol.shouldContain("PLTR")
             trade.settlementDate.shouldBe(Instant.ofEpochMilli(1613635200000))
 
-            val strike = trade.strike!!
+            val strike = trade.strike
             strike.symbol.shouldBe("PLTR")
             strike.securityType!!.description.shouldBe("Option")
             strike.callPut.shouldBe(OptionType.PUT)
@@ -130,7 +130,7 @@ class AccountsTest : StringSpec({
     }
 
     "list transactions by date" {
-        val path = Paths.get("apiResponses/accounts/list_transactions_by_date.json")
+        val path = Paths.get("brokers/etrade/accounts/list_transactions_by_date.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)
@@ -151,7 +151,7 @@ class AccountsTest : StringSpec({
     }
 
     "list 5 transactions sorted ascending" {
-        val path = Paths.get("apiResponses/accounts/list_transactions_sort_asc.json")
+        val path = Paths.get("brokers/etrade/accounts/list_transactions_sort_asc.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)
@@ -168,7 +168,7 @@ class AccountsTest : StringSpec({
     }
 
     "get transaction details" {
-        val path = Paths.get("apiResponses/accounts/get_transaction_details.json")
+        val path = Paths.get("brokers/etrade/accounts/get_transaction_details.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)
@@ -184,7 +184,7 @@ class AccountsTest : StringSpec({
     }
 
     "view portfolio" {
-        val path = Paths.get("apiResponses/accounts/view_portfolio.json")
+        val path = Paths.get("brokers/etrade/accounts/view_portfolio.json")
 
         createServer(path) {
             val accountIdKey = randomString(6)

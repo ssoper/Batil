@@ -1,8 +1,14 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.services
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.seansoper.batil.brokers.etrade.auth.Session
+import com.seansoper.batil.brokers.etrade.interceptors.ApiError
+import com.seansoper.batil.brokers.etrade.interceptors.ErrorInterceptor
+import com.seansoper.batil.brokers.etrade.interceptors.HttpInterceptor
+import com.seansoper.batil.brokers.etrade.interceptors.JsonInterceptor
+import com.seansoper.batil.brokers.etrade.interceptors.OauthKeys
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -66,3 +72,5 @@ open class Service(
         }
     }
 }
+
+class ServiceUnavailableError : ApiError(100, "The requested service is not currently available")

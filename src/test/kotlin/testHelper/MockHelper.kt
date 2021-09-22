@@ -1,6 +1,6 @@
-package TestHelper.MockHelper
+package testHelper.MockHelper
 
-import com.seansoper.batil.brokers.etrade.Session
+import com.seansoper.batil.brokers.etrade.auth.Session
 import io.kotlintest.matchers.types.shouldNotBeNull
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

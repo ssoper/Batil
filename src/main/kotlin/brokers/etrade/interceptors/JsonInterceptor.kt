@@ -1,4 +1,4 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.interceptors
 
 import okhttp3.Interceptor
 import okhttp3.Response

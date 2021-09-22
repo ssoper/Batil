@@ -1,6 +1,7 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.interceptors
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.seansoper.batil.brokers.etrade.services.ServiceUnavailableError
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -30,5 +31,3 @@ class ErrorInterceptor : Interceptor {
 }
 
 open class ApiError(val code: Int = 0, override val message: String = "Error from E*TRADE API") : Error(message)
-
-class ServiceUnavailableError : ApiError(100, "The requested service is not currently available")

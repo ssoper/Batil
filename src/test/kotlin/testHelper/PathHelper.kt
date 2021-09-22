@@ -1,4 +1,4 @@
-package TestHelper.PathHelper
+package testHelper.PathHelper
 
 import java.nio.file.Path
 import java.nio.file.Paths
