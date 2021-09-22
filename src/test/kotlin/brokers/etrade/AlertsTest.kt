@@ -1,5 +1,3 @@
-import TestHelper.MockHelper.createServer
-import TestHelper.MockHelper.mockSession
 import com.seansoper.batil.brokers.etrade.services.AlertStatus
 import com.seansoper.batil.brokers.etrade.services.Alerts
 import io.kotlintest.matchers.collections.shouldContain
@@ -8,13 +6,15 @@ import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
+import testHelper.MockHelper.createServer
+import testHelper.MockHelper.mockSession
 import java.nio.file.Paths
 import java.time.Instant
 
 class AlertsTest : StringSpec({
 
     "list alerts" {
-        val path = Paths.get("apiResponses/alerts/list.json")
+        val path = Paths.get("brokers/etrade/alerts/list.json")
 
         createServer(path) {
             val service = Alerts(mockSession(), baseUrl = it.url(".").toString())
@@ -39,7 +39,7 @@ class AlertsTest : StringSpec({
     }
 
     "alert details" {
-        val path = Paths.get("apiResponses/alerts/details.json")
+        val path = Paths.get("brokers/etrade/alerts/details.json")
 
         createServer(path) {
             val alertId = 886
@@ -58,7 +58,7 @@ class AlertsTest : StringSpec({
     }
 
     "delete single alert" {
-        val path = Paths.get("apiResponses/alerts/delete_single.json")
+        val path = Paths.get("brokers/etrade/alerts/delete_single.json")
 
         createServer(path) {
             val alertId = 886
@@ -74,7 +74,7 @@ class AlertsTest : StringSpec({
     }
 
     "delete many alerts" {
-        val path = Paths.get("apiResponses/alerts/delete_multiple.json")
+        val path = Paths.get("brokers/etrade/alerts/delete_multiple.json")
 
         createServer(path) {
             val alertsId = listOf(886, 907, 908)
@@ -93,7 +93,7 @@ class AlertsTest : StringSpec({
     }
 
     "delete alerts failure" {
-        val path = Paths.get("apiResponses/alerts/delete_failure.xml")
+        val path = Paths.get("brokers/etrade/alerts/delete_failure.xml")
 
         createServer(path, header = "Content-Type" to "application/xml", code = 500) {
             val alertsId = listOf(907, 908)

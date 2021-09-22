@@ -1,5 +1,3 @@
-import TestHelper.MockHelper.createServer
-import TestHelper.MockHelper.mockSession
 import com.seansoper.batil.brokers.etrade.api.OptionCategory
 import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.interceptors.ApiError
@@ -9,13 +7,15 @@ import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
+import testHelper.MockHelper.createServer
+import testHelper.MockHelper.mockSession
 import java.nio.file.Paths
 import java.util.GregorianCalendar
 
 class MarketTest : StringSpec({
 
     "single ticker" {
-        val path = Paths.get("apiResponses/market/quote/single_ticker_success.json")
+        val path = Paths.get("brokers/etrade/market/quote/single_ticker_success.json")
 
         createServer(path) {
             val service = Market(mockSession(), baseUrl = it.url(".").toString())
@@ -33,7 +33,7 @@ class MarketTest : StringSpec({
     }
 
     "multiple tickers" {
-        val path = Paths.get("apiResponses/market/quote/multiple_tickers_success.json")
+        val path = Paths.get("brokers/etrade/market/quote/multiple_tickers_success.json")
 
         createServer(path) {
             val service = Market(mockSession(), baseUrl = it.url(".").toString())
@@ -50,7 +50,7 @@ class MarketTest : StringSpec({
     }
 
     "lookup ticker" {
-        val path = Paths.get("apiResponses/market/lookup_ticker_success.json")
+        val path = Paths.get("brokers/etrade/market/lookup_ticker_success.json")
 
         createServer(path) {
             val service = Market(mockSession(), baseUrl = it.url(".").toString())
@@ -64,7 +64,7 @@ class MarketTest : StringSpec({
     }
 
     "option chain" {
-        val path = Paths.get("apiResponses/market/option_chains/nearest_expiry_all_strikes_success.json")
+        val path = Paths.get("brokers/etrade/market/option_chains/nearest_expiry_all_strikes_success.json")
 
         createServer(path) {
             val service = Market(mockSession(), baseUrl = it.url(".").toString())
@@ -95,7 +95,7 @@ class MarketTest : StringSpec({
     }
 
     "option chain specific expiry strike" {
-        val path = Paths.get("apiResponses/market/option_chains/specific_expiry_strike_distance_success.json")
+        val path = Paths.get("brokers/etrade/market/option_chains/specific_expiry_strike_distance_success.json")
 
         createServer(path) {
             val service = Market(mockSession(), baseUrl = it.url(".").toString())
@@ -121,7 +121,7 @@ class MarketTest : StringSpec({
     }
 
     "options chain invalid expiry date" {
-        val path = Paths.get("apiResponses/market/option_chains/expiry_date_error.xml")
+        val path = Paths.get("brokers/etrade/market/option_chains/expiry_date_error.xml")
 
         createServer(path, "Content-Type" to "application/xml", 400) {
             val service = Market(mockSession(), baseUrl = it.url(".").toString())

@@ -1,6 +1,3 @@
-import TestHelper.LoadConfig
-import TestHelper.MockHelper.createServer
-import TestHelper.PathHelper.randomString
 import com.seansoper.batil.brokers.etrade.AuthResponse
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import io.kotlintest.matchers.string.shouldContain
@@ -8,6 +5,9 @@ import io.kotlintest.matchers.types.shouldBeInstanceOf
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
+import testHelper.LoadConfig
+import testHelper.MockHelper.createServer
+import testHelper.PathHelper.randomString
 
 fun mockTokens(): Triple<String, String, String> {
     val token = randomString()

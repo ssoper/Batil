@@ -1,4 +1,4 @@
-package TestHelper
+package testHelper
 
 import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig

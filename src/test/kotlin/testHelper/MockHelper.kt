@@ -1,4 +1,4 @@
-package TestHelper.MockHelper
+package testHelper.MockHelper
 
 import com.seansoper.batil.brokers.etrade.auth.Session
 import io.kotlintest.matchers.types.shouldNotBeNull

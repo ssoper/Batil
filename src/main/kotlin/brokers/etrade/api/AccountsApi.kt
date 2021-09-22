@@ -260,6 +260,7 @@ data class TransactionTrade(
     val displaySymbol: String?,
     val settlementDate: Instant?,
 
+    // TODO: Consider renaming back to Product
     @JsonProperty("product")
     @JsonAlias("Product")
     val strike: TransactionStrike
