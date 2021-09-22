@@ -1,8 +1,8 @@
 package com.seansoper.batil
 
-import com.seansoper.batil.brokers.etrade.Accounts
-import com.seansoper.batil.brokers.etrade.Authorization
-import com.seansoper.batil.brokers.etrade.Orders
+import com.seansoper.batil.brokers.etrade.auth.Authorization
+import com.seansoper.batil.brokers.etrade.services.Accounts
+import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {

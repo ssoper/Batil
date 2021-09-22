@@ -1,6 +1,12 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.services
 
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.seansoper.batil.brokers.etrade.api.AlertDetails
+import com.seansoper.batil.brokers.etrade.api.AlertsApi
+import com.seansoper.batil.brokers.etrade.api.AlertsResponse
+import com.seansoper.batil.brokers.etrade.api.DeleteAlertsResponse
+import com.seansoper.batil.brokers.etrade.auth.Session
+import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
 import java.time.Instant
 
 enum class Category {
@@ -8,7 +14,7 @@ enum class Category {
     ACCOUNT
 }
 
-enum class Status {
+enum class AlertStatus {
     READ,
     UNREAD,
     DELETED,
@@ -33,7 +39,7 @@ class Alerts(
      */
     fun list(
         category: Category? = null,
-        status: Status? = null,
+        status: AlertStatus? = null,
         direction: TransactionSortOrder? = null,
         search: String? = null,
         count: Int? = null

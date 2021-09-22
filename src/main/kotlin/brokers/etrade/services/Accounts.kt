@@ -1,6 +1,15 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.services
 
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.seansoper.batil.brokers.etrade.api.Account
+import com.seansoper.batil.brokers.etrade.api.AccountBalance
+import com.seansoper.batil.brokers.etrade.api.AccountsApi
+import com.seansoper.batil.brokers.etrade.api.Portfolio
+import com.seansoper.batil.brokers.etrade.api.Transaction
+import com.seansoper.batil.brokers.etrade.api.TransactionId
+import com.seansoper.batil.brokers.etrade.api.TransactionResponse
+import com.seansoper.batil.brokers.etrade.auth.Session
+import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
 import java.time.Instant
 import java.util.GregorianCalendar
 

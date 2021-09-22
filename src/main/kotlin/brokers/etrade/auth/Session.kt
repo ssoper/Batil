@@ -1,4 +1,4 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.auth
 
 class Session(
     val consumerKey: String,

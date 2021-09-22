@@ -1,7 +1,12 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.auth
 
 import com.seansoper.batil.CachedToken
 import com.seansoper.batil.CachedTokenException
+import com.seansoper.batil.brokers.etrade.AuthResponse
+import com.seansoper.batil.brokers.etrade.AuthResponseError
+import com.seansoper.batil.brokers.etrade.BrowserAuthentication
+import com.seansoper.batil.brokers.etrade.interceptors.HttpInterceptor
+import com.seansoper.batil.brokers.etrade.interceptors.OauthKeys
 import com.seansoper.batil.config.GlobalConfig
 import okhttp3.OkHttpClient
 import okhttp3.Request

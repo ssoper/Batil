@@ -1,9 +1,9 @@
 import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
-import com.seansoper.batil.brokers.etrade.ApiError
-import com.seansoper.batil.brokers.etrade.Market
-import com.seansoper.batil.brokers.etrade.OptionCategory
-import com.seansoper.batil.brokers.etrade.OptionType
+import com.seansoper.batil.brokers.etrade.api.OptionCategory
+import com.seansoper.batil.brokers.etrade.api.OptionType
+import com.seansoper.batil.brokers.etrade.interceptors.ApiError
+import com.seansoper.batil.brokers.etrade.services.Market
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe

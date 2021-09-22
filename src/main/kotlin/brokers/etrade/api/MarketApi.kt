@@ -1,4 +1,4 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.api
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty

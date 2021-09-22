@@ -1,7 +1,7 @@
 import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
-import com.seansoper.batil.brokers.etrade.Alerts
-import com.seansoper.batil.brokers.etrade.Status
+import com.seansoper.batil.brokers.etrade.services.AlertStatus
+import com.seansoper.batil.brokers.etrade.services.Alerts
 import io.kotlintest.matchers.collections.shouldContain
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull
@@ -26,12 +26,12 @@ class AlertsTest : StringSpec({
 
             val first = data.alerts.first()
             first.subject.shouldContain("EDIT")
-            first.status.shouldBe(Status.UNREAD)
+            first.status.shouldBe(AlertStatus.UNREAD)
             first.createTime.shouldBe(Instant.ofEpochSecond(1631302123)) // 9-10-2021
 
             val last = data.alerts.last()
             last.subject.shouldContain("SPCE")
-            last.status.shouldBe(Status.UNREAD)
+            last.status.shouldBe(AlertStatus.UNREAD)
             last.createTime.shouldBe(Instant.ofEpochSecond(1630008354)) // 8-26-2021
 
             it.takeRequest().path.shouldBe("/v1/user/alerts")
