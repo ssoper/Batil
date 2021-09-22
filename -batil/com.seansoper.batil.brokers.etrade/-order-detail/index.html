@@ -1,0 +1,707 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OrderDetail</title>
+<link href="../../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="Batil::com.seansoper.batil.brokers.etrade/OrderDetail///PointingToDeclaration//769193423">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">Batil</a>/<a href="../index.html">com.seansoper.batil.brokers.etrade</a>/<a href="index.html">OrderDetail</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Order</span><wbr></wbr><span>Detail</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">data class <a href="index.html">OrderDetail</a>(orderNumber: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, accountId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, previewTime: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?, placedTime: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?, executedTime: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?, orderValue: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, status: <a href="../-order-status/index.html">OrderStatus</a>?, orderType: <a href="../-order-type/index.html">OrderType</a>?, orderTerm: <a href="../-order-term/index.html">OrderTerm</a>?, priceType: <a href="../-order-price-type/index.html">OrderPriceType</a>?, priceValue: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, limitPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, stopPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, stopLimitPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, offsetType: <a href="../-order-offset-type/index.html">OrderOffsetType</a>?, offsetValue: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, marketSession: <a href="../-market-session/index.html">MarketSession</a>?, routingDestination: <a href="../-routing-destination/index.html">RoutingDestination</a>?, bracketedLimitPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, initialStopPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, trailPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, triggerPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, conditionPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, conditionSymbol: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, conditionType: <a href="../-condition-type/index.html">ConditionType</a>?, conditionFollowPrice: <a href="../-condition-follow-price/index.html">ConditionFollowPrice</a>?, conditionSecurityType: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, replacedByOrderId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, replacesOrderId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, allOrNone: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?, previewId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, instrument: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-instrument/index.html">Instrument</a>&gt;?, messages: <a href="../-messages-response/index.html">MessagesResponse</a>?, preClearanceCode: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, overrideRestrictedCd: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, investmentAmount: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, positionQuantity: <a href="../-position-quantity-type/index.html">PositionQuantityType</a>?, aipFlag: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?, egQual: <a href="../-execution-guarantee-type/index.html">ExecutionGuaranteeType</a>?, reInvestOption: <a href="../-reinvest-option-type/index.html">ReinvestOptionType</a>?, estimatedCommission: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, estimatedFees: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, estimatedTotalAmount: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, netPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, netBid: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, netAsk: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, gcd: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, ratio: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, mfpriceType: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Order Details</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button><button class="section-tab" data-togglable="Sources">Sources</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Parameters</h2>
+              <div data-togglable="Parameters">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">orderNumber</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The numeric ID for this order in the E*TRADE system</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">accountId</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The numeric account ID</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">previewTime</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The time of the order preview</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">placedTime</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The time the order was placed (UTC)</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">executedTime</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The time the order was executed (UTC)</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">orderValue</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Total cost or proceeds, including commission</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">status</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">OPEN, EXECUTED, CANCELLED, INDIVIDUAL_FILLS, CANCEL_REQUESTED, EXPIRED, REJECTED, PARTIAL, DO_NOT_EXERCISE, DONE_TRADE_EXECUTED</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">orderType</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">EQ, OPTN, SPREADS, BUY_WRITES, BUTTERFLY, IRON_BUTTERFLY, CONDOR, IRON_CONDOR, MF, MMF</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">orderTerm</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">GOOD_UNTIL_CANCEL, GOOD_FOR_DAY, GOOD_TILL_DATE, IMMEDIATE_OR_CANCEL, FILL_OR_KILL</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">priceType</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">MARKET, LIMIT, STOP, STOP_LIMIT, TRAILING_STOP_CNST_BY_LOWER_TRIGGER, UPPER_TRIGGER_BY_TRAILING_STOP_CNST, TRAILING_STOP_PRCT_BY_LOWER_TRIGGER, UPPER_TRIGGER_BY_TRAILING_STOP_PRCT, TRAILING_STOP_CNST, TRAILING_STOP_PRCT, HIDDEN_STOP, HIDDEN_STOP_BY_LOWER_TRIGGER, UPPER_TRIGGER_BY_HIDDEN_STOP, NET_DEBIT, NET_CREDIT, NET_EVEN, MARKET_ON_OPEN, MARKET_ON_CLOSE, LIMIT_ON_OPEN, LIMIT_ON_CLOSE</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">priceValue</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The value of the price</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">limitPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The highest price at which to buy or the lowest price at which to sell if specified in a limit order</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">stopPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The designated boundary price for a stop order</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">stopLimitPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The designated boundary price for a stop-limit order</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">offsetType</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">TRAILING_STOP_CNST, TRAILING_STOP_PRCT</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">offsetValue</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The stop value for trailing stop price types</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">marketSession</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">REGULAR, EXTENDED</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">routingDestination</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">AUTO, AMEX, BOX, CBOE, ISE, NOM, NYSE, PHX</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">bracketedLimitPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The bracketed limit price (bracketed orders are not supported in API currently)</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">initialStopPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The initial stop price</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">trailPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The current trailing value. For trailing stop dollar orders, this is a fixed dollar amount. For trailing stop percentage orders, this is the price reflected by the percentage selected.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">triggerPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The price that an advanced order will trigger. For example, if it is a $1 buy trailing stop, then the trigger price will be $1 above the last price.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">conditionPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">For a conditional order, the price the condition is being compared against</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">conditionSymbol</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">For a conditional order, the symbol that the condition is being compared against</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">conditionType</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">CONTINGENT_GTE, CONTINGENT_LTE</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">conditionFollowPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">ASK, BID, LAST</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">conditionSecurityType</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The condition security type</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">replacedByOrderId</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">In the event of a change order request, the order ID of the order that is replacing a prior order.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">replacesOrderId</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">In the event of a change order request, the order ID of the order that the new order is replacing.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">allOrNone</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">If TRUE, the transactions specified in the order must be executed all at once or not at all; default is FALSE</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">previewId</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">This parameter is required and must specify the numeric preview ID from the preview and the other parameters of this request must match the parameters of the preview.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">instrument</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The object for the instrument</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">messages</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The object for the messages</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">preClearanceCode</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The preclearance code</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">overrideRestrictedCd</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The overrides restricted code</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">investmentAmount</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The amount of the investment</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">positionQuantity</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">ENTIRE_POSITION, CASH, MARGIN</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">aipFlag</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Indicator to identify if automated investment planning is turned on or off</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">egQual</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">EG_QUAL_UNSPECIFIED, EG_QUAL_QUALIFIED, EG_QUAL_NOT_IN_FORCE, EG_QUAL_NOT_A_MARKET_ORDER, EG_QUAL_NOT_AN_ELIGIBLE_SECURITY, EG_QUAL_INVALID_ORDER_TYPE, EG_QUAL_SIZE_NOT_QUALIFIED, EG_QUAL_OUTSIDE_GUARANTEED_PERIOD, EG_QUAL_INELIGIBLE_GATEWAY, EG_QUAL_INELIGIBLE_DUE_TO_IPO, EG_QUAL_INELIGIBLE_DUE_TO_SELF_DIRECTED, EG_QUAL_INELIGIBLE_DUE_TO_CHANGEORDER</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">reInvestOption</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">REINVEST, DEPOSIT, CURRENT_HOLDING</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">estimatedCommission</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The cost billed to the user to perform the requested action</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">estimatedFees</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The estimated fees</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">estimatedTotalAmount</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The cost or proceeds, including broker commission, resulting from the requested action</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">netPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The net price</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">netBid</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The net bid</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">netAsk</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The net ask</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">gcd</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The GCD</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">ratio</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The ratio</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">mfpriceType</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The mutual fund price type</p></div></div></div></div></div></div></div></div></div>
+              </div>
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="968826938%2FConstructors%2F769193423" anchor-label="OrderDetail" id="968826938%2FConstructors%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-order-detail.html">OrderDetail</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="968826938%2FConstructors%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="-order-detail.html">OrderDetail</a>(orderNumber: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, accountId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, previewTime: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?, placedTime: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?, executedTime: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?, orderValue: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, status: <a href="../-order-status/index.html">OrderStatus</a>?, orderType: <a href="../-order-type/index.html">OrderType</a>?, orderTerm: <a href="../-order-term/index.html">OrderTerm</a>?, priceType: <a href="../-order-price-type/index.html">OrderPriceType</a>?, priceValue: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, limitPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, stopPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, stopLimitPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, offsetType: <a href="../-order-offset-type/index.html">OrderOffsetType</a>?, offsetValue: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, marketSession: <a href="../-market-session/index.html">MarketSession</a>?, routingDestination: <a href="../-routing-destination/index.html">RoutingDestination</a>?, bracketedLimitPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, initialStopPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, trailPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, triggerPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, conditionPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, conditionSymbol: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, conditionType: <a href="../-condition-type/index.html">ConditionType</a>?, conditionFollowPrice: <a href="../-condition-follow-price/index.html">ConditionFollowPrice</a>?, conditionSecurityType: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, replacedByOrderId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, replacesOrderId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, allOrNone: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?, previewId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, instrument: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-instrument/index.html">Instrument</a>&gt;?, messages: <a href="../-messages-response/index.html">MessagesResponse</a>?, preClearanceCode: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, overrideRestrictedCd: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, investmentAmount: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, positionQuantity: <a href="../-position-quantity-type/index.html">PositionQuantityType</a>?, aipFlag: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?, egQual: <a href="../-execution-guarantee-type/index.html">ExecutionGuaranteeType</a>?, reInvestOption: <a href="../-reinvest-option-type/index.html">ReinvestOptionType</a>?, estimatedCommission: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, estimatedFees: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, estimatedTotalAmount: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, netPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, netBid: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, netAsk: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?, gcd: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?, ratio: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, mfpriceType: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The numeric ID for this order in the E*TRADE system</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="303702482%2FProperties%2F769193423" anchor-label="accountId" id="303702482%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="account-id.html">accountId</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="303702482%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="303702482%2FProperties%2F769193423" anchor-label="accountId" id="303702482%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="account-id.html">accountId</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="303702482%2FProperties%2F769193423" anchor-label="accountId" id="303702482%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The numeric account ID</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1394058778%2FProperties%2F769193423" anchor-label="aipFlag" id="-1394058778%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="aip-flag.html">aipFlag</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1394058778%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1394058778%2FProperties%2F769193423" anchor-label="aipFlag" id="-1394058778%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="aip-flag.html">aipFlag</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1394058778%2FProperties%2F769193423" anchor-label="aipFlag" id="-1394058778%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>Indicator to identify if automated investment planning is turned on or off</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="365034430%2FProperties%2F769193423" anchor-label="allOrNone" id="365034430%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="all-or-none.html">allOrNone</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="365034430%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="365034430%2FProperties%2F769193423" anchor-label="allOrNone" id="365034430%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="all-or-none.html">allOrNone</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="365034430%2FProperties%2F769193423" anchor-label="allOrNone" id="365034430%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>If TRUE, the transactions specified in the order must be executed all at once or not at all; default is FALSE</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-221194907%2FProperties%2F769193423" anchor-label="bracketedLimitPrice" id="-221194907%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="bracketed-limit-price.html">bracketedLimitPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-221194907%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-221194907%2FProperties%2F769193423" anchor-label="bracketedLimitPrice" id="-221194907%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="bracketed-limit-price.html">bracketedLimitPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-221194907%2FProperties%2F769193423" anchor-label="bracketedLimitPrice" id="-221194907%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The bracketed limit price (bracketed orders are not supported in API currently)</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1707180797%2FProperties%2F769193423" anchor-label="conditionFollowPrice" id="-1707180797%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="condition-follow-price.html">conditionFollowPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1707180797%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1707180797%2FProperties%2F769193423" anchor-label="conditionFollowPrice" id="-1707180797%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="condition-follow-price.html">conditionFollowPrice</a>: <a href="../-condition-follow-price/index.html">ConditionFollowPrice</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1707180797%2FProperties%2F769193423" anchor-label="conditionFollowPrice" id="-1707180797%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>ASK, BID, LAST</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="798498674%2FProperties%2F769193423" anchor-label="conditionPrice" id="798498674%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="condition-price.html">conditionPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="798498674%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="798498674%2FProperties%2F769193423" anchor-label="conditionPrice" id="798498674%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="condition-price.html">conditionPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="798498674%2FProperties%2F769193423" anchor-label="conditionPrice" id="798498674%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>For a conditional order, the price the condition is being compared against</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1345086523%2FProperties%2F769193423" anchor-label="conditionSecurityType" id="-1345086523%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="condition-security-type.html">conditionSecurityType</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1345086523%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1345086523%2FProperties%2F769193423" anchor-label="conditionSecurityType" id="-1345086523%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="condition-security-type.html">conditionSecurityType</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1345086523%2FProperties%2F769193423" anchor-label="conditionSecurityType" id="-1345086523%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The condition security type</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1222765575%2FProperties%2F769193423" anchor-label="conditionSymbol" id="1222765575%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="condition-symbol.html">conditionSymbol</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1222765575%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1222765575%2FProperties%2F769193423" anchor-label="conditionSymbol" id="1222765575%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="condition-symbol.html">conditionSymbol</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1222765575%2FProperties%2F769193423" anchor-label="conditionSymbol" id="1222765575%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>For a conditional order, the symbol that the condition is being compared against</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-541008603%2FProperties%2F769193423" anchor-label="conditionType" id="-541008603%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="condition-type.html">conditionType</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-541008603%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-541008603%2FProperties%2F769193423" anchor-label="conditionType" id="-541008603%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="condition-type.html">conditionType</a>: <a href="../-condition-type/index.html">ConditionType</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-541008603%2FProperties%2F769193423" anchor-label="conditionType" id="-541008603%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>CONTINGENT_GTE, CONTINGENT_LTE</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="412900271%2FProperties%2F769193423" anchor-label="egQual" id="412900271%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="eg-qual.html">egQual</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="412900271%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="412900271%2FProperties%2F769193423" anchor-label="egQual" id="412900271%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="eg-qual.html">egQual</a>: <a href="../-execution-guarantee-type/index.html">ExecutionGuaranteeType</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="412900271%2FProperties%2F769193423" anchor-label="egQual" id="412900271%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>EG_QUAL_UNSPECIFIED, EG_QUAL_QUALIFIED, EG_QUAL_NOT_IN_FORCE, EG_QUAL_NOT_A_MARKET_ORDER, EG_QUAL_NOT_AN_ELIGIBLE_SECURITY, EG_QUAL_INVALID_ORDER_TYPE, EG_QUAL_SIZE_NOT_QUALIFIED, EG_QUAL_OUTSIDE_GUARANTEED_PERIOD, EG_QUAL_INELIGIBLE_GATEWAY, EG_QUAL_INELIGIBLE_DUE_TO_IPO, EG_QUAL_INELIGIBLE_DUE_TO_SELF_DIRECTED, EG_QUAL_INELIGIBLE_DUE_TO_CHANGEORDER</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1869625261%2FProperties%2F769193423" anchor-label="estimatedCommission" id="-1869625261%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="estimated-commission.html">estimatedCommission</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1869625261%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1869625261%2FProperties%2F769193423" anchor-label="estimatedCommission" id="-1869625261%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="estimated-commission.html">estimatedCommission</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1869625261%2FProperties%2F769193423" anchor-label="estimatedCommission" id="-1869625261%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The cost billed to the user to perform the requested action</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-584545647%2FProperties%2F769193423" anchor-label="estimatedFees" id="-584545647%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="estimated-fees.html">estimatedFees</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-584545647%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-584545647%2FProperties%2F769193423" anchor-label="estimatedFees" id="-584545647%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="estimated-fees.html">estimatedFees</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-584545647%2FProperties%2F769193423" anchor-label="estimatedFees" id="-584545647%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The estimated fees</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2053450624%2FProperties%2F769193423" anchor-label="estimatedTotalAmount" id="2053450624%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="estimated-total-amount.html">estimatedTotalAmount</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2053450624%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="2053450624%2FProperties%2F769193423" anchor-label="estimatedTotalAmount" id="2053450624%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="estimated-total-amount.html">estimatedTotalAmount</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="2053450624%2FProperties%2F769193423" anchor-label="estimatedTotalAmount" id="2053450624%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The cost or proceeds, including broker commission, resulting from the requested action</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="274511332%2FProperties%2F769193423" anchor-label="executedTime" id="274511332%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="executed-time.html">executedTime</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="274511332%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="274511332%2FProperties%2F769193423" anchor-label="executedTime" id="274511332%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="executed-time.html">executedTime</a>: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="274511332%2FProperties%2F769193423" anchor-label="executedTime" id="274511332%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The time the order was executed (UTC)</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-581092174%2FProperties%2F769193423" anchor-label="gcd" id="-581092174%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="gcd.html">gcd</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-581092174%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-581092174%2FProperties%2F769193423" anchor-label="gcd" id="-581092174%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="gcd.html">gcd</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-581092174%2FProperties%2F769193423" anchor-label="gcd" id="-581092174%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The GCD</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="215040445%2FProperties%2F769193423" anchor-label="initialStopPrice" id="215040445%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="initial-stop-price.html">initialStopPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="215040445%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="215040445%2FProperties%2F769193423" anchor-label="initialStopPrice" id="215040445%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="initial-stop-price.html">initialStopPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="215040445%2FProperties%2F769193423" anchor-label="initialStopPrice" id="215040445%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The initial stop price</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="650480665%2FProperties%2F769193423" anchor-label="instrument" id="650480665%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="instrument.html">instrument</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="650480665%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="650480665%2FProperties%2F769193423" anchor-label="instrument" id="650480665%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="instrument.html">instrument</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-instrument/index.html">Instrument</a>&gt;?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="650480665%2FProperties%2F769193423" anchor-label="instrument" id="650480665%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The object for the instrument</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-115055307%2FProperties%2F769193423" anchor-label="investmentAmount" id="-115055307%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="investment-amount.html">investmentAmount</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-115055307%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-115055307%2FProperties%2F769193423" anchor-label="investmentAmount" id="-115055307%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="investment-amount.html">investmentAmount</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-115055307%2FProperties%2F769193423" anchor-label="investmentAmount" id="-115055307%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The amount of the investment</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1829277586%2FProperties%2F769193423" anchor-label="limitPrice" id="1829277586%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="limit-price.html">limitPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1829277586%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1829277586%2FProperties%2F769193423" anchor-label="limitPrice" id="1829277586%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="limit-price.html">limitPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1829277586%2FProperties%2F769193423" anchor-label="limitPrice" id="1829277586%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The highest price at which to buy or the lowest price at which to sell if specified in a limit order</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1891003136%2FProperties%2F769193423" anchor-label="marketSession" id="-1891003136%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="market-session.html">marketSession</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1891003136%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1891003136%2FProperties%2F769193423" anchor-label="marketSession" id="-1891003136%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="market-session.html">marketSession</a>: <a href="../-market-session/index.html">MarketSession</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1891003136%2FProperties%2F769193423" anchor-label="marketSession" id="-1891003136%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>REGULAR, EXTENDED</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-607938796%2FProperties%2F769193423" anchor-label="messages" id="-607938796%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="messages.html">messages</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-607938796%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-607938796%2FProperties%2F769193423" anchor-label="messages" id="-607938796%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="messages.html">messages</a>: <a href="../-messages-response/index.html">MessagesResponse</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-607938796%2FProperties%2F769193423" anchor-label="messages" id="-607938796%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The object for the messages</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1249894992%2FProperties%2F769193423" anchor-label="mfpriceType" id="1249894992%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="mfprice-type.html">mfpriceType</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1249894992%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1249894992%2FProperties%2F769193423" anchor-label="mfpriceType" id="1249894992%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="mfprice-type.html">mfpriceType</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1249894992%2FProperties%2F769193423" anchor-label="mfpriceType" id="1249894992%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The mutual fund price type</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1799182460%2FProperties%2F769193423" anchor-label="netAsk" id="-1799182460%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="net-ask.html">netAsk</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1799182460%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1799182460%2FProperties%2F769193423" anchor-label="netAsk" id="-1799182460%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="net-ask.html">netAsk</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1799182460%2FProperties%2F769193423" anchor-label="netAsk" id="-1799182460%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The net ask</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="997704064%2FProperties%2F769193423" anchor-label="netBid" id="997704064%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="net-bid.html">netBid</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="997704064%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="997704064%2FProperties%2F769193423" anchor-label="netBid" id="997704064%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="net-bid.html">netBid</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="997704064%2FProperties%2F769193423" anchor-label="netBid" id="997704064%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The net bid</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1783902900%2FProperties%2F769193423" anchor-label="netPrice" id="1783902900%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="net-price.html">netPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1783902900%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1783902900%2FProperties%2F769193423" anchor-label="netPrice" id="1783902900%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="net-price.html">netPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1783902900%2FProperties%2F769193423" anchor-label="netPrice" id="1783902900%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The net price</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-928658349%2FProperties%2F769193423" anchor-label="offsetType" id="-928658349%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="offset-type.html">offsetType</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-928658349%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-928658349%2FProperties%2F769193423" anchor-label="offsetType" id="-928658349%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="offset-type.html">offsetType</a>: <a href="../-order-offset-type/index.html">OrderOffsetType</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-928658349%2FProperties%2F769193423" anchor-label="offsetType" id="-928658349%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>TRAILING_STOP_CNST, TRAILING_STOP_PRCT</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-2093665572%2FProperties%2F769193423" anchor-label="offsetValue" id="-2093665572%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="offset-value.html">offsetValue</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2093665572%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-2093665572%2FProperties%2F769193423" anchor-label="offsetValue" id="-2093665572%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="offset-value.html">offsetValue</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2093665572%2FProperties%2F769193423" anchor-label="offsetValue" id="-2093665572%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The stop value for trailing stop price types</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-391297693%2FProperties%2F769193423" anchor-label="orderNumber" id="-391297693%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="order-number.html">orderNumber</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-391297693%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-391297693%2FProperties%2F769193423" anchor-label="orderNumber" id="-391297693%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="order-number.html">orderNumber</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-391297693%2FProperties%2F769193423" anchor-label="orderNumber" id="-391297693%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The numeric ID for this order in the E*TRADE system</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1859141984%2FProperties%2F769193423" anchor-label="orderTerm" id="1859141984%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="order-term.html">orderTerm</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1859141984%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1859141984%2FProperties%2F769193423" anchor-label="orderTerm" id="1859141984%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="order-term.html">orderTerm</a>: <a href="../-order-term/index.html">OrderTerm</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1859141984%2FProperties%2F769193423" anchor-label="orderTerm" id="1859141984%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>GOOD_UNTIL_CANCEL, GOOD_FOR_DAY, GOOD_TILL_DATE, IMMEDIATE_OR_CANCEL, FILL_OR_KILL</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1112008110%2FProperties%2F769193423" anchor-label="orderType" id="-1112008110%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="order-type.html">orderType</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1112008110%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1112008110%2FProperties%2F769193423" anchor-label="orderType" id="-1112008110%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="order-type.html">orderType</a>: <a href="../-order-type/index.html">OrderType</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1112008110%2FProperties%2F769193423" anchor-label="orderType" id="-1112008110%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>EQ, OPTN, SPREADS, BUY_WRITES, BUTTERFLY, IRON_BUTTERFLY, CONDOR, IRON_CONDOR, MF, MMF</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="812426429%2FProperties%2F769193423" anchor-label="orderValue" id="812426429%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="order-value.html">orderValue</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="812426429%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="812426429%2FProperties%2F769193423" anchor-label="orderValue" id="812426429%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="order-value.html">orderValue</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="812426429%2FProperties%2F769193423" anchor-label="orderValue" id="812426429%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>Total cost or proceeds, including commission</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1339571368%2FProperties%2F769193423" anchor-label="overrideRestrictedCd" id="-1339571368%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="override-restricted-cd.html">overrideRestrictedCd</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1339571368%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1339571368%2FProperties%2F769193423" anchor-label="overrideRestrictedCd" id="-1339571368%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="override-restricted-cd.html">overrideRestrictedCd</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1339571368%2FProperties%2F769193423" anchor-label="overrideRestrictedCd" id="-1339571368%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The overrides restricted code</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-499902282%2FProperties%2F769193423" anchor-label="placedTime" id="-499902282%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="placed-time.html">placedTime</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-499902282%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-499902282%2FProperties%2F769193423" anchor-label="placedTime" id="-499902282%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="placed-time.html">placedTime</a>: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-499902282%2FProperties%2F769193423" anchor-label="placedTime" id="-499902282%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The time the order was placed (UTC)</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="639149452%2FProperties%2F769193423" anchor-label="positionQuantity" id="639149452%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="position-quantity.html">positionQuantity</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="639149452%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="639149452%2FProperties%2F769193423" anchor-label="positionQuantity" id="639149452%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="position-quantity.html">positionQuantity</a>: <a href="../-position-quantity-type/index.html">PositionQuantityType</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="639149452%2FProperties%2F769193423" anchor-label="positionQuantity" id="639149452%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>ENTIRE_POSITION, CASH, MARGIN</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-335268006%2FProperties%2F769193423" anchor-label="preClearanceCode" id="-335268006%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="pre-clearance-code.html">preClearanceCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-335268006%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-335268006%2FProperties%2F769193423" anchor-label="preClearanceCode" id="-335268006%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="pre-clearance-code.html">preClearanceCode</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-335268006%2FProperties%2F769193423" anchor-label="preClearanceCode" id="-335268006%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The preclearance code</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1794217%2FProperties%2F769193423" anchor-label="previewId" id="-1794217%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="preview-id.html">previewId</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1794217%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1794217%2FProperties%2F769193423" anchor-label="previewId" id="-1794217%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="preview-id.html">previewId</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1794217%2FProperties%2F769193423" anchor-label="previewId" id="-1794217%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>This parameter is required and must specify the numeric preview ID from the preview and the other parameters of this request must match the parameters of the preview.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1297745061%2FProperties%2F769193423" anchor-label="previewTime" id="1297745061%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="preview-time.html">previewTime</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1297745061%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1297745061%2FProperties%2F769193423" anchor-label="previewTime" id="1297745061%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="preview-time.html">previewTime</a>: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Instant.html">Instant</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1297745061%2FProperties%2F769193423" anchor-label="previewTime" id="1297745061%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The time of the order preview</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1899157047%2FProperties%2F769193423" anchor-label="priceType" id="1899157047%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="price-type.html">priceType</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1899157047%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1899157047%2FProperties%2F769193423" anchor-label="priceType" id="1899157047%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="price-type.html">priceType</a>: <a href="../-order-price-type/index.html">OrderPriceType</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1899157047%2FProperties%2F769193423" anchor-label="priceType" id="1899157047%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>MARKET, LIMIT, STOP, STOP_LIMIT, TRAILING_STOP_CNST_BY_LOWER_TRIGGER, UPPER_TRIGGER_BY_TRAILING_STOP_CNST, TRAILING_STOP_PRCT_BY_LOWER_TRIGGER, UPPER_TRIGGER_BY_TRAILING_STOP_PRCT, TRAILING_STOP_CNST, TRAILING_STOP_PRCT, HIDDEN_STOP, HIDDEN_STOP_BY_LOWER_TRIGGER, UPPER_TRIGGER_BY_HIDDEN_STOP, NET_DEBIT, NET_CREDIT, NET_EVEN, MARKET_ON_OPEN, MARKET_ON_CLOSE, LIMIT_ON_OPEN, LIMIT_ON_CLOSE</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-330734216%2FProperties%2F769193423" anchor-label="priceValue" id="-330734216%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="price-value.html">priceValue</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-330734216%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-330734216%2FProperties%2F769193423" anchor-label="priceValue" id="-330734216%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="price-value.html">priceValue</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-330734216%2FProperties%2F769193423" anchor-label="priceValue" id="-330734216%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The value of the price</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="598854095%2FProperties%2F769193423" anchor-label="ratio" id="598854095%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="ratio.html">ratio</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="598854095%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="598854095%2FProperties%2F769193423" anchor-label="ratio" id="598854095%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="ratio.html">ratio</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="598854095%2FProperties%2F769193423" anchor-label="ratio" id="598854095%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The ratio</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1264801629%2FProperties%2F769193423" anchor-label="reInvestOption" id="-1264801629%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="re-invest-option.html">reInvestOption</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1264801629%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1264801629%2FProperties%2F769193423" anchor-label="reInvestOption" id="-1264801629%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="re-invest-option.html">reInvestOption</a>: <a href="../-reinvest-option-type/index.html">ReinvestOptionType</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1264801629%2FProperties%2F769193423" anchor-label="reInvestOption" id="-1264801629%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>REINVEST, DEPOSIT, CURRENT_HOLDING</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1487827928%2FProperties%2F769193423" anchor-label="replacedByOrderId" id="1487827928%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="replaced-by-order-id.html">replacedByOrderId</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1487827928%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1487827928%2FProperties%2F769193423" anchor-label="replacedByOrderId" id="1487827928%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="replaced-by-order-id.html">replacedByOrderId</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1487827928%2FProperties%2F769193423" anchor-label="replacedByOrderId" id="1487827928%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>In the event of a change order request, the order ID of the order that is replacing a prior order.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1544863056%2FProperties%2F769193423" anchor-label="replacesOrderId" id="-1544863056%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="replaces-order-id.html">replacesOrderId</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1544863056%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1544863056%2FProperties%2F769193423" anchor-label="replacesOrderId" id="-1544863056%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="replaces-order-id.html">replacesOrderId</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1544863056%2FProperties%2F769193423" anchor-label="replacesOrderId" id="-1544863056%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>In the event of a change order request, the order ID of the order that the new order is replacing.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1572918088%2FProperties%2F769193423" anchor-label="routingDestination" id="-1572918088%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="routing-destination.html">routingDestination</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1572918088%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1572918088%2FProperties%2F769193423" anchor-label="routingDestination" id="-1572918088%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="routing-destination.html">routingDestination</a>: <a href="../-routing-destination/index.html">RoutingDestination</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1572918088%2FProperties%2F769193423" anchor-label="routingDestination" id="-1572918088%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>AUTO, AMEX, BOX, CBOE, ISE, NOM, NYSE, PHX</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1905253358%2FProperties%2F769193423" anchor-label="status" id="1905253358%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="status.html">status</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1905253358%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1905253358%2FProperties%2F769193423" anchor-label="status" id="1905253358%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="status.html">status</a>: <a href="../-order-status/index.html">OrderStatus</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1905253358%2FProperties%2F769193423" anchor-label="status" id="1905253358%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>OPEN, EXECUTED, CANCELLED, INDIVIDUAL_FILLS, CANCEL_REQUESTED, EXPIRED, REJECTED, PARTIAL, DO_NOT_EXERCISE, DONE_TRADE_EXECUTED</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="699012784%2FProperties%2F769193423" anchor-label="stopLimitPrice" id="699012784%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="stop-limit-price.html">stopLimitPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="699012784%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="699012784%2FProperties%2F769193423" anchor-label="stopLimitPrice" id="699012784%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="stop-limit-price.html">stopLimitPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="699012784%2FProperties%2F769193423" anchor-label="stopLimitPrice" id="699012784%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The designated boundary price for a stop-limit order</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="943302771%2FProperties%2F769193423" anchor-label="stopPrice" id="943302771%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="stop-price.html">stopPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="943302771%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="943302771%2FProperties%2F769193423" anchor-label="stopPrice" id="943302771%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="stop-price.html">stopPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="943302771%2FProperties%2F769193423" anchor-label="stopPrice" id="943302771%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The designated boundary price for a stop order</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1015636125%2FProperties%2F769193423" anchor-label="trailPrice" id="1015636125%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="trail-price.html">trailPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1015636125%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1015636125%2FProperties%2F769193423" anchor-label="trailPrice" id="1015636125%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="trail-price.html">trailPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1015636125%2FProperties%2F769193423" anchor-label="trailPrice" id="1015636125%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The current trailing value.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-847268849%2FProperties%2F769193423" anchor-label="triggerPrice" id="-847268849%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="trigger-price.html">triggerPrice</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-847268849%2FProperties%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-847268849%2FProperties%2F769193423" anchor-label="triggerPrice" id="-847268849%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="trigger-price.html">triggerPrice</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-847268849%2FProperties%2F769193423" anchor-label="triggerPrice" id="-847268849%2FProperties%2F769193423" data-filterable-set=":dokkaHtml/main"></a>The price that an advanced order will trigger.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Sources</h2>
+              <div class="table" data-togglable="Sources"><a data-name="716892287%2FSource%2F769193423" anchor-label="https://github.com/ssoper/Batil/tree/master/src/main/kotlin/brokers/etrade/OrdersApi.kt#L205" id="716892287%2FSource%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="https://github.com/ssoper/Batil/tree/master/src/main/kotlin/brokers/etrade/OrdersApi.kt#L205">jvm source</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="716892287%2FSource%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
