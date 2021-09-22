@@ -2,6 +2,7 @@ import TestHelper.MockHelper.createServer
 import TestHelper.MockHelper.mockSession
 import TestHelper.PathHelper.randomString
 import com.seansoper.batil.brokers.etrade.MarginLevel
+import com.seansoper.batil.brokers.etrade.MessageType
 import com.seansoper.batil.brokers.etrade.OptionType
 import com.seansoper.batil.brokers.etrade.OrderActionType
 import com.seansoper.batil.brokers.etrade.OrderStatus
@@ -81,7 +82,7 @@ class OrdersTest : StringSpec({
             val message = data.orders.first().messages!!.messages.first()
             message.description.shouldContain("You are about to place a marketable limit order")
             message.code.shouldBe(9011)
-            message.type.shouldBe("WARNING")
+            message.type.shouldBe(MessageType.WARNING)
 
             val product = data.orders.first().instrument!!.first().product!!
             product.symbol.shouldBe(symbol)

@@ -9,11 +9,15 @@ import retrofit2.http.QueryMap
 import java.time.Instant
 import java.util.GregorianCalendar
 
+enum class MessageType {
+    WARNING, INFO, INFO_HOLD, ERROR
+}
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Message(
     val description: String,
     val code: Int,
-    val type: String // TODO: Could be a type
+    val type: MessageType
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
