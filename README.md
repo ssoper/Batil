@@ -1,6 +1,7 @@
 <p align="center"><img src="https://github.com/ssoper/Batil/raw/master/gh/batil.png" width="350" alt="Batil Logo"></p>
 
 ![tests](https://github.com/ssoper/Batil/actions/workflows/build.yml/badge.svg)
+[![codecov](https://codecov.io/gh/ssoper/Batil/branch/master/graph/badge.svg?token=AX0EVTOJCS)](https://codecov.io/gh/ssoper/Batil)
 
 # Batil
 
