@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.seansoper.batil.brokers.etrade.auth.Session
-import com.seansoper.batil.brokers.etrade.interceptors.ApiError
 import com.seansoper.batil.brokers.etrade.interceptors.ErrorInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.HttpInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.JsonInterceptor
@@ -73,4 +72,14 @@ open class Service(
     }
 }
 
-class ServiceUnavailableError : ApiError(100, "The requested service is not currently available")
+open class BrokerServiceError(
+    open val code: Int = 0,
+    override val message: String = "Error from broker API"
+) : Error(message)
+
+open class EtradeServiceError(
+    override val code: Int = 0,
+    override val message: String = "Error from E*TRADE API"
+) : BrokerServiceError(code, message)
+
+class ServiceUnavailableError : EtradeServiceError(100, "The requested service is not currently available")
