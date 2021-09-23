@@ -1,0 +1,75 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "OPTN",
+    "totalOrderValue": -64.4854,
+    "previewTime": 1632360580772,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 10156.25
+      },
+      "marginable": {
+        "currentBp": 27824.6,
+        "currentOor": 350.27,
+        "currentNetBp": 27474.33,
+        "currentOrderImpact": 1343.53,
+        "netBp": 26130.8
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "LIMIT",
+        "limitPrice": 0.65,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 0.5,
+        "estimatedTotalAmount": -64.4854,
+        "netPrice": 0,
+        "netBid": 0,
+        "netAsk": 0,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "T Oct 15 '21 $27 Put",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 1,
+            "cancelQuantity": 0.0,
+            "osiKey": "T-----211015P00027000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "T",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 27.0,
+              "productId": {
+                "symbol": "T-----211015P00027000",
+                "typeCode": "OPTION"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1007495599106
+      }
+    ],
+    "Disclosure": {
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}

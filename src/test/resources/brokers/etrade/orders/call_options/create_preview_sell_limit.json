@@ -1,0 +1,75 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "OPTN",
+    "totalOrderValue": 95.5122,
+    "previewTime": 1632267682994,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 9506.7
+      },
+      "marginable": {
+        "currentBp": 27825.1,
+        "currentOor": 350.27,
+        "currentNetBp": 27474.83,
+        "currentOrderImpact": 191.02,
+        "netBp": 27283.8
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "LIMIT",
+        "limitPrice": 0.95,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 0.5,
+        "estimatedTotalAmount": 95.5122,
+        "netPrice": 0,
+        "netBid": 0,
+        "netAsk": 0,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "SPCE Oct 08 '21 $30 Call",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 1,
+            "cancelQuantity": 0.0,
+            "osiKey": "SPCE--211008C00030000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "SPCE",
+              "securityType": "OPTN",
+              "callPut": "CALL",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 8,
+              "strikePrice": 30.0,
+              "productId": {
+                "symbol": "SPCE--211008C00030000",
+                "typeCode": "OPTION"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1006089036106
+      }
+    ],
+    "Disclosure": {
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}

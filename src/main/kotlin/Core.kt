@@ -3,6 +3,7 @@ package com.seansoper.batil
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyPutOptionMarket
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {
@@ -39,9 +40,16 @@ object Core {
             it.first().accountIdKey?.let { accountIdKey ->
                 val service = Orders(session, parsed.production, parsed.verbose)
 
-                service.createPreview(accountIdKey, "AAPL", 1f, 150f, 1)?.let {
+                //  val request = sellCallOptionLimit("GSAT", .05f, 0.5f, 1)
+                //  val request = buyCallOptionMarket("AAPL", 5f, stopPrice = 2.5f, 150f, 1)
+                //  val request = buyPutOptionLimit("AMC", 5f, 35f, 1)
+                //  val request = sellPutOptionLimit("T", .65f, 27f, 1)
+                // val request = sellPutOptionMarket("T", .65f, 0f, 27f, 1)
+                val request = buyPutOptionMarket("T", .65f, 0f, 27f, 1)
+                service.createPreview(accountIdKey, request)?.let {
                     println(it)
                 }
+
 //                service.list(accountIdKey)?.let {
 //                    println("Orders for account $accountIdKey")
 //                    println(it)

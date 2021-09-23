@@ -22,6 +22,13 @@ jobs:
         run: ./gradlew build
       - name: Lint 🧼
         run: ./gradlew lintKotlin
+      - name: Generate Test Report 🧪
+        run: ./gradlew jacocoTestReport
+      - name: Upload Test Report ⬆️
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: build/reports/jacoco/report.xml
       - name: Generate API documentation 📔
         if: ${{github.event_name == 'push'}}
         run: ./gradlew dokkaHtml

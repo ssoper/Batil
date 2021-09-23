@@ -1,6 +1,3 @@
-import com.seansoper.batil.brokers.etrade.api.MarginLevel
-import com.seansoper.batil.brokers.etrade.api.MessageType
-import com.seansoper.batil.brokers.etrade.api.OptionLevel
 import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderTerm
@@ -17,19 +14,15 @@ import testHelper.MockHelper.mockSession
 import testHelper.PathHelper.randomString
 import java.nio.file.Paths
 import java.time.Instant
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.util.GregorianCalendar
 
 class OrdersTest : StringSpec({
+    val accountIdKey = randomString(6)
 
     "list orders" {
         val path = Paths.get("brokers/etrade/orders/list.json")
 
         createServer(path) {
-            val accountIdKey = randomString(6)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
             val data = service.list(accountIdKey)
 
@@ -57,41 +50,6 @@ class OrdersTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(2021, 10, 8))
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders")
-        }
-    }
-
-    "create preview to buy call limit option" {
-        val path = Paths.get("brokers/etrade/orders/create_preview_buy_call_limit_option.json")
-
-        createServer(path) {
-            val accountIdKey = randomString(6)
-            val symbol = "SPCE"
-            val year = 2021
-            val month = 10
-            val day = 8
-            val expiry = ZonedDateTime.of(
-                LocalDate.of(year, month, day),
-                LocalTime.of(16, 0),
-                ZoneId.of("America/New_York")
-            )
-            val clientOrderId = randomString(20)
-            val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val data = service.createPreview(accountIdKey, symbol, 0.95f, 30f, 1, expiry, clientOrderId)
-
-            data.shouldNotBeNull()
-
-            val message = data.orders.first().messages!!.messages.first()
-            message.description.shouldContain("You are about to place a marketable limit order")
-            message.code.shouldBe(9011)
-            message.type.shouldBe(MessageType.WARNING)
-
-            val product = data.orders.first().instrument!!.first().product!!
-            product.symbol.shouldBe(symbol)
-            product.expiry.shouldBe(GregorianCalendar(year, month, day))
-
-            data.marginLevel.shouldBe(MarginLevel.MARGIN_TRADING_ALLOWED)
-            data.margin!!.marginable!!.currentBuyingPower.shouldBe(27825.10f)
-            data.optionLevel.shouldBe(OptionLevel.LEVEL_3)
         }
     }
 })
