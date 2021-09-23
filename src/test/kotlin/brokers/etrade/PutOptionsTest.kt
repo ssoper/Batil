@@ -149,5 +149,4 @@ class PutOptionsTest : StringSpec({
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
     }
-
 })
