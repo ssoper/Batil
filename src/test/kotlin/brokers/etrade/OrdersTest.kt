@@ -52,5 +52,4 @@ class OrdersTest : StringSpec({
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders")
         }
     }
-
 })

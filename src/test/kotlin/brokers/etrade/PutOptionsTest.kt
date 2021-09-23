@@ -1,19 +1,11 @@
 import com.seansoper.batil.brokers.etrade.api.MarginLevel
 import com.seansoper.batil.brokers.etrade.api.MessageType
 import com.seansoper.batil.brokers.etrade.api.OptionLevel
-import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
-import com.seansoper.batil.brokers.etrade.api.OrderTerm
-import com.seansoper.batil.brokers.etrade.api.OrderType
-import com.seansoper.batil.brokers.etrade.api.SecurityType
-import com.seansoper.batil.brokers.etrade.services.OrderStatus
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionLimit
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionLimit
-import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
 import io.kotlintest.matchers.string.shouldContain
-import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
@@ -22,11 +14,6 @@ import testHelper.MockHelper.mockSession
 import testHelper.PathHelper.randomString
 import testHelper.TestOption
 import java.nio.file.Paths
-import java.time.Instant
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.util.GregorianCalendar
 
 class PutOptionsTest : StringSpec({
@@ -156,5 +143,4 @@ class PutOptionsTest : StringSpec({
         }
     }
     */
-
 })
