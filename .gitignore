@@ -137,6 +137,7 @@ gradle-app.setting
 # End of https://www.gitignore.io/api/gradle,kotlin,intellij
 
 # Custom
+.DS_Store
 !src/main/libs/*.jar
 github.properties
 .kotlintest
@@ -144,4 +145,3 @@ batil.yaml
 batil.yml
 .idea/codeStyles/Project.xml
 .idea/codeStyles/codeStyleConfig.xml
-.idea/.DS_Store
