@@ -1,22 +1,22 @@
 {
   "PreviewOrderResponse": {
     "orderType": "OPTN",
-    "totalOrderValue": 164.5122,
-    "previewTime": 1632338931868,
+    "totalOrderValue": -59.4854,
+    "previewTime": 1632405039012,
     "dstFlag": true,
     "accountId": "45645298",
     "optionLevelCd": 3,
     "marginLevelCd": "MARGIN_TRADING_ALLOWED",
     "marginBpDetails": {
       "nonMarginable": {
-        "currentBp": 10071.43
+        "currentBp": 10378.55
       },
       "marginable": {
-        "currentBp": 27824.6,
+        "currentBp": 27824.5,
         "currentOor": 350.27,
-        "currentNetBp": 27474.33,
-        "currentOrderImpact": 329.02,
-        "netBp": 27145.3
+        "currentNetBp": 27474.23,
+        "currentOrderImpact": 1325.56,
+        "netBp": 26148.67
       }
     },
     "Order": [
@@ -29,7 +29,7 @@
         "allOrNone": false,
         "egQual": "EG_QUAL_NOT_IN_FORCE",
         "estimatedCommission": 0.5,
-        "estimatedTotalAmount": 164.5122,
+        "estimatedTotalAmount": -59.4854,
         "netPrice": 0,
         "netBid": 0,
         "netAsk": 0,
@@ -37,24 +37,24 @@
         "ratio": "",
         "Instrument": [
           {
-            "symbolDescription": "AAPL Oct 15 '21 $150 Call",
+            "symbolDescription": "T Oct 15 '21 $27 Put",
             "orderAction": "SELL_OPEN",
             "quantityType": "QUANTITY",
             "quantity": 1,
             "cancelQuantity": 0.0,
-            "osiKey": "AAPL--211015C00150000",
+            "osiKey": "T-----211015P00027000",
             "reserveOrder": true,
             "reserveQuantity": 0.0,
             "Product": {
-              "symbol": "AAPL",
+              "symbol": "T",
               "securityType": "OPTN",
-              "callPut": "CALL",
+              "callPut": "PUT",
               "expiryYear": 2021,
               "expiryMonth": 10,
               "expiryDay": 15,
-              "strikePrice": 150.0,
+              "strikePrice": 27.0,
               "productId": {
-                "symbol": "AAPL--211015C00150000",
+                "symbol": "T-----211015P00027000",
                 "typeCode": "OPTION"
               }
             }
@@ -64,7 +64,7 @@
     ],
     "PreviewIds": [
       {
-        "previewId": 1007340737106
+        "previewId": 1007780294106
       }
     ],
     "Disclosure": {

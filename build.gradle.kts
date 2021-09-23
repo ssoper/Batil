@@ -8,6 +8,15 @@ plugins {
     id("maven-publish")
     id("org.jetbrains.dokka") version "1.5.0"
     id("org.jmailen.kotlinter") version "3.6.0"
+    id("jacoco")
+}
+
+// Temporary fix until Jacoco default version is 0.8.7+
+// https://github.com/jacoco/jacoco/issues/1155
+allprojects {
+    jacoco {
+        toolVersion = "0.8.7"
+    }
 }
 
 repositories {
@@ -50,6 +59,15 @@ tasks.compileTestKotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+    executionData("$buildDir/jacoco/test.exec")
+    reports {
+        xml.isEnabled = true
+        html.isEnabled = true
+        xml.destination = File("$buildDir/reports/jacoco/report.xml")
+    }
 }
 
 // TODO: Exclude *Api.kt from documentation

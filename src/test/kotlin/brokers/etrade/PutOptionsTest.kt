@@ -2,10 +2,14 @@ import com.seansoper.batil.brokers.etrade.api.MarginLevel
 import com.seansoper.batil.brokers.etrade.api.MessageType
 import com.seansoper.batil.brokers.etrade.api.OptionLevel
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
+import com.seansoper.batil.brokers.etrade.api.OrderPriceType
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionLimit
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyPutOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionLimit
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellPutOptionMarket
 import io.kotlintest.matchers.string.shouldContain
+import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
@@ -88,59 +92,62 @@ class PutOptionsTest : StringSpec({
         }
     }
 
-/*
     "create preview to buy call option market" {
-        val path = Paths.get("brokers/etrade/orders/call_options/create_preview_buy_market.json")
+        val path = Paths.get("brokers/etrade/orders/put_options/create_preview_buy_market.json")
 
         createServer(path) {
-            val strike = 150f
+            val strike = 27f
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = buyCallOptionMarket(apple.symbol, 1f, 0.5f, strike, 1, apple.expiry)
+            val request = buyPutOptionMarket(att.symbol, .65f, 0f, strike, 1)
             val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()
 
-            data.orders.first().messages.shouldBeNull()
+            val order = data.orders.first()
+            order.messages.shouldBeNull()
+            order.priceType.shouldBe(OrderPriceType.MARKET)
 
             val instrument = data.orders.first().instrument!!.first()
             instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
 
             val product = instrument.product!!
-            product.symbol.shouldBe(apple.symbol)
-            product.expiry.shouldBe(GregorianCalendar(apple.year, apple.month, apple.day))
+            product.symbol.shouldBe(att.symbol)
+            product.expiry.shouldBe(GregorianCalendar(att.year, att.month, att.day))
 
-            val osi = "${apple.symbol}--${apple.year - 2000}${apple.month}${apple.day}C00${strike.toInt()}000"
+            val osi = "${att.symbol}-----${att.year - 2000}${att.month}${att.day}P000${strike.toInt()}000"
             product.product!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
     }
 
-    "create preview to sell call option market" {
-        val path = Paths.get("brokers/etrade/orders/call_options/create_preview_sell_market.json")
+    "create preview to sell put option market" {
+        val path = Paths.get("brokers/etrade/orders/put_options/create_preview_sell_market.json")
 
         createServer(path) {
-            val strike = 150f
+            val strike = 27f
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = sellCallOptionMarket(apple.symbol, 1f, 0.5f, strike, 1, apple.expiry)
+            val request = sellPutOptionMarket(att.symbol, .65f, 0f, strike, 1)
             val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()
 
-            data.orders.first().messages.shouldBeNull()
+            val order = data.orders.first()
+            order.messages.shouldBeNull()
+            order.priceType.shouldBe(OrderPriceType.MARKET)
 
             val instrument = data.orders.first().instrument!!.first()
             instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
 
             val product = instrument.product!!
-            product.symbol.shouldBe(apple.symbol)
-            product.expiry.shouldBe(GregorianCalendar(apple.year, apple.month, apple.day))
+            product.symbol.shouldBe(att.symbol)
+            product.expiry.shouldBe(GregorianCalendar(att.year, att.month, att.day))
 
-            val osi = "${apple.symbol}--${apple.year - 2000}${apple.month}${apple.day}C00${strike.toInt()}000"
+            val osi = "${att.symbol}-----${att.year - 2000}${att.month}${att.day}P000${strike.toInt()}000"
             product.product!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
     }
-    */
+
 })
