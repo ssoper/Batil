@@ -113,7 +113,7 @@ enum class OrderActionType {
     BUY, SELL, BUY_TO_COVER, SELL_SHORT, BUY_OPEN, BUY_CLOSE, SELL_OPEN, SELL_CLOSE, EXCHANGE
 }
 
-enum class QuanityType {
+enum class QuantityType {
     QUANTITY, DOLLAR, ALL_I_OWN
 }
 
@@ -184,7 +184,7 @@ data class Instrument(
     val product: TransactionStrike?,
     val symbolDescription: String?,
     val orderAction: OrderActionType?,
-    val quantityType: QuanityType?,
+    val quantityType: QuantityType?,
     val quantity: Float?,
     val cancelQuantity: Float?,
     val orderedQuantity: Float?,

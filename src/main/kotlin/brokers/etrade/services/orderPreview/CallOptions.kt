@@ -54,8 +54,7 @@ fun buyCallOptionLimit(
 }
 
 /**
- * Sell a call option using a limit price. Note that selling a call without an offsetting position, aka naked selling,
- * is typically only offered with Level 4 options trading privileges.
+ * Sell a call option using a limit price. Note that selling a call without an offsetting position, aka naked selling, is typically only offered with Level 4 options trading privileges.
  * @param[symbol] The market symbol for the security being sold
  * @param[limitPrice] The highest price at which to buy or the lowest price at which to sell if specified in a limit order
  * @param[strikePrice] The strike price for the option
@@ -141,8 +140,7 @@ fun buyCallOptionMarket(
 }
 
 /**
- * Sell a call option using the market price. Note that selling a call without an offsetting position, aka naked selling,
- * is typically only offered with Level 4 options trading privileges.
+ * Sell a call option using the market price. Note that selling a call without an offsetting position, aka naked selling, is typically only offered with Level 4 options trading privileges.
  * @param[symbol] The market symbol for the security being sold
  * @param[limitPrice] The highest price at which to buy or the lowest price at which to sell if specified in a limit order
  * @param[stopPrice] The designated boundary price for a stop order

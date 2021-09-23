@@ -6,6 +6,7 @@ import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
 import com.seansoper.batil.brokers.etrade.api.OrderTerm
 import com.seansoper.batil.brokers.etrade.api.OrderType
+import com.seansoper.batil.brokers.etrade.api.QuantityType
 import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.services.MarketSession
 import java.time.ZonedDateTime
@@ -35,6 +36,11 @@ data class PreviewProductOption(
     )
 }
 
+data class PreviewProductEquity(
+    override val symbol: String,
+    override val securityType: SecurityType = SecurityType.EQ,
+) : PreviewProduct
+
 interface PreviewInstrument {
     val orderAction: OrderActionType
     val product: PreviewProduct
@@ -51,6 +57,21 @@ data class PreviewInstrumentOption(
     constructor(orderAction: OrderActionType, quantity: Int, product: PreviewProduct) : this(
         orderAction = orderAction,
         orderedQuantity = quantity.toString(),
+        quantity = quantity.toString(),
+        product = product
+    )
+}
+
+data class PreviewInstrumentEquity(
+    override val orderAction: OrderActionType,
+    @JsonProperty("Product")
+    override val product: PreviewProduct,
+
+    val quantityType: QuantityType = QuantityType.QUANTITY,
+    val quantity: String
+) : PreviewInstrument {
+    constructor(orderAction: OrderActionType, quantity: Int, product: PreviewProduct) : this(
+        orderAction = orderAction,
         quantity = quantity.toString(),
         product = product
     )
