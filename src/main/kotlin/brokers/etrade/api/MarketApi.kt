@@ -189,6 +189,14 @@ data class TickerData(
     val averageVolume: Int?,
 )
 
+// TODO: Documentation shows add’l fields to be implemented The quote details to be displayed. This field depends on the detailFlag input parameter. For example, if detailFlag is ALL, AllQuoteDetails are displayed. If detailFlag is MF_DETAIL, the MutualFund structure gets displayed.
+
+/**
+ * @param[dateTime] The date and time of the quote
+ * @param[quoteStatus] The status of the quote
+ * @param[ahFlag] Indicates whether the quote details are being displayed after hours or not
+ * @param[tickerData] The quote details to be displayed. This field depends on the detailFlag input parameter. For example, if detailFlag is ALL, AllQuoteDetails are displayed. If detailFlag is MF_DETAIL, the MutualFund structure gets displayed.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class QuoteData(
     val dateTime: GregorianCalendar,
