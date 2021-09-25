@@ -208,16 +208,15 @@ data class BalanceResponse(
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class Product(
+data class ProductId(
     val symbol: String, // The market symbol for the security being bought or sold
 
     @JsonProperty("typeCode")
     val type: ProductType
 )
 
-// TODO: Come up with a better name, this is sometimes referred to as Product
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class TransactionStrike(
+data class Product(
     val symbol: String?, // The symbol for which the quote details are being accessed
     val expiryYear: Int?, // The four-digit year the option will expire
     val expiryMonth: Int?, // The month (1-12) the option will expire
@@ -226,12 +225,8 @@ data class TransactionStrike(
     val callPut: OptionType?, // The option type
     val securityType: SecurityType?, // The type code to identify the order or leg request
     val securitySubType: String?, // The subtype of the security
-
-    @JsonProperty("productId")
-    val product: Product?,
-
-    @JsonProperty("strikePrice") // TODO: might want to make this the name again
-    val price: Float?, // The strike price for the option
+    val strikePrice: Float?, // The strike price for the option
+    val productId: ProductId?
 ) {
     val expiry: GregorianCalendar?
         get() {
@@ -260,10 +255,8 @@ data class TransactionTrade(
     val displaySymbol: String?,
     val settlementDate: Instant?,
 
-    // TODO: Consider renaming back to Product
-    @JsonProperty("product")
     @JsonAlias("Product")
-    val strike: TransactionStrike
+    val product: Product
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -472,7 +465,7 @@ data class PortfolioPosition(
     val positionId: Long, // The position ID
     val accountId: String?, // Numeric account ID
     @JsonProperty("Product")
-    val product: TransactionStrike?, // The product
+    val product: Product?, // The product
     val osiKey: String?, // The Options Symbology Initiative (OSI) key containing the option root symbol, expiration date, call/put indicator, and strike price
     val symbolDescription: String?, // The symbol description
     val dateAcquired: Instant?, // The date the position was acquired

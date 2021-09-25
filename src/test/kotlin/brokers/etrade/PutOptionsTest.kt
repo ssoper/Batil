@@ -115,7 +115,7 @@ class PutOptionsTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(att.year, att.month, att.day))
 
             val osi = "${att.symbol}-----${att.year - 2000}${att.month}${att.day}P000${strike.toInt()}000"
-            product.product!!.symbol.shouldBe(osi)
+            product.productId!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
@@ -144,7 +144,7 @@ class PutOptionsTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(att.year, att.month, att.day))
 
             val osi = "${att.symbol}-----${att.year - 2000}${att.month}${att.day}P000${strike.toInt()}000"
-            product.product!!.symbol.shouldBe(osi)
+            product.productId!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }

@@ -113,7 +113,7 @@ class CallOptionsTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(apple.year, apple.month, apple.day))
 
             val osi = "${apple.symbol}--${apple.year - 2000}${apple.month}${apple.day}C00${strike.toInt()}000"
-            product.product!!.symbol.shouldBe(osi)
+            product.productId!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
@@ -140,7 +140,7 @@ class CallOptionsTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(apple.year, apple.month, apple.day))
 
             val osi = "${apple.symbol}--${apple.year - 2000}${apple.month}${apple.day}C00${strike.toInt()}000"
-            product.product!!.symbol.shouldBe(osi)
+            product.productId!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }

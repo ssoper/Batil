@@ -181,7 +181,7 @@ data class LotsResponse(
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Instrument(
     @JsonProperty("Product")
-    val product: TransactionStrike?,
+    val product: Product?,
     val symbolDescription: String?,
     val orderAction: OrderActionType?,
     val quantityType: QuantityType?,
