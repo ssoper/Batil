@@ -1,9 +1,9 @@
 package com.seansoper.batil
 
+import brokers.etrade.services.orderPreview.buyCallSpread
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.sellEquityLimit
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {
@@ -47,7 +47,12 @@ object Core {
                 // val request = sellPutOptionMarket("T", .65f, 0f, 27f, 1)
                 // val request = buyPutOptionMarket("T", .65f, 0f, 27f, 1)
                 // val request = buyEquityMarket("RIOT", 27f, 0f, 50)
-                val request = sellEquityLimit("RIOT", 27f, 200)
+
+                // still need to get data for this
+                // val request = sellEquityLimit("RIOT", 27f, 200)
+
+                val request = buyCallSpread("CLF", .32f, 21f, 22f, 1)
+
                 service.createPreview(accountIdKey, request)?.let {
                     println(it)
                 }

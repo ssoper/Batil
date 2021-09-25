@@ -52,7 +52,7 @@ class PutOptionsTest : StringSpec({
             message.code.shouldBe(9011)
             message.type.shouldBe(MessageType.WARNING)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
 
             val product = instrument.product!!
@@ -77,7 +77,7 @@ class PutOptionsTest : StringSpec({
 
             data.shouldNotBeNull()
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
 
             val product = instrument.product!!
@@ -107,7 +107,7 @@ class PutOptionsTest : StringSpec({
             order.messages.shouldBeNull()
             order.priceType.shouldBe(OrderPriceType.MARKET)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
 
             val product = instrument.product!!
@@ -136,7 +136,7 @@ class PutOptionsTest : StringSpec({
             order.messages.shouldBeNull()
             order.priceType.shouldBe(OrderPriceType.MARKET)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
 
             val product = instrument.product!!

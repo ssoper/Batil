@@ -88,7 +88,7 @@ interface PreviewOrder {
 
 data class PreviewOrderLimit(
     override val allOrNone: String,
-    override val priceType: OrderPriceType = OrderPriceType.LIMIT,
+    override val priceType: OrderPriceType,
     override val orderTerm: OrderTerm,
     override val marketSession: MarketSession,
     @JsonProperty("Instrument")
@@ -98,12 +98,14 @@ data class PreviewOrderLimit(
 ) : PreviewOrder {
     constructor(
         allOrNone: Boolean = false,
+        priceType: OrderPriceType = OrderPriceType.LIMIT,
         orderTerm: OrderTerm = OrderTerm.default,
         marketSession: MarketSession = MarketSession.default,
         limitPrice: Float,
         instruments: List<PreviewInstrument>
     ) : this(
         allOrNone = allOrNone.toString(),
+        priceType = priceType,
         orderTerm = orderTerm,
         marketSession = marketSession,
         limitPrice = limitPrice.toString(),
@@ -138,32 +140,7 @@ data class PreviewOrderMarket(
         instruments = instruments
     )
 }
-/*
-data class PreviewOrderSpread
-    override val allOrNone: String,
-    override val priceType: OrderPriceType = OrderPriceType.NET_DEBIT,
-    override val orderTerm: OrderTerm,
-    override val marketSession: MarketSession,
-    @JsonProperty("Instrument")
-    override val instruments: List<PreviewInstrument>,
 
-    val limitPrice: String
-) : PreviewOrder {
-    constructor(
-        allOrNone: Boolean = false,
-        orderTerm: OrderTerm = OrderTerm.default,
-        marketSession: MarketSession = MarketSession.default,
-        limitPrice: Float,
-        instruments: List<PreviewInstrument>
-    ) : this(
-        allOrNone = allOrNone.toString(),
-        orderTerm = orderTerm,
-        marketSession = marketSession,
-        limitPrice = limitPrice.toString(),
-        instruments = instruments
-    )
-}
-*/
 data class PreviewRequest(
     val orderType: OrderType,
     val clientOrderId: String,

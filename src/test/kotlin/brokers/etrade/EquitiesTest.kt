@@ -45,7 +45,7 @@ class EquitiesTest : StringSpec({
             order.priceType.shouldBe(OrderPriceType.LIMIT)
             order.limitPrice.shouldBe(limitPrice)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.BUY)
             instrument.quantity!!.toInt().shouldBe(quantity)
 
@@ -79,7 +79,7 @@ class EquitiesTest : StringSpec({
             order.limitPrice.shouldBe(limitPrice)
             order.estimatedTotalAmount.shouldBe(-5399.9486f)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.SELL)
             instrument.quantity!!.toInt().shouldBe(quantity)
 

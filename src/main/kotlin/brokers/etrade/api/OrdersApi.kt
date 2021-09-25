@@ -275,7 +275,7 @@ data class Instrument(
  * @param[replacesOrderId] In the event of a change order request, the order ID of the order that the new order is replacing.
  * @param[allOrNone] If TRUE, the transactions specified in the order must be executed all at once or not at all; default is FALSE
  * @param[previewId] This parameter is required and must specify the numeric preview ID from the preview and the other parameters of this request must match the parameters of the preview.
- * @param[instrument] The object for the instrument
+ * @param[instruments] The object for the instrument
  * @param[messages] The object for the messages
  * @param[preClearanceCode] The preclearance code
  * @param[overrideRestrictedCd] The overrides restricted code
@@ -328,7 +328,7 @@ data class OrderDetail(
     val allOrNone: Boolean?,
     val previewId: Int?,
     @JsonProperty("Instrument")
-    val instrument: List<Instrument>?,
+    val instruments: List<Instrument>?,
     val messages: MessagesResponse?,
     val preClearanceCode: String?,
     val overrideRestrictedCd: Int?,
@@ -449,6 +449,8 @@ data class Margin(
 
 /**
  * @param[orderType] The type of order being placed
+ * @param[totalOrderValue] The total order value
+ * @param[totalCommission] The total commission
  * @param[orders] List of orders
  * @param[previewIds] This parameter is required and must specify the numeric preview ID from the preview and the other parameters of this request must match the parameters of the preview.
  * @param[marginLevel] The code that designates the applicable margin level
@@ -458,6 +460,8 @@ data class Margin(
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class PreviewOrderResponse(
     val orderType: OrderType,
+    val totalOrderValue: Float?,
+    val totalCommission: Float?,
     @JsonProperty("Order")
     val orders: List<OrderDetail>,
     @JsonProperty("PreviewIds")
