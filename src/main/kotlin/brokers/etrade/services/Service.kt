@@ -72,6 +72,7 @@ open class Service(
     }
 }
 
+// TODO: This belongs in a more globally-named package
 open class BrokerServiceError(
     open val code: Int = 0,
     override val message: String = "Error from broker API"
