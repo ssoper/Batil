@@ -3,9 +3,6 @@ package com.seansoper.batil
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityLimit
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityMarket
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyPutOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellEquityLimit
 import com.seansoper.batil.config.GlobalConfig
 

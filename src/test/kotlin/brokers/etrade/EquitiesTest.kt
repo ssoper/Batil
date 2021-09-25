@@ -1,5 +1,4 @@
 import com.seansoper.batil.brokers.etrade.api.MarginLevel
-import com.seansoper.batil.brokers.etrade.api.OptionLevel
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
 import com.seansoper.batil.brokers.etrade.api.OrderTerm
