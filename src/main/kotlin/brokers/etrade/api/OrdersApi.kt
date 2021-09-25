@@ -417,6 +417,13 @@ data class PreviewId(
     val previewId: String
 )
 
+/**
+ * @param[currentBuyingPower] Current Buying Power, without including Open orders
+ * @param[currentOpenOrderReserve] Open Order Reserve for the existing open orders
+ * @param[currentNetBuyingPower] Current Buying Power minus the current open order reserve
+ * @param[currentOrderImpact] The current order impact on the account
+ * @param[netBuyingPower] Buying Power after factoring in the Current Order
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class MarginBalances(
     @JsonProperty("currentBp")
@@ -430,12 +437,24 @@ data class MarginBalances(
     val netBuyingPower: Float?
 )
 
+/**
+ * @param[nonMarginable] The total in the account that is not marginable
+ * @param[marginable] The total in the account that is marginable
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Margin(
     val nonMarginable: MarginBalances?,
     val marginable: MarginBalances?
 )
 
+/**
+ * @param[orderType] The type of order being placed
+ * @param[orders] List of orders
+ * @param[previewIds] This parameter is required and must specify the numeric preview ID from the preview and the other parameters of this request must match the parameters of the preview.
+ * @param[marginLevel] The code that designates the applicable margin level
+ * @param[optionLevel] The code that designates the applicable options level
+ * @param[margin] Margin Buying Power Details for the user
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class PreviewOrderResponse(
     val orderType: OrderType,
