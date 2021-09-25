@@ -47,7 +47,7 @@ object Core {
                 // val request = sellPutOptionMarket("T", .65f, 0f, 27f, 1)
                 // val request = buyPutOptionMarket("T", .65f, 0f, 27f, 1)
                 // val request = buyEquityMarket("RIOT", 27f, 0f, 50)
-                val request = sellEquityLimit("RIOT", 27f, 50)
+                val request = sellEquityLimit("RIOT", 27f, 200)
                 service.createPreview(accountIdKey, request)?.let {
                     println(it)
                 }

@@ -5,6 +5,7 @@ import com.seansoper.batil.brokers.etrade.api.OrderTerm
 import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellEquityLimit
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -58,32 +59,38 @@ class EquitiesTest : StringSpec({
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
     }
-/*
-    "create preview to sell call option limit" {
-        val path = Paths.get("brokers/etrade/orders/call_options/create_preview_sell_limit.json")
+
+    "create preview to sell equities limit" {
+        val path = Paths.get("brokers/etrade/orders/equities/create_preview_sell_limit.json")
 
         createServer(path) {
+            val limitPrice = 27f
+            val quantity = 200
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = sellCallOptionLimit(virginGalactic.symbol, 0.95f, 30f, 1, virginGalactic.expiry)
+            val request = sellEquityLimit(riot.symbol, limitPrice, quantity)
             val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()
+            data.marginLevel.shouldBe(MarginLevel.MARGIN_TRADING_ALLOWED)
+            data.margin!!.marginable!!.currentBuyingPower.shouldBe(34595.17f)
+
+            val order = data.orders.first()
+            order.priceType.shouldBe(OrderPriceType.LIMIT)
+            order.limitPrice.shouldBe(limitPrice)
+            order.estimatedTotalAmount.shouldBe(-5399.9486f)
 
             val instrument = data.orders.first().instrument!!.first()
-            instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
+            instrument.orderAction.shouldBe(OrderActionType.SELL)
+            instrument.quantity!!.toInt().shouldBe(quantity)
 
             val product = instrument.product!!
-            product.symbol.shouldBe(virginGalactic.symbol)
-            product.expiry.shouldBe(GregorianCalendar(virginGalactic.year, virginGalactic.month, virginGalactic.day))
-
-            data.marginLevel.shouldBe(MarginLevel.MARGIN_TRADING_ALLOWED)
-            data.margin!!.marginable!!.currentBuyingPower.shouldBe(27825.10f)
-            data.optionLevel.shouldBe(OptionLevel.LEVEL_3)
+            product.symbol.shouldBe(riot.symbol)
+            product.securityType.shouldBe(SecurityType.EQ)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
     }
-
+/*
     "create preview to buy call option market" {
         val path = Paths.get("brokers/etrade/orders/call_options/create_preview_buy_market.json")
 
