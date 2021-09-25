@@ -312,7 +312,7 @@ data class Product(
         get() {
             return if (expiryYear != null && expiryMonth != null && expiryDay != null) {
                 if (expiryYear < 100) {
-                   
+
                     GregorianCalendar(expiryYear + 2000, expiryMonth, expiryDay)
                 } else {
                     GregorianCalendar(expiryYear, expiryMonth, expiryDay)
@@ -857,5 +857,4 @@ interface AccountsApi {
         @Path("accountIdKey") accountIdKey: String,
         @QueryMap options: Map<String, String>
     ): Call<PortfolioResponse>
-
 }
