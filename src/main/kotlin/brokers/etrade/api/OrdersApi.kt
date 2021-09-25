@@ -86,7 +86,45 @@ enum class OrderOffsetType {
 }
 
 enum class RoutingDestination {
-    AUTO, AMEX, BOX, CBOE, ISE, NOM, NYSE, PHX
+    /**
+     * Let the broker decide the best routing destination
+     */
+    AUTO,
+
+    /**
+     * American Stock Exchange
+     */
+    AMEX,
+
+    /**
+     * Boston Exchange
+     */
+    BOX,
+
+    /**
+     * Chicago Board of Exchange
+     */
+    CBOE,
+
+    /**
+     * International Securities Exchange
+     */
+    ISE,
+
+    /**
+     * Nasdaq Options Market
+     */
+    NOM,
+
+    /**
+     * New York Stock Exchange
+     */
+    NYSE,
+
+    /**
+     * Philadelphia Exchange
+     */
+    PHX
 }
 
 enum class ConditionType {
@@ -223,7 +261,7 @@ data class Instrument(
  * @param[offsetType] TRAILING_STOP_CNST, TRAILING_STOP_PRCT
  * @param[offsetValue] The stop value for trailing stop price types
  * @param[marketSession] REGULAR, EXTENDED
- * @param[routingDestination] AUTO, AMEX, BOX, CBOE, ISE, NOM, NYSE, PHX
+ * @param[routingDestination] The exchange where the order should be executed. Users may want to specify this if they believe they can get a better order fill at a specific exchange rather than relying on the automatic order routing system.
  * @param[bracketedLimitPrice] The bracketed limit price (bracketed orders are not supported in API currently)
  * @param[initialStopPrice] The initial stop price
  * @param[trailPrice] The current trailing value. For trailing stop dollar orders, this is a fixed dollar amount. For trailing stop percentage orders, this is the price reflected by the percentage selected.
