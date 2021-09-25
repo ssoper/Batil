@@ -62,6 +62,7 @@ data class PreviewInstrumentOption(
     )
 }
 
+// TODO: Determine whether a float is acceptable to E*TRADE for quantity, re: fractional shares
 data class PreviewInstrumentEquity(
     override val orderAction: OrderActionType,
     @JsonProperty("Product")
@@ -137,7 +138,32 @@ data class PreviewOrderMarket(
         instruments = instruments
     )
 }
+/*
+data class PreviewOrderSpread
+    override val allOrNone: String,
+    override val priceType: OrderPriceType = OrderPriceType.NET_DEBIT,
+    override val orderTerm: OrderTerm,
+    override val marketSession: MarketSession,
+    @JsonProperty("Instrument")
+    override val instruments: List<PreviewInstrument>,
 
+    val limitPrice: String
+) : PreviewOrder {
+    constructor(
+        allOrNone: Boolean = false,
+        orderTerm: OrderTerm = OrderTerm.default,
+        marketSession: MarketSession = MarketSession.default,
+        limitPrice: Float,
+        instruments: List<PreviewInstrument>
+    ) : this(
+        allOrNone = allOrNone.toString(),
+        orderTerm = orderTerm,
+        marketSession = marketSession,
+        limitPrice = limitPrice.toString(),
+        instruments = instruments
+    )
+}
+*/
 data class PreviewRequest(
     val orderType: OrderType,
     val clientOrderId: String,
