@@ -1,6 +1,7 @@
 package com.seansoper.batil
 
 import brokers.etrade.services.orderPreview.buyCallSpread
+import brokers.etrade.services.orderPreview.sellCallSpread
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
@@ -51,8 +52,8 @@ object Core {
                 // still need to get data for this
                 // val request = sellEquityLimit("RIOT", 27f, 200)
 
-                val request = buyCallSpread("CLF", .32f, 21f, 22f, 1)
-
+                // val request = buyCallSpread("CLF", .32f, 21f, 22f, 1)
+                val request = sellCallSpread("CLF", .20f, 23f, 22f, 1)
                 service.createPreview(accountIdKey, request)?.let {
                     println(it)
                 }
