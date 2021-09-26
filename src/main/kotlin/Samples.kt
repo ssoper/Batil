@@ -17,6 +17,7 @@ import java.time.LocalTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.GregorianCalendar
+import kotlin.math.exp
 
 /**
  * @suppress
@@ -265,11 +266,39 @@ class Orders {
             limitPrice = .32f,
             buyStrike = 21f,
             sellStrike = 22f,
-            quantity = 1
+            quantity = 1,
+            expiry = expiry
         )
 
         service.createPreview(accountIdKey, request)?.let {
             println("Preview of Buy to Open call debit spread of CLF")
+            println(it)
+        }
+    }
+
+    fun sellPutCreditSpread(runtime: RuntimeConfig = RuntimeConfig.default()) {
+        val configuration = GlobalConfig.parse(runtime)
+        val client = Authorization(configuration, runtime.production, runtime.verbose)
+        val session = client.renewSession() ?: client.createSession()
+        val service = Orders(session, runtime.production, runtime.verbose)
+        val accountIdKey = "ACCOUNT_ID_KEY"
+        val expiry = ZonedDateTime.of(
+            LocalDate.of(2021, 10, 15),
+            LocalTime.of(16, 0),
+            ZoneId.of("America/New_York")
+        )
+
+        val request = buyCallSpread(
+            symbol = "CLF",
+            limitPrice = .37f,
+            buyStrike = 19f,
+            sellStrike = 20f,
+            quantity = 1,
+            expiry = expiry
+        )
+
+        service.createPreview(accountIdKey, request)?.let {
+            println("Preview of Sell to Open put credit spread of CLF")
             println(it)
         }
     }

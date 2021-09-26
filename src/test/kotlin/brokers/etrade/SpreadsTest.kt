@@ -1,6 +1,7 @@
 import brokers.etrade.services.orderPreview.buyCallSpread
 import brokers.etrade.services.orderPreview.buyPutSpread
 import brokers.etrade.services.orderPreview.sellCallSpread
+import brokers.etrade.services.orderPreview.sellPutSpread
 import com.seansoper.batil.brokers.etrade.api.MarginLevel
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
@@ -154,6 +155,59 @@ class SpreadsTest : StringSpec({
                 it.messages.shouldBeNull()
                 it.orderTerm.shouldBe(OrderTerm.GOOD_FOR_DAY)
                 it.priceType.shouldBe(OrderPriceType.NET_DEBIT)
+                it.limitPrice.shouldBe(limitPrice)
+            }
+
+            data.orders.first().instruments!!.first().let {
+                it.orderAction.shouldBe(OrderActionType.BUY_OPEN)
+                it.quantity!!.toInt().shouldBe(quantity)
+                it.product!!.let {
+                    it.symbol.shouldBe(cliffs.symbol)
+                    it.securityType.shouldBe(SecurityType.OPTN)
+                    it.strikePrice.shouldBe(buyStrike)
+                    it.expiryYear.shouldBe(cliffs.year)
+                    it.expiryMonth.shouldBe(cliffs.month)
+                    it.expiryDay.shouldBe(cliffs.day)
+                }
+            }
+
+            data.orders.first().instruments!![1].let {
+                it.orderAction.shouldBe(OrderActionType.SELL_OPEN)
+                it.quantity!!.toInt().shouldBe(quantity)
+                it.product!!.let {
+                    it.symbol.shouldBe(cliffs.symbol)
+                    it.securityType.shouldBe(SecurityType.OPTN)
+                    it.strikePrice.shouldBe(sellStrike)
+                }
+            }
+
+            data.marginLevel.shouldBe(MarginLevel.MARGIN_TRADING_ALLOWED)
+            data.margin!!.marginable!!.currentBuyingPower.shouldBe(34595.17f)
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
+        }
+    }
+
+    "create preview to sell put credit spread" {
+        val path = Paths.get("brokers/etrade/orders/spreads/create_preview_sell_put_credit.json")
+
+        createServer(path) {
+            val buyStrike = 19f
+            val sellStrike = 20f
+            val limitPrice = 0.37f
+            val quantity = 1
+            val service = Orders(mockSession(), baseUrl = it.url(".").toString())
+            val request = sellPutSpread(cliffs.symbol, limitPrice, buyStrike, sellStrike, quantity)
+            val data = service.createPreview(accountIdKey, request)
+
+            data.shouldNotBeNull()
+            data.orderType.shouldBe(OrderType.SPREADS)
+            data.totalOrderValue.shouldBe(-35.9736f)
+
+            data.orders.first().let {
+                it.messages.shouldBeNull()
+                it.orderTerm.shouldBe(OrderTerm.GOOD_FOR_DAY)
+                it.priceType.shouldBe(OrderPriceType.NET_CREDIT)
                 it.limitPrice.shouldBe(limitPrice)
             }
 
