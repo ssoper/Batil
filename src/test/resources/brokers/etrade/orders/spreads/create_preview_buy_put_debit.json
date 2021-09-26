@@ -1,0 +1,98 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "SPREADS",
+    "totalOrderValue": 23.0264,
+    "previewTime": 1632615027547,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 10378.55
+      },
+      "marginable": {
+        "currentBp": 34595.17,
+        "currentOor": 320.34,
+        "currentNetBp": 34274.83,
+        "currentOrderImpact": 46.05,
+        "netBp": 34228.77
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "NET_DEBIT",
+        "limitPrice": 0.22,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 1,
+        "estimatedTotalAmount": 23.0264,
+        "netPrice": 0,
+        "netBid": 0.21,
+        "netAsk": 0.24,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "CLF Oct 15 '21 $19 Put",
+            "orderAction": "BUY_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 1,
+            "cancelQuantity": 0.0,
+            "osiKey": "CLF---211015P00019000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "CLF",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 19.0,
+              "productId": {
+                "symbol": "CLF---211015P00019000",
+                "typeCode": "OPTION"
+              }
+            }
+          },
+          {
+            "symbolDescription": "CLF Oct 15 '21 $18 Put",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 1,
+            "cancelQuantity": 0.0,
+            "osiKey": "CLF---211015P00018000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "CLF",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 18.0,
+              "productId": {
+                "symbol": "CLF---211015P00018000",
+                "typeCode": "OPTION"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1010403034106
+      }
+    ],
+    "Disclosure": {
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}
