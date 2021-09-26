@@ -1,7 +1,6 @@
 package com.seansoper.batil
 
 import brokers.etrade.services.orderPreview.buyPutSpread
-import brokers.etrade.services.orderPreview.sellCallSpread
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
