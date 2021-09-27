@@ -2,6 +2,7 @@ package brokers.etrade
 
 import brokers.etrade.services.orderPreview.buyCondorCalls
 import brokers.etrade.services.orderPreview.buyCondorPuts
+import brokers.etrade.services.orderPreview.sellCondorCalls
 import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
@@ -35,8 +36,15 @@ class CondorsTest : StringSpec({
 
         createServer(path) {
             val limitPrice = 0.08f
+            val strikes = listOf(78.5f, 79f, 79.5f, 80f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = buyCondorCalls("SNAP", Pair(78.5f, 79f), Pair(79.5f, 80f), limitPrice, quantity)
+            val request = buyCondorCalls(
+                "SNAP",
+                Pair(strikes[0], strikes[1]),
+                Pair(strikes[2], strikes[3]),
+                limitPrice,
+                quantity
+            )
             val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()
@@ -50,11 +58,14 @@ class CondorsTest : StringSpec({
 
             order.instruments!!.forEachIndexed { index, instrument ->
                 instrument.quantity.shouldBe(quantity.toFloat())
-                instrument.product!!.symbol.shouldBe(snap.symbol)
-                instrument.product!!.expiryYear.shouldBe(snap.year)
-                instrument.product!!.expiryMonth.shouldBe(snap.month)
-                instrument.product!!.expiryDay.shouldBe(snap.day)
-                instrument.product!!.callPut.shouldBe(OptionType.CALL)
+                instrument.product!!.let {
+                    it.symbol.shouldBe(snap.symbol)
+                    it.expiryYear.shouldBe(snap.year)
+                    it.expiryMonth.shouldBe(snap.month)
+                    it.expiryDay.shouldBe(snap.day)
+                    it.callPut.shouldBe(OptionType.CALL)
+                    it.strikePrice.shouldBe(strikes[index])
+                }
 
                 when (index) {
                     0, 3 -> instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
@@ -71,8 +82,15 @@ class CondorsTest : StringSpec({
 
         createServer(path) {
             val limitPrice = 0.06f
+            val strikes = listOf(78.5f, 79f, 79.5f, 80f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = buyCondorPuts("SNAP", Pair(78.5f, 79f), Pair(79.5f, 80f), limitPrice, quantity)
+            val request = buyCondorPuts(
+                "SNAP",
+                Pair(strikes[0], strikes[1]),
+                Pair(strikes[2], strikes[3]),
+                limitPrice,
+                quantity
+            )
             val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()
@@ -86,15 +104,64 @@ class CondorsTest : StringSpec({
 
             order.instruments!!.forEachIndexed { index, instrument ->
                 instrument.quantity.shouldBe(quantity.toFloat())
-                instrument.product!!.symbol.shouldBe(snap.symbol)
-                instrument.product!!.expiryYear.shouldBe(snap.year)
-                instrument.product!!.expiryMonth.shouldBe(snap.month)
-                instrument.product!!.expiryDay.shouldBe(snap.day)
-                instrument.product!!.callPut.shouldBe(OptionType.PUT)
+                instrument.product!!.let {
+                    it.symbol.shouldBe(snap.symbol)
+                    it.expiryYear.shouldBe(snap.year)
+                    it.expiryMonth.shouldBe(snap.month)
+                    it.expiryDay.shouldBe(snap.day)
+                    it.callPut.shouldBe(OptionType.PUT)
+                    it.strikePrice.shouldBe(strikes[index])
+                }
 
                 when (index) {
                     0, 3 -> instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
                     1, 2 -> instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
+                }
+            }
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
+        }
+    }
+
+    "create preview to sell condor calls" {
+        val path = Paths.get("brokers/etrade/orders/condors/sell_calls.json")
+
+        createServer(path) {
+            val limitPrice = 0.08f
+            val strikes = listOf<Float>(79f, 80f, 81f, 82f)
+            val service = Orders(mockSession(), baseUrl = it.url(".").toString())
+            val request = sellCondorCalls(
+                "SNAP",
+                Pair(strikes[0], strikes[1]),
+                Pair(strikes[2], strikes[3]),
+                limitPrice,
+                quantity
+            )
+            val data = service.createPreview(accountIdKey, request)
+
+            data.shouldNotBeNull()
+            data.orderType.shouldBe(OrderType.CONDOR)
+
+            val order = data.orders.first()
+            order.messages.shouldBeNull()
+            order.orderTerm.shouldBe(OrderTerm.GOOD_FOR_DAY)
+            order.priceType.shouldBe(OrderPriceType.NET_CREDIT)
+            order.limitPrice.shouldBe(limitPrice)
+
+            order.instruments!!.forEachIndexed { index, instrument ->
+                instrument.quantity.shouldBe(quantity.toFloat())
+                instrument.product!!.let {
+                    it.symbol.shouldBe(snap.symbol)
+                    it.expiryYear.shouldBe(snap.year)
+                    it.expiryMonth.shouldBe(snap.month)
+                    it.expiryDay.shouldBe(snap.day)
+                    it.callPut.shouldBe(OptionType.CALL)
+                    it.strikePrice.shouldBe(strikes[index])
+                }
+
+                when (index) {
+                    0, 3 -> instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
+                    1, 2 -> instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
                 }
             }
 

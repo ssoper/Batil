@@ -1,6 +1,6 @@
 package com.seansoper.batil
 
-import brokers.etrade.services.orderPreview.buyCondorCalls
+import brokers.etrade.services.orderPreview.sellCondorCalls
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
@@ -57,7 +57,7 @@ object Core {
                 // val request = sellPutSpread("CLF", .37f, 19f, 20f, 1)
 
                 // val request = buyCondorPuts("SNAP", Pair (78.5f, 79f), Pair(79.5f, 80f), .06f, 10)
-                val request = buyCondorCalls("SNAP", Pair(78.5f, 79f), Pair(79.5f, 80f), .08f, 10)
+                val request = sellCondorCalls("SNAP", Pair(79f, 80f), Pair(81f, 82f), .08f, 10)
 
                 service.createPreview(accountIdKey, request)?.let {
                     println(it)
