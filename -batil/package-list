@@ -1613,7 +1613,7 @@ $dokka.location:com.seansoper.batil.brokers.etrade.api/TransactionTrade/settleme
 $dokka.location:com.seansoper.batil.brokers.etrade.auth////PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/index.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization.Companion///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/-companion/index.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/Authorization/#com.seansoper.batil.config.GlobalConfig#kotlin.Boolean#kotlin.Boolean#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/-authorization.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/Authorization/#com.seansoper.batil.config.GlobalConfig#kotlin.Boolean#kotlin.Boolean#kotlin.String#com.seansoper.batil.CachedTokenProvider/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/-authorization.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/createSession/#kotlin.Boolean/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/create-session.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/destroySession/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/destroy-session.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/getAccessToken/#com.seansoper.batil.brokers.etrade.AuthResponse#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/get-access-token.html
@@ -2145,6 +2145,10 @@ $dokka.location:com.seansoper.batil/CachedToken/provider/#/PointingToDeclaration
 $dokka.location:com.seansoper.batil/CachedToken/setEntry/#kotlin.String#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token/set-entry.html
 $dokka.location:com.seansoper.batil/CachedTokenException///PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-exception/index.html
 $dokka.location:com.seansoper.batil/CachedTokenException/CachedTokenException/#java.nio.file.Path/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-exception/-cached-token-exception.html
+$dokka.location:com.seansoper.batil/CachedTokenProvider///PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-provider/index.html
+$dokka.location:com.seansoper.batil/CachedTokenProvider/destroy/#/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-provider/destroy.html
+$dokka.location:com.seansoper.batil/CachedTokenProvider/getEntry/#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-provider/get-entry.html
+$dokka.location:com.seansoper.batil/CachedTokenProvider/setEntry/#kotlin.String#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-provider/set-entry.html
 $dokka.location:com.seansoper.batil/Core///PointingToDeclaration/-batil/com.seansoper.batil/-core/index.html
 $dokka.location:com.seansoper.batil/Core/main/#kotlin.Array[kotlin.String]/PointingToDeclaration/-batil/com.seansoper.batil/-core/main.html
 $dokka.location:com.seansoper.batil/OptionsCalendar///PointingToDeclaration/-batil/com.seansoper.batil/-options-calendar/index.html
