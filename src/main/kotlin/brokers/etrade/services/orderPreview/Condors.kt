@@ -1,4 +1,4 @@
-package brokers.etrade.services.orderPreview
+package com.seansoper.batil.brokers.etrade.services.orderPreview
 
 import com.seansoper.batil.OptionsCalendar
 import com.seansoper.batil.brokers.etrade.api.OptionType
