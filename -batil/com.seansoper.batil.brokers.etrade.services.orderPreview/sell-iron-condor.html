@@ -39,6 +39,7 @@ import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMar
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronCondor
 import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig
 import java.time.LocalDate
@@ -59,7 +60,7 @@ val expiry = ZonedDateTime.of(
     ZoneId.of(&quot;America/New_York&quot;)
 )
 
-val request = buyCondorPuts(
+val request = sellIronCondor(
     symbol = &quot;ACB&quot;,
     lowerWing = Pair(5.5f, 6f),
     upperWing = Pair(6.5f, 7f),
