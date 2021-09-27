@@ -1,9 +1,11 @@
 import com.seansoper.batil.brokers.etrade.AuthResponse
+import com.seansoper.batil.brokers.etrade.AuthResponseError
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeInstanceOf
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
+import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import testHelper.LoadConfig
 import testHelper.MockHelper.createServer
@@ -54,6 +56,23 @@ class AuthorizationTest : StringSpec({
             data.shouldNotBeNull()
             data.accessToken.shouldBe(mock.first)
             data.accessSecret.shouldBe(mock.second)
+
+            it.takeRequest().path.shouldContain("oauth/access_token")
+        }
+    }
+
+    "invalid response" {
+        val response = "<message>invalid response</message>"
+
+        createServer(response, "Content-Type" to "application/x-www-form-urlencoded") {
+            val service = Authorization(config.content, baseUrl = it.url(".").toString())
+            val requestToken = mockAuthResponse()
+            val verifier = randomString(6)
+            val exception = shouldThrow<AuthResponseError> {
+                service.getAccessToken(requestToken, verifier)
+            }
+
+            exception.message.shouldBe("No token returned")
 
             it.takeRequest().path.shouldContain("oauth/access_token")
         }
