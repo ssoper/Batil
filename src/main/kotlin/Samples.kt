@@ -11,6 +11,7 @@ import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMar
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronCondor
 import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig
 import java.time.LocalDate
@@ -342,7 +343,7 @@ class Orders {
             ZoneId.of("America/New_York")
         )
 
-        val request = buyCondorPuts(
+        val request = sellIronCondor(
             symbol = "ACB",
             lowerWing = Pair(5.5f, 6f),
             upperWing = Pair(6.5f, 7f),
