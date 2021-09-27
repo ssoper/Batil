@@ -38,7 +38,7 @@ class CallOptionsTest : StringSpec({
 
     // TODO: Consider using Buy To Open (BTO) vs. just Buy
     "create preview to buy call option limit" {
-        val path = Paths.get("brokers/etrade/orders/call_options/create_preview_buy_limit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/call_options/buy_limit.json")
 
         createServer(path) {
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
@@ -68,7 +68,7 @@ class CallOptionsTest : StringSpec({
     }
 
     "create preview to sell call option limit" {
-        val path = Paths.get("brokers/etrade/orders/call_options/create_preview_sell_limit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/call_options/sell_limit.json")
 
         createServer(path) {
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
@@ -93,7 +93,7 @@ class CallOptionsTest : StringSpec({
     }
 
     "create preview to buy call option market" {
-        val path = Paths.get("brokers/etrade/orders/call_options/create_preview_buy_market.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/call_options/buy_market.json")
 
         createServer(path) {
             val strike = 150f
@@ -120,7 +120,7 @@ class CallOptionsTest : StringSpec({
     }
 
     "create preview to sell call option market" {
-        val path = Paths.get("brokers/etrade/orders/call_options/create_preview_sell_market.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/call_options/sell_market.json")
 
         createServer(path) {
             val strike = 150f

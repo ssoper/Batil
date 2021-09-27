@@ -1,7 +1,3 @@
-import brokers.etrade.services.orderPreview.buyCallSpread
-import brokers.etrade.services.orderPreview.buyPutSpread
-import brokers.etrade.services.orderPreview.sellCallSpread
-import brokers.etrade.services.orderPreview.sellPutSpread
 import com.seansoper.batil.brokers.etrade.api.MarginLevel
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
@@ -9,6 +5,10 @@ import com.seansoper.batil.brokers.etrade.api.OrderTerm
 import com.seansoper.batil.brokers.etrade.api.OrderType
 import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.services.Orders
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyPutSpread
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallSpread
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellPutSpread
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -30,7 +30,7 @@ class SpreadsTest : StringSpec({
     )
 
     "create preview to buy call debit spread" {
-        val path = Paths.get("brokers/etrade/orders/spreads/create_preview_buy_call_debit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/spreads/buy_call_debit.json")
 
         createServer(path) {
             val buyStrike = 21f
@@ -83,7 +83,7 @@ class SpreadsTest : StringSpec({
     }
 
     "create preview to sell call credit spread" {
-        val path = Paths.get("brokers/etrade/orders/spreads/create_preview_sell_call_credit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/spreads/sell_call_credit.json")
 
         createServer(path) {
             val buyStrike = 23f
@@ -136,7 +136,7 @@ class SpreadsTest : StringSpec({
     }
 
     "create preview to buy put debit spread" {
-        val path = Paths.get("brokers/etrade/orders/spreads/create_preview_buy_put_debit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/spreads/buy_put_debit.json")
 
         createServer(path) {
             val buyStrike = 19f
@@ -189,7 +189,7 @@ class SpreadsTest : StringSpec({
     }
 
     "create preview to sell put credit spread" {
-        val path = Paths.get("brokers/etrade/orders/spreads/create_preview_sell_put_credit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/spreads/sell_put_credit.json")
 
         createServer(path) {
             val buyStrike = 19f

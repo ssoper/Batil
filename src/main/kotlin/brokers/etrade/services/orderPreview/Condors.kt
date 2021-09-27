@@ -9,7 +9,6 @@ import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewInstrumentOpti
 import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewOrderLimit
 import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewProductOption
 import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewRequest
-import com.seansoper.batil.brokers.etrade.services.orderPreview.randomString
 import java.time.ZonedDateTime
 
 /**

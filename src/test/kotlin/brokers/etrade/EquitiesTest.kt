@@ -23,7 +23,7 @@ class EquitiesTest : StringSpec({
     val limitPrice = 27f
 
     "create preview to buy equities limit" {
-        val path = Paths.get("brokers/etrade/orders/equities/create_preview_buy_limit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/equities/buy_limit.json")
 
         createServer(path) {
             val quantity = 50
@@ -55,7 +55,7 @@ class EquitiesTest : StringSpec({
     }
 
     "create preview to sell equities limit" {
-        val path = Paths.get("brokers/etrade/orders/equities/create_preview_sell_limit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/equities/sell_limit.json")
 
         createServer(path) {
             val quantity = 200
@@ -85,7 +85,7 @@ class EquitiesTest : StringSpec({
     }
 
     "create preview to buy equities market" {
-        val path = Paths.get("brokers/etrade/orders/equities/create_preview_buy_market.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/equities/buy_market.json")
 
         createServer(path) {
             val stopPrice = 0f
@@ -119,7 +119,7 @@ class EquitiesTest : StringSpec({
     }
 
     "create preview to sell equities market" {
-        val path = Paths.get("brokers/etrade/orders/equities/create_preview_sell_market.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/equities/sell_market.json")
 
         createServer(path) {
             val quantity = 200

@@ -1,14 +1,14 @@
 package brokers.etrade
 
-import brokers.etrade.services.orderPreview.buyCondorCalls
-import brokers.etrade.services.orderPreview.buyCondorPuts
-import brokers.etrade.services.orderPreview.sellCondorCalls
 import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
 import com.seansoper.batil.brokers.etrade.api.OrderTerm
 import com.seansoper.batil.brokers.etrade.api.OrderType
 import com.seansoper.batil.brokers.etrade.services.Orders
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorCalls
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCondorCalls
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -33,7 +33,7 @@ class CondorsTest : StringSpec({
     val quantity = 10
 
     "create preview to buy condor calls" {
-        val path = Paths.get("brokers/etrade/orders/condors/buy_calls.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/condors/buy_calls.json")
 
         createServer(path) {
             val limitPrice = 0.08f
@@ -79,7 +79,7 @@ class CondorsTest : StringSpec({
     }
 
     "create preview to buy condor puts" {
-        val path = Paths.get("brokers/etrade/orders/condors/buy_puts.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/condors/buy_puts.json")
 
         createServer(path) {
             val limitPrice = 0.06f
@@ -125,7 +125,7 @@ class CondorsTest : StringSpec({
     }
 
     "create preview to sell condor calls" {
-        val path = Paths.get("brokers/etrade/orders/condors/sell_calls.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/condors/sell_calls.json")
 
         createServer(path) {
             val limitPrice = 0.08f
@@ -171,7 +171,7 @@ class CondorsTest : StringSpec({
     }
 
     "create preview to sell condor puts" {
-        val path = Paths.get("brokers/etrade/orders/condors/sell_puts.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/condors/sell_puts.json")
 
         createServer(path) {
             val limitPrice = 0.07f

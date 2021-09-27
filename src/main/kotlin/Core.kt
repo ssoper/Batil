@@ -1,9 +1,9 @@
 package com.seansoper.batil
 
-import brokers.etrade.services.orderPreview.sellCondorPuts
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCondorPuts
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {

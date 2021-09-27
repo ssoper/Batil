@@ -38,7 +38,7 @@ class PutOptionsTest : StringSpec({
     )
 
     "create preview to buy put option limit" {
-        val path = Paths.get("brokers/etrade/orders/put_options/create_preview_buy_limit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/put_options/buy_limit.json")
 
         createServer(path) {
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
@@ -68,7 +68,7 @@ class PutOptionsTest : StringSpec({
     }
 
     "create preview to sell put option limit" {
-        val path = Paths.get("brokers/etrade/orders/put_options/create_preview_sell_limit.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/put_options/sell_limit.json")
 
         createServer(path) {
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
@@ -93,7 +93,7 @@ class PutOptionsTest : StringSpec({
     }
 
     "create preview to buy call option market" {
-        val path = Paths.get("brokers/etrade/orders/put_options/create_preview_buy_market.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/put_options/buy_market.json")
 
         createServer(path) {
             val strike = 27f
@@ -122,7 +122,7 @@ class PutOptionsTest : StringSpec({
     }
 
     "create preview to sell put option market" {
-        val path = Paths.get("brokers/etrade/orders/put_options/create_preview_sell_market.json")
+        val path = Paths.get("brokers/etrade/orders/createPreview/put_options/sell_market.json")
 
         createServer(path) {
             val strike = 27f

@@ -1,7 +1,5 @@
 package com.seansoper.batil.samples
 
-import brokers.etrade.services.orderPreview.buyCallSpread
-import brokers.etrade.services.orderPreview.buyCondorPuts
 import com.seansoper.batil.OptionsCalendar
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
@@ -10,6 +8,8 @@ import com.seansoper.batil.brokers.etrade.services.Market
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.TransactionSortOrder
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
 import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.RuntimeConfig
