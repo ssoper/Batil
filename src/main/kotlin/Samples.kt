@@ -1,6 +1,7 @@
 package com.seansoper.batil.samples
 
 import brokers.etrade.services.orderPreview.buyCallSpread
+import brokers.etrade.services.orderPreview.buyCondorPuts
 import com.seansoper.batil.OptionsCalendar
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
@@ -293,6 +294,33 @@ class Orders {
             buyStrike = 19f,
             sellStrike = 20f,
             quantity = 1,
+            expiry = expiry
+        )
+
+        service.createPreview(accountIdKey, request)?.let {
+            println("Preview of Sell to Open put credit spread of CLF")
+            println(it)
+        }
+    }
+
+    fun buyCondorPuts(runtime: RuntimeConfig = RuntimeConfig.default()) {
+        val configuration = GlobalConfig.parse(runtime)
+        val client = Authorization(configuration, runtime.production, runtime.verbose)
+        val session = client.renewSession() ?: client.createSession()
+        val service = Orders(session, runtime.production, runtime.verbose)
+        val accountIdKey = "ACCOUNT_ID_KEY"
+        val expiry = ZonedDateTime.of(
+            LocalDate.of(2021, 10, 15),
+            LocalTime.of(16, 0),
+            ZoneId.of("America/New_York")
+        )
+
+        val request = buyCondorPuts(
+            symbol = "SNAP",
+            lowerWing = Pair(78.5f, 79f),
+            upperWing = Pair(79.5f, 80f),
+            limitPrice = .06f,
+            quantity = 10,
             expiry = expiry
         )
 

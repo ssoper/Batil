@@ -15,7 +15,6 @@ import io.kotlintest.specs.StringSpec
 import testHelper.MockHelper.createServer
 import testHelper.MockHelper.mockSession
 import testHelper.PathHelper.randomString
-import testHelper.TestOption
 import java.nio.file.Paths
 
 class EquitiesTest : StringSpec({
@@ -148,5 +147,4 @@ class EquitiesTest : StringSpec({
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
     }
-
 })
