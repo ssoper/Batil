@@ -325,7 +325,7 @@ class Orders {
         )
 
         service.createPreview(accountIdKey, request)?.let {
-            println("Preview of Sell to Open put credit spread of CLF")
+            println("Preview of Buy to Open condor calls on SNAP")
             println(it)
         }
     }

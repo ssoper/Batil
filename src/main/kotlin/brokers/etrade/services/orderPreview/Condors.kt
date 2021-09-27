@@ -51,8 +51,8 @@ internal fun createInstruments(
 /**
  * Buy a condor with calls
  * @param[symbol] The market symbol for the security being bought
- * @param[lowerWing] A pair of strike prices for the lower wing of the option
- * @param[upperWing] A pair of strike prices for the upper wing of the option
+ * @param[lowerWing] A pair of strike prices for the lower wing of the condor
+ * @param[upperWing] A pair of strike prices for the upper wing of the condor
  * @param[limitPrice] The highest price at which to buy the condor calls
  * @param[quantity] The number of condors to buy
  * @param[expiry] The date the condor will expire
@@ -85,8 +85,8 @@ fun buyCondorCalls(
 /**
  * Buy a condor with puts
  * @param[symbol] The market symbol for the security being bought
- * @param[lowerWing] A pair of strike prices for the lower wing of the option
- * @param[upperWing] A pair of strike prices for the upper wing of the option
+ * @param[lowerWing] A pair of strike prices for the lower wing of the condor
+ * @param[upperWing] A pair of strike prices for the upper wing of the condor
  * @param[limitPrice] The highest price at which to buy the condor puts
  * @param[quantity] The number of condors to buy
  * @param[expiry] The date the condor will expire
@@ -120,8 +120,8 @@ fun buyCondorPuts(
 /**
  * Sell a condor with calls
  * @param[symbol] The market symbol for the security being bought
- * @param[lowerWing] A pair of strike prices for the lower wing of the option
- * @param[upperWing] A pair of strike prices for the upper wing of the option
+ * @param[lowerWing] A pair of strike prices for the lower wing of the condor
+ * @param[upperWing] A pair of strike prices for the upper wing of the condor
  * @param[limitPrice] The highest price at which to sell the condor calls
  * @param[quantity] The number of condors to sell
  * @param[expiry] The date the condor will expire
@@ -154,8 +154,8 @@ fun sellCondorCalls(
 /**
  * Sell a condor with puts
  * @param[symbol] The market symbol for the security being bought
- * @param[lowerWing] A pair of strike prices for the lower wing of the option
- * @param[upperWing] A pair of strike prices for the upper wing of the option
+ * @param[lowerWing] A pair of strike prices for the lower wing of the condor
+ * @param[upperWing] A pair of strike prices for the upper wing of the condor
  * @param[limitPrice] The highest price at which to sell the condor puts
  * @param[quantity] The number of condors to sell
  * @param[expiry] The date the condor will expire
