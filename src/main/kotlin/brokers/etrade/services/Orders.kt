@@ -34,10 +34,8 @@ class Orders(
      * @param[count] Number of transactions to return in the response, defaults to 25, max is 100, used for paging
      * @param[status] Filter by status
      * @param[fromDate] The earliest date to include in the date range, history is available for two years
-     * @param[toDate] The latest date to include in the date range, both fromDate and toDate should be provided and
-     * toDate should be greater than fromDate
-     * @param[symbol] List of market symbols for the securities being bought or sold, length should be less than or
-     * equal to 25
+     * @param[toDate] The latest date to include in the date range, both fromDate and toDate should be provided and toDate should be greater than fromDate
+     * @param[symbol] List of market symbols for the securities being bought or sold, length should be less than or equal to 25
      * @param[securityType] The security type
      * @param[transactionType] Type of transaction
      * @param[marketSession] Session in which the equity order will have been placed

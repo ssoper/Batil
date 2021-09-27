@@ -1,0 +1,67 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "EQ",
+    "totalOrderValue": 1390,
+    "previewTime": 1632507593707,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 10382.55
+      },
+      "marginable": {
+        "currentBp": 27824.2,
+        "currentOor": 350.27,
+        "currentNetBp": 27473.93,
+        "currentOrderImpact": 1390.0,
+        "netBp": 26083.93
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "MARKET",
+        "limitPrice": 0,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 0,
+        "estimatedTotalAmount": 1390,
+        "netPrice": 0,
+        "netBid": 0,
+        "netAsk": 0,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "RIOT BLOCKCHAIN INC COM",
+            "orderAction": "BUY",
+            "quantityType": "QUANTITY",
+            "quantity": 50,
+            "cancelQuantity": 0.0,
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "RIOT",
+              "securityType": "EQ"
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1010042727106
+      }
+    ],
+    "Disclosure": {
+      "ehDisclosureFlag": false,
+      "ahDisclosureFlag": false,
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}

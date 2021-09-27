@@ -1,6 +1,6 @@
 import com.seansoper.batil.brokers.etrade.api.OptionCategory
 import com.seansoper.batil.brokers.etrade.api.OptionType
-import com.seansoper.batil.brokers.etrade.interceptors.ApiError
+import com.seansoper.batil.brokers.etrade.services.EtradeServiceError
 import com.seansoper.batil.brokers.etrade.services.Market
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.types.shouldNotBeNull
@@ -125,7 +125,7 @@ class MarketTest : StringSpec({
 
         createServer(path, "Content-Type" to "application/xml", 400) {
             val service = Market(mockSession(), baseUrl = it.url(".").toString())
-            val exception = shouldThrow<ApiError> {
+            val exception = shouldThrow<EtradeServiceError> {
                 service.optionChains("AAPL", GregorianCalendar(2021, 2, 4))
             }
 

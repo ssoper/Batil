@@ -70,7 +70,6 @@ tasks.jacocoTestReport {
     }
 }
 
-// TODO: Exclude *Api.kt from documentation
 tasks.dokkaHtml.configure {
     dokkaSourceSets {
         named("main") {

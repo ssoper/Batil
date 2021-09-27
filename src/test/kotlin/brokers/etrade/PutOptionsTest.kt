@@ -52,7 +52,7 @@ class PutOptionsTest : StringSpec({
             message.code.shouldBe(9011)
             message.type.shouldBe(MessageType.WARNING)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
 
             val product = instrument.product!!
@@ -77,7 +77,7 @@ class PutOptionsTest : StringSpec({
 
             data.shouldNotBeNull()
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
 
             val product = instrument.product!!
@@ -107,7 +107,7 @@ class PutOptionsTest : StringSpec({
             order.messages.shouldBeNull()
             order.priceType.shouldBe(OrderPriceType.MARKET)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
 
             val product = instrument.product!!
@@ -115,7 +115,7 @@ class PutOptionsTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(att.year, att.month, att.day))
 
             val osi = "${att.symbol}-----${att.year - 2000}${att.month}${att.day}P000${strike.toInt()}000"
-            product.product!!.symbol.shouldBe(osi)
+            product.productId!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
@@ -136,7 +136,7 @@ class PutOptionsTest : StringSpec({
             order.messages.shouldBeNull()
             order.priceType.shouldBe(OrderPriceType.MARKET)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
 
             val product = instrument.product!!
@@ -144,7 +144,7 @@ class PutOptionsTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(att.year, att.month, att.day))
 
             val osi = "${att.symbol}-----${att.year - 2000}${att.month}${att.day}P000${strike.toInt()}000"
-            product.product!!.symbol.shouldBe(osi)
+            product.productId!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }

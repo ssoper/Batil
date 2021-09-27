@@ -6,6 +6,7 @@ import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
 import com.seansoper.batil.brokers.etrade.api.OrderTerm
 import com.seansoper.batil.brokers.etrade.api.OrderType
+import com.seansoper.batil.brokers.etrade.api.QuantityType
 import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.services.MarketSession
 import java.time.ZonedDateTime
@@ -35,6 +36,11 @@ data class PreviewProductOption(
     )
 }
 
+data class PreviewProductEquity(
+    override val symbol: String,
+    override val securityType: SecurityType = SecurityType.EQ,
+) : PreviewProduct
+
 interface PreviewInstrument {
     val orderAction: OrderActionType
     val product: PreviewProduct
@@ -56,6 +62,22 @@ data class PreviewInstrumentOption(
     )
 }
 
+// TODO: Determine whether a float is acceptable to E*TRADE for quantity, re: fractional shares
+data class PreviewInstrumentEquity(
+    override val orderAction: OrderActionType,
+    @JsonProperty("Product")
+    override val product: PreviewProduct,
+
+    val quantityType: QuantityType = QuantityType.QUANTITY,
+    val quantity: String
+) : PreviewInstrument {
+    constructor(orderAction: OrderActionType, quantity: Int, product: PreviewProduct) : this(
+        orderAction = orderAction,
+        quantity = quantity.toString(),
+        product = product
+    )
+}
+
 interface PreviewOrder {
     val allOrNone: String
     val priceType: OrderPriceType
@@ -66,7 +88,7 @@ interface PreviewOrder {
 
 data class PreviewOrderLimit(
     override val allOrNone: String,
-    override val priceType: OrderPriceType = OrderPriceType.LIMIT,
+    override val priceType: OrderPriceType,
     override val orderTerm: OrderTerm,
     override val marketSession: MarketSession,
     @JsonProperty("Instrument")
@@ -76,12 +98,14 @@ data class PreviewOrderLimit(
 ) : PreviewOrder {
     constructor(
         allOrNone: Boolean = false,
+        priceType: OrderPriceType = OrderPriceType.LIMIT,
         orderTerm: OrderTerm = OrderTerm.default,
         marketSession: MarketSession = MarketSession.default,
         limitPrice: Float,
         instruments: List<PreviewInstrument>
     ) : this(
         allOrNone = allOrNone.toString(),
+        priceType = priceType,
         orderTerm = orderTerm,
         marketSession = marketSession,
         limitPrice = limitPrice.toString(),

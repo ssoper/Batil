@@ -37,7 +37,7 @@ class OrdersTest : StringSpec({
             details.orderTerm.shouldBe(OrderTerm.GOOD_FOR_DAY)
             details.status.shouldBe(OrderStatus.EXECUTED)
 
-            val instrument = details.instrument!!.first()
+            val instrument = details.instruments!!.first()
             instrument.symbolDescription.shouldContain("SPCE")
             instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
             instrument.orderedQuantity.shouldBe(1.0f)

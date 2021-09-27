@@ -118,12 +118,12 @@ class AccountsTest : StringSpec({
             trade.displaySymbol.shouldContain("PLTR")
             trade.settlementDate.shouldBe(Instant.ofEpochMilli(1613635200000))
 
-            val strike = trade.strike
-            strike.symbol.shouldBe("PLTR")
-            strike.securityType!!.description.shouldBe("Option")
-            strike.callPut.shouldBe(OptionType.PUT)
-            strike.expiry.shouldBe(GregorianCalendar(2021, 3, 12))
-            strike.price.shouldBe(29.0f)
+            val product = trade.product
+            product.symbol.shouldBe("PLTR")
+            product.securityType!!.description.shouldBe("Option")
+            product.callPut.shouldBe(OptionType.PUT)
+            product.expiry.shouldBe(GregorianCalendar(2021, 3, 12))
+            product.strikePrice.shouldBe(29.0f)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/transactions?count=50")
         }

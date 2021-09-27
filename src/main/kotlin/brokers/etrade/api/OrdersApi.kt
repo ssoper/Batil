@@ -86,7 +86,45 @@ enum class OrderOffsetType {
 }
 
 enum class RoutingDestination {
-    AUTO, AMEX, BOX, CBOE, ISE, NOM, NYSE, PHX
+    /**
+     * Let the broker decide the best routing destination
+     */
+    AUTO,
+
+    /**
+     * American Stock Exchange
+     */
+    AMEX,
+
+    /**
+     * Boston Exchange
+     */
+    BOX,
+
+    /**
+     * Chicago Board of Exchange
+     */
+    CBOE,
+
+    /**
+     * International Securities Exchange
+     */
+    ISE,
+
+    /**
+     * Nasdaq Options Market
+     */
+    NOM,
+
+    /**
+     * New York Stock Exchange
+     */
+    NYSE,
+
+    /**
+     * Philadelphia Exchange
+     */
+    PHX
 }
 
 enum class ConditionType {
@@ -113,7 +151,7 @@ enum class OrderActionType {
     BUY, SELL, BUY_TO_COVER, SELL_SHORT, BUY_OPEN, BUY_CLOSE, SELL_OPEN, SELL_CLOSE, EXCHANGE
 }
 
-enum class QuanityType {
+enum class QuantityType {
     QUANTITY, DOLLAR, ALL_I_OWN
 }
 
@@ -181,10 +219,10 @@ data class LotsResponse(
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Instrument(
     @JsonProperty("Product")
-    val product: TransactionStrike?,
+    val product: Product?,
     val symbolDescription: String?,
     val orderAction: OrderActionType?,
-    val quantityType: QuanityType?,
+    val quantityType: QuantityType?,
     val quantity: Float?,
     val cancelQuantity: Float?,
     val orderedQuantity: Float?,
@@ -223,7 +261,7 @@ data class Instrument(
  * @param[offsetType] TRAILING_STOP_CNST, TRAILING_STOP_PRCT
  * @param[offsetValue] The stop value for trailing stop price types
  * @param[marketSession] REGULAR, EXTENDED
- * @param[routingDestination] AUTO, AMEX, BOX, CBOE, ISE, NOM, NYSE, PHX
+ * @param[routingDestination] The exchange where the order should be executed. Users may want to specify this if they believe they can get a better order fill at a specific exchange rather than relying on the automatic order routing system.
  * @param[bracketedLimitPrice] The bracketed limit price (bracketed orders are not supported in API currently)
  * @param[initialStopPrice] The initial stop price
  * @param[trailPrice] The current trailing value. For trailing stop dollar orders, this is a fixed dollar amount. For trailing stop percentage orders, this is the price reflected by the percentage selected.
@@ -237,7 +275,7 @@ data class Instrument(
  * @param[replacesOrderId] In the event of a change order request, the order ID of the order that the new order is replacing.
  * @param[allOrNone] If TRUE, the transactions specified in the order must be executed all at once or not at all; default is FALSE
  * @param[previewId] This parameter is required and must specify the numeric preview ID from the preview and the other parameters of this request must match the parameters of the preview.
- * @param[instrument] The object for the instrument
+ * @param[instruments] The object for the instrument
  * @param[messages] The object for the messages
  * @param[preClearanceCode] The preclearance code
  * @param[overrideRestrictedCd] The overrides restricted code
@@ -290,7 +328,7 @@ data class OrderDetail(
     val allOrNone: Boolean?,
     val previewId: Int?,
     @JsonProperty("Instrument")
-    val instrument: List<Instrument>?,
+    val instruments: List<Instrument>?,
     val messages: MessagesResponse?,
     val preClearanceCode: String?,
     val overrideRestrictedCd: Int?,
@@ -379,6 +417,13 @@ data class PreviewId(
     val previewId: String
 )
 
+/**
+ * @param[currentBuyingPower] Current Buying Power, without including Open orders
+ * @param[currentOpenOrderReserve] Open Order Reserve for the existing open orders
+ * @param[currentNetBuyingPower] Current Buying Power minus the current open order reserve
+ * @param[currentOrderImpact] The current order impact on the account
+ * @param[netBuyingPower] Buying Power after factoring in the Current Order
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class MarginBalances(
     @JsonProperty("currentBp")
@@ -392,15 +437,31 @@ data class MarginBalances(
     val netBuyingPower: Float?
 )
 
+/**
+ * @param[nonMarginable] The total in the account that is not marginable
+ * @param[marginable] The total in the account that is marginable
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Margin(
     val nonMarginable: MarginBalances?,
     val marginable: MarginBalances?
 )
 
+/**
+ * @param[orderType] The type of order being placed
+ * @param[totalOrderValue] The total order value
+ * @param[totalCommission] The total commission
+ * @param[orders] List of orders
+ * @param[previewIds] This parameter is required and must specify the numeric preview ID from the preview and the other parameters of this request must match the parameters of the preview.
+ * @param[marginLevel] The code that designates the applicable margin level
+ * @param[optionLevel] The code that designates the applicable options level
+ * @param[margin] Margin Buying Power Details for the user
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class PreviewOrderResponse(
     val orderType: OrderType,
+    val totalOrderValue: Float?,
+    val totalCommission: Float?,
     @JsonProperty("Order")
     val orders: List<OrderDetail>,
     @JsonProperty("PreviewIds")

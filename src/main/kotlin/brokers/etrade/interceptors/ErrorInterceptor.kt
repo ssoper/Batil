@@ -1,6 +1,7 @@
 package com.seansoper.batil.brokers.etrade.interceptors
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.seansoper.batil.brokers.etrade.services.EtradeServiceError
 import com.seansoper.batil.brokers.etrade.services.ServiceUnavailableError
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -17,17 +18,15 @@ class ErrorInterceptor : Interceptor {
 
         if (response.code >= 400) {
             throw response.body?.string()?.let {
-                val error = XmlMapper().readValue(it, ApiError::class.java)
+                val error = XmlMapper().readValue(it, EtradeServiceError::class.java)
 
                 when (error.code) {
                     100 -> ServiceUnavailableError()
                     else -> error
                 }
-            } ?: ApiError(response.code, "HTTP Error: ${original.url}")
+            } ?: EtradeServiceError(response.code, "HTTP Error: ${original.url}")
         }
 
         return response
     }
 }
-
-open class ApiError(val code: Int = 0, override val message: String = "Error from E*TRADE API") : Error(message)

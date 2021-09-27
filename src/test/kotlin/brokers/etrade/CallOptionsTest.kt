@@ -52,7 +52,7 @@ class CallOptionsTest : StringSpec({
             message.code.shouldBe(9011)
             message.type.shouldBe(MessageType.WARNING)
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
 
             val product = instrument.product!!
@@ -77,7 +77,7 @@ class CallOptionsTest : StringSpec({
 
             data.shouldNotBeNull()
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
 
             val product = instrument.product!!
@@ -105,7 +105,7 @@ class CallOptionsTest : StringSpec({
 
             data.orders.first().messages.shouldBeNull()
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
 
             val product = instrument.product!!
@@ -113,7 +113,7 @@ class CallOptionsTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(apple.year, apple.month, apple.day))
 
             val osi = "${apple.symbol}--${apple.year - 2000}${apple.month}${apple.day}C00${strike.toInt()}000"
-            product.product!!.symbol.shouldBe(osi)
+            product.productId!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
@@ -132,7 +132,7 @@ class CallOptionsTest : StringSpec({
 
             data.orders.first().messages.shouldBeNull()
 
-            val instrument = data.orders.first().instrument!!.first()
+            val instrument = data.orders.first().instruments!!.first()
             instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
 
             val product = instrument.product!!
@@ -140,7 +140,7 @@ class CallOptionsTest : StringSpec({
             product.expiry.shouldBe(GregorianCalendar(apple.year, apple.month, apple.day))
 
             val osi = "${apple.symbol}--${apple.year - 2000}${apple.month}${apple.day}C00${strike.toInt()}000"
-            product.product!!.symbol.shouldBe(osi)
+            product.productId!!.symbol.shouldBe(osi)
 
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
