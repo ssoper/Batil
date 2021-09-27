@@ -1,3 +1,5 @@
+
+import com.seansoper.batil.CachedTokenProvider
 import com.seansoper.batil.brokers.etrade.AuthResponse
 import com.seansoper.batil.brokers.etrade.AuthResponseError
 import com.seansoper.batil.brokers.etrade.auth.Authorization
@@ -7,6 +9,8 @@ import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
+import io.mockk.every
+import io.mockk.spyk
 import testHelper.LoadConfig
 import testHelper.MockHelper.createServer
 import testHelper.PathHelper.randomString
@@ -24,6 +28,26 @@ fun mockAuthResponse(): AuthResponse {
     val secret = randomString()
 
     return AuthResponse(accessToken = token, accessSecret = secret)
+}
+
+internal class MockTokenProvider : CachedTokenProvider {
+    val tokens = Triple(randomString(), randomString(), randomString())
+
+    override fun getEntry(entry: String): String {
+        return when (entry) {
+            "token" -> tokens.first
+            "secret" -> tokens.second
+            else -> tokens.third
+        }
+    }
+
+    override fun setEntry(entry: String, value: String) {
+        // nothing
+    }
+
+    override fun destroy() {
+        // nothing
+    }
 }
 
 class AuthorizationTest : StringSpec({
@@ -103,6 +127,32 @@ class AuthorizationTest : StringSpec({
             data.shouldBe(true)
 
             it.takeRequest().path.shouldContain("oauth/revoke_access_token")
+        }
+    }
+
+    "create session" {
+        val requestToken = mockAuthResponse()
+        val accessToken = mockAuthResponse()
+        val verifier = randomString(6)
+        val authorization = spyk(Authorization(config.content))
+
+        every { authorization.getRequestToken() } returns requestToken
+        every { authorization.getVerifierCode(requestToken.accessToken) } returns verifier
+        every { authorization.getAccessToken(requestToken, verifier) } returns accessToken
+
+        val session = authorization.createSession()
+        session.accessToken.shouldBe(accessToken.accessToken)
+        session.accessSecret.shouldBe(accessToken.accessSecret)
+    }
+
+    "renew session" {
+        val tokenStore = MockTokenProvider()
+        val authorization = spyk(Authorization(config.content, tokenStore = tokenStore))
+        every { authorization.renewAccessToken(any()) } returns true
+
+        authorization.renewSession()!!.let {
+            it.accessToken.shouldBe(tokenStore.tokens.first)
+            it.accessSecret.shouldBe(tokenStore.tokens.second)
         }
     }
 })

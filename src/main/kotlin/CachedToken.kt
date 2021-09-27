@@ -13,11 +13,17 @@ import javax.crypto.spec.SecretKeySpec
 
 class CachedTokenException(keyStorePath: Path) : Exception("Corrupted KeyStore at ${keyStorePath.toAbsolutePath()}")
 
+interface CachedTokenProvider {
+    fun getEntry(entry: String): String?
+    fun setEntry(entry: String, value: String)
+    fun destroy()
+}
+
 class CachedToken(
     val provider: Provider,
     private val keyStorePath: Path = Paths.get(System.getProperty("user.home"), ".batil", "key.store"),
     private val passwordPath: Path = Paths.get(System.getProperty("user.home"), ".batil", "key.password")
-) {
+) : CachedTokenProvider {
 
     enum class Provider {
         ETRADE
@@ -72,7 +78,7 @@ class CachedToken(
         return "${provider.name.lowercase(Locale.getDefault())}.${entry.lowercase(Locale.getDefault())}"
     }
 
-    fun getEntry(entry: String): String? {
+    override fun getEntry(entry: String): String? {
         if (!keyStoreFile.exists()) {
             return null
         }
@@ -88,7 +94,7 @@ class CachedToken(
         }
     }
 
-    fun setEntry(entry: String, value: String) {
+    override fun setEntry(entry: String, value: String) {
         val protection = KeyStore.PasswordProtection(password)
         val encoded = SecretKeySpec(value.toByteArray(), "AES")
 
@@ -101,7 +107,7 @@ class CachedToken(
     }
 
     // Removes the key store and password files but keeps the directory
-    fun destroy() {
+    override fun destroy() {
         Files.deleteIfExists(keyStorePath)
         Files.deleteIfExists(passwordPath)
     }

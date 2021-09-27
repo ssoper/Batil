@@ -2,6 +2,7 @@ package com.seansoper.batil.brokers.etrade.auth
 
 import com.seansoper.batil.CachedToken
 import com.seansoper.batil.CachedTokenException
+import com.seansoper.batil.CachedTokenProvider
 import com.seansoper.batil.brokers.etrade.AuthResponse
 import com.seansoper.batil.brokers.etrade.AuthResponseError
 import com.seansoper.batil.brokers.etrade.BrowserAuthentication
@@ -15,7 +16,8 @@ class Authorization(
     private val configuration: GlobalConfig,
     private val production: Boolean = false,
     private val verbose: Boolean = false,
-    private val baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com"
+    private val baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com",
+    private val tokenStore: CachedTokenProvider = CachedToken(CachedToken.Provider.ETRADE)
 ) {
 
     private val consumerKey: String
@@ -42,8 +44,6 @@ class Authorization(
         RENEW_ACCESS_TOKEN to "oauth/renew_access_token",
         REVOKE_ACCESS_TOKEN to "oauth/revoke_access_token"
     )
-
-    private val tokenStore = CachedToken(CachedToken.Provider.ETRADE)
 
     private val cachedTokens: Triple<String, String, String>?
         get() {
