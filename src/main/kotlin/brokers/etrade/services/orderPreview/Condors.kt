@@ -14,7 +14,19 @@ import java.time.ZonedDateTime
 /**
  * @suppress
  */
-internal fun createInstruments(
+internal fun validateWings(
+    lowerWing: Pair<Float, Float>,
+    upperWing: Pair<Float, Float>,
+) {
+    require(lowerWing.first < lowerWing.second) { "First strike in lower wing must be less than the second strike" }
+    require(lowerWing.second < upperWing.first) { "Second strike in lower wing must be less than strikes in the upper wing" }
+    require(upperWing.first < upperWing.second) { "First strike in upper wing must be less than the second strike" }
+}
+
+/**
+ * @suppress
+ */
+internal fun createCondorInstruments(
     symbol: String,
     lowerWing: Pair<Float, Float>,
     upperWing: Pair<Float, Float>,
@@ -23,9 +35,7 @@ internal fun createInstruments(
     optionType: OptionType,
     long: Boolean,
 ): List<PreviewInstrumentOption> {
-    require(lowerWing.first < lowerWing.second) { "First strike in lower wing must be less than the second strike" }
-    require(lowerWing.second < upperWing.first) { "Second strike in lower wing must be less than strikes in the upper wing" }
-    require(upperWing.first < upperWing.second) { "First strike in upper wing must be less than the second strike" }
+    validateWings(lowerWing, upperWing)
 
     val strikes = listOf(lowerWing.toList(), upperWing.toList()).flatten()
     return strikes.mapIndexed { index, strike ->
@@ -67,7 +77,7 @@ fun buyCondorCalls(
     expiry: ZonedDateTime = OptionsCalendar.nextMonthly(),
     clientOrderId: String = randomString()
 ): PreviewRequest {
-    val instruments = createInstruments(symbol, lowerWing, upperWing, quantity, expiry, OptionType.CALL, true)
+    val instruments = createCondorInstruments(symbol, lowerWing, upperWing, quantity, expiry, OptionType.CALL, true)
 
     return PreviewRequest(
         orderType = OrderType.CONDOR,
@@ -102,7 +112,7 @@ fun buyCondorPuts(
     expiry: ZonedDateTime = OptionsCalendar.nextMonthly(),
     clientOrderId: String = randomString()
 ): PreviewRequest {
-    val instruments = createInstruments(symbol, lowerWing, upperWing, quantity, expiry, OptionType.PUT, true)
+    val instruments = createCondorInstruments(symbol, lowerWing, upperWing, quantity, expiry, OptionType.PUT, true)
 
     return PreviewRequest(
         orderType = OrderType.CONDOR,
@@ -136,7 +146,7 @@ fun sellCondorCalls(
     expiry: ZonedDateTime = OptionsCalendar.nextMonthly(),
     clientOrderId: String = randomString()
 ): PreviewRequest {
-    val instruments = createInstruments(symbol, lowerWing, upperWing, quantity, expiry, OptionType.CALL, false)
+    val instruments = createCondorInstruments(symbol, lowerWing, upperWing, quantity, expiry, OptionType.CALL, false)
 
     return PreviewRequest(
         orderType = OrderType.CONDOR,
@@ -170,7 +180,7 @@ fun sellCondorPuts(
     expiry: ZonedDateTime = OptionsCalendar.nextMonthly(),
     clientOrderId: String = randomString()
 ): PreviewRequest {
-    val instruments = createInstruments(symbol, lowerWing, upperWing, quantity, expiry, OptionType.PUT, false)
+    val instruments = createCondorInstruments(symbol, lowerWing, upperWing, quantity, expiry, OptionType.PUT, false)
 
     return PreviewRequest(
         orderType = OrderType.CONDOR,

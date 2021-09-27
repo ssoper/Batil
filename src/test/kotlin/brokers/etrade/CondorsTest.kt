@@ -40,7 +40,7 @@ class CondorsTest : StringSpec({
             val strikes = listOf(78.5f, 79f, 79.5f, 80f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
             val request = buyCondorCalls(
-                "SNAP",
+                snap.symbol,
                 Pair(strikes[0], strikes[1]),
                 Pair(strikes[2], strikes[3]),
                 limitPrice,
@@ -86,7 +86,7 @@ class CondorsTest : StringSpec({
             val strikes = listOf(78.5f, 79f, 79.5f, 80f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
             val request = buyCondorPuts(
-                "SNAP",
+                snap.symbol,
                 Pair(strikes[0], strikes[1]),
                 Pair(strikes[2], strikes[3]),
                 limitPrice,
@@ -132,7 +132,7 @@ class CondorsTest : StringSpec({
             val strikes = listOf(79f, 80f, 81f, 82f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
             val request = sellCondorCalls(
-                "SNAP",
+                snap.symbol,
                 Pair(strikes[0], strikes[1]),
                 Pair(strikes[2], strikes[3]),
                 limitPrice,
@@ -178,7 +178,7 @@ class CondorsTest : StringSpec({
             val strikes = listOf(82f, 83f, 84f, 85f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
             val request = sellCondorCalls(
-                "SNAP",
+                snap.symbol,
                 Pair(strikes[0], strikes[1]),
                 Pair(strikes[2], strikes[3]),
                 limitPrice,
