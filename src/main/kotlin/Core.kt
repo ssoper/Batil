@@ -1,6 +1,6 @@
 package com.seansoper.batil
 
-import brokers.etrade.services.orderPreview.sellCondorCalls
+import brokers.etrade.services.orderPreview.sellCondorPuts
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
@@ -39,34 +39,11 @@ object Core {
         accounts.list()?.let {
             it.first().accountIdKey?.let { accountIdKey ->
                 val service = Orders(session, parsed.production, parsed.verbose)
-
-                //  val request = sellCallOptionLimit("GSAT", .05f, 0.5f, 1)
-                //  val request = buyCallOptionMarket("AAPL", 5f, stopPrice = 2.5f, 150f, 1)
-                //  val request = buyPutOptionLimit("AMC", 5f, 35f, 1)
-                //  val request = sellPutOptionLimit("T", .65f, 27f, 1)
-                // val request = sellPutOptionMarket("T", .65f, 0f, 27f, 1)
-                // val request = buyPutOptionMarket("T", .65f, 0f, 27f, 1)
-                // val request = buyEquityMarket("RIOT", 27f, 0f, 50)
-
-                // still need to get data for this
-                // val request = sellEquityMarket("RIOT", 27f, 0f, 200)
-
-                // val request = buyCallSpread("CLF", .32f, 21f, 22f, 1)
-                // val request = sellCallSpread("CLF", .20f, 23f, 22f, 1)
-                // val request = buyPutSpread("CLF", .22f, 19f, 18f, 1)
-                // val request = sellPutSpread("CLF", .37f, 19f, 20f, 1)
-
-                // val request = buyCondorPuts("SNAP", Pair (78.5f, 79f), Pair(79.5f, 80f), .06f, 10)
-                val request = sellCondorCalls("SNAP", Pair(79f, 80f), Pair(81f, 82f), .08f, 10)
+                val request = sellCondorPuts("SNAP", Pair(82f, 83f), Pair(84f, 85f), .07f, 10)
 
                 service.createPreview(accountIdKey, request)?.let {
                     println(it)
                 }
-
-//                service.list(accountIdKey)?.let {
-//                    println("Orders for account $accountIdKey")
-//                    println(it)
-//                }
             }
         }
 

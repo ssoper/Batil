@@ -1,0 +1,144 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "CONDOR",
+    "totalOrderValue": -49.508,
+    "previewTime": 1632761127700,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 10074.41
+      },
+      "marginable": {
+        "currentBp": 33581.36,
+        "currentOor": 583.79,
+        "currentNetBp": 32997.57,
+        "currentOrderImpact": 3168.31,
+        "netBp": 29829.27
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "NET_CREDIT",
+        "limitPrice": 0.07,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 20,
+        "estimatedTotalAmount": -49.508,
+        "netPrice": 0,
+        "netBid": 3.5,
+        "netAsk": 2.5,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "SNAP Oct 15 '21 $82 Put",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 10,
+            "cancelQuantity": 0.0,
+            "osiKey": "SNAP--211015P00082000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "SNAP",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 82.0,
+              "productId": {
+                "symbol": "SNAP--211015P00082000",
+                "typeCode": "OPTION"
+              }
+            }
+          },
+          {
+            "symbolDescription": "SNAP Oct 15 '21 $83 Put",
+            "orderAction": "BUY_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 10,
+            "cancelQuantity": 0.0,
+            "osiKey": "SNAP--211015P00083000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "SNAP",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 83.0,
+              "productId": {
+                "symbol": "SNAP--211015P00083000",
+                "typeCode": "OPTION"
+              }
+            }
+          },
+          {
+            "symbolDescription": "SNAP Oct 15 '21 $84 Put",
+            "orderAction": "BUY_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 10,
+            "cancelQuantity": 0.0,
+            "osiKey": "SNAP--211015P00084000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "SNAP",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 84.0,
+              "productId": {
+                "symbol": "SNAP--211015P00084000",
+                "typeCode": "OPTION"
+              }
+            }
+          },
+          {
+            "symbolDescription": "SNAP Oct 15 '21 $85 Put",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 10,
+            "cancelQuantity": 0.0,
+            "osiKey": "SNAP--211015P00085000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "SNAP",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 85.0,
+              "productId": {
+                "symbol": "SNAP--211015P00085000",
+                "typeCode": "OPTION"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1011369043106
+      }
+    ],
+    "Disclosure": {
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}
