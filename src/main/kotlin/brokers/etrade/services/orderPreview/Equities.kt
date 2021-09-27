@@ -74,6 +74,8 @@ fun sellEquityLimit(
     )
 }
 
+// TODO: Figure out if we actually need to pass limit/stop for market equity orders since both come back as zero in the response
+
 /**
  * Buy shares using the market price.
  * @param[symbol] The market symbol for the security being bought
