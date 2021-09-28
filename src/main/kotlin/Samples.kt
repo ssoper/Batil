@@ -7,6 +7,7 @@ import com.seansoper.batil.brokers.etrade.services.Alerts
 import com.seansoper.batil.brokers.etrade.services.Market
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.TransactionSortOrder
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyButterflyCalls
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
@@ -348,6 +349,32 @@ class Orders {
             lowerWing = Pair(5.5f, 6f),
             upperWing = Pair(6.5f, 7f),
             limitPrice = .36f,
+            quantity = 10,
+            expiry = expiry
+        )
+
+        service.createPreview(accountIdKey, request)?.let {
+            println("Preview of Sell to Open iron condor calls on ACB")
+            println(it)
+        }
+    }
+
+    fun buyButterflyCalls(runtime: RuntimeConfig = RuntimeConfig.default()) {
+        val configuration = GlobalConfig.parse(runtime)
+        val client = Authorization(configuration, runtime.production, runtime.verbose)
+        val session = client.renewSession() ?: client.createSession()
+        val service = Orders(session, runtime.production, runtime.verbose)
+        val accountIdKey = "ACCOUNT_ID_KEY"
+        val expiry = ZonedDateTime.of(
+            LocalDate.of(2021, 10, 15),
+            LocalTime.of(16, 0),
+            ZoneId.of("America/New_York")
+        )
+
+        val request = buyButterflyCalls(
+            symbol = "CHPT",
+            strikes = Triple(18f, 19f, 20f),
+            limitPrice = .19f,
             quantity = 10,
             expiry = expiry
         )
