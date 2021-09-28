@@ -3,8 +3,6 @@ package com.seansoper.batil
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyButterflyPuts
-import com.seansoper.batil.brokers.etrade.services.orderPreview.sellButterflyCalls
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellButterflyPuts
 import com.seansoper.batil.config.GlobalConfig
 
