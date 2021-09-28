@@ -1,0 +1,121 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "BUTTERFLY",
+    "totalOrderValue": -169.508,
+    "previewTime": 1632834079311,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 9676.62
+      },
+      "marginable": {
+        "currentBp": 32255.4,
+        "currentOor": 583.79,
+        "currentNetBp": 31671.61,
+        "currentOrderImpact": 2768.31,
+        "netBp": 28903.31
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "NET_CREDIT",
+        "limitPrice": 0.19,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 20,
+        "estimatedTotalAmount": -169.508,
+        "netPrice": 0,
+        "netBid": 0.2,
+        "netAsk": 1.9,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "CHPT Oct 15 '21 $18 Put",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 10,
+            "cancelQuantity": 0.0,
+            "osiKey": "CHPT--211015P00018000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "CHPT",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 18.0,
+              "productId": {
+                "symbol": "CHPT--211015P00018000",
+                "typeCode": "OPTION"
+              }
+            }
+          },
+          {
+            "symbolDescription": "CHPT Oct 15 '21 $19 Put",
+            "orderAction": "BUY_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 20,
+            "cancelQuantity": 0.0,
+            "osiKey": "CHPT--211015P00019000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "CHPT",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 19.0,
+              "productId": {
+                "symbol": "CHPT--211015P00019000",
+                "typeCode": "OPTION"
+              }
+            }
+          },
+          {
+            "symbolDescription": "CHPT Oct 15 '21 $20 Put",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 10,
+            "cancelQuantity": 0.0,
+            "osiKey": "CHPT--211015P00020000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "CHPT",
+              "securityType": "OPTN",
+              "callPut": "PUT",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 20.0,
+              "productId": {
+                "symbol": "CHPT--211015P00020000",
+                "typeCode": "OPTION"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1012017048106
+      }
+    ],
+    "Disclosure": {
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}
