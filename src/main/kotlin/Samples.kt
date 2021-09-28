@@ -380,7 +380,7 @@ class Orders {
         )
 
         service.createPreview(accountIdKey, request)?.let {
-            println("Preview of Sell to Open iron condor calls on ACB")
+            println("Preview of Buy to Open butterfly calls on CHPT")
             println(it)
         }
     }
