@@ -81,4 +81,58 @@ class IronButterflysTest : StringSpec({
             it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
         }
     }
+
+    "create preview to sell an iron butterfly" {
+        val path = Paths.get("brokers/etrade/orders/createPreview/ironButterflys/sell.json")
+
+        createServer(path) {
+            val limitPrice = 1f
+            val strikes = listOf(30f, 35f, 40f)
+            val service = Orders(mockSession(), baseUrl = it.url(".").toString())
+            val request = buyButterflyCalls(
+                ticker.symbol,
+                Triple(strikes[0], strikes[1], strikes[2]),
+                limitPrice,
+                quantity
+            )
+            val data = service.createPreview(accountIdKey, request)
+
+            data.shouldNotBeNull()
+            data.orderType.shouldBe(OrderType.IRON_BUTTERFLY)
+
+            val order = data.orders.first()
+            order.messages.shouldBeNull()
+            order.orderTerm.shouldBe(OrderTerm.GOOD_FOR_DAY)
+            order.priceType.shouldBe(OrderPriceType.NET_CREDIT)
+            order.limitPrice.shouldBe(limitPrice)
+
+            order.instruments!!.forEachIndexed { index, instrument ->
+                instrument.quantity.shouldBe(quantity.toFloat())
+                instrument.product!!.let {
+                    it.symbol.shouldBe(ticker.symbol)
+                    it.expiryYear.shouldBe(ticker.year)
+                    it.expiryMonth.shouldBe(ticker.month)
+                    it.expiryDay.shouldBe(ticker.day)
+
+                    if (index > 1) {
+                        it.strikePrice.shouldBe(strikes[index - 1])
+                    } else {
+                        it.strikePrice.shouldBe(strikes[index])
+                    }
+
+                    when (index) {
+                        0, 1 -> it.callPut.shouldBe(OptionType.PUT)
+                        else -> it.callPut.shouldBe(OptionType.CALL)
+                    }
+                }
+
+                when (index) {
+                    0, 3 -> instrument.orderAction.shouldBe(OrderActionType.BUY_OPEN)
+                    else -> instrument.orderAction.shouldBe(OrderActionType.SELL_OPEN)
+                }
+            }
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/preview")
+        }
+    }
 })

@@ -43,7 +43,7 @@ object Core {
                 // val request = buyButterflyCalls("CHPT", Triple(18f, 19f, 20f), .19f, 10)
                 // val request = sellButterflyCalls("CHPT", Triple(18f, 19f, 20f), .19f, 10)
                 // val request = buyButterflyPuts("CHPT", Triple(18f, 19f, 20f), .19f, 10)
-                val request = buyIronButterfly("TSP", Triple(30f, 35f, 40f), .20f, 10)
+                val request = buyIronButterfly("TSP", Triple(30f, 35f, 40f), .2f, 10)
 
                 service.createPreview(accountIdKey, request)?.let {
                     println(it)
