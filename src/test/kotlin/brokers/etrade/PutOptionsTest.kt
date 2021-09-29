@@ -4,10 +4,8 @@ import com.seansoper.batil.brokers.etrade.api.OptionLevel
 import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
 import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyPutOptionLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyPutOptionMarket
-import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellPutOptionLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellPutOptionMarket
 import io.kotlintest.matchers.string.shouldContain
