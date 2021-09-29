@@ -3,7 +3,7 @@ package com.seansoper.batil
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyIronButterfly
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyBuyWrite
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {
@@ -39,11 +39,7 @@ object Core {
         accounts.list()?.let {
             it.first().accountIdKey?.let { accountIdKey ->
                 val service = Orders(session, parsed.production, parsed.verbose)
-                // val request = buyIronCondor("ACB", Pair(5.5f, 6f), Pair(6.5f, 7f), .36f, 10)
-                // val request = buyButterflyCalls("CHPT", Triple(18f, 19f, 20f), .19f, 10)
-                // val request = sellButterflyCalls("CHPT", Triple(18f, 19f, 20f), .19f, 10)
-                // val request = buyButterflyPuts("CHPT", Triple(18f, 19f, 20f), .19f, 10)
-                val request = buyIronButterfly("TSP", Triple(30f, 35f, 40f), .2f, 10)
+                val request = buyBuyWrite("PLTR", 26f, 24.72f, 1)
 
                 service.createPreview(accountIdKey, request)?.let {
                     println(it)

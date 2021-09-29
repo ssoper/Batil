@@ -1,0 +1,88 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "BUY_WRITES",
+    "totalOrderValue": 2472.5142,
+    "previewTime": 1632921325213,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 8980.47
+      },
+      "marginable": {
+        "currentBp": 29934.9,
+        "currentOor": 583.79,
+        "currentNetBp": 29351.11,
+        "currentOrderImpact": 2684.21,
+        "netBp": 26666.9
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "NET_DEBIT",
+        "limitPrice": 24.72,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 0.5,
+        "estimatedTotalAmount": 2472.5142,
+        "netPrice": 0,
+        "netBid": 5129.08,
+        "netAsk": 5135.11,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "PALANTIR TECHNOLOGIES INC CL A",
+            "orderAction": "BUY",
+            "quantityType": "QUANTITY",
+            "quantity": 100,
+            "cancelQuantity": 0.0,
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "PLTR",
+              "securityType": "EQ"
+            }
+          },
+          {
+            "symbolDescription": "PLTR Oct 15 '21 $26 Call",
+            "orderAction": "SELL_OPEN",
+            "quantityType": "QUANTITY",
+            "quantity": 1,
+            "cancelQuantity": 0.0,
+            "osiKey": "PLTR--211015C00026000",
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "PLTR",
+              "securityType": "OPTN",
+              "callPut": "CALL",
+              "expiryYear": 2021,
+              "expiryMonth": 10,
+              "expiryDay": 15,
+              "strikePrice": 26.0,
+              "productId": {
+                "symbol": "PLTR--211015C00026000",
+                "typeCode": "OPTION"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1013565597106
+      }
+    ],
+    "Disclosure": {
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}

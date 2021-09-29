@@ -8,6 +8,7 @@ import com.seansoper.batil.brokers.etrade.services.Market
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.TransactionSortOrder
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyButterflyCalls
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyBuyWrite
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
@@ -381,6 +382,32 @@ class Orders {
 
         service.createPreview(accountIdKey, request)?.let {
             println("Preview of Buy to Open butterfly calls on CHPT")
+            println(it)
+        }
+    }
+
+    fun purchaseBuyWrite(runtime: RuntimeConfig = RuntimeConfig.default()) {
+        val configuration = GlobalConfig.parse(runtime)
+        val client = Authorization(configuration, runtime.production, runtime.verbose)
+        val session = client.renewSession() ?: client.createSession()
+        val service = Orders(session, runtime.production, runtime.verbose)
+        val accountIdKey = "ACCOUNT_ID_KEY"
+        val expiry = ZonedDateTime.of(
+            LocalDate.of(2021, 10, 15),
+            LocalTime.of(16, 0),
+            ZoneId.of("America/New_York")
+        )
+
+        val request = buyBuyWrite(
+            symbol = "PLTR",
+            strike = 26.0f,
+            limitPrice = 24.92f,
+            quantity = 1,
+            expiry = expiry
+        )
+
+        service.createPreview(accountIdKey, request)?.let {
+            println("Preview of Buy to Open buy-write on PLTR")
             println(it)
         }
     }
