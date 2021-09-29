@@ -4,7 +4,8 @@ import com.seansoper.batil.brokers.etrade.api.OrderPriceType
 import com.seansoper.batil.brokers.etrade.api.OrderTerm
 import com.seansoper.batil.brokers.etrade.api.OrderType
 import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyButterflyCalls
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyIronButterfly
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronButterfly
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -35,7 +36,7 @@ class IronButterflysTest : StringSpec({
             val limitPrice = 0.20f
             val strikes = listOf(30f, 35f, 40f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = buyButterflyCalls(
+            val request = buyIronButterfly(
                 ticker.symbol,
                 Triple(strikes[0], strikes[1], strikes[2]),
                 limitPrice,
@@ -89,7 +90,7 @@ class IronButterflysTest : StringSpec({
             val limitPrice = 1f
             val strikes = listOf(30f, 35f, 40f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = buyButterflyCalls(
+            val request = sellIronButterfly(
                 ticker.symbol,
                 Triple(strikes[0], strikes[1], strikes[2]),
                 limitPrice,
