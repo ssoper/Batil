@@ -5,6 +5,7 @@ import com.seansoper.batil.brokers.etrade.api.OrderTerm
 import com.seansoper.batil.brokers.etrade.api.OrderType
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyIronCondor
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronCondor
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -83,7 +84,7 @@ class IronCondorsTest : StringSpec({
         createServer(path) {
             val strikes = listOf(5.5f, 6f, 6.5f, 7f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = buyIronCondor(
+            val request = sellIronCondor(
                 aurora.symbol,
                 Pair(strikes[0], strikes[1]),
                 Pair(strikes[2], strikes[3]),
