@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>buyBuyWrite</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script><script src="https://unpkg.com/kotlin-playground@1" data-selector="code.runnablesample"></script><script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../styles/style.css" rel="Stylesheet"><link href="../../styles/logo-styles.css" rel="Stylesheet"><link href="../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="Batil::com.seansoper.batil.brokers.etrade.services.orderPreview//buyBuyWrite/#kotlin.String#kotlin.Float#kotlin.Float#kotlin.Int#java.time.ZonedDateTime#kotlin.String/PointingToDeclaration//769193423">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../index.html">Batil</a>/<a href="index.html">com.seansoper.batil.brokers.etrade.services.orderPreview</a>/<a href="buy-buy-write.html">buyBuyWrite</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>buy</span><wbr></wbr><span>Buy</span><wbr></wbr><span>Write</span></h1>
+          </div>
+<div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="buy-buy-write.html">buyBuyWrite</a>(symbol: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, strike: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>, limitPrice: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a>, quantity: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, expiry: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/ZonedDateTime.html">ZonedDateTime</a> = OptionsCalendar.nextMonthly(), clientOrderId: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> = randomString()): <a href="../com.seansoper.batil.brokers.etrade.api.orderPreview/-preview-request/index.html">PreviewRequest</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<p class="paragraph">Buy a buy-write</p><h2 class="">Samples</h2><div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Samples"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="sample-container"><code class="runnablesample monospace" theme="idea"><pre>import com.seansoper.batil.OptionsCalendar
+import com.seansoper.batil.brokers.etrade.auth.Authorization
+import com.seansoper.batil.brokers.etrade.services.Accounts
+import com.seansoper.batil.brokers.etrade.services.Alerts
+import com.seansoper.batil.brokers.etrade.services.Market
+import com.seansoper.batil.brokers.etrade.services.Orders
+import com.seansoper.batil.brokers.etrade.services.TransactionSortOrder
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyButterflyCalls
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyBuyWrite
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronCondor
+import com.seansoper.batil.config.GlobalConfig
+import com.seansoper.batil.config.RuntimeConfig
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.util.GregorianCalendar
+fun main() { 
+   //sampleStart 
+   val configuration = GlobalConfig.parse(runtime)
+val client = Authorization(configuration, runtime.production, runtime.verbose)
+val session = client.renewSession() ?: client.createSession()
+val service = Orders(session, runtime.production, runtime.verbose)
+val accountIdKey = &quot;ACCOUNT_ID_KEY&quot;
+val expiry = ZonedDateTime.of(
+    LocalDate.of(2021, 10, 15),
+    LocalTime.of(16, 0),
+    ZoneId.of(&quot;America/New_York&quot;)
+)
+
+val request = buyBuyWrite(
+    symbol = &quot;PLTR&quot;,
+    strike = 26.0f,
+    limitPrice = 24.92f,
+    quantity = 1,
+    expiry = expiry
+)
+
+service.createPreview(accountIdKey, request)?.let {
+    println(&quot;Preview of Buy to Open buy-write on PLTR&quot;)
+    println(it)
+} 
+   //sampleEnd
+}</pre></code></div></div></div><h2 class="">Parameters</h2><div data-togglable="Parameters"><div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">symbol</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The market symbol for the security being bought</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">strike</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The strike price to sell the call at</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">limitPrice</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The highest price at which to buy the buy-write</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">quantity</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The number of buy-writes to buy</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">expiry</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The date the sold call will expire</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">clientOrderId</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">A reference ID generated by the developer that is used to ensure that a duplicate order is not being submitted. This reference ID may be any value of 20 or less alphanumeric characters but must be unique within the account. This field does not appear in any API responses.</p></div></div></div></div></div></div></div></div></div></div></div>
+          <h2 class="">Sources</h2>
+          <div class="table" data-togglable="Sources"><a data-name="-1627393121%2FSource%2F769193423" anchor-label="https://github.com/ssoper/Batil/tree/master/src/main/kotlin/brokers/etrade/services/orderPreview/BuyWrite.kt#L16" id="-1627393121%2FSource%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+            <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+              <div class="main-subrow keyValue ">
+                <div class=""><span class="inline-flex"><a href="https://github.com/ssoper/Batil/tree/master/src/main/kotlin/brokers/etrade/services/orderPreview/BuyWrite.kt#L16">jvm source</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1627393121%2FSource%2F769193423"></span>
+                      <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                    </span></span></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
