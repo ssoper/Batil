@@ -5,8 +5,10 @@ import com.seansoper.batil.brokers.etrade.api.OrderActionType
 import com.seansoper.batil.brokers.etrade.api.OrderPriceType
 import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionLimit
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyPutOptionLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyPutOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionLimit
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellPutOptionLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellPutOptionMarket
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeNull
@@ -42,7 +44,7 @@ class PutOptionsTest : StringSpec({
 
         createServer(path) {
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = buyCallOptionLimit(amc.symbol, 5f, 35f, 1, amc.expiry)
+            val request = buyPutOptionLimit(amc.symbol, 5f, 35f, 1, amc.expiry)
             val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()
@@ -72,7 +74,7 @@ class PutOptionsTest : StringSpec({
 
         createServer(path) {
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = sellCallOptionLimit(att.symbol, 0.65f, 27f, 1, att.expiry)
+            val request = sellPutOptionLimit(att.symbol, 0.65f, 27f, 1, att.expiry)
             val data = service.createPreview(accountIdKey, request)
 
             data.shouldNotBeNull()

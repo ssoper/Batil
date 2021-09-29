@@ -9,6 +9,7 @@ import com.seansoper.batil.brokers.etrade.services.Orders
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorCalls
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCondorCalls
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCondorPuts
 import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -177,7 +178,7 @@ class CondorsTest : StringSpec({
             val limitPrice = 0.07f
             val strikes = listOf(82f, 83f, 84f, 85f)
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val request = sellCondorCalls(
+            val request = sellCondorPuts(
                 snap.symbol,
                 Pair(strikes[0], strikes[1]),
                 Pair(strikes[2], strikes[3]),
