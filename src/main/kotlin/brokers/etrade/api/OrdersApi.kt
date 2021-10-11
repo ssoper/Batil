@@ -65,7 +65,8 @@ enum class OrderType {
     /**
      * Money Market Fund
      */
-    MMF
+    MMF,
+    OPTION_ASSIGNMENT
 }
 
 enum class OrderTerm {
