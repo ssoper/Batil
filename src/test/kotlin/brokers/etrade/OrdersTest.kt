@@ -60,7 +60,8 @@ class OrdersTest : StringSpec({
 
         createServer(path) {
             val service = Orders(mockSession(), baseUrl = it.url(".").toString())
-            val data = service.list(accountIdKey,
+            val data = service.list(
+                accountIdKey,
                 count = 10,
                 status = OrderStatus.EXECUTED,
                 fromDate = GregorianCalendar(2021, 7, 1),
@@ -68,7 +69,8 @@ class OrdersTest : StringSpec({
                 symbol = "RIOT",
                 securityType = SecurityType.OPTN,
                 transactionType = OrderTransactionType.SELL_SHORT,
-                marketSession = MarketSession.REGULAR)
+                marketSession = MarketSession.REGULAR
+            )
 
             data.shouldNotBeNull()
             data.orders!!.size.shouldBe(2)
