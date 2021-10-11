@@ -34,8 +34,8 @@ class Orders(
      * @param[count] Number of transactions to return in the response, defaults to 25, max is 100, used for paging
      * @param[status] Filter by status
      * @param[fromDate] The earliest date to include in the date range, history is available for two years
-     * @param[toDate] The latest date to include in the date range, both fromDate and toDate should be provided and toDate should be greater than fromDate
-     * @param[symbol] List of market symbols for the securities being bought or sold, length should be less than or equal to 25
+     * @param[toDate] The latest date to include in the date range, both fromDate and toDate should be provided andtoDate should be greater than fromDate
+     * @param[symbol] Market symbol for the security being bought or sold
      * @param[securityType] The security type
      * @param[transactionType] Type of transaction
      * @param[marketSession] Session in which the equity order will have been placed
@@ -48,7 +48,7 @@ class Orders(
         status: OrderStatus? = null,
         fromDate: GregorianCalendar? = null,
         toDate: GregorianCalendar? = null,
-        symbol: List<String>? = null,
+        symbol: String? = null,
         securityType: SecurityType? = null,
         transactionType: OrderTransactionType? = null,
         marketSession: MarketSession? = null
@@ -75,8 +75,10 @@ class Orders(
             options.put("toDate", formatDate(it))
         }
 
+        // Note that while E*TRADE documentation states that 25 can be sent in the query, attempts to do so result in
+        // an Oauth signature error indicating an issue with API
         symbol?.let {
-            options.put("symbol", it.joinToString(","))
+            options.put("symbol", it)
         }
 
         securityType?.let {

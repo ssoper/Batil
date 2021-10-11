@@ -1,0 +1,104 @@
+{
+  "OrdersResponse": {
+    "Order": [
+      {
+        "orderId": 396,
+        "details": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/orders/396",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1633527228256,
+            "executedTime": 1633527390587,
+            "orderValue": 238.9739,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 1.2,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "RIOT Oct 22 '21 $31 Call",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 2.0,
+                "averageExecutionPrice": 1.2,
+                "estimatedCommission": 1.0248,
+                "estimatedFees": 0.0012,
+                "Product": {
+                  "symbol": "RIOT",
+                  "securityType": "OPTN",
+                  "callPut": "CALL",
+                  "expiryYear": 2021,
+                  "expiryMonth": 10,
+                  "expiryDay": 22,
+                  "strikePrice": 31,
+                  "productId": {
+                    "symbol": "RIOT--211022C00031000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "orderId": 375,
+        "details": "https://api.etrade.com/v1/accounts/-h06qS59IOXHUSjq3xeZCA/orders/375",
+        "orderType": "OPTN",
+        "OrderDetail": [
+          {
+            "placedTime": 1630510017521,
+            "executedTime": 1630510231629,
+            "orderValue": 418.9712,
+            "status": "EXECUTED",
+            "orderTerm": "GOOD_FOR_DAY",
+            "priceType": "LIMIT",
+            "limitPrice": 2.1,
+            "stopPrice": 0,
+            "marketSession": "REGULAR",
+            "allOrNone": false,
+            "netPrice": 0,
+            "netBid": 0,
+            "netAsk": 0,
+            "gcd": 0,
+            "ratio": "",
+            "Instrument": [
+              {
+                "symbolDescription": "RIOT Sep 24 '21 $34 Put",
+                "orderAction": "SELL_OPEN",
+                "quantityType": "QUANTITY",
+                "orderedQuantity": 2,
+                "filledQuantity": 2.0,
+                "averageExecutionPrice": 2.1,
+                "estimatedCommission": 1.0266,
+                "estimatedFees": 0.0021,
+                "Product": {
+                  "symbol": "RIOT",
+                  "securityType": "OPTN",
+                  "callPut": "PUT",
+                  "expiryYear": 2021,
+                  "expiryMonth": 9,
+                  "expiryDay": 24,
+                  "strikePrice": 34,
+                  "productId": {
+                    "symbol": "RIOT--210924P00034000",
+                    "typeCode": "OPTION"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

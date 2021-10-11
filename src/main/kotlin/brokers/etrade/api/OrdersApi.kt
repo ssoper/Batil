@@ -66,6 +66,10 @@ enum class OrderType {
      * Money Market Fund
      */
     MMF,
+
+    /**
+     * Theta Gang’s greatest fear
+     */
     OPTION_ASSIGNMENT
 }
 
