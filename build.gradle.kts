@@ -43,7 +43,7 @@ tasks.shadowJar {
     this.archiveBaseName.set("Batil")
     this.archiveClassifier.set("client")
 
-    manifest.attributes.set("Main-Class", "$buildGroupId.$buildArtifactId.Core")
+    manifest.attributes.set("Main-Class", "$buildGroupId.$buildArtifactId.clients.Etrade")
 }
 
 tasks.compileKotlin {
