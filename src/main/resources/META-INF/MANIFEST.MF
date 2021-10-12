@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.seansoper.batil.Core
+Main-Class: clients.Core
 

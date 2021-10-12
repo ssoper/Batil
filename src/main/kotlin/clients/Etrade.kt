@@ -1,14 +1,21 @@
-package com.seansoper.batil
+package com.seansoper.batil.clients
 
 import com.seansoper.batil.brokers.etrade.api.OptionExpirationType
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Market
+import com.seansoper.batil.config.ClientConfig
+import com.seansoper.batil.config.ConfigFileNotFound
 import com.seansoper.batil.config.GlobalConfig
+import kotlinx.cli.ArgParser
+import kotlinx.cli.ArgType
+import kotlinx.cli.default
+import java.io.File
 
-object Core {
+object Etrade {
+
     @JvmStatic fun main(args: Array<String>) {
-        val parsed = CommandLineParser(args).parse()
+        val parsed = parse(args)
 
         if (parsed.verbose) {
             println("Verbose set to ${parsed.verbose}")
@@ -46,5 +53,21 @@ object Core {
         }
 
         // client.destroySession()
+    }
+
+    @Throws(ConfigFileNotFound::class)
+    private fun parse(args: Array<String>): ClientConfig {
+        val parser = ArgParser("Batil")
+        val config by parser.option(ArgType.String, description = "Path to YAML configuration file").default("batil.yaml")
+        val verbose by parser.option(ArgType.Boolean, description = "Show additional debugging output").default(false)
+        val production by parser.option(ArgType.Boolean, description = "Use production endpoints, default is sandbox").default(false)
+        parser.parse(args)
+
+        val configFile = File(config)
+        if (!configFile.exists()) {
+            throw ConfigFileNotFound()
+        }
+
+        return ClientConfig(configFile.toPath(), verbose, production)
     }
 }

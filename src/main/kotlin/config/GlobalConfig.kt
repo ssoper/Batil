@@ -13,16 +13,16 @@ data class GlobalConfig(
     val chromium: Chromium = Chromium("127.0.0.1", port = 9222, delay = 5)
 ) {
     companion object {
-        fun parse(runtimeConfig: RuntimeConfig): GlobalConfig {
+        fun parse(clientConfig: ClientConfig): GlobalConfig {
             val mapper = ObjectMapper(YAMLFactory())
             mapper.registerModule(KotlinModule())
 
             return try {
-                Files.newBufferedReader(runtimeConfig.pathToConfigFile).use {
+                Files.newBufferedReader(clientConfig.pathToConfigFile).use {
                     mapper.readValue(it, GlobalConfig::class.java)
                 }
             } catch (exception: MissingKotlinParameterException) {
-                if (runtimeConfig.verbose) {
+                if (clientConfig.verbose) {
                     throw ConfigFileInvalid(exception.message)
                 } else {
                     throw ConfigFileInvalid()
@@ -38,4 +38,12 @@ data class Chromium(
     val delay: Int
 )
 
+/**
+ * @suppress
+ */
 class ConfigFileInvalid(message: String? = "Error loading configuration file, ensure all fields have values") : Exception(message)
+
+/**
+ * @suppress
+ */
+class ConfigFileNotFound : Exception("Configuration file not found")

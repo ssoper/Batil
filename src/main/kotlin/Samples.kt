@@ -16,7 +16,7 @@ import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronCondor
 import com.seansoper.batil.config.GlobalConfig
-import com.seansoper.batil.config.RuntimeConfig
+import com.seansoper.batil.config.ClientConfig
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
@@ -28,7 +28,7 @@ import java.util.GregorianCalendar
  */
 class Market {
 
-    fun getOptionsChain(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun getOptionsChain(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -48,7 +48,7 @@ class Market {
  */
 class Alerts {
 
-    fun list(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun list(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -62,7 +62,7 @@ class Alerts {
         }
     }
 
-    fun get(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun get(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -78,7 +78,7 @@ class Alerts {
         }
     }
 
-    fun deleteSingle(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun deleteSingle(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -93,7 +93,7 @@ class Alerts {
             }
         }
     }
-    fun deleteMultiple(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun deleteMultiple(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -116,7 +116,7 @@ class Alerts {
 
 class Accounts {
 
-    fun list(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun list(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -128,7 +128,7 @@ class Accounts {
         }
     }
 
-    fun viewPortfolio(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun viewPortfolio(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -144,7 +144,7 @@ class Accounts {
         }
     }
 
-    fun listTransactions(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun listTransactions(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -160,7 +160,7 @@ class Accounts {
         }
     }
 
-    fun getTransaction(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun getTransaction(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -184,7 +184,7 @@ class Accounts {
  */
 class Orders {
 
-    fun list(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun list(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -201,7 +201,7 @@ class Orders {
         }
     }
 
-    fun buyCallOptionLimit(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun buyCallOptionLimit(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -227,7 +227,7 @@ class Orders {
         }
     }
 
-    fun sellCallOptionLimit(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun sellCallOptionLimit(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -253,7 +253,7 @@ class Orders {
         }
     }
 
-    fun buyCallDebitSpread(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun buyCallDebitSpread(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -280,7 +280,7 @@ class Orders {
         }
     }
 
-    fun sellPutCreditSpread(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun sellPutCreditSpread(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -307,7 +307,7 @@ class Orders {
         }
     }
 
-    fun buyCondorPuts(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun buyCondorPuts(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -334,7 +334,7 @@ class Orders {
         }
     }
 
-    fun sellIronCondor(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun sellIronCondor(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -361,7 +361,7 @@ class Orders {
         }
     }
 
-    fun buyButterflyCalls(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun buyButterflyCalls(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -387,7 +387,7 @@ class Orders {
         }
     }
 
-    fun purchaseBuyWrite(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun purchaseBuyWrite(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
@@ -413,7 +413,7 @@ class Orders {
         }
     }
 
-    fun placeOrder(runtime: RuntimeConfig = RuntimeConfig.default()) {
+    fun placeOrder(runtime: ClientConfig = ClientConfig.default()) {
         val configuration = GlobalConfig.parse(runtime)
         val client = Authorization(configuration, runtime.production, runtime.verbose)
         val session = client.renewSession() ?: client.createSession()
