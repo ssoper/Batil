@@ -1,6 +1,6 @@
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
-import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.ClientConfig
+import com.seansoper.batil.config.GlobalConfig
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow

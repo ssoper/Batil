@@ -1,7 +1,7 @@
 package testHelper
 
-import com.seansoper.batil.config.GlobalConfig
 import com.seansoper.batil.config.ClientConfig
+import com.seansoper.batil.config.GlobalConfig
 import java.nio.file.Paths
 
 class LoadConfig {
