@@ -5,8 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import retrofit2.http.QueryMap
 import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.util.GregorianCalendar
 
 enum class MessageType {
@@ -19,6 +24,10 @@ enum class OptionCategory {
 
 enum class OptionType {
     CALL, PUT, CALLPUT
+}
+
+enum class OptionExpirationType {
+    UNSPECIFIED, DAILY, WEEKLY, MONTHLY, QUARTERLY, VIX, ALL, MONTHEND
 }
 
 /**
@@ -342,6 +351,41 @@ data class OptionChainRoot(
     val response: OptionChainResponse
 )
 
+/**
+ * @param[year] The four-digit year the option will expire
+ * @param[month] The month (1-12) the option will expire
+ * @param[day] The day (1-31) the option will expire
+ * @param[expiryType] Expiration type of the option
+ */
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OptionExpirationDate(
+    val year: Int,
+    val month: Int,
+    val day: Int,
+    val expiryType: OptionExpirationType
+) {
+    val date: ZonedDateTime
+        get() {
+            return ZonedDateTime.of(
+                LocalDate.of(year, month, day),
+                LocalTime.of(16, 0),
+                ZoneId.of("America/New_York")
+            )
+        }
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OptionExpireDateResponse(
+    @JsonProperty("ExpirationDate")
+    val dates: List<OptionExpirationDate>
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OptionExpireDateResponseEnvelope(
+    @JsonProperty("OptionExpireDateResponse")
+    val response: OptionExpireDateResponse
+)
+
 interface MarketApi {
 
     @GET("v1/market/optionchains")
@@ -352,4 +396,10 @@ interface MarketApi {
 
     @GET("v1/market/lookup/{search}")
     fun lookup(@Path("search") search: String): Call<LookupDataResponse>
+
+    @GET("v1/market/optionexpiredate")
+    fun optionExpireDates(
+        @Query("symbol") symbol: String,
+        @Query("expiryType") expiryType: OptionExpirationType?
+    ): Call<OptionExpireDateResponseEnvelope>
 }

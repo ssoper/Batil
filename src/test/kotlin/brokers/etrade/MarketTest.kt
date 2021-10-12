@@ -1,4 +1,5 @@
 import com.seansoper.batil.brokers.etrade.api.OptionCategory
+import com.seansoper.batil.brokers.etrade.api.OptionExpirationType
 import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.services.EtradeServiceError
 import com.seansoper.batil.brokers.etrade.services.Market
@@ -133,6 +134,50 @@ class MarketTest : StringSpec({
             exception.message.shouldBe("There are no options for the given month.")
 
             it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL&expiryYear=2021&expiryMonth=2&expiryDay=4")
+        }
+    }
+
+    "get all option expiry dates" {
+        val path = Paths.get("brokers/etrade/market/option_chains/all_expiry_dates.json")
+
+        createServer(path) {
+            val symbol = "PLTR"
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.optionExpirationDates(symbol)
+
+            data.shouldNotBeNull()
+
+            data.first().let {
+                it.year.shouldBe(2021)
+                it.month.shouldBe(10)
+                it.day.shouldBe(15)
+                it.expiryType.shouldBe(OptionExpirationType.MONTHLY)
+                it.date.year.shouldBe(it.year)
+            }
+
+            it.takeRequest().path.shouldBe("/v1/market/optionexpiredate?symbol=$symbol")
+        }
+    }
+
+    "get weekly option expiry dates" {
+        val path = Paths.get("brokers/etrade/market/option_chains/weekly_expiry_dates.json")
+
+        createServer(path) {
+            val symbol = "PLTR"
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.optionExpirationDates(symbol, OptionExpirationType.WEEKLY)
+
+            data.shouldNotBeNull()
+
+            data.first().let {
+                it.year.shouldBe(2021)
+                it.month.shouldBe(10)
+                it.day.shouldBe(22)
+                it.expiryType.shouldBe(OptionExpirationType.WEEKLY)
+                it.date.year.shouldBe(it.year)
+            }
+
+            it.takeRequest().path.shouldBe("/v1/market/optionexpiredate?symbol=$symbol&expiryType=WEEKLY")
         }
     }
 })

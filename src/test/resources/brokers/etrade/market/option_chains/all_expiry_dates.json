@@ -1,0 +1,96 @@
+{
+  "OptionExpireDateResponse": {
+    "ExpirationDate": [
+      {
+        "year": 2021,
+        "month": 10,
+        "day": 15,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2021,
+        "month": 10,
+        "day": 22,
+        "expiryType": "WEEKLY"
+      },
+      {
+        "year": 2021,
+        "month": 10,
+        "day": 29,
+        "expiryType": "WEEKLY"
+      },
+      {
+        "year": 2021,
+        "month": 11,
+        "day": 5,
+        "expiryType": "WEEKLY"
+      },
+      {
+        "year": 2021,
+        "month": 11,
+        "day": 12,
+        "expiryType": "WEEKLY"
+      },
+      {
+        "year": 2021,
+        "month": 11,
+        "day": 19,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2021,
+        "month": 11,
+        "day": 26,
+        "expiryType": "WEEKLY"
+      },
+      {
+        "year": 2021,
+        "month": 12,
+        "day": 17,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2022,
+        "month": 1,
+        "day": 21,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2022,
+        "month": 2,
+        "day": 18,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2022,
+        "month": 5,
+        "day": 20,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2022,
+        "month": 6,
+        "day": 17,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2022,
+        "month": 9,
+        "day": 16,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2023,
+        "month": 1,
+        "day": 20,
+        "expiryType": "MONTHLY"
+      },
+      {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "expiryType": "MONTHLY"
+      }
+    ]
+  }
+}

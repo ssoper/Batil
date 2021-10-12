@@ -5,6 +5,8 @@ import com.seansoper.batil.brokers.etrade.api.LookupResult
 import com.seansoper.batil.brokers.etrade.api.MarketApi
 import com.seansoper.batil.brokers.etrade.api.OptionCategory
 import com.seansoper.batil.brokers.etrade.api.OptionChainResponse
+import com.seansoper.batil.brokers.etrade.api.OptionExpirationDate
+import com.seansoper.batil.brokers.etrade.api.OptionExpirationType
 import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.api.QuoteData
 import com.seansoper.batil.brokers.etrade.auth.Session
@@ -120,5 +122,15 @@ class Market(
         val response = service.getOptionChains(options).execute()
 
         return response.body()?.response
+    }
+
+    fun optionExpirationDates(
+        symbol: String,
+        expirationType: OptionExpirationType? = null
+    ): List<OptionExpirationDate>? {
+        val service = createClient(MarketApi::class.java)
+        val response = service.optionExpireDates(symbol, expirationType).execute()
+
+        return response.body()?.response?.dates
     }
 }
