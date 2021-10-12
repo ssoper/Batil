@@ -3,6 +3,9 @@ package com.seansoper.batil.brokers.etrade.services
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.seansoper.batil.brokers.etrade.api.OrdersApi
 import com.seansoper.batil.brokers.etrade.api.OrdersResponse
+import com.seansoper.batil.brokers.etrade.api.PlaceOrderRequest
+import com.seansoper.batil.brokers.etrade.api.PlaceOrderRequestEnvelope
+import com.seansoper.batil.brokers.etrade.api.PlaceOrderResponse
 import com.seansoper.batil.brokers.etrade.api.PreviewOrderResponse
 import com.seansoper.batil.brokers.etrade.api.PreviewRequestEnvelope
 import com.seansoper.batil.brokers.etrade.api.SecurityType
@@ -75,8 +78,8 @@ class Orders(
             options.put("toDate", formatDate(it))
         }
 
-        // Note that while E*TRADE documentation states that 25 can be sent in the query, attempts to do so result in
-        // an Oauth signature error indicating an issue with API
+        // Note that while the E*TRADE documentation states that a comma-delimited list of 25 symbols can be sent in the
+        // query, attempts to do so result in an Oauth signature error likely due to an encoding error (, vs. %2C)
         symbol?.let {
             options.put("symbol", it)
         }
@@ -102,12 +105,40 @@ class Orders(
         return response.body()?.response
     }
 
+    /**
+     * Create an order preview
+     * @param[accountIdKey] The unique account key
+     * @param[request] The preview request
+     * @sample com.seansoper.batil.samples.Orders.buyButterflyCalls
+     */
     fun createPreview(
         accountIdKey: String,
         request: PreviewRequest
     ): PreviewOrderResponse? {
         val service = createClient(OrdersApi::class.java)
         val response = service.createPreview(accountIdKey, PreviewRequestEnvelope(request)).execute()
+
+        return response.body()?.response
+    }
+
+    /**
+     * Place an order
+     * @param[accountIdKey] The unique account key
+     * @param[previewRequest] Request used to create the order preview
+     * @param[previewResponse] Response from creating the order preview
+     * @sample com.seansoper.batil.samples.Orders.placeOrder
+     */
+    fun placeOrder(
+        accountIdKey: String,
+        previewRequest: PreviewRequest,
+        previewResponse: PreviewOrderResponse
+    ): PlaceOrderResponse? {
+        val module = SimpleModule()
+        module.addDeserializer(Instant::class.java, TimestampDeserializer())
+
+        val service = createClient(OrdersApi::class.java, module)
+        val order = PlaceOrderRequest(previewRequest, previewResponse)
+        val response = service.placeOrder(accountIdKey, PlaceOrderRequestEnvelope(order)).execute()
 
         return response.body()?.response
     }

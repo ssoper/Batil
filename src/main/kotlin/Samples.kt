@@ -12,6 +12,7 @@ import com.seansoper.batil.brokers.etrade.services.orderPreview.buyBuyWrite
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronCondor
 import com.seansoper.batil.config.GlobalConfig
@@ -409,6 +410,27 @@ class Orders {
         service.createPreview(accountIdKey, request)?.let {
             println("Preview of Buy to Open buy-write on PLTR")
             println(it)
+        }
+    }
+
+    fun placeOrder(runtime: RuntimeConfig = RuntimeConfig.default()) {
+        val configuration = GlobalConfig.parse(runtime)
+        val client = Authorization(configuration, runtime.production, runtime.verbose)
+        val session = client.renewSession() ?: client.createSession()
+        val accounts = Accounts(session, runtime.production, runtime.verbose)
+
+        accounts.list()?.let {
+            it.first().accountIdKey?.let { accountIdKey ->
+                val service = Orders(session, runtime.production, runtime.verbose)
+                val previewRequest = buyEquityLimit("PLTR", 21f, 1)
+
+                service.createPreview(accountIdKey, previewRequest)?.let { previewOrderResponse ->
+                    service.placeOrder(accountIdKey, previewRequest, previewOrderResponse)?.let {
+                        println("Purchased equity")
+                        println(it)
+                    }
+                }
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package com.seansoper.batil.brokers.etrade.api
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewOrder
 import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewRequest
 import com.seansoper.batil.brokers.etrade.services.MarketSession
 import com.seansoper.batil.brokers.etrade.services.OrderStatus
@@ -453,6 +454,20 @@ data class Margin(
 )
 
 /**
+ * @param[houseExcessEquityNew] The new house excess equity value for portfolio-margin eligible accounts
+ * @param[pmEligible] The new house excess equity value for portfolio-margin eligible accounts
+ * @param[houseExcessEquityCurr] The current house excess equity value for portfolio-margin eligible accounts
+ * @param[houseExcessEquityChange] The change house excess equity value for portfolio-margin eligible accounts
+ */
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class PortfolioMargin(
+    val houseExcessEquityNew: Float?,
+    val pmEligible: Boolean?,
+    val houseExcessEquityCurr: Float?,
+    val houseExcessEquityChange: Float?
+)
+
+/**
  * @param[orderType] The type of order being placed
  * @param[totalOrderValue] The total order value
  * @param[totalCommission] The total commission
@@ -479,6 +494,61 @@ data class PreviewOrderResponse(
     val margin: Margin?
 )
 
+/**
+ * @param[orderType] The type of order being placed
+ * @param[orderId] ID number assigned to this order
+ * @param[orders] List of orders
+ * @param[dstFlag] Indicator flag identifying whether daylight savings time is applicable or not
+ * @param[placedTime] The time the order was placed
+ * @param[accountId] The numeric account ID
+ * @param[marginLevel] The code that designates the applicable margin level
+ * @param[optionLevel] The code that designates the applicable options level
+ */
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class PlaceOrderResponse(
+    val orderType: OrderType,
+    @JsonProperty("OrderIds")
+    val orderIds: List<OrderId>,
+    @JsonProperty("Order")
+    val orders: List<OrderDetail>,
+    val dstFlag: Boolean,
+    val placedTime: Instant,
+    val accountId: String,
+    @JsonProperty("marginLevelCd")
+    val marginLevel: MarginLevel?,
+    @JsonProperty("optionLevelCd")
+    val optionLevel: OptionLevel?
+) {
+    val orderId: Long
+        get() = this.orderIds.first().orderId
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class OrderId(
+    val orderId: Long,
+    val cashMargin: String?
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class PlaceOrderRequest(
+    val orderType: OrderType,
+    val clientOrderId: String,
+    @JsonProperty("Order")
+    val orders: List<PreviewOrder>,
+    @JsonProperty("PreviewIds")
+    val previewIds: List<PreviewId>
+) {
+    constructor(
+        previewRequest: PreviewRequest,
+        previewResponse: PreviewOrderResponse
+    ) : this(
+        orderType = previewResponse.orderType,
+        clientOrderId = previewRequest.clientOrderId,
+        orders = previewRequest.orders,
+        previewIds = previewResponse.previewIds
+    )
+}
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class PreviewOrderResponseEnvelope(
     @JsonProperty("PreviewOrderResponse")
@@ -488,6 +558,16 @@ data class PreviewOrderResponseEnvelope(
 data class PreviewRequestEnvelope(
     @JsonProperty("PreviewOrderRequest")
     val request: PreviewRequest
+)
+
+data class PlaceOrderRequestEnvelope(
+    @JsonProperty("PlaceOrderRequest")
+    val request: PlaceOrderRequest
+)
+
+data class PlaceOrderResponseEnvelope(
+    @JsonProperty("PlaceOrderResponse")
+    val response: PlaceOrderResponse
 )
 
 interface OrdersApi {
@@ -503,4 +583,10 @@ interface OrdersApi {
         @Path("accountIdKey") accountIdKey: String,
         @Body body: PreviewRequestEnvelope
     ): Call<PreviewOrderResponseEnvelope>
+
+    @POST("/v1/accounts/{accountIdKey}/orders/place")
+    fun placeOrder(
+        @Path("accountIdKey") accountIdKey: String,
+        @Body body: PlaceOrderRequestEnvelope
+    ): Call<PlaceOrderResponseEnvelope>
 }
