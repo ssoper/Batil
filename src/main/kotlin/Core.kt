@@ -3,7 +3,7 @@ package com.seansoper.batil
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyBuyWrite
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityLimit
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {
@@ -39,10 +39,13 @@ object Core {
         accounts.list()?.let {
             it.first().accountIdKey?.let { accountIdKey ->
                 val service = Orders(session, parsed.production, parsed.verbose)
-                val request = buyBuyWrite("PLTR", 26f, 24.72f, 1)
+                val previewRequest = buyEquityLimit("PLTR", 21f, 1)
 
-                service.createPreview(accountIdKey, request)?.let {
+                service.createPreview(accountIdKey, previewRequest)?.let { previewOrderResponse ->
                     println(it)
+//                    service.placeOrder(accountIdKey, previewRequest, previewOrderResponse)?.let {
+//                        println(it)
+//                    }
                 }
             }
         }

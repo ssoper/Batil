@@ -1,0 +1,57 @@
+{
+  "PlaceOrderResponse": {
+    "orderType": "EQ",
+    "dstFlag": true,
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "placedTime": 1633999969262,
+    "accountId": "45645298",
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "LIMIT",
+        "limitPrice": 21,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "messages": {
+          "Message": [
+            {
+              "description": "200|The market was closed when we received your order. It has been entered into our system and will be reviewed prior to market open on the next regular trading day. After market open, please check to make sure your order was accepted.",
+              "code": 1027,
+              "type": "WARNING"
+            }
+          ]
+        },
+        "egQual": "EG_QUAL_UNSPECIFIED",
+        "estimatedCommission": 0,
+        "estimatedTotalAmount": 21,
+        "netPrice": 0,
+        "netBid": 0,
+        "netAsk": 0,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "PALANTIR TECHNOLOGIES INC CL A",
+            "orderAction": "BUY",
+            "quantityType": "QUANTITY",
+            "quantity": 1,
+            "cancelQuantity": 0.0,
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "PLTR",
+              "securityType": "EQ"
+            }
+          }
+        ]
+      }
+    ],
+    "OrderIds": [
+      {
+        "orderId": 402
+      }
+    ]
+  }
+}

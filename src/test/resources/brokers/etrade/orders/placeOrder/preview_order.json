@@ -1,0 +1,67 @@
+{
+  "PreviewOrderResponse": {
+    "orderType": "EQ",
+    "totalOrderValue": 21,
+    "previewTime": 1633999969200,
+    "dstFlag": true,
+    "accountId": "45645298",
+    "optionLevelCd": 3,
+    "marginLevelCd": "MARGIN_TRADING_ALLOWED",
+    "marginBpDetails": {
+      "nonMarginable": {
+        "currentBp": 7934.54
+      },
+      "marginable": {
+        "currentBp": 26448.47,
+        "currentOor": 103.4,
+        "currentNetBp": 26345.06,
+        "currentOrderImpact": 24.5,
+        "netBp": 26320.56
+      }
+    },
+    "Order": [
+      {
+        "orderTerm": "GOOD_FOR_DAY",
+        "priceType": "LIMIT",
+        "limitPrice": 21,
+        "stopPrice": 0,
+        "marketSession": "REGULAR",
+        "allOrNone": false,
+        "egQual": "EG_QUAL_NOT_IN_FORCE",
+        "estimatedCommission": 0,
+        "estimatedTotalAmount": 21,
+        "netPrice": 0,
+        "netBid": 0,
+        "netAsk": 0,
+        "gcd": 0,
+        "ratio": "",
+        "Instrument": [
+          {
+            "symbolDescription": "PALANTIR TECHNOLOGIES INC CL A",
+            "orderAction": "BUY",
+            "quantityType": "QUANTITY",
+            "quantity": 1,
+            "cancelQuantity": 0.0,
+            "reserveOrder": true,
+            "reserveQuantity": 0.0,
+            "Product": {
+              "symbol": "PLTR",
+              "securityType": "EQ"
+            }
+          }
+        ]
+      }
+    ],
+    "PreviewIds": [
+      {
+        "previewId": 1026046894106
+      }
+    ],
+    "Disclosure": {
+      "ehDisclosureFlag": false,
+      "ahDisclosureFlag": false,
+      "conditionalDisclosureFlag": true,
+      "aoDisclosureFlag": true
+    }
+  }
+}

@@ -7,6 +7,7 @@ import com.seansoper.batil.brokers.etrade.services.MarketSession
 import com.seansoper.batil.brokers.etrade.services.OrderStatus
 import com.seansoper.batil.brokers.etrade.services.OrderTransactionType
 import com.seansoper.batil.brokers.etrade.services.Orders
+import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityLimit
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
@@ -55,7 +56,7 @@ class OrdersTest : StringSpec({
         }
     }
 
-    "list orders with query" {
+    "list orders with query params" {
         val path = Paths.get("brokers/etrade/orders/list_query.json")
 
         createServer(path) {
@@ -75,16 +76,46 @@ class OrdersTest : StringSpec({
             data.shouldNotBeNull()
             data.orders!!.size.shouldBe(2)
 
-            it.takeRequest().path.let {
-                it.shouldContain("count=10")
-                it.shouldContain("status=EXECUTED")
-                it.shouldContain("fromDate=08012021")
-                it.shouldContain("toDate=1011202")
-                it.shouldContain("symbol=RIOT")
-                it.shouldContain("securityType=OPTN")
-                it.shouldContain("transactionType=SELL_SHORT")
-                it.shouldContain("marketSession=REGULAR")
-                it.shouldContain("/v1/accounts/$accountIdKey/orders")
+            it.takeRequest().path.let { url ->
+                url.shouldContain("count=10")
+                url.shouldContain("status=EXECUTED")
+                url.shouldContain("fromDate=08012021")
+                url.shouldContain("toDate=1011202")
+                url.shouldContain("symbol=RIOT")
+                url.shouldContain("securityType=OPTN")
+                url.shouldContain("transactionType=SELL_SHORT")
+                url.shouldContain("marketSession=REGULAR")
+                url.shouldContain("/v1/accounts/$accountIdKey/orders")
+            }
+        }
+    }
+
+    "place order" {
+        val previewOrderPath = Paths.get("brokers/etrade/orders/placeOrder/preview_order.json")
+
+        createServer(previewOrderPath) {
+            val equity = Triple("PLTR", 21f, 1)
+            val previewService = Orders(mockSession(), baseUrl = it.url(".").toString())
+            val previewRequest = buyEquityLimit(equity.first, equity.second, equity.third)
+            val previewResponse = previewService.createPreview(accountIdKey, previewRequest)
+            val placeOrderPath = Paths.get("brokers/etrade/orders/placeOrder/place_order.json")
+
+            createServer(placeOrderPath) {
+                val service = Orders(mockSession(), baseUrl = it.url(".").toString())
+                val data = service.placeOrder(accountIdKey, previewRequest, previewResponse!!)
+
+                data.shouldNotBeNull()
+                data.orderType.shouldBe(OrderType.EQ)
+                data.orderId.shouldBe(402)
+
+                val order = data.orders.first()
+                order.limitPrice.shouldBe(equity.second)
+
+                val instrument = order.instruments!!.first()
+                instrument.quantity.shouldBe(equity.third.toFloat())
+                instrument.product!!.symbol.shouldBe(equity.first)
+
+                it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/place")
             }
         }
     }

@@ -141,6 +141,7 @@ data class PreviewOrderMarket(
     )
 }
 
+// TODO: Rename to PreviewOrderRequest
 data class PreviewRequest(
     val orderType: OrderType,
     val clientOrderId: String,
