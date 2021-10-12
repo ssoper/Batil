@@ -39,13 +39,16 @@ object Core {
         accounts.list()?.let {
             it.first().accountIdKey?.let { accountIdKey ->
                 val service = Orders(session, parsed.production, parsed.verbose)
-                val previewRequest = buyEquityLimit("PLTR", 21f, 1)
+                val previewRequest = buyEquityLimit("PLTR", 15f, 1)
 
-                service.createPreview(accountIdKey, previewRequest)?.let { previewOrderResponse ->
-                    println(it)
+//                service.createPreview(accountIdKey, previewRequest)?.let { previewOrderResponse ->
 //                    service.placeOrder(accountIdKey, previewRequest, previewOrderResponse)?.let {
 //                        println(it)
 //                    }
+//                }
+
+                service.cancelOrder(accountIdKey, 403)?.let {
+                    println(it)
                 }
             }
         }

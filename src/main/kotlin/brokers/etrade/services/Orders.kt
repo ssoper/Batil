@@ -1,6 +1,9 @@
 package com.seansoper.batil.brokers.etrade.services
 
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.seansoper.batil.brokers.etrade.api.CancelOrderRequest
+import com.seansoper.batil.brokers.etrade.api.CancelOrderRequestEnvelope
+import com.seansoper.batil.brokers.etrade.api.CancelOrderResponse
 import com.seansoper.batil.brokers.etrade.api.OrdersApi
 import com.seansoper.batil.brokers.etrade.api.OrdersResponse
 import com.seansoper.batil.brokers.etrade.api.PlaceOrderRequest
@@ -121,6 +124,8 @@ class Orders(
         return response.body()?.response
     }
 
+    // TODO: Consider adding support for a placeOrder that accepts a simple previewId since that’s all we need anyways
+
     /**
      * Place an order
      * @param[accountIdKey] The unique account key
@@ -139,6 +144,25 @@ class Orders(
         val service = createClient(OrdersApi::class.java, module)
         val order = PlaceOrderRequest(previewRequest, previewResponse)
         val response = service.placeOrder(accountIdKey, PlaceOrderRequestEnvelope(order)).execute()
+
+        return response.body()?.response
+    }
+
+    /**
+     * Cancel an order
+     * @param[accountIdKey] The unique account key
+     * @param[orderId] Order confirmation id for the order placed.
+     */
+    fun cancelOrder(
+        accountIdKey: String,
+        orderId: Long
+    ): CancelOrderResponse? {
+        val module = SimpleModule()
+        module.addDeserializer(Instant::class.java, TimestampDeserializer())
+
+        val service = createClient(OrdersApi::class.java, module)
+        val order = CancelOrderRequest(orderId)
+        val response = service.cancelOrder(accountIdKey, CancelOrderRequestEnvelope(order)).execute()
 
         return response.body()?.response
     }

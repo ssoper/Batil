@@ -119,4 +119,21 @@ class OrdersTest : StringSpec({
             }
         }
     }
+
+    "cancel order" {
+        val path = Paths.get("brokers/etrade/orders/cancel_order.json")
+
+        createServer(path) {
+            val orderId = 403L
+            val service = Orders(mockSession(), baseUrl = it.url(".").toString())
+            val data = service.cancelOrder(accountIdKey, orderId)
+
+            data.shouldNotBeNull()
+
+            data.orderId.shouldBe(orderId)
+            data.messages!!.messages.first().code.shouldBe(5011)
+
+            it.takeRequest().path.shouldBe("/v1/accounts/$accountIdKey/orders/cancel")
+        }
+    }
 })
