@@ -1,9 +1,9 @@
 package com.seansoper.batil
 
+import com.seansoper.batil.brokers.etrade.api.OptionExpirationType
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.services.Accounts
-import com.seansoper.batil.brokers.etrade.services.Orders
-import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityLimit
+import com.seansoper.batil.brokers.etrade.services.Market
 import com.seansoper.batil.config.GlobalConfig
 
 object Core {
@@ -38,16 +38,8 @@ object Core {
 
         accounts.list()?.let {
             it.first().accountIdKey?.let { accountIdKey ->
-                val service = Orders(session, parsed.production, parsed.verbose)
-                val previewRequest = buyEquityLimit("PLTR", 15f, 1)
-
-//                service.createPreview(accountIdKey, previewRequest)?.let { previewOrderResponse ->
-//                    service.placeOrder(accountIdKey, previewRequest, previewOrderResponse)?.let {
-//                        println(it)
-//                    }
-//                }
-
-                service.cancelOrder(accountIdKey, 403)?.let {
+                val service = Market(session, parsed.production, parsed.verbose)
+                service.optionExpirationDates("PLTR", OptionExpirationType.WEEKLY)?.let {
                     println(it)
                 }
             }
