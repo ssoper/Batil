@@ -9,6 +9,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.5.0"
     id("org.jmailen.kotlinter") version "3.6.0"
     id("jacoco")
+    id("com.github.johnrengelman.shadow") version "7.1.0"
 }
 
 // Temporary fix until Jacoco default version is 0.8.7+
@@ -38,16 +39,11 @@ dependencies {
     testImplementation("io.mockk:mockk:1.12.0")
 }
 
-tasks.jar {
-    manifest {
-        attributes(mapOf(
-            "Main-Class" to "$buildGroupId.$buildArtifactId.Core",
-            "Manifest-Version" to "1.0",
-            "Implementation-Version" to buildVersion))
-    }
+tasks.shadowJar {
+    this.archiveBaseName.set("Batil")
+    this.archiveClassifier.set("client")
 
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    manifest.attributes.set("Main-Class", "$buildGroupId.$buildArtifactId.Core")
 }
 
 tasks.compileKotlin {
