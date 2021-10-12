@@ -10,6 +10,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
 import java.time.Instant
@@ -555,19 +556,53 @@ data class PreviewOrderResponseEnvelope(
     val response: PreviewOrderResponse
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class PreviewRequestEnvelope(
     @JsonProperty("PreviewOrderRequest")
     val request: PreviewRequest
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class PlaceOrderRequestEnvelope(
     @JsonProperty("PlaceOrderRequest")
     val request: PlaceOrderRequest
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class PlaceOrderResponseEnvelope(
     @JsonProperty("PlaceOrderResponse")
     val response: PlaceOrderResponse
+)
+
+/**
+ * @param[orderId] Order confirmation id for the order placed.
+ */
+data class CancelOrderRequest(
+    val orderId: Long
+)
+
+data class CancelOrderRequestEnvelope(
+    @JsonProperty("CancelOrderRequest")
+    val request: CancelOrderRequest
+)
+
+/**
+ * @param[accountId] The numeric account ID for the cancelled order
+ * @param[orderId] The order ID
+ * @param[cancelTime] The time, in Epoch time, that the cancel request was submitted
+ * @param[messages] The messages relating to the order cancellation
+ */
+data class CancelOrderResponse(
+    val accountId: String,
+    val orderId: Long,
+    val cancelTime: Instant,
+    @JsonProperty("Messages")
+    val messages: MessagesResponse?,
+)
+
+data class CancelOrderResponseEnvelope(
+    @JsonProperty("CancelOrderResponse")
+    val response: CancelOrderResponse
 )
 
 interface OrdersApi {
@@ -589,4 +624,10 @@ interface OrdersApi {
         @Path("accountIdKey") accountIdKey: String,
         @Body body: PlaceOrderRequestEnvelope
     ): Call<PlaceOrderResponseEnvelope>
+
+    @PUT("/v1/accounts/{accountIdKey}/orders/cancel")
+    fun cancelOrder(
+        @Path("accountIdKey") accountIdKey: String,
+        @Body body: CancelOrderRequestEnvelope
+    ): Call<CancelOrderResponseEnvelope>
 }
