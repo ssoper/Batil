@@ -10,15 +10,19 @@ import com.seansoper.batil.config.ConfigFileNotFound
 import com.seansoper.batil.config.GlobalConfig
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
+import kotlinx.cli.ExperimentalCli
+import kotlinx.cli.Subcommand
 import kotlinx.cli.default
+import kotlinx.cli.optional
 import kotlinx.cli.required
+import kotlinx.cli.vararg
 import java.io.File
 import kotlin.system.exitProcess
 
 object Etrade {
 
     @JvmStatic fun main(args: Array<String>) {
-        val (parsed, command) = parse(args)
+        val (parsed, command, meta) = parse(args)
 
         println("Verbose set to ${parsed.verbose}")
         println("Using ${if (parsed.production) { "production" } else { "sandbox" } }")
@@ -42,15 +46,17 @@ object Etrade {
         when (command) {
             Command.VERIFY -> println("Connection to account verified")
             Command.LIST_ACCOUNTS -> listAccounts(session, parsed)
+            Command.GET_BALANCES -> getBalances(meta.first(), session, parsed)
         }
 
         exitProcess(0)
-        // client.destroySession()
     }
 
     private enum class Command {
         VERIFY,
-        LIST_ACCOUNTS
+        LIST_ACCOUNTS,
+        GET_BALANCES,
+        LOOKUP_SYMBOL
     }
 
     private fun listAccounts(session: Session, clientConfig: ClientConfig) {
@@ -71,6 +77,22 @@ object Etrade {
         }
     }
 
+    private fun getBalances(accountIdKey: String, session: Session, clientConfig: ClientConfig) {
+        val service = Accounts(session, clientConfig.production, clientConfig.verbose)
+        service.getBalance(accountIdKey)?.let {
+            it.balances.apply {
+                println("Account ID Key ($accountIdKey)")
+                println("Net cash: $netCash")
+                println("Cash balance: $cashBalance")
+                println("Margin balance: ${marginBalance ?: "0"}")
+                println("Cash buying power: $cashBuyingPower")
+                println("Margin buying power: ${marginBuyingPower ?: "0"}")
+                println("Cash available for investment: $cashAvailableForInvestment")
+                println("Cash available for withdrawal: $cashAvailableForWithdrawal")
+            }
+        }
+    }
+
     private fun listOptionChain(symbol: String, session: Session, clientConfig: ClientConfig) {
         val service = Market(session, clientConfig.production, clientConfig.verbose)
         service.optionExpirationDates("PLTR", OptionExpirationType.WEEKLY)?.let {
@@ -79,22 +101,82 @@ object Etrade {
     }
 
     @Throws(ConfigFileNotFound::class)
-    private fun parse(args: Array<String>): Pair<ClientConfig, Command> {
+    private fun parse(args: Array<String>): Triple<ClientConfig, Command, List<String>> {
         val parser = ArgParser("Batil")
         val config by parser.option(ArgType.String, description = "Path to YAML configuration file").default("batil.yaml")
         val verbose by parser.option(ArgType.Boolean, description = "Show additional debugging output").default(false)
         val production by parser.option(ArgType.Boolean, description = "Use production endpoints, default is sandbox").default(false)
-        val command by parser.option(ArgType.Choice<Command>(), description = "Command to run on E*TRADE API").required()
+
+        class Verify: Subcommand("verify", "Verify E*TRADE credentials") {
+            var exists = false
+
+            override fun execute() {
+                exists = true
+            }
+        }
+
+        class ListAccounts: Subcommand("list_accounts", "List associated E*TRADE accounts") {
+            var exists = false
+
+            override fun execute() {
+                exists = true
+            }
+        }
+
+        class GetBalances: Subcommand("get_balances", "Get balances for an E*TRADE account") {
+            val accountIdKey by argument(ArgType.String, "accountIdKey of an account")
+            var exists = false
+
+            override fun execute() {
+                exists = true
+            }
+        }
+
+        class Lookup: Subcommand("lookup", "Lookup current prices for list of tickers") {
+            val tickers by argument(ArgType.String, "Ticker symbols separated by a space").vararg()
+            var exists = false
+
+            override fun execute() {
+                exists = true
+            }
+        }
+
+        val verify = Verify()
+        parser.subcommands(verify)
+
+        val listAccounts = ListAccounts()
+        parser.subcommands(listAccounts)
+
+        val getBalances = GetBalances()
+        parser.subcommands(getBalances)
+
+        val lookup = Lookup()
+        parser.subcommands(lookup)
+
         parser.parse(args)
+
+        var meta: List<String> = listOf()
+        val command: Command = if (verify.exists) {
+            Command.VERIFY
+        } else if (listAccounts.exists) {
+            Command.LIST_ACCOUNTS
+        } else if (getBalances.exists) {
+            meta = listOf(getBalances.accountIdKey)
+            Command.GET_BALANCES
+        } else {
+            meta = lookup.tickers
+            Command.LOOKUP_SYMBOL
+        }
 
         val configFile = File(config)
         if (!configFile.exists()) {
             throw ConfigFileNotFound()
         }
 
-        return Pair(
+        return Triple(
             ClientConfig(configFile.toPath(), verbose, production),
-            command
+            command,
+            meta
         )
     }
 }
