@@ -10,11 +10,8 @@ import com.seansoper.batil.config.ConfigFileNotFound
 import com.seansoper.batil.config.GlobalConfig
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
-import kotlinx.cli.ExperimentalCli
 import kotlinx.cli.Subcommand
 import kotlinx.cli.default
-import kotlinx.cli.optional
-import kotlinx.cli.required
 import kotlinx.cli.vararg
 import java.io.File
 import kotlin.system.exitProcess
@@ -47,6 +44,7 @@ object Etrade {
             Command.VERIFY -> println("Connection to account verified")
             Command.LIST_ACCOUNTS -> listAccounts(session, parsed)
             Command.GET_BALANCES -> getBalances(meta.first(), session, parsed)
+            Command.LOOKUP_SYMBOL -> lookupSymbols(meta, session, parsed)
         }
 
         exitProcess(0)
@@ -93,10 +91,18 @@ object Etrade {
         }
     }
 
-    private fun listOptionChain(symbol: String, session: Session, clientConfig: ClientConfig) {
+    private fun lookupSymbols(symbols: List<String>, session: Session, clientConfig: ClientConfig) {
         val service = Market(session, clientConfig.production, clientConfig.verbose)
-        service.optionExpirationDates("PLTR", OptionExpirationType.WEEKLY)?.let {
-            println(it)
+        service.tickers(symbols)?.let { tickers ->
+            tickers.forEach {
+                it.tickerData.apply {
+                    println()
+                    println(symbolDescription)
+                    lastTrade?.let { println("Last bid: $it") }
+                    openInterest?.let { println("Open interest: $it") }
+                    totalVolume?.let { println("Total volume: $it") }
+                }
+            }
         }
     }
 
