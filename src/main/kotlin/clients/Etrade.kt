@@ -1,6 +1,5 @@
 package com.seansoper.batil.clients
 
-import com.seansoper.batil.brokers.etrade.api.OptionExpirationType
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.services.Accounts
@@ -99,7 +98,7 @@ object Etrade {
                     println()
                     println(symbolDescription)
                     lastTrade?.let { println("Last bid: $it") }
-                    openInterest?.let { println("Open interest: $it") }
+                    eps?.let { println("Earnings per share: $it") }
                     totalVolume?.let { println("Total volume: $it") }
                 }
             }
@@ -113,7 +112,7 @@ object Etrade {
         val verbose by parser.option(ArgType.Boolean, description = "Show additional debugging output").default(false)
         val production by parser.option(ArgType.Boolean, description = "Use production endpoints, default is sandbox").default(false)
 
-        class Verify: Subcommand("verify", "Verify E*TRADE credentials") {
+        class Verify : Subcommand("verify", "Verify E*TRADE credentials") {
             var exists = false
 
             override fun execute() {
@@ -121,7 +120,7 @@ object Etrade {
             }
         }
 
-        class ListAccounts: Subcommand("list_accounts", "List associated E*TRADE accounts") {
+        class ListAccounts : Subcommand("list_accounts", "List associated E*TRADE accounts") {
             var exists = false
 
             override fun execute() {
@@ -129,7 +128,7 @@ object Etrade {
             }
         }
 
-        class GetBalances: Subcommand("get_balances", "Get balances for an E*TRADE account") {
+        class GetBalances : Subcommand("get_balances", "Get balances for an E*TRADE account") {
             val accountIdKey by argument(ArgType.String, "accountIdKey of an account")
             var exists = false
 
@@ -138,7 +137,7 @@ object Etrade {
             }
         }
 
-        class Lookup: Subcommand("lookup", "Lookup current prices for list of tickers") {
+        class Lookup : Subcommand("lookup", "Lookup current prices for list of tickers") {
             val tickers by argument(ArgType.String, "Ticker symbols separated by a space").vararg()
             var exists = false
 
