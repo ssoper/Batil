@@ -13,6 +13,7 @@ import kotlinx.cli.Subcommand
 import kotlinx.cli.default
 import kotlinx.cli.vararg
 import java.io.File
+import java.lang.System.exit
 import kotlin.system.exitProcess
 
 object Etrade {
@@ -160,6 +161,14 @@ object Etrade {
         parser.subcommands(lookup)
 
         parser.parse(args)
+
+        if (!verify.exists &&
+            !listAccounts.exists &&
+            !getBalances.exists &&
+            !lookup.exists) {
+            println("No command provided, use --help option")
+            exit(1)
+        }
 
         var meta: List<String> = listOf()
         val command: Command = if (verify.exists) {
