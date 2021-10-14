@@ -165,7 +165,8 @@ object Etrade {
         if (!verify.exists &&
             !listAccounts.exists &&
             !getBalances.exists &&
-            !lookup.exists) {
+            !lookup.exists
+        ) {
             println("No command provided, use --help option")
             exit(1)
         }
