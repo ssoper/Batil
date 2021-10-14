@@ -17,7 +17,8 @@ import kotlin.system.exitProcess
 
 object Etrade {
 
-    @JvmStatic fun main(args: Array<String>) {
+    @JvmStatic
+    fun main(args: Array<String>) {
         val (parsed, command, meta) = parse(args)
 
         println("Verbose set to ${parsed.verbose}")
