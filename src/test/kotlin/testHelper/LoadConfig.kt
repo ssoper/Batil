@@ -1,7 +1,7 @@
 package testHelper
 
+import com.seansoper.batil.config.ClientConfig
 import com.seansoper.batil.config.GlobalConfig
-import com.seansoper.batil.config.RuntimeConfig
 import java.nio.file.Paths
 
 class LoadConfig {
@@ -9,7 +9,7 @@ class LoadConfig {
 
     init {
         val configPath = Paths.get(this.javaClass.classLoader.getResource("batil.test.yaml")!!.toURI())
-        val runtimeConfig = RuntimeConfig(configPath, false, false)
+        val runtimeConfig = ClientConfig(configPath, false, false)
         content = GlobalConfig.parse(runtimeConfig)
     }
 }

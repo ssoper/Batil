@@ -95,9 +95,9 @@ data class AccountList(
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Account(
-    val accountId: String?,
-    val accountIdKey: String?,
-    val accountType: AccountType?,
+    val accountId: String,
+    val accountIdKey: String,
+    val accountType: AccountType,
     val institutionType: String?,
 
     @JsonProperty("closedDate")
