@@ -67,7 +67,7 @@ $dokka.location:com.seansoper.batil.brokers.etrade.api.orderPreview/PreviewReque
 $dokka.location:com.seansoper.batil.brokers.etrade.api.orderPreview/PreviewRequest/orders/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api.orderPreview/-preview-request/orders.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api////PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/index.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/Account///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-account/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade.api/Account/Account/#kotlin.String?#kotlin.String?#com.seansoper.batil.brokers.etrade.api.AccountType?#kotlin.String?#kotlin.Int#com.seansoper.batil.brokers.etrade.api.AccountMode?#kotlin.String?#kotlin.String?#com.seansoper.batil.brokers.etrade.api.AccountStatus?/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-account/-account.html
+$dokka.location:com.seansoper.batil.brokers.etrade.api/Account/Account/#kotlin.String#kotlin.String#com.seansoper.batil.brokers.etrade.api.AccountType#kotlin.String?#kotlin.Int#com.seansoper.batil.brokers.etrade.api.AccountMode?#kotlin.String?#kotlin.String?#com.seansoper.batil.brokers.etrade.api.AccountStatus?/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-account/-account.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/Account/accountId/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-account/account-id.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/Account/accountIdKey/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-account/account-id-key.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/Account/accountType/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-account/account-type.html
@@ -2209,8 +2209,13 @@ $dokka.location:com.seansoper.batil.config/Chromium/Chromium/#kotlin.String#kotl
 $dokka.location:com.seansoper.batil.config/Chromium/delay/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-chromium/delay.html
 $dokka.location:com.seansoper.batil.config/Chromium/ip/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-chromium/ip.html
 $dokka.location:com.seansoper.batil.config/Chromium/port/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-chromium/port.html
-$dokka.location:com.seansoper.batil.config/ConfigFileInvalid///PointingToDeclaration/-batil/com.seansoper.batil.config/-config-file-invalid/index.html
-$dokka.location:com.seansoper.batil.config/ConfigFileInvalid/ConfigFileInvalid/#kotlin.String?/PointingToDeclaration/-batil/com.seansoper.batil.config/-config-file-invalid/-config-file-invalid.html
+$dokka.location:com.seansoper.batil.config/ClientConfig.Companion///PointingToDeclaration/-batil/com.seansoper.batil.config/-client-config/-companion/index.html
+$dokka.location:com.seansoper.batil.config/ClientConfig.Companion/default/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-client-config/-companion/default.html
+$dokka.location:com.seansoper.batil.config/ClientConfig///PointingToDeclaration/-batil/com.seansoper.batil.config/-client-config/index.html
+$dokka.location:com.seansoper.batil.config/ClientConfig/ClientConfig/#java.nio.file.Path#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/-batil/com.seansoper.batil.config/-client-config/-client-config.html
+$dokka.location:com.seansoper.batil.config/ClientConfig/pathToConfigFile/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-client-config/path-to-config-file.html
+$dokka.location:com.seansoper.batil.config/ClientConfig/production/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-client-config/production.html
+$dokka.location:com.seansoper.batil.config/ClientConfig/verbose/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-client-config/verbose.html
 $dokka.location:com.seansoper.batil.config/EtradeAuth///PointingToDeclaration/-batil/com.seansoper.batil.config/-etrade-auth/index.html
 $dokka.location:com.seansoper.batil.config/EtradeAuth/EtradeAuth/#kotlin.String#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.config/-etrade-auth/-etrade-auth.html
 $dokka.location:com.seansoper.batil.config/EtradeAuth/key/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-etrade-auth/key.html
@@ -2223,18 +2228,11 @@ $dokka.location:com.seansoper.batil.config/EtradeConfig/production/#/PointingToD
 $dokka.location:com.seansoper.batil.config/EtradeConfig/sandbox/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-etrade-config/sandbox.html
 $dokka.location:com.seansoper.batil.config/EtradeConfig/username/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-etrade-config/username.html
 $dokka.location:com.seansoper.batil.config/GlobalConfig.Companion///PointingToDeclaration/-batil/com.seansoper.batil.config/-global-config/-companion/index.html
-$dokka.location:com.seansoper.batil.config/GlobalConfig.Companion/parse/#com.seansoper.batil.config.RuntimeConfig/PointingToDeclaration/-batil/com.seansoper.batil.config/-global-config/-companion/parse.html
+$dokka.location:com.seansoper.batil.config/GlobalConfig.Companion/parse/#com.seansoper.batil.config.ClientConfig/PointingToDeclaration/-batil/com.seansoper.batil.config/-global-config/-companion/parse.html
 $dokka.location:com.seansoper.batil.config/GlobalConfig///PointingToDeclaration/-batil/com.seansoper.batil.config/-global-config/index.html
 $dokka.location:com.seansoper.batil.config/GlobalConfig/GlobalConfig/#com.seansoper.batil.config.EtradeConfig#com.seansoper.batil.config.Chromium/PointingToDeclaration/-batil/com.seansoper.batil.config/-global-config/-global-config.html
 $dokka.location:com.seansoper.batil.config/GlobalConfig/chromium/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-global-config/chromium.html
 $dokka.location:com.seansoper.batil.config/GlobalConfig/etrade/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-global-config/etrade.html
-$dokka.location:com.seansoper.batil.config/RuntimeConfig.Companion///PointingToDeclaration/-batil/com.seansoper.batil.config/-runtime-config/-companion/index.html
-$dokka.location:com.seansoper.batil.config/RuntimeConfig.Companion/default/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-runtime-config/-companion/default.html
-$dokka.location:com.seansoper.batil.config/RuntimeConfig///PointingToDeclaration/-batil/com.seansoper.batil.config/-runtime-config/index.html
-$dokka.location:com.seansoper.batil.config/RuntimeConfig/RuntimeConfig/#java.nio.file.Path#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/-batil/com.seansoper.batil.config/-runtime-config/-runtime-config.html
-$dokka.location:com.seansoper.batil.config/RuntimeConfig/pathToConfigFile/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-runtime-config/path-to-config-file.html
-$dokka.location:com.seansoper.batil.config/RuntimeConfig/production/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-runtime-config/production.html
-$dokka.location:com.seansoper.batil.config/RuntimeConfig/verbose/#/PointingToDeclaration/-batil/com.seansoper.batil.config/-runtime-config/verbose.html
 $dokka.location:com.seansoper.batil////PointingToDeclaration/-batil/com.seansoper.batil/index.html
 $dokka.location:com.seansoper.batil/CachedToken.Provider.ETRADE///PointingToDeclaration/-batil/com.seansoper.batil/-cached-token/-provider/-e-t-r-a-d-e/index.html
 $dokka.location:com.seansoper.batil/CachedToken.Provider.ETRADE/name/#/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token/-provider/-e-t-r-a-d-e/name.html
@@ -2252,8 +2250,6 @@ $dokka.location:com.seansoper.batil/CachedTokenProvider///PointingToDeclaration/
 $dokka.location:com.seansoper.batil/CachedTokenProvider/destroy/#/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-provider/destroy.html
 $dokka.location:com.seansoper.batil/CachedTokenProvider/getEntry/#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-provider/get-entry.html
 $dokka.location:com.seansoper.batil/CachedTokenProvider/setEntry/#kotlin.String#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil/-cached-token-provider/set-entry.html
-$dokka.location:com.seansoper.batil/Core///PointingToDeclaration/-batil/com.seansoper.batil/-core/index.html
-$dokka.location:com.seansoper.batil/Core/main/#kotlin.Array[kotlin.String]/PointingToDeclaration/-batil/com.seansoper.batil/-core/main.html
 $dokka.location:com.seansoper.batil/OptionsCalendar///PointingToDeclaration/-batil/com.seansoper.batil/-options-calendar/index.html
 $dokka.location:com.seansoper.batil/OptionsCalendar/nextMonthly/#java.time.ZonedDateTime/PointingToDeclaration/-batil/com.seansoper.batil/-options-calendar/next-monthly.html
 com.seansoper.batil
