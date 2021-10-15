@@ -59,7 +59,8 @@ docker container run -d -p 9222:9222 avidtraveler/alpine-chrome --no-sandbox --r
 ./gradlew fatJar
 ```
 
-* Using the [sample provided](batil.sample.yaml), add a `batil.yaml` to the directory where you intend to run the JAR file. Substitute the default values with the correct values. **Important** Ensure you never check your version of `batil.yaml` into git.
+* Using the [sample provided](batil.sample.yaml), add a `batil.yaml` to the directory where you intend to run the JAR file. Substitute the default values with the correct values.
+* **_Important_** Ensure you never check your version of `batil.yaml` into git.
 * Verify your account.
 
 ```bash
