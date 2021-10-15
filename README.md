@@ -24,7 +24,8 @@ Make your brokerage work for you.
 1. [Retrieve your credentials](#Credentials)
 2. [Setup Docker](#Docker)
 3. [Verify your credentials](#Verify)
-4. [Troubleshooting](#Troubleshooting)
+4. [Other Commands](#Other Commands)
+5. [Troubleshooting](#Troubleshooting)
 
 #### Credentials
 
