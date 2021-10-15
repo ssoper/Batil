@@ -5,12 +5,13 @@
 
 # Batil
 
-Connect to your preferred broker in functional Kotlin.
+Make your brokerage work for you.
 
 ## Goals
 
+* Connect to your preferred broker in Kotlin or Java 💁
 * Provide a single interface for accessing multiple brokers’ APIs 🏪
-* Create a Maven package for ease of inclusion in other projects 🛍
+* Accelerate the development of algorithmic trading for the JVM 💰
 
 ## Supported Brokers
 
@@ -18,25 +19,98 @@ Connect to your preferred broker in functional Kotlin.
 
 ## Setup
 
+### E*TRADE
+
+1. [Retrieve your credentials](#Credentials)
+2. [Setup Docker](#Docker)
+3. [Verify your credentials](#Verify)
+4. [Troubleshooting](#Troubleshooting)
+
+#### Credentials
+
+You’ll need to request both a sandbox and production API consumer key and secret from the API team.
+
+* Sign into your E\*TRADE account and head over to Customer Service ➡ Message Center ➡ Contact Us. From there select the account you want to associate with your API key. For the subject, select `API Sandbox Auto` and for the topic select `Sandbox Key`. Expect to hear back within a few hours.
+* To access the production API you’ll need to send a signed copy of the [Developer Agreement](https://content.etrade.com/etrade/estation/pdf/APIDeveloperAgreement.pdf) to etradeapi@etrade.com.
+
+#### Docker
+
+Docker is used to access a Chromium instance that can login to the E\*TRADE website to retrieve the necessary OAuth keys.
+
 * [Download Docker](https://www.docker.com/products/docker-desktop)
 * Run the following command to start the container:
 
         docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" about:blank
 
-* Note that if you are on Apple Silicon (M1) you should use this image built with arm64:
+* If you are on Apple Silicon (M1) you should use this image instead which was built with arm64:
 
         docker container run -d -p 9222:9222 avidtraveler/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" about:blank
 
-* Using the sample provided, add a `batil.yaml` to the directory where you intend to run the JAR file substituting with the correct values.
-* Now you can run the JAR file.
+#### Verify
 
-        java -jar path/to/Batil.main.jar
+* Clone the project locally and build the E\*TRADE client (check the `build/libs` dir)
 
-* By default the app runs in sandbox mode. Add the `-production` switch to use in production.
+    ./gradlew fatJar
 
-        java -jar path/to/Batil.main.jar -production
+* Using the [sample provided](batil.sample.yaml), add a `batil.yaml` to the directory where you intend to run the JAR file. Substitute the default values with the correct values. **Important** Ensure you never check your version of `batil.yaml` into git.
+* Verify your account.
 
-* For the full list of available options use the `-help` switch.
+    java -jar Batil-etrade.jar verify
+
+* By default the app runs in sandbox mode. Add the `--production` switch to use in production.
+
+    java -jar Batil-etrade.jar verify --production
+
+#### Other Commands
+
+For the full list of available options use the `--help` switch.
+
+##### List Accounts
+
+    % java -jar Batil-etrade.jar list_accounts --production
+    
+    Account ID (47246378)
+    Key: -i07qS52YOXHWSjf8hvZPA
+    Type: INDIVIDUAL
+    Name:
+    Status: ACTIVE
+    Description: Individual Brokerage
+
+##### Get Balances
+
+    % java -jar Batil-etrade.jar get_balances -i07qS52YOXHWSjf8hvZPA --production
+    
+    Account ID Key (-i07qS52YOXHWSjf8hvZPA)
+    Net cash: 3470.154
+    Cash balance: 0.0
+    Margin balance: -1743.5747
+    Cash buying power: 3470.154
+    Margin buying power: 26233.848
+    Cash available for investment: 0.0
+    Cash available for withdrawal: 0.0
+
+##### Lookup Tickers
+
+    % java -jar Batil-etrade.jar lookup pltr tsla clov --production
+    
+    PALANTIR TECHNOLOGIES INC CL A
+    Last bid: 24.35
+    Earnings per share: -0.7414
+    Total volume: 26106710
+    
+    TESLA INC COM
+    Last bid: 818.32
+    Earnings per share: 1.9124
+    Total volume: 12247170
+    
+    CLOVER HEALTH INVESTMENTS CORP COM CL A
+    Last bid: 8.12
+    Earnings per share: -0.9715
+    Total volume: 18767897
+
+#### Troubleshooting
+
+* [Connecting to the E\*TRADE API](https://seansoper.com/blog/connecting_etrade.html)
 
 ## So What’s a Batil Anyways?
 
