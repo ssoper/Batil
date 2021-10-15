@@ -1704,17 +1704,32 @@ $dokka.location:com.seansoper.batil.brokers.etrade.api/TransactionTrade/quantity
 $dokka.location:com.seansoper.batil.brokers.etrade.api/TransactionTrade/settlementCurrency/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-transaction-trade/settlement-currency.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/TransactionTrade/settlementDate/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-transaction-trade/settlement-date.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth////PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/index.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponse.Companion///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response/-companion/index.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponse.Companion/withResponse/#okhttp3.Response/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response/-companion/with-response.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponse///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response/index.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponse/AuthResponse/#kotlin.String#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response/-auth-response.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponse/accessSecret/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response/access-secret.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponse/accessToken/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response/access-token.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponseError///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response-error/index.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponseError/AuthResponseError/#kotlin.String?#kotlin.String?/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response-error/-auth-response-error.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/AuthResponseError/body/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-auth-response-error/body.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization.Companion///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/-companion/index.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/index.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/Authorization/#com.seansoper.batil.config.GlobalConfig#kotlin.Boolean#kotlin.Boolean#kotlin.String#com.seansoper.batil.CachedTokenProvider/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/-authorization.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/createSession/#kotlin.Boolean/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/create-session.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/destroySession/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/destroy-session.html
-$dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/getAccessToken/#com.seansoper.batil.brokers.etrade.AuthResponse#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/get-access-token.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/getAccessToken/#com.seansoper.batil.brokers.etrade.auth.AuthResponse#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/get-access-token.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/getRequestToken/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/get-request-token.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/getVerifierCode/#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/get-verifier-code.html
-$dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/renewAccessToken/#com.seansoper.batil.brokers.etrade.AuthResponse/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/renew-access-token.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/renewAccessToken/#com.seansoper.batil.brokers.etrade.auth.AuthResponse/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/renew-access-token.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/renewSession/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/renew-session.html
-$dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/revokeAccessToken/#com.seansoper.batil.brokers.etrade.AuthResponse/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/revoke-access-token.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/Authorization/revokeAccessToken/#com.seansoper.batil.brokers.etrade.auth.AuthResponse/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-authorization/revoke-access-token.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/BrowserAuthentication///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-browser-authentication/index.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/BrowserAuthentication/BrowserAuthentication/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#com.seansoper.batil.config.Chromium#kotlin.Boolean/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-browser-authentication/-browser-authentication.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/BrowserAuthentication/logMessage/#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-browser-authentication/log-message.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/BrowserAuthentication/retrieve/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-browser-authentication/retrieve.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/EtradeBrowserAuthNoConnection///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-etrade-browser-auth-no-connection/index.html
+$dokka.location:com.seansoper.batil.brokers.etrade.auth/EtradeBrowserAuthNoConnection/EtradeBrowserAuthNoConnection/#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-etrade-browser-auth-no-connection/-etrade-browser-auth-no-connection.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Session///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-session/index.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Session/Session/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-session/-session.html
 $dokka.location:com.seansoper.batil.brokers.etrade.auth/Session/accessSecret/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.auth/-session/access-secret.html
@@ -2187,22 +2202,6 @@ $dokka.location:com.seansoper.batil.brokers.etrade.services/TransactionSortOrder
 $dokka.location:com.seansoper.batil.brokers.etrade.services/TransactionSortOrder.DESC/name/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.services/-transaction-sort-order/-d-e-s-c/name.html
 $dokka.location:com.seansoper.batil.brokers.etrade.services/TransactionSortOrder.DESC/ordinal/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.services/-transaction-sort-order/-d-e-s-c/ordinal.html
 $dokka.location:com.seansoper.batil.brokers.etrade.services/TransactionSortOrder///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.services/-transaction-sort-order/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade////PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponse.Companion///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response/-companion/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponse.Companion/withResponse/#okhttp3.Response/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response/-companion/with-response.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponse///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponse/AuthResponse/#kotlin.String#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response/-auth-response.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponse/accessSecret/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response/access-secret.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponse/accessToken/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response/access-token.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponseError///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response-error/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponseError/AuthResponseError/#kotlin.String?#kotlin.String?/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response-error/-auth-response-error.html
-$dokka.location:com.seansoper.batil.brokers.etrade/AuthResponseError/body/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-auth-response-error/body.html
-$dokka.location:com.seansoper.batil.brokers.etrade/BrowserAuthentication///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-browser-authentication/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade/BrowserAuthentication/BrowserAuthentication/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#com.seansoper.batil.config.Chromium#kotlin.Boolean/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-browser-authentication/-browser-authentication.html
-$dokka.location:com.seansoper.batil.brokers.etrade/BrowserAuthentication/logMessage/#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-browser-authentication/log-message.html
-$dokka.location:com.seansoper.batil.brokers.etrade/BrowserAuthentication/retrieve/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-browser-authentication/retrieve.html
-$dokka.location:com.seansoper.batil.brokers.etrade/EtradeBrowserAuthNoConnection///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-etrade-browser-auth-no-connection/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade/EtradeBrowserAuthNoConnection/EtradeBrowserAuthNoConnection/#kotlin.String/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade/-etrade-browser-auth-no-connection/-etrade-browser-auth-no-connection.html
 $dokka.location:com.seansoper.batil.config////PointingToDeclaration/-batil/com.seansoper.batil.config/index.html
 $dokka.location:com.seansoper.batil.config/Chromium///PointingToDeclaration/-batil/com.seansoper.batil.config/-chromium/index.html
 $dokka.location:com.seansoper.batil.config/Chromium/Chromium/#kotlin.String#kotlin.Int#kotlin.Int/PointingToDeclaration/-batil/com.seansoper.batil.config/-chromium/-chromium.html
@@ -2253,7 +2252,6 @@ $dokka.location:com.seansoper.batil/CachedTokenProvider/setEntry/#kotlin.String#
 $dokka.location:com.seansoper.batil/OptionsCalendar///PointingToDeclaration/-batil/com.seansoper.batil/-options-calendar/index.html
 $dokka.location:com.seansoper.batil/OptionsCalendar/nextMonthly/#java.time.ZonedDateTime/PointingToDeclaration/-batil/com.seansoper.batil/-options-calendar/next-monthly.html
 com.seansoper.batil
-com.seansoper.batil.brokers.etrade
 com.seansoper.batil.brokers.etrade.api
 com.seansoper.batil.brokers.etrade.api.orderPreview
 com.seansoper.batil.brokers.etrade.auth
