@@ -1,7 +1,7 @@
 
 import com.seansoper.batil.CachedTokenProvider
-import com.seansoper.batil.brokers.etrade.AuthResponse
-import com.seansoper.batil.brokers.etrade.AuthResponseError
+import com.seansoper.batil.brokers.etrade.auth.AuthResponse
+import com.seansoper.batil.brokers.etrade.auth.AuthResponseError
 import com.seansoper.batil.brokers.etrade.auth.Authorization
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeInstanceOf

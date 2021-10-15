@@ -1,4 +1,4 @@
-package com.seansoper.batil.brokers.etrade
+package com.seansoper.batil.brokers.etrade.auth
 
 import okhttp3.Response
 import java.io.Serializable
