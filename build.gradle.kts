@@ -1,11 +1,14 @@
-val buildGroupId = "com.seansoper"
-val buildArtifactId = "batil"
-val buildVersion = "1.0.0"
-val buildJvmTarget = "11"
+group = "com.seansoper"
+version = "1.0.0"
+
+val projectName = "Batil"
+val javaVersion = JavaVersion.VERSION_11
 
 plugins {
     kotlin("jvm") version "1.5.30"
     id("maven-publish")
+    id("signing")
+    id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
     id("org.jetbrains.dokka") version "1.5.0"
     id("org.jmailen.kotlinter") version "3.6.0"
     id("jacoco")
@@ -21,6 +24,13 @@ allprojects {
 
 repositories {
     mavenCentral()
+}
+
+java {
+    targetCompatibility = javaVersion
+    sourceCompatibility = javaVersion
+    withSourcesJar()
+    withJavadocJar()
 }
 
 dependencies {
@@ -76,11 +86,11 @@ tasks.register<Jar>("fatJar") {
 }
 
 tasks.compileKotlin {
-    this.kotlinOptions.jvmTarget = buildJvmTarget
+    this.kotlinOptions.jvmTarget = javaVersion.toString()
 }
 
 tasks.compileTestKotlin {
-    this.kotlinOptions.jvmTarget = buildJvmTarget
+    this.kotlinOptions.jvmTarget = javaVersion.toString()
 }
 
 tasks.withType<Test> {
@@ -100,7 +110,7 @@ tasks.dokkaHtml.configure {
     dokkaSourceSets {
         named("main") {
             moduleName.set("Batil")
-            jdkVersion.set(buildJvmTarget.toInt())
+            jdkVersion.set(javaVersion.toString().toInt())
             includes.from("package.md")
             samples.from("src/main/kotlin/Samples.kt")
 
@@ -113,14 +123,78 @@ tasks.dokkaHtml.configure {
     }
 }
 
+tasks.named<Jar>("javadocJar") {
+    archiveClassifier.set("javadoc")
+    dependsOn("dokkaHtml")
+    from("$buildDir/dokka")
+}
+
 publishing {
     publications {
-        create<MavenPublication>("gpr") {
-            run {
-                groupId = buildGroupId
-                artifactId = buildArtifactId
-                version = buildVersion
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+
+            pom {
+                name.set("batil")
+                description.set("Batil - Provides a single interface to multiple brokerages’ APIs")
+                url.set("https://github.com/ssoper/Batil")
+                inceptionYear.set("2020")
+
+                scm {
+                    connection.set("scm:git:https://github.com/ssoper/Batil.git")
+                    url.set("https://github.com/ssoper/Batil")
+                    developerConnection.set("scm:git:https://github.com/ssoper/Batil.git")
+                }
+
+                licenses {
+                    license {
+                        name.set("The MIT License")
+                        url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+
+                developers {
+                    developer {
+                        name.set("Sean Soper")
+                        email.set("sean.soper@gmail.com")
+                    }
+                }
             }
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri("https://oss.sonatype.org/service/local/")
+
+            credentials {
+                username = project.ext["sonatypeUsername"] as String
+                password = project.ext["sonatypePassword"] as String
+            }
+        }
+
+        maven {
+            url = uri("https://maven.pkg.github.com/ssoper/Batil")
+            name = "Github"
+
+            credentials {
+                username = "ssoper"
+                password = project.ext["githubToken"] as String
+            }
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications.getByName("mavenJava"))
+}
+
+nexusPublishing {
+    packageGroup.set(group as String)
+    repositories {
+        sonatype {
+            username.set(project.ext["sonatypeUsername"] as String)
+            password.set(project.ext["sonatypePassword"] as String)
         }
     }
 }
