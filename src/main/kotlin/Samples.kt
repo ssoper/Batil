@@ -13,8 +13,8 @@ import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallOptionMar
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityLimit
-import com.seansoper.batil.brokers.etrade.services.orderPreview.sellEquityLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellEquityLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronCondor
 import com.seansoper.batil.config.ClientConfig
 import com.seansoper.batil.config.GlobalConfig
