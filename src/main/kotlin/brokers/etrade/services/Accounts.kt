@@ -113,7 +113,7 @@ class Accounts(
     }
 
     /**
-     * List transactions for an account
+     * Get a specific transaction
      * @param[accountIdKey] The unique account key
      * @param[transactionId] [TransactionId] of the transaction to return
      * @sample com.seansoper.batil.samples.Accounts.getTransaction
@@ -132,7 +132,7 @@ class Accounts(
     }
 
     /**
-     * List transactions for an account
+     * View the portfolio for an account
      * @param[accountIdKey] The unique account key
      * @param[sortBy] Field to sort by
      * @param[sortOrder] Sort order for results, defaults to [TransactionSortOrder.DESC]

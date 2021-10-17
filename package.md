@@ -4,7 +4,7 @@ Provides a collection of utilities to authorize against, retrieve information fr
 
 # Package com.seansoper.batil.brokers.etrade.api
 
-Classes that map nearly 1-to-1 against the E*TRADE API.
+Classes that map nearly 1-to-1 against the [E*TRADE API](https://apisb.etrade.com/docs/api/account/api-balance-v1.html).
 
 # Package com.seansoper.batil.brokers.etrade.api.orderPreview
 
@@ -16,7 +16,7 @@ Includes both the Chromium and API-based methods of retrieving necessary OAuth k
 
 # Package com.seansoper.batil.brokers.etrade.deserializers
 
-Primarily for translating E\*TRADE date and time values to standard Java values.
+Primarily for translating E*TRADE date and time values to standard Java values.
 
 # Package com.seansoper.batil.brokers.etrade.interceptors
 

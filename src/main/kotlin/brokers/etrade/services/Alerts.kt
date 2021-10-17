@@ -29,7 +29,7 @@ class Alerts(
 ) : Service(session, production, verbose, baseUrl) {
 
     /**
-     * Retrieve a user’s alerts
+     * List a user’s alerts
      * @param[category] Alert category
      * @param[status] Alert status
      * @param[direction] Sort order of alerts
@@ -77,7 +77,7 @@ class Alerts(
     }
 
     /**
-     * Retrieve details for a single a alert
+     * Retrieve details for a single alert
      * @param[alertId] The id of the alert
      * @param[htmlTags] Indicates whether the returned text should have HTML tags included, default is false
      * @sample com.seansoper.batil.samples.Alerts.get
