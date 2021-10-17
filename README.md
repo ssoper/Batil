@@ -167,6 +167,8 @@ accounts.list()?.let {
 }
 ```
 
+More examples of usage can be found [here](https://github.com/ssoper/Batil/blob/master/src/main/kotlin/Samples.kt).
+
 ## So What’s a Batil Anyways?
 
 The [Batil](https://www.naval-encyclopedia.com/medieval-ships/) was a coastal ship in use for hundreds of years up until the 1950s. Serving primarily as a merchant vessel, it was ubiquitous throughout South Asia and the Middle East helping to create a resilient trade network.
