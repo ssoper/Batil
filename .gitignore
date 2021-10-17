@@ -140,6 +140,7 @@ gradle-app.setting
 .DS_Store
 !src/main/libs/*.jar
 github.properties
+gradle.properties
 .kotlintest
 batil.yaml
 batil.yml

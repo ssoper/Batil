@@ -7,6 +7,7 @@ import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import java.nio.file.Files
 
 // TODO: Consider modifying the parse method to just take a path and showing the Jackson error regardless of verbose
+// TODO: Add a constructor that takes a ClientConfig
 
 data class GlobalConfig(
     val etrade: EtradeConfig,

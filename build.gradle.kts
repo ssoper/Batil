@@ -1,15 +1,26 @@
-val buildGroupId = "com.seansoper"
-val buildArtifactId = "batil"
-val buildVersion = "1.0.0"
-val buildJvmTarget = "11"
+group = "com.seansoper"
+version = "1.0.0"
+
+val projectName = "Batil"
+val javaVersion = JavaVersion.VERSION_11
 
 plugins {
     kotlin("jvm") version "1.5.30"
     id("maven-publish")
+    id("signing")
+    id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
     id("org.jetbrains.dokka") version "1.5.0"
     id("org.jmailen.kotlinter") version "3.6.0"
     id("jacoco")
 }
+
+// Probably a better way to do this
+val sonatypeUsername = try { project.ext["sonatypeUsername"] as String } catch(_: Exception) { "" }
+val sonatypePassword = try { project.ext["sonatypePassword"] as String } catch(_: Exception) { "" }
+val githubToken = try { project.ext["githubToken"] as String } catch(_: Exception) { "" }
+val signingKeyId = try { project.ext["signing.keyId"] as String } catch(_: Exception) { "" }
+val signingKey = try { project.ext["signing.key"] as String } catch(_: Exception) { "" }
+val signingPassword = try { project.ext["signing.password"] as String } catch(_: Exception) { "" }
 
 // Temporary fix until Jacoco default version is 0.8.7+
 // https://github.com/jacoco/jacoco/issues/1155
@@ -21,6 +32,13 @@ allprojects {
 
 repositories {
     mavenCentral()
+}
+
+java {
+    targetCompatibility = javaVersion
+    sourceCompatibility = javaVersion
+    withSourcesJar()
+    withJavadocJar()
 }
 
 dependencies {
@@ -76,11 +94,11 @@ tasks.register<Jar>("fatJar") {
 }
 
 tasks.compileKotlin {
-    this.kotlinOptions.jvmTarget = buildJvmTarget
+    this.kotlinOptions.jvmTarget = javaVersion.toString()
 }
 
 tasks.compileTestKotlin {
-    this.kotlinOptions.jvmTarget = buildJvmTarget
+    this.kotlinOptions.jvmTarget = javaVersion.toString()
 }
 
 tasks.withType<Test> {
@@ -100,7 +118,7 @@ tasks.dokkaHtml.configure {
     dokkaSourceSets {
         named("main") {
             moduleName.set("Batil")
-            jdkVersion.set(buildJvmTarget.toInt())
+            jdkVersion.set(javaVersion.toString().toInt())
             includes.from("package.md")
             samples.from("src/main/kotlin/Samples.kt")
 
@@ -113,14 +131,87 @@ tasks.dokkaHtml.configure {
     }
 }
 
+tasks.named<Jar>("javadocJar") {
+    archiveClassifier.set("javadoc")
+    dependsOn("dokkaHtml")
+    from("$buildDir/dokka")
+}
+
 publishing {
     publications {
-        create<MavenPublication>("gpr") {
-            run {
-                groupId = buildGroupId
-                artifactId = buildArtifactId
-                version = buildVersion
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+
+            pom {
+                artifactId = "batil"
+
+                name.set(projectName)
+                description.set("$projectName - Provides a single interface to multiple brokerages’ APIs")
+                url.set("https://github.com/ssoper/Batil")
+                inceptionYear.set("2020")
+
+                scm {
+                    connection.set("scm:git:https://github.com/ssoper/Batil.git")
+                    url.set("https://github.com/ssoper/Batil")
+                    developerConnection.set("scm:git:https://github.com/ssoper/Batil.git")
+                }
+
+                licenses {
+                    license {
+                        name.set("The MIT License")
+                        url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+
+                developers {
+                    developer {
+                        name.set("Sean Soper")
+                        email.set("sean.soper@gmail.com")
+                    }
+                }
             }
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri("https://oss.sonatype.org/service/local/")
+
+            credentials {
+                username = sonatypeUsername
+                password = sonatypePassword
+            }
+        }
+
+        maven {
+            url = uri("https://maven.pkg.github.com/ssoper/Batil")
+            name = "Github"
+
+            credentials {
+                username = "ssoper"
+                password = githubToken
+            }
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(
+        signingKeyId,
+        signingKey,
+        signingPassword,
+    )
+    sign(publishing.publications.getByName("mavenJava"))
+}
+
+nexusPublishing {
+    packageGroup.set(group as String)
+    repositories {
+        sonatype {
+            username.set(sonatypeUsername)
+            password.set(sonatypePassword)
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
         }
     }
 }
