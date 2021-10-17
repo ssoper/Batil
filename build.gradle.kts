@@ -14,6 +14,14 @@ plugins {
     id("jacoco")
 }
 
+// Probably a better way to do this
+val sonatypeUsername = try { project.ext["sonatypeUsername"] as String } catch(_: Exception) { "" }
+val sonatypePassword = try { project.ext["sonatypePassword"] as String } catch(_: Exception) { "" }
+val githubToken = try { project.ext["githubToken"] as String } catch(_: Exception) { "" }
+val signingKeyId = try { project.ext["signing.keyId"] as String } catch(_: Exception) { "" }
+val signingKey = try { project.ext["signing.key"] as String } catch(_: Exception) { "" }
+val signingPassword = try { project.ext["signing.password"] as String } catch(_: Exception) { "" }
+
 // Temporary fix until Jacoco default version is 0.8.7+
 // https://github.com/jacoco/jacoco/issues/1155
 allprojects {
@@ -170,8 +178,8 @@ publishing {
             url = uri("https://oss.sonatype.org/service/local/")
 
             credentials {
-                username = project.ext["sonatypeUsername"] as String
-                password = project.ext["sonatypePassword"] as String
+                username = sonatypeUsername
+                password = sonatypePassword
             }
         }
 
@@ -181,13 +189,18 @@ publishing {
 
             credentials {
                 username = "ssoper"
-                password = project.ext["githubToken"] as String
+                password = githubToken
             }
         }
     }
 }
 
 signing {
+    useInMemoryPgpKeys(
+        signingKeyId,
+        signingKey,
+        signingPassword,
+    )
     sign(publishing.publications.getByName("mavenJava"))
 }
 
@@ -195,8 +208,10 @@ nexusPublishing {
     packageGroup.set(group as String)
     repositories {
         sonatype {
-            username.set(project.ext["sonatypeUsername"] as String)
-            password.set(project.ext["sonatypePassword"] as String)
+            username.set(sonatypeUsername)
+            password.set(sonatypePassword)
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
         }
     }
 }
