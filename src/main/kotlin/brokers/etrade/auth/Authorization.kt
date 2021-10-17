@@ -9,6 +9,7 @@ import com.seansoper.batil.config.GlobalConfig
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
+// TODO: Line up production/verbose argument order with ClientConfig
 class Authorization(
     private val configuration: GlobalConfig,
     private val production: Boolean = false,

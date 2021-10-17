@@ -14,6 +14,7 @@ import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCallSpread
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyCondorPuts
 import com.seansoper.batil.brokers.etrade.services.orderPreview.buyEquityLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellCallOptionMarket
+import com.seansoper.batil.brokers.etrade.services.orderPreview.sellEquityLimit
 import com.seansoper.batil.brokers.etrade.services.orderPreview.sellIronCondor
 import com.seansoper.batil.config.ClientConfig
 import com.seansoper.batil.config.GlobalConfig
@@ -198,6 +199,20 @@ class Orders {
                     println(it)
                 }
             }
+        }
+    }
+
+    fun sellEquityLimit(runtime: ClientConfig = ClientConfig.default()) {
+        val configuration = GlobalConfig.parse(runtime)
+        val client = Authorization(configuration, runtime.production, runtime.verbose)
+        val session = client.renewSession() ?: client.createSession()
+        val service = Orders(session, runtime.production, runtime.verbose)
+        val accountIdKey = "ACCOUNT_ID_KEY"
+
+        val request = sellEquityLimit("PLTR", 25f, 100)
+        service.createPreview(accountIdKey, request)?.let {
+            println("Preview to sell PLTR equity")
+            println(it)
         }
     }
 
