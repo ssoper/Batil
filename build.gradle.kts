@@ -135,8 +135,10 @@ publishing {
             from(components["java"])
 
             pom {
-                name.set("batil")
-                description.set("Batil - Provides a single interface to multiple brokerages’ APIs")
+                artifactId = "batil"
+
+                name.set(projectName)
+                description.set("$projectName - Provides a single interface to multiple brokerages’ APIs")
                 url.set("https://github.com/ssoper/Batil")
                 inceptionYear.set("2020")
 
