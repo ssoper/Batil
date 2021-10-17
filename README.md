@@ -167,7 +167,7 @@ accounts.list()?.let {
 }
 ```
 
-More examples of usage can be found [here](https://github.com/ssoper/Batil/blob/master/src/main/kotlin/Samples.kt).
+More examples of usage can be found [here](https://github.com/ssoper/Batil/blob/master/src/main/kotlin/Samples.kt). Full documentation [available here](https://seansoper.com/Batil/).
 
 ## So What’s a Batil Anyways?
 
