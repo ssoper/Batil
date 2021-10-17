@@ -53,7 +53,7 @@ docker container run -d -p 9222:9222 avidtraveler/alpine-chrome --no-sandbox --r
 
 #### Verify
 
-* Clone the project locally and build the E\*TRADE client (check the `build/libs` dir)
+* You can can clone the project locally and build the demo E\*TRADE client (check the `build/libs` dir).
 
 ```bash
 ./gradlew fatJar
@@ -129,6 +129,43 @@ Total volume: 18767897
 #### Troubleshooting
 
 * [Connecting to the E\*TRADE API](https://seansoper.com/blog/connecting_etrade.html)
+
+## Integration
+
+Before you bring Batil into your own project you’ll want to first [retrieve your credentials](#Credentials) from your broker and
+[setup Docker](#docker). Then add the dependency to your Gradle file.
+
+**build.gradle.kts**
+```kotlin
+implementation("com.seansoper:batil:1.0.0")
+```
+
+You can then use the full-suite of service endpoints.
+
+```kotlin
+val verbose = true
+val production = true
+
+val clientConfig = ClientConfig(Paths.get("/path/to/batil.yaml"), verbose, production)
+val globalConfig = GlobalConfig.parse(clientConfig)
+val client = Authorization(globalConfig, production, verbose)
+val session = client.renewSession() ?: client.createSession()
+val accounts = Accounts(session, production, verbose)
+
+accounts.list()?.let {
+    it.first().accountIdKey?.let { accountIdKey ->
+        val service = Orders(session, runtime.production, runtime.verbose)
+        val previewRequest = buyEquityLimit("PLTR", 21f, 100)
+
+        service.createPreview(accountIdKey, previewRequest)?.let { previewOrderResponse ->
+            service.placeOrder(accountIdKey, previewRequest, previewOrderResponse)?.let {
+                println("Purchased 100 shares of PLTR at $21")
+                println(it)
+            }
+        }
+    }
+}
+```
 
 ## So What’s a Batil Anyways?
 
