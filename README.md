@@ -1,9 +1,10 @@
-<p align="center"><img src="https://github.com/ssoper/Batil/raw/master/gh/batil.png" width="350" alt="Batil Logo"></p>
+<p align="center" style="font-size: 42pt;">
+  Batil
+  <img src="https://github.com/ssoper/Batil/raw/master/gh/batil.png" width="60" alt="Batil Logo">
+</p>
 
 [![tests](https://github.com/ssoper/Batil/actions/workflows/build.yml/badge.svg)](https://github.com/ssoper/Batil/actions)
 [![codecov](https://codecov.io/gh/ssoper/Batil/branch/master/graph/badge.svg?token=AX0EVTOJCS)](https://codecov.io/gh/ssoper/Batil)
-
-# Batil
 
 Make your brokerage work for you.
 
