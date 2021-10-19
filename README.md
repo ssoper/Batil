@@ -1,6 +1,5 @@
-<p align="center" style="font-size: 42pt;">
-  Batil
-  <img src="https://github.com/ssoper/Batil/raw/master/gh/batil.png" width="60" alt="Batil Logo">
+<p align="center">
+  <img src="https://github.com/ssoper/Batil/raw/master/gh/logo.png" width="400" alt="Batil Logo">
 </p>
 
 [![tests](https://github.com/ssoper/Batil/actions/workflows/build.yml/badge.svg)](https://github.com/ssoper/Batil/actions)
