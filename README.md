@@ -23,7 +23,13 @@ Before you bring Batil into your own project you’ll want to first [retrieve yo
 
 **build.gradle.kts**
 ```kotlin
-implementation("com.seansoper:batil:1.0.0")
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.seansoper:batil:1.0.0")
+}
 ```
 
 You can then use the full-suite of service endpoints.
