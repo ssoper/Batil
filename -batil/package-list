@@ -1477,10 +1477,12 @@ $dokka.location:com.seansoper.batil.brokers.etrade.api/QuickView/sevenDayCurrent
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuickView/volume/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quick-view/volume.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuickView/weightedAverageMaturity/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quick-view/weighted-average-maturity.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/index.html
-$dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData/QuoteData/#java.util.GregorianCalendar#com.seansoper.batil.brokers.etrade.api.QuoteStatus#kotlin.Boolean#com.seansoper.batil.brokers.etrade.api.TickerData/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/-quote-data.html
+$dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData/QuoteData/#java.util.GregorianCalendar#com.seansoper.batil.brokers.etrade.api.QuoteStatus#kotlin.Boolean#com.seansoper.batil.brokers.etrade.api.Product#com.seansoper.batil.brokers.etrade.api.TickerData/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/-quote-data.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData/ahFlag/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/ah-flag.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData/dateTime/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/date-time.html
+$dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData/product/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/product.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData/quoteStatus/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/quote-status.html
+$dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData/symbol/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/symbol.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteData/tickerData/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-data/ticker-data.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteMode.CLOSING///PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-mode/-c-l-o-s-i-n-g/index.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/QuoteMode.CLOSING/name/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-quote-mode/-c-l-o-s-i-n-g/name.html
