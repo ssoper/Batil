@@ -204,6 +204,7 @@ data class TickerData(
  * @param[dateTime] The date and time of the quote
  * @param[quoteStatus] The status of the quote
  * @param[ahFlag] Indicates whether the quote details are being displayed after hours or not
+ * @param[symbol] Ticker symbol
  * @param[tickerData] The quote details to be displayed. This field depends on the detailFlag input parameter. For example, if detailFlag is ALL, AllQuoteDetails are displayed. If detailFlag is MF_DETAIL, the MutualFund structure gets displayed.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -212,9 +213,15 @@ data class QuoteData(
     val quoteStatus: QuoteStatus,
     val ahFlag: Boolean,
 
+    @JsonProperty("Product")
+    val product: Product,
+
     @JsonProperty("All")
     val tickerData: TickerData
-)
+) {
+    val symbol: String?
+        get() = product.symbol
+}
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class QuoteResponse(
