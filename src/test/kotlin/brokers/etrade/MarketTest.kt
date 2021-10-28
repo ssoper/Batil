@@ -42,8 +42,10 @@ class MarketTest : StringSpec({
 
             data.shouldNotBeNull()
             data.size.shouldBe(2)
+            data.first().symbol.shouldBe("AAPL")
             data.first().tickerData.shouldNotBeNull()
             data.first().tickerData.symbolDescription.shouldBe("APPLE INC COM")
+            data.last().symbol.shouldBe("GME")
             data.last().tickerData.shouldNotBeNull()
             data.last().tickerData.symbolDescription.shouldBe("GAMESTOP CORP NEW CL A")
             it.takeRequest().path.shouldBe("/v1/market/quote/AAPL,GME")

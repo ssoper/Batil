@@ -96,6 +96,7 @@ object Etrade {
         val service = Market(session, clientConfig.production, clientConfig.verbose)
         service.tickers(symbols)?.let { tickers ->
             tickers.forEach {
+                it.symbol?.let { println("Symbol: $it") }
                 it.tickerData.apply {
                     println()
                     println(symbolDescription)

@@ -1,5 +1,20 @@
 group = "com.seansoper"
-version = "1.0.0"
+version = "1.0.1"
+
+/**
+ * To publish
+ * 1. Update version
+ * 2. Update README with dependency shown
+ * 3. Push up the code and create a PR to merge
+ * 4. Once PR is merged, run these gradle tasks locally
+ *   - clean
+ *   - test
+ *   - build
+ *   - publishToSonatype
+ *   - closeAndReleaseSonatypeStagingRepository
+ *   - publishAllPublicationsToGithubRepository
+ * 5. Create tagged release with new version
+ */
 
 val projectName = "Batil"
 val javaVersion = JavaVersion.VERSION_11
