@@ -174,9 +174,10 @@ Earnings per share: -0.9715
 Total volume: 18767897
 ```
 
-#### Troubleshooting
+## Resources
 
 * [Connecting to the E\*TRADE API](https://seansoper.com/blog/connecting_etrade.html)
+* [Creating a Stock Watchlist in Kotlin](https://seansoper.com/blog/creating_stock_watchlist_kotlin.html)
 
 ## So What’s a Batil Anyways?
 
