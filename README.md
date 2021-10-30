@@ -176,6 +176,8 @@ Total volume: 18767897
 
 ## Resources
 
+* [Documentation](https://seansoper.com/Batil/)
+* [Sample usage](https://github.com/ssoper/Batil/blob/master/src/main/kotlin/Samples.kt)
 * [Connecting to the E\*TRADE API](https://seansoper.com/blog/connecting_etrade.html)
 * [Creating a Stock Watchlist in Kotlin](https://seansoper.com/blog/creating_stock_watchlist_kotlin.html)
 
