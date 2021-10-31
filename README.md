@@ -190,6 +190,7 @@ Total volume: 18767897
 * [Sample usage](https://github.com/ssoper/Batil/blob/master/src/main/kotlin/Samples.kt)
 * [Connecting to the E\*TRADE API](https://seansoper.com/blog/connecting_etrade.html)
 * [Creating a Stock Watchlist in Kotlin](https://seansoper.com/blog/creating_stock_watchlist_kotlin.html)
+  * [Sample stock watchlist app](https://github.com/ssoper/watchlist)
 
 ## So What’s a Batil Anyways?
 
