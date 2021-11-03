@@ -28,6 +28,8 @@ object Etrade {
 
         val configuration = GlobalConfig.parse(parsed)
         val client = Authorization(configuration, parsed.production, parsed.verbose)
+
+        // FIXME: Do session creation/renewal methods throw? If so they should have such annotations
         val session = client.renewSession() ?: run {
             println("No valid keys found, re-authorizing")
             client.createSession()
