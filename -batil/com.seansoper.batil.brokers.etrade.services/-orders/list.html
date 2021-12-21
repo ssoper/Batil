@@ -59,7 +59,7 @@ val session = client.renewSession() ?: client.createSession()
 val accounts = Accounts(session, runtime.production, runtime.verbose)
 
 accounts.list()?.let {
-    it.first().accountIdKey?.let { accountIdKey -&gt;
+    it.first().accountIdKey.let { accountIdKey -&gt;
         val service = Orders(session, runtime.production, runtime.verbose)
         service.list(accountIdKey)?.let {
             println(&quot;Orders for account $accountIdKey&quot;)

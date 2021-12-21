@@ -59,7 +59,7 @@ val session = client.renewSession() ?: client.createSession()
 val service = Accounts(session, runtime.production, runtime.verbose)
 
 service.list()?.let {
-    it.first().accountIdKey?.let { accountIdKey -&gt;
+    it.first().accountIdKey.let { accountIdKey -&gt;
         service.listTransactions(accountIdKey, sortOrder = TransactionSortOrder.DESC, count = 5)?.let {
             println(&quot;List five most recent transactions&quot;)
             println(it)

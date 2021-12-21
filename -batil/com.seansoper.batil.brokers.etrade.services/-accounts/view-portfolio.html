@@ -59,7 +59,7 @@ val session = client.renewSession() ?: client.createSession()
 val service = Accounts(session, runtime.production, runtime.verbose)
 
 service.list()?.let {
-    it.first().accountIdKey?.let { accountIdKey -&gt;
+    it.first().accountIdKey.let { accountIdKey -&gt;
         service.viewPortfolio(accountIdKey)?.let {
             println(&quot;View portfolio&quot;)
             println(it)
