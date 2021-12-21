@@ -1,5 +1,5 @@
 group = "com.seansoper"
-version = "1.0.1"
+version = "1.0.2"
 
 /**
  * To publish
