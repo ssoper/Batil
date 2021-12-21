@@ -31,7 +31,7 @@ class Authorization(
         verbose: Boolean = false,
         baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com",
         tokenStore: CachedTokenProvider = CachedToken(CachedToken.Provider.ETRADE)
-    ): this(
+    ) : this(
         key = if (production) { configuration.etrade.production.key } else { configuration.etrade.sandbox.key },
         secret = if (production) { configuration.etrade.production.secret } else { configuration.etrade.sandbox.secret },
         username = configuration.etrade.username,
