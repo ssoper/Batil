@@ -1,5 +1,7 @@
 package com.seansoper.batil.config
 
+// TODO: Bifurcate this config like Alpaca client does, have username + password and then live flag
+
 data class EtradeConfig(
     val sandbox: EtradeAuth,
     val production: EtradeAuth,

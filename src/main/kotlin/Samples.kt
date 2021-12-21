@@ -136,7 +136,7 @@ class Accounts {
         val service = Accounts(session, runtime.production, runtime.verbose)
 
         service.list()?.let {
-            it.first().accountIdKey?.let { accountIdKey ->
+            it.first().accountIdKey.let { accountIdKey ->
                 service.viewPortfolio(accountIdKey)?.let {
                     println("View portfolio")
                     println(it)
@@ -152,7 +152,7 @@ class Accounts {
         val service = Accounts(session, runtime.production, runtime.verbose)
 
         service.list()?.let {
-            it.first().accountIdKey?.let { accountIdKey ->
+            it.first().accountIdKey.let { accountIdKey ->
                 service.listTransactions(accountIdKey, sortOrder = TransactionSortOrder.DESC, count = 5)?.let {
                     println("List five most recent transactions")
                     println(it)
@@ -168,7 +168,7 @@ class Accounts {
         val service = Accounts(session, runtime.production, runtime.verbose)
 
         service.list()?.let {
-            it.first().accountIdKey?.let { accountIdKey ->
+            it.first().accountIdKey.let { accountIdKey ->
                 service.listTransactions(accountIdKey, sortOrder = TransactionSortOrder.DESC, count = 1)?.let {
                     service.getTransaction(accountIdKey, it.transactions.first().transactionId)?.let {
                         println("Most recent transaction")
@@ -192,7 +192,7 @@ class Orders {
         val accounts = Accounts(session, runtime.production, runtime.verbose)
 
         accounts.list()?.let {
-            it.first().accountIdKey?.let { accountIdKey ->
+            it.first().accountIdKey.let { accountIdKey ->
                 val service = Orders(session, runtime.production, runtime.verbose)
                 service.list(accountIdKey)?.let {
                     println("Orders for account $accountIdKey")
@@ -435,7 +435,7 @@ class Orders {
         val accounts = Accounts(session, runtime.production, runtime.verbose)
 
         accounts.list()?.let {
-            it.first().accountIdKey?.let { accountIdKey ->
+            it.first().accountIdKey.let { accountIdKey ->
                 val service = Orders(session, runtime.production, runtime.verbose)
                 val previewRequest = buyEquityLimit("PLTR", 21f, 1)
 

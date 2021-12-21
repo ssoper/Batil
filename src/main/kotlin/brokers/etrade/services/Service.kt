@@ -15,6 +15,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.GregorianCalendar
 
+// TODO: Remove duplicative arguments like production, verbose and baseUrl since Session should hold all of these
+
 open class Service(
     session: Session,
     _production: Boolean?,
