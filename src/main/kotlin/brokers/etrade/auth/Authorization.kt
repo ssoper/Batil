@@ -5,36 +5,43 @@ import com.seansoper.batil.CachedTokenException
 import com.seansoper.batil.CachedTokenProvider
 import com.seansoper.batil.brokers.etrade.interceptors.HttpInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.OauthKeys
+import com.seansoper.batil.config.Chromium
+import com.seansoper.batil.config.DefaultChromium
 import com.seansoper.batil.config.GlobalConfig
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
 // TODO: Line up production/verbose argument order with ClientConfig
+// FIXME: Production flag is doing too much, just take a base url or use the Endpoint enum
 class Authorization(
-    private val configuration: GlobalConfig,
-    private val production: Boolean = false,
-    private val verbose: Boolean = false,
-    private val baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com",
-    private val tokenStore: CachedTokenProvider = CachedToken(CachedToken.Provider.ETRADE)
+    val key: String,
+    val secret: String,
+    val username: String,
+    val password: String,
+    val production: Boolean = false,
+    val verbose: Boolean = false,
+    val baseUrl: String,
+    val chromium: Chromium = DefaultChromium,
+    val tokenStore: CachedTokenProvider = CachedToken(CachedToken.Provider.ETRADE)
 ) {
 
-    private val consumerKey: String
-        get() {
-            return if (production) {
-                configuration.etrade.production.key
-            } else {
-                configuration.etrade.sandbox.key
-            }
-        }
-
-    private val consumerSecret: String
-        get() {
-            return if (production) {
-                configuration.etrade.production.secret
-            } else {
-                configuration.etrade.sandbox.secret
-            }
-        }
+    constructor(
+        configuration: GlobalConfig,
+        production: Boolean = false,
+        verbose: Boolean = false,
+        baseUrl: String = "https://${(if (production) "api" else "apisb")}.etrade.com",
+        tokenStore: CachedTokenProvider = CachedToken(CachedToken.Provider.ETRADE)
+    ): this(
+        key = if (production) { configuration.etrade.production.key } else { configuration.etrade.sandbox.key },
+        secret = if (production) { configuration.etrade.production.secret } else { configuration.etrade.sandbox.secret },
+        username = configuration.etrade.username,
+        password = configuration.etrade.password,
+        production = production,
+        verbose = verbose,
+        baseUrl = baseUrl,
+        chromium = configuration.chromium,
+        tokenStore = tokenStore
+    )
 
     private val paths: HashMap<String, String> = hashMapOf(
         GET_REQUEST_TOKEN to "oauth/request_token",
@@ -72,8 +79,8 @@ class Authorization(
 
     fun getRequestToken(): AuthResponse {
         val keys = OauthKeys(
-            consumerKey = consumerKey,
-            consumerSecret = consumerSecret
+            consumerKey = key,
+            consumerSecret = secret
         )
 
         val client = OkHttpClient.Builder()
@@ -90,11 +97,11 @@ class Authorization(
 
     fun getVerifierCode(token: String): String {
         val browserAuth = BrowserAuthentication(
-            consumerKey,
+            key,
             token,
-            configuration.etrade.username,
-            configuration.etrade.password,
-            configuration.chromium,
+            username,
+            password,
+            chromium,
             verbose
         )
 
@@ -103,8 +110,8 @@ class Authorization(
 
     fun getAccessToken(requestToken: AuthResponse, verifier: String): AuthResponse {
         val keys = OauthKeys(
-            consumerKey = consumerKey,
-            consumerSecret = consumerSecret,
+            consumerKey = key,
+            consumerSecret = secret,
             accessToken = requestToken.accessToken,
             accessSecret = requestToken.accessSecret,
             verifier = verifier
@@ -138,8 +145,8 @@ class Authorization(
 
     fun renewAccessToken(requestToken: AuthResponse): Boolean {
         val keys = OauthKeys(
-            consumerKey = consumerKey,
-            consumerSecret = consumerSecret,
+            consumerKey = key,
+            consumerSecret = secret,
             accessToken = requestToken.accessToken,
             accessSecret = requestToken.accessSecret
         )
@@ -159,8 +166,8 @@ class Authorization(
 
     fun revokeAccessToken(requestToken: AuthResponse): Boolean {
         val keys = OauthKeys(
-            consumerKey = consumerKey,
-            consumerSecret = consumerSecret,
+            consumerKey = key,
+            consumerSecret = secret,
             accessToken = requestToken.accessToken,
             accessSecret = requestToken.accessSecret
         )
@@ -191,7 +198,7 @@ class Authorization(
                 tokenStore.setEntry(CACHED_KEY_CODE, verifier)
             }
 
-            Session(consumerKey, consumerSecret, it.accessToken, it.accessSecret, verifier)
+            Session(key, secret, it.accessToken, it.accessSecret, verifier)
         }
     }
 
@@ -200,7 +207,7 @@ class Authorization(
             val requestToken = AuthResponse(it.first, it.second)
 
             if (renewAccessToken(requestToken)) {
-                Session(consumerKey, consumerSecret, it.first, it.second, it.third)
+                Session(key, secret, it.first, it.second, it.third)
             } else {
                 null
             }

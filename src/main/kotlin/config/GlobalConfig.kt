@@ -8,10 +8,15 @@ import java.nio.file.Files
 
 // TODO: Consider modifying the parse method to just take a path and showing the Jackson error regardless of verbose
 // TODO: Add a constructor that takes a ClientConfig
+// TODO: Add options to take values as is or path to file, use live endpoint
+// TODO: Session should expose high level APIs
+// TODO: No more passing verbose/production thru every call
+
+val DefaultChromium = Chromium("127.0.0.1", port = 9222, delay = 5)
 
 data class GlobalConfig(
     val etrade: EtradeConfig,
-    val chromium: Chromium = Chromium("127.0.0.1", port = 9222, delay = 5)
+    val chromium: Chromium = DefaultChromium
 ) {
     companion object {
         fun parse(clientConfig: ClientConfig): GlobalConfig {
