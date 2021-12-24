@@ -86,3 +86,4 @@ open class EtradeServiceError(
 ) : BrokerServiceError(code, message)
 
 class ServiceUnavailableError : EtradeServiceError(100, "The requested service is not currently available")
+class ExpiredTokenError : EtradeServiceError(101, "The token is expired")
