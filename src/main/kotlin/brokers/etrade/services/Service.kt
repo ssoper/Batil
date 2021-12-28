@@ -8,20 +8,26 @@ import com.seansoper.batil.brokers.etrade.interceptors.ErrorInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.HttpInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.JsonInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.OauthKeys
+import dev.failsafe.Failsafe
+import dev.failsafe.RetryPolicy
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.GregorianCalendar
 
 // TODO: Remove duplicative arguments like production, verbose and baseUrl since Session should hold all of these
+// TODO: Cleanup, remove duplicate arguments from Accounts, Markets, etc.
 
 open class Service(
     session: Session,
     _production: Boolean?,
     _verbose: Boolean?,
-    _baseUrl: String?
+    _baseUrl: String?,
+    val retryPolicy: RetryPolicy<Any>? = null
 ) {
 
     private val production = _production ?: false
@@ -63,6 +69,12 @@ open class Service(
             .build()
 
         return retrofit.create(javaClass)
+    }
+
+    fun <T> execute(call: Call<T>): Response<T> {
+        return retryPolicy?.let {
+            Failsafe.with(it).get({ call.execute() } as () -> Response<T>)
+        } ?: call.execute()
     }
 
     companion object {

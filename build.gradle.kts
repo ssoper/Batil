@@ -62,6 +62,7 @@ dependencies {
     implementation("pl.wendigo:chrome-reactive-kotlin:0.6.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-jackson:2.9.0")
+    implementation("dev.failsafe:failsafe:3.1.0")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
     testImplementation("io.mockk:mockk:1.12.0")

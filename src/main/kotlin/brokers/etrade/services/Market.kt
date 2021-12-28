@@ -12,6 +12,7 @@ import com.seansoper.batil.brokers.etrade.api.QuoteData
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.deserializers.DateTimeDeserializer
 import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
+import dev.failsafe.RetryPolicy
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.time.Instant
@@ -26,8 +27,9 @@ class Market(
     session: Session,
     production: Boolean? = null,
     verbose: Boolean? = null,
-    baseUrl: String? = null
-) : Service(session, production, verbose, baseUrl) {
+    baseUrl: String? = null,
+    retryPolicy: RetryPolicy<Any>? = null
+) : Service(session, production, verbose, baseUrl, retryPolicy) {
 
     fun ticker(symbol: String): QuoteData? {
         return tickers(listOf(symbol))?.first()
@@ -48,7 +50,7 @@ class Market(
         module.addDeserializer(GregorianCalendar::class.java, DateTimeDeserializer())
 
         val service = createClient(MarketApi::class.java, module)
-        val response = service.lookup(search).execute()
+        val response = execute(service.lookup(search)) // .execute()
 
         return response.body()?.response?.data
     }
