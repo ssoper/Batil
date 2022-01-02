@@ -35,24 +35,22 @@ dependencies {
 You can then use the full-suite of service endpoints.
 
 ```kotlin
-val verbose = true
-val production = true
+val client = EtradeClient(
+                "key",
+                "secret",
+                "username",
+                "password",
+                EtradeClient.Endpoint.LIVE)
 
-val clientConfig = ClientConfig(Paths.get("/path/to/batil.yaml"), verbose, production)
-val globalConfig = GlobalConfig.parse(clientConfig)
-val client = Authorization(globalConfig, production, verbose)
-val session = client.renewSession() ?: client.createSession()
-val accounts = Accounts(session, production, verbose)
-
-accounts.list()?.let {
+client.accounts.list()?.let {
     it.first().accountIdKey?.let { accountIdKey ->
-        val service = Orders(session, runtime.production, runtime.verbose)
+        val service = client.orders
         val previewRequest = buyEquityLimit("PLTR", 21f, 100)
 
         service.createPreview(accountIdKey, previewRequest)?.let { previewOrderResponse ->
-            service.placeOrder(accountIdKey, previewRequest, previewOrderResponse)?.let {
+            service.placeOrder(accountIdKey, previewRequest, previewOrderResponse)?.let { completedOrder ->
                 println("Purchased 100 shares of PLTR at $21")
-                println(it)
+                println(completedOrder)
             }
         }
     }
@@ -111,7 +109,7 @@ about:blank
 
 #### Verify
 
-* You can can clone the project locally and build the demo E\*TRADE client (check the `build/libs` dir).
+* You can clone the project locally and build the demo E\*TRADE client (check the `build/libs` dir).
 
 ```bash
 ./gradlew fatJar
