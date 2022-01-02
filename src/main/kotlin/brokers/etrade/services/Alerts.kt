@@ -7,6 +7,7 @@ import com.seansoper.batil.brokers.etrade.api.AlertsResponse
 import com.seansoper.batil.brokers.etrade.api.DeleteAlertsResponse
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
+import dev.failsafe.RetryPolicy
 import java.time.Instant
 
 enum class Category {
@@ -25,8 +26,9 @@ class Alerts(
     session: Session,
     production: Boolean? = null,
     verbose: Boolean? = null,
-    baseUrl: String? = null
-) : Service(session, production, verbose, baseUrl) {
+    baseUrl: String? = null,
+    retryPolicy: RetryPolicy<Any>? = null
+) : Service(session, production, verbose, baseUrl, retryPolicy) {
 
     /**
      * List a user’s alerts

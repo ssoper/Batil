@@ -15,6 +15,7 @@ import com.seansoper.batil.brokers.etrade.api.SecurityType
 import com.seansoper.batil.brokers.etrade.api.orderPreview.PreviewRequest
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
+import dev.failsafe.RetryPolicy
 import java.time.Instant
 import java.util.GregorianCalendar
 
@@ -30,8 +31,9 @@ class Orders(
     session: Session,
     production: Boolean? = null,
     verbose: Boolean? = null,
-    baseUrl: String? = null
-) : Service(session, production, verbose, baseUrl) {
+    baseUrl: String? = null,
+    retryPolicy: RetryPolicy<Any>? = null
+) : Service(session, production, verbose, baseUrl, retryPolicy) {
 
     /**
      * List orders for an account

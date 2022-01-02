@@ -69,8 +69,8 @@ class EtradeClient(
         }
         .build()
 
-    val accounts = Accounts(session, production = production, verbose = verbose)
+    val accounts = Accounts(session, production = production, verbose = verbose, retryPolicy = retryPolicy)
     val market = Market(session, production = production, verbose = verbose, retryPolicy = retryPolicy)
-    val alerts = Alerts(session, production = production, verbose = verbose)
-    val orders = Orders(session, production = production, verbose = verbose)
+    val alerts = Alerts(session, production = production, verbose = verbose, retryPolicy = retryPolicy)
+    val orders = Orders(session, production = production, verbose = verbose, retryPolicy = retryPolicy)
 }

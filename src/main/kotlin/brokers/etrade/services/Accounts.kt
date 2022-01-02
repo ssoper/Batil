@@ -10,6 +10,7 @@ import com.seansoper.batil.brokers.etrade.api.TransactionId
 import com.seansoper.batil.brokers.etrade.api.TransactionResponse
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
+import dev.failsafe.RetryPolicy
 import java.time.Instant
 import java.util.GregorianCalendar
 
@@ -40,8 +41,9 @@ class Accounts(
     session: Session,
     production: Boolean? = null,
     verbose: Boolean? = null,
-    baseUrl: String? = null
-) : Service(session, production, verbose, baseUrl) {
+    baseUrl: String? = null,
+    retryPolicy: RetryPolicy<Any>? = null
+) : Service(session, production, verbose, baseUrl, retryPolicy) {
 
     /**
      * List user’s accounts
