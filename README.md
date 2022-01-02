@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.seansoper:batil:1.0.2")
+    implementation("com.seansoper:batil:1.0.3")
 }
 ```
 
