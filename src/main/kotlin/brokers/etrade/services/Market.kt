@@ -50,7 +50,7 @@ class Market(
         module.addDeserializer(GregorianCalendar::class.java, DateTimeDeserializer())
 
         val service = createClient(MarketApi::class.java, module)
-        val response = execute(service.lookup(search)) // .execute()
+        val response = execute(service.lookup(search))
 
         return response.body()?.response?.data
     }

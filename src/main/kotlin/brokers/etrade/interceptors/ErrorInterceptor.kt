@@ -3,6 +3,7 @@ package com.seansoper.batil.brokers.etrade.interceptors
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.seansoper.batil.brokers.etrade.services.EtradeServiceError
 import com.seansoper.batil.brokers.etrade.services.ExpiredTokenError
+import com.seansoper.batil.brokers.etrade.services.InvalidTokenError
 import com.seansoper.batil.brokers.etrade.services.ServiceUnavailableError
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -21,8 +22,14 @@ class ErrorInterceptor : Interceptor {
             throw response.body?.string()?.let {
                 val error = XmlMapper().readValue(it, EtradeServiceError::class.java)
 
-                if (error.code == 0 && error.message == "oauth_problem=token_expired") {
-                    ExpiredTokenError()
+                if (error.code == 0) {
+                    if (error.message == "oauth_problem=token_expired") {
+                        ExpiredTokenError()
+                    } else if (error.message == "oauth_problem=token_rejected") {
+                        InvalidTokenError()
+                    } else {
+                        error
+                    }
                 } else if (error.code == 100) {
                     ServiceUnavailableError()
                 } else {

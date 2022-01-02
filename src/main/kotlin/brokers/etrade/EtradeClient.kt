@@ -5,9 +5,11 @@ import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.services.Accounts
 import com.seansoper.batil.brokers.etrade.services.Alerts
 import com.seansoper.batil.brokers.etrade.services.ExpiredTokenError
+import com.seansoper.batil.brokers.etrade.services.InvalidTokenError
 import com.seansoper.batil.brokers.etrade.services.Market
 import com.seansoper.batil.brokers.etrade.services.Orders
 import java.time.Duration
+import dev.failsafe.RetryPolicy
 
 // TODO: Replace verbose with logger interface
 
@@ -39,10 +41,18 @@ class EtradeClient(
 
     private val session: Session = authorization.renewSession() ?: authorization.createSession()
 
+    private fun updateSession(updatedSession: Session) {
+        synchronized(this) {
+            session.accessToken = updatedSession.accessToken
+            session.accessSecret = updatedSession.accessSecret
+            session.verifier = updatedSession.verifier
+        }
+    }
+
     // TODO: Add onRetriesExceeded and log failure using logger
     // TODO: Update verbose usage to use logger
-    private val retryPolicy = dev.failsafe.RetryPolicy.builder<Any>()
-        .handle(ExpiredTokenError::class.java)
+    private val retryPolicy = RetryPolicy.builder<Any>()
+        .handle(ExpiredTokenError::class.java, InvalidTokenError::class.java)
         .withDelay(Duration.ofSeconds(1))
         .withMaxRetries(1)
         .onRetry {
@@ -51,8 +61,9 @@ class EtradeClient(
                     println("Re-authorization of session succeeded")
                 }
             } ?: run {
+                updateSession(authorization.createSession())
                 if (verbose) {
-                    println("Re-authorization of session failed")
+                    println("Re-authorization of session failed, creating new session")
                 }
             }
         }
