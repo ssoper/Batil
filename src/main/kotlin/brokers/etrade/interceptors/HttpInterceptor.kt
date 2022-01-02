@@ -39,13 +39,13 @@ interface OauthKeyProvider {
     val verifier: String?
 }
 
-data class OauthKeys (
+data class OauthKeys(
     override val consumerKey: String,
     override val consumerSecret: String,
     override val accessToken: String? = null,
     override val accessSecret: String? = null,
     override val verifier: String? = null
-): OauthKeyProvider
+) : OauthKeyProvider
 
 class HttpInterceptor(
     private val keys: OauthKeyProvider,

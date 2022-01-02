@@ -8,4 +8,4 @@ class Session(
     override var accessToken: String,
     override var accessSecret: String,
     override var verifier: String
-): OauthKeyProvider
+) : OauthKeyProvider

@@ -8,8 +8,8 @@ import com.seansoper.batil.brokers.etrade.services.ExpiredTokenError
 import com.seansoper.batil.brokers.etrade.services.InvalidTokenError
 import com.seansoper.batil.brokers.etrade.services.Market
 import com.seansoper.batil.brokers.etrade.services.Orders
-import java.time.Duration
 import dev.failsafe.RetryPolicy
+import java.time.Duration
 
 // TODO: Replace verbose with logger interface
 
