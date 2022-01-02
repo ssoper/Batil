@@ -40,7 +40,7 @@ class Market(
         module.addDeserializer(GregorianCalendar::class.java, DateTimeDeserializer())
 
         val service = createClient(MarketApi::class.java, module)
-        val response = service.getQuote(symbols.joinToString(",")).execute()
+        val response = execute(service.getQuote(symbols.joinToString(",")))
 
         return response.body()?.response?.data
     }
@@ -121,7 +121,7 @@ class Market(
         module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
         val service = createClient(MarketApi::class.java, module)
-        val response = service.getOptionChains(options).execute()
+        val response = execute(service.getOptionChains(options))
 
         return response.body()?.response
     }
@@ -131,7 +131,7 @@ class Market(
         expirationType: OptionExpirationType? = null
     ): List<OptionExpirationDate>? {
         val service = createClient(MarketApi::class.java)
-        val response = service.optionExpireDates(symbol, expirationType).execute()
+        val response = execute(service.optionExpireDates(symbol, expirationType))
 
         return response.body()?.response?.dates
     }

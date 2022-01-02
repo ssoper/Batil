@@ -71,7 +71,7 @@ class Alerts(
         module.addDeserializer(Instant::class.java, TimestampDeserializer(false))
 
         val service = createClient(AlertsApi::class.java, module)
-        val response = service.getAlerts(options).execute()
+        val response = execute(service.getAlerts(options))
 
         return response.body()?.response
     }
@@ -97,7 +97,7 @@ class Alerts(
         module.addDeserializer(Instant::class.java, TimestampDeserializer(false))
 
         val service = createClient(AlertsApi::class.java, module)
-        val response = service.getAlertDetails(alertId.toString(), options).execute()
+        val response = execute(service.getAlertDetails(alertId.toString(), options))
 
         return response.body()?.response
     }
@@ -120,7 +120,7 @@ class Alerts(
 
         val service = createClient(AlertsApi::class.java)
         return try {
-            service.delete(alertId.joinToString(",")).execute().body()?.response
+            execute(service.delete(alertId.joinToString(","))).body()?.response
         } catch (e: ServiceUnavailableError) {
             // Strangely, the E*TRADE API returns a non-available service error on non-existent alert IDs
             null

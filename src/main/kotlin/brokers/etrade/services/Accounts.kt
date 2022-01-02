@@ -49,7 +49,7 @@ class Accounts(
      */
     fun list(): List<Account>? {
         val service = createClient(AccountsApi::class.java)
-        val response = service.getAccounts().execute()
+        val response = execute(service.getAccounts())
 
         return response.body()?.response?.accountRoot?.accounts
     }
@@ -57,7 +57,7 @@ class Accounts(
     // TODO: Document with sample
     fun getBalance(accountIdKey: String): AccountBalance? {
         val service = createClient(AccountsApi::class.java)
-        val response = service.getBalance(accountIdKey).execute()
+        val response = execute(service.getBalance(accountIdKey))
 
         return response.body()?.response
     }
@@ -107,7 +107,7 @@ class Accounts(
         module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
         val service = createClient(AccountsApi::class.java, module)
-        val response = service.listTransactions(accountIdKey, options).execute()
+        val response = execute(service.listTransactions(accountIdKey, options))
 
         return response.body()?.response
     }
@@ -126,7 +126,7 @@ class Accounts(
         module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
         val service = createClient(AccountsApi::class.java, module)
-        val response = service.getTransaction(accountIdKey, transactionId.toString()).execute()
+        val response = execute(service.getTransaction(accountIdKey, transactionId.toString()))
 
         return response.body()?.response
     }
@@ -186,7 +186,7 @@ class Accounts(
         module.addDeserializer(Instant::class.java, TimestampDeserializer(false))
 
         val service = createClient(AccountsApi::class.java, module)
-        val response = service.viewPortfolio(accountIdKey, options).execute()
+        val response = execute(service.viewPortfolio(accountIdKey, options))
 
         return response.body()?.response
     }

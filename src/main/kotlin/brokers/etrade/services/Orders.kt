@@ -103,7 +103,7 @@ class Orders(
         module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
         val service = createClient(OrdersApi::class.java, module)
-        val response = service.list(accountIdKey, options).execute()
+        val response = execute(service.list(accountIdKey, options))
 
         return response.body()?.response
     }
@@ -119,7 +119,7 @@ class Orders(
         request: PreviewRequest
     ): PreviewOrderResponse? {
         val service = createClient(OrdersApi::class.java)
-        val response = service.createPreview(accountIdKey, PreviewRequestEnvelope(request)).execute()
+        val response = execute(service.createPreview(accountIdKey, PreviewRequestEnvelope(request)))
 
         return response.body()?.response
     }
@@ -143,7 +143,7 @@ class Orders(
 
         val service = createClient(OrdersApi::class.java, module)
         val order = PlaceOrderRequest(previewRequest, previewResponse)
-        val response = service.placeOrder(accountIdKey, PlaceOrderRequestEnvelope(order)).execute()
+        val response = execute(service.placeOrder(accountIdKey, PlaceOrderRequestEnvelope(order)))
 
         return response.body()?.response
     }
@@ -162,7 +162,7 @@ class Orders(
 
         val service = createClient(OrdersApi::class.java, module)
         val order = CancelOrderRequest(orderId)
-        val response = service.cancelOrder(accountIdKey, CancelOrderRequestEnvelope(order)).execute()
+        val response = execute(service.cancelOrder(accountIdKey, CancelOrderRequestEnvelope(order)))
 
         return response.body()?.response
     }
