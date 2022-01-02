@@ -10,6 +10,7 @@ import com.seansoper.batil.brokers.etrade.api.TransactionId
 import com.seansoper.batil.brokers.etrade.api.TransactionResponse
 import com.seansoper.batil.brokers.etrade.auth.Session
 import com.seansoper.batil.brokers.etrade.deserializers.TimestampDeserializer
+import dev.failsafe.RetryPolicy
 import java.time.Instant
 import java.util.GregorianCalendar
 
@@ -40,8 +41,9 @@ class Accounts(
     session: Session,
     production: Boolean? = null,
     verbose: Boolean? = null,
-    baseUrl: String? = null
-) : Service(session, production, verbose, baseUrl) {
+    baseUrl: String? = null,
+    retryPolicy: RetryPolicy<Any>? = null
+) : Service(session, production, verbose, baseUrl, retryPolicy) {
 
     /**
      * List user’s accounts
@@ -49,7 +51,7 @@ class Accounts(
      */
     fun list(): List<Account>? {
         val service = createClient(AccountsApi::class.java)
-        val response = service.getAccounts().execute()
+        val response = execute(service.getAccounts())
 
         return response.body()?.response?.accountRoot?.accounts
     }
@@ -57,7 +59,7 @@ class Accounts(
     // TODO: Document with sample
     fun getBalance(accountIdKey: String): AccountBalance? {
         val service = createClient(AccountsApi::class.java)
-        val response = service.getBalance(accountIdKey).execute()
+        val response = execute(service.getBalance(accountIdKey))
 
         return response.body()?.response
     }
@@ -107,7 +109,7 @@ class Accounts(
         module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
         val service = createClient(AccountsApi::class.java, module)
-        val response = service.listTransactions(accountIdKey, options).execute()
+        val response = execute(service.listTransactions(accountIdKey, options))
 
         return response.body()?.response
     }
@@ -126,7 +128,7 @@ class Accounts(
         module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
         val service = createClient(AccountsApi::class.java, module)
-        val response = service.getTransaction(accountIdKey, transactionId.toString()).execute()
+        val response = execute(service.getTransaction(accountIdKey, transactionId.toString()))
 
         return response.body()?.response
     }
@@ -186,7 +188,7 @@ class Accounts(
         module.addDeserializer(Instant::class.java, TimestampDeserializer(false))
 
         val service = createClient(AccountsApi::class.java, module)
-        val response = service.viewPortfolio(accountIdKey, options).execute()
+        val response = execute(service.viewPortfolio(accountIdKey, options))
 
         return response.body()?.response
     }

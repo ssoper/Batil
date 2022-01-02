@@ -8,20 +8,33 @@ import com.seansoper.batil.brokers.etrade.interceptors.ErrorInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.HttpInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.JsonInterceptor
 import com.seansoper.batil.brokers.etrade.interceptors.OauthKeys
+import dev.failsafe.ExecutionContext
+import dev.failsafe.Failsafe
+import dev.failsafe.RetryPolicy
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.GregorianCalendar
 
 // TODO: Remove duplicative arguments like production, verbose and baseUrl since Session should hold all of these
+// TODO: Cleanup, remove duplicate arguments from Accounts, Markets, etc.
+
+/**
+ * Debating whether to keep this class generic or go full E*TRADE specific, current generic implementation would allow
+ * me to plug it into mult clients assuming their auth/session scheme isn't too weird. Going full client specific
+ * would let me ditch Failsafe and catch specific E*TRADE errors in execute() and modify session vars with new tokens.
+ */
 
 open class Service(
-    session: Session,
+    val session: Session,
     _production: Boolean?,
     _verbose: Boolean?,
-    _baseUrl: String?
+    _baseUrl: String?,
+    val retryPolicy: RetryPolicy<Any>? = null
 ) {
 
     private val production = _production ?: false
@@ -38,7 +51,7 @@ open class Service(
 
     fun <T> createClient(javaClass: Class<T>, module: SimpleModule? = null): T {
         val client = OkHttpClient.Builder()
-            .addInterceptor(HttpInterceptor(keys))
+            .addInterceptor(HttpInterceptor(session))
             .addInterceptor(JsonInterceptor())
             .addInterceptor(ErrorInterceptor())
 
@@ -65,6 +78,18 @@ open class Service(
         return retrofit.create(javaClass)
     }
 
+    fun <T> execute(call: Call<T>): Response<T> {
+        return retryPolicy?.let {
+            Failsafe.with(it).get { ctx: ExecutionContext<Response<T>> ->
+                if (ctx.attemptCount > 0) {
+                    call.clone().execute()
+                } else {
+                    call.execute()
+                }
+            }
+        } ?: call.execute()
+    }
+
     companion object {
         fun formatDate(date: GregorianCalendar): String {
             val formatter = SimpleDateFormat("MMddyyyy")
@@ -86,3 +111,5 @@ open class EtradeServiceError(
 ) : BrokerServiceError(code, message)
 
 class ServiceUnavailableError : EtradeServiceError(100, "The requested service is not currently available")
+class ExpiredTokenError : EtradeServiceError(101, "The token is expired")
+class InvalidTokenError : EtradeServiceError(102, "The token is invalid")

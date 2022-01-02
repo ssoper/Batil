@@ -3,6 +3,8 @@ import com.seansoper.batil.CachedTokenProvider
 import com.seansoper.batil.brokers.etrade.auth.AuthResponse
 import com.seansoper.batil.brokers.etrade.auth.AuthResponseError
 import com.seansoper.batil.brokers.etrade.auth.Authorization
+import com.seansoper.batil.brokers.etrade.services.ExpiredTokenError
+import com.seansoper.batil.brokers.etrade.services.Market
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.types.shouldBeInstanceOf
 import io.kotlintest.matchers.types.shouldNotBeNull
@@ -13,7 +15,9 @@ import io.mockk.every
 import io.mockk.spyk
 import testHelper.LoadConfig
 import testHelper.MockHelper.createServer
+import testHelper.MockHelper.mockSession
 import testHelper.PathHelper.randomString
+import java.nio.file.Paths
 
 fun mockTokens(): Triple<String, String, String> {
     val token = randomString()
@@ -153,6 +157,17 @@ class AuthorizationTest : StringSpec({
         authorization.renewSession()!!.let {
             it.accessToken.shouldBe(tokenStore.tokens.first)
             it.accessSecret.shouldBe(tokenStore.tokens.second)
+        }
+    }
+
+    "token expired" {
+        val path = Paths.get("brokers/etrade/token_expired.xml")
+
+        createServer(path, "Content-Type" to "application/xml", 400) {
+            val service = Market(mockSession(), baseUrl = it.url(".").toString())
+            shouldThrow<ExpiredTokenError> {
+                service.lookup("AAPL")
+            }
         }
     }
 })

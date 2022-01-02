@@ -1,9 +1,11 @@
 package com.seansoper.batil.brokers.etrade.auth
 
+import com.seansoper.batil.brokers.etrade.interceptors.OauthKeyProvider
+
 class Session(
-    val consumerKey: String,
-    val consumerSecret: String,
-    val accessToken: String,
-    val accessSecret: String,
-    val verifier: String
-)
+    override val consumerKey: String,
+    override val consumerSecret: String,
+    override var accessToken: String,
+    override var accessSecret: String,
+    override var verifier: String
+) : OauthKeyProvider
