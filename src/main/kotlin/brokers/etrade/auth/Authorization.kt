@@ -92,7 +92,9 @@ class Authorization(
             .url(path)
             .build()
 
-        return AuthResponse.withResponse(client.newCall(request).execute())
+        return client.newCall(request).execute().use {
+            AuthResponse.withResponse(it)
+        }
     }
 
     fun getVerifierCode(token: String): String {
@@ -108,6 +110,7 @@ class Authorization(
         return browserAuth.retrieve()
     }
 
+    @Throws(AuthResponseError::class)
     fun getAccessToken(requestToken: AuthResponse, verifier: String): AuthResponse {
         val keys = OauthKeys(
             consumerKey = key,
@@ -126,20 +129,8 @@ class Authorization(
             .url(path)
             .build()
 
-        val response = client.newCall(request).execute()
-
-        return try {
-            AuthResponse.withResponse(response)
-        } catch (exception: AuthResponseError) {
-
-            if (verbose) {
-                exception.body?.apply {
-                    println("Response from service at ${request.url}")
-                    println(this)
-                }
-            }
-
-            throw exception
+        return client.newCall(request).execute().use {
+            AuthResponse.withResponse(it)
         }
     }
 
@@ -160,8 +151,9 @@ class Authorization(
             .url(path)
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code == 200
+        return client.newCall(request).execute().use {
+            it.code == 200
+        }
     }
 
     fun revokeAccessToken(requestToken: AuthResponse): Boolean {
@@ -181,11 +173,14 @@ class Authorization(
             .url(path)
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code == 200
+        return client.newCall(request).execute().use {
+            it.code == 200
+        }
     }
 
-    // Session
+    /**
+     * Session
+     */
 
     fun createSession(cacheTokens: Boolean = true): Session {
         val requestToken = getRequestToken()
