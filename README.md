@@ -1,9 +1,8 @@
 <p align="center">
-  <img src="https://github.com/ssoper/Batil/raw/master/gh/logo.png" width="400" alt="Batil Logo">
+  <img src="https://github.com/ssoper/Batil/raw/dev/gh/logo.png" width="400" alt="Batil Logo">
 </p>
 
-[![tests](https://github.com/ssoper/Batil/actions/workflows/build.yml/badge.svg)](https://github.com/ssoper/Batil/actions)
-[![codecov](https://codecov.io/gh/ssoper/Batil/branch/master/graph/badge.svg?token=AX0EVTOJCS)](https://codecov.io/gh/ssoper/Batil)
+[![codecov](https://codecov.io/gh/ssoper/Batil/branch/dev/graph/badge.svg?token=AX0EVTOJCS)](https://codecov.io/gh/ssoper/Batil)
 [![Maven Central](https://img.shields.io/maven-central/v/com.seansoper/batil)](https://mvnrepository.com/artifact/com.seansoper)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.5.30-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
