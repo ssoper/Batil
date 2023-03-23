@@ -1,0 +1,12 @@
+name: Assign Author
+
+on:
+  pull_request:
+    branches: [ dev, main ]
+
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: toshimaru/auto-author-assign@v1.6.2
