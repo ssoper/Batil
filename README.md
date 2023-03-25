@@ -2,7 +2,7 @@
   <img src="https://github.com/ssoper/Batil/raw/dev/gh/logo.png" width="400" alt="Batil Logo">
 </p>
 
-<p align="center">
+<div align="center">
 
 [![tests](https://github.com/ssoper/Batil/actions/workflows/code-coverage.yml/badge.svg)](https://github.com/ssoper/Batil/actions/workflows/code-coverage.yml)
 [![codecov](https://codecov.io/gh/ssoper/Batil/branch/dev/graph/badge.svg?token=AX0EVTOJCS)](https://codecov.io/gh/ssoper/Batil)
@@ -10,7 +10,7 @@
 [![Kotlin](https://img.shields.io/badge/kotlin-1.5.30-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-</p>
+</div>
 
 Make your brokerage work for you.
 
