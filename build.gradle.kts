@@ -137,7 +137,7 @@ tasks.dokkaHtml.configure {
 
             sourceLink {
                 localDirectory.set(file("./src/main/kotlin"))
-                remoteUrl.set(uri("https://github.com/ssoper/Batil/tree/master/src/main/kotlin").toURL())
+                remoteUrl.set(uri("https://github.com/ssoper/Batil/tree/main/src/main/kotlin").toURL())
                 remoteLineSuffix.set("#L")
             }
         }
