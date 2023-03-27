@@ -81,59 +81,45 @@ More examples of usage can be found [here](https://github.com/ssoper/Batil/blob/
 
 You’ll need to request both a sandbox and production API consumer key and secret from the API team.
 
-* Sign into your E\*TRADE account and head over to Customer Service ➡ Message Center ➡ Contact Us. From there select the account you want to associate with your API key. For the subject, select `API Sandbox Auto` and for the topic select `Sandbox Key`. Expect to hear back within a few hours.
+* Sign in to your E\*TRADE account and head over to Customer Service ➡ Message Center ➡ Contact Us. From there select the account you want to associate with your API key. For the subject, select `API Sandbox Auto` and for the topic select `Sandbox Key`. Expect to hear back within a few hours.
 * To access the production API you’ll need to send a signed copy of the [Developer Agreement](https://content.etrade.com/etrade/estation/pdf/APIDeveloperAgreement.pdf) to etradeapi@etrade.com.
 
 #### Docker
 
 Docker is used to access a Chromium instance that can login to the E\*TRADE website to retrieve the necessary OAuth keys.
 
-* [Download Docker](https://www.docker.com/products/docker-desktop)
-* Run the following command to start the container:
+[Download Docker](https://www.docker.com/products/docker-desktop) and run the following command to start the container.
 
 ```bash
-docker container run -d -p 9222:9222 zenika/alpine-chrome \
---no-sandbox \
---remote-debugging-address=0.0.0.0 \
---remote-debugging-port=9222 \
---user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" \
-about:blank
-```
-
-* If you are on Apple Silicon (M1) you should use this image instead which was built with arm64:
-
-```bash
-docker container run -d -p 9222:9222 avidtraveler/alpine-chrome \
---no-sandbox \
---remote-debugging-address=0.0.0.0 \
---remote-debugging-port=9222 \
---user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" \
-about:blank
+% docker container run -d -p 9222:9222 zenika/alpine-chrome \
+  --no-sandbox \
+  --remote-debugging-address=0.0.0.0 \
+  --remote-debugging-port=9222 \
+  --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" \
+  about:blank
 ```
 
 #### Verify
 
-* You can clone the project locally and build the demo E\*TRADE client (check the `build/libs` dir).
+You can clone the project locally and build the demo E\*TRADE client (check the `build/libs` dir).
 
 ```bash
-./gradlew fatJar
+% ./gradlew fatJar
 ```
 
-* Using the [sample provided](batil.sample.yaml), add a `batil.yaml` to the directory where you intend to run the JAR file. Substitute the default values with the correct values.
-* **_Important_** Ensure you never check your version of `batil.yaml` into git.
-* Verify your account.
+Using the [sample provided](batil.sample.yaml), add a `batil.yaml` to the directory where you intend to run the JAR file.
+Substitute the default values with the correct values and use them to verify your account. **_Important_** Ensure you 
+never check your version of `batil.yaml` into git.
 
 ```bash
-java -jar Batil-etrade.jar verify
+% java -jar Batil-etrade.jar verify
 ```
 
-* By default the app runs in sandbox mode. Add the `--production` switch to use in production.
+By default, the app runs in sandbox mode. Add the `--production` switch to use in production.
 
 ```bash
-java -jar Batil-etrade.jar verify --production
+% java -jar Batil-etrade.jar verify --production
 ```
-
-#### Other Commands
 
 For the full list of available options use the `--help` switch.
 

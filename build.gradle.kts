@@ -53,16 +53,25 @@ java {
     withJavadocJar()
 }
 
+val jacksonVersion="2.14.2"
+
 dependencies {
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.5")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.5")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.5")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
-    implementation("pl.wendigo:chrome-reactive-kotlin:0.6.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-jackson:2.9.0")
+
+    // Browser Authentication
+    implementation("pl.wendigo:chrome-reactive-kotlin:0.7.4")
+    implementation("io.reactivex.rxjava3:rxjava:3.1.6")
+
+    // Retry
     implementation("dev.failsafe:failsafe:3.1.0")
+
+    // Tests
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
     testImplementation("io.mockk:mockk:1.12.0")
