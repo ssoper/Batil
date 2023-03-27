@@ -1,4 +1,4 @@
-name: Assign Author
+name: Auto Update
 
 on:
   pull_request:
