@@ -5,7 +5,6 @@ import com.seansoper.batil.brokers.etrade.services.EtradeServiceError
 import com.seansoper.batil.brokers.etrade.services.Market
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.types.shouldBeInstanceOf
-import io.kotlintest.matchers.types.shouldBeTypeOf
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
@@ -101,7 +100,6 @@ class MarketTest : StringSpec({
             pair.put.timeStamp.shouldBeInstanceOf<Instant>()
             pair.put.inTheMoney.shouldBeInstanceOf<Boolean>()
             pair.put.inTheMoney.shouldBe(false)
-
 
             it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL")
         }
