@@ -2,6 +2,8 @@ package com.seansoper.batil.brokers.etrade.api
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.seansoper.batil.brokers.etrade.deserializers.CustomBooleanDeserializer
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -315,7 +317,8 @@ data class OptionDetails(
     val ask: Float?,
     val bidSize: Int?,
     val askSize: Int?,
-    val inTheMoney: String?,
+    @JsonDeserialize(using = CustomBooleanDeserializer::class)
+    val inTheMoney: Boolean?,
     val volume: Int?,
     val openInterest: Int?,
     val netChange: Float?,

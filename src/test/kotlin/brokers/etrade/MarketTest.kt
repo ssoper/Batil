@@ -4,6 +4,7 @@ import com.seansoper.batil.brokers.etrade.api.OptionType
 import com.seansoper.batil.brokers.etrade.services.EtradeServiceError
 import com.seansoper.batil.brokers.etrade.services.Market
 import io.kotlintest.matchers.boolean.shouldBeFalse
+import io.kotlintest.matchers.types.shouldBeInstanceOf
 import io.kotlintest.matchers.types.shouldNotBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
@@ -11,6 +12,7 @@ import io.kotlintest.specs.StringSpec
 import testHelper.MockHelper.createServer
 import testHelper.MockHelper.mockSession
 import java.nio.file.Paths
+import java.time.Instant
 import java.util.GregorianCalendar
 
 class MarketTest : StringSpec({
@@ -84,6 +86,9 @@ class MarketTest : StringSpec({
             pair.call.bid.shouldBe(69.8f)
             pair.call.ask.shouldBe(74.0f)
             pair.call.greeks.vega.shouldBe(0.0014f)
+            pair.call.timeStamp.shouldBeInstanceOf<Instant>()
+            pair.call.inTheMoney.shouldBeInstanceOf<Boolean>()
+            pair.call.inTheMoney.shouldBe(true)
 
             pair.put.symbol.shouldBe("AAPL")
             pair.put.optionCategory.shouldBe(OptionCategory.STANDARD)
@@ -92,6 +97,9 @@ class MarketTest : StringSpec({
             pair.put.bid.shouldBe(0.0f)
             pair.put.ask.shouldBe(0.01f)
             pair.put.greeks.vega.shouldBe(0.0001f)
+            pair.put.timeStamp.shouldBeInstanceOf<Instant>()
+            pair.put.inTheMoney.shouldBeInstanceOf<Boolean>()
+            pair.put.inTheMoney.shouldBe(false)
 
             it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL")
         }
