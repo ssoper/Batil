@@ -36,7 +36,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: ${{ github.event.inputs.versionIncrement }}
+          default_bump: patch # ${{ github.event.inputs.versionIncrement }}
           create_annotated_tag: true
           dry_run: true
 
