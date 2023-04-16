@@ -1,5 +1,5 @@
 group = "com.seansoper"
-version = "1.0.4"
+version = try { project.ext["publishVersion"] as String } catch(_: Exception) { "1.0.4" }
 
 /**
  * To publish
