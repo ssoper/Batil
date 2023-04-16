@@ -37,7 +37,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: ${{ github.event.inputs.versionIncrement }}
-          created_annotated_tag: true
+          create_annotated_tag: true
           dry_run: true
 
       - run: echo "${{ steps.tag-version.outputs.new_version }}"
