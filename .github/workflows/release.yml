@@ -20,7 +20,7 @@ jobs:
     steps:
       - if: github.ref != 'refs/heads/main'
         run: |
-          echo "This workflow should not be triggered with workflow_dispatch on a branch other than main"
+          echo "This workflow should not be triggered on a branch other than main"
           exit 1
 
       - uses: actions/checkout@v3
