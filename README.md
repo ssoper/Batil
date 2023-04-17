@@ -100,17 +100,6 @@ docker container run -d -p 9222:9222 zenika/alpine-chrome \
 about:blank
 ```
 
-* If you are on Apple Silicon (M1) you should use this image instead which was built with arm64:
-
-```bash
-docker container run -d -p 9222:9222 avidtraveler/alpine-chrome \
---no-sandbox \
---remote-debugging-address=0.0.0.0 \
---remote-debugging-port=9222 \
---user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" \
-about:blank
-```
-
 #### Verify
 
 * You can clone the project locally and build the demo E\*TRADE client (check the `build/libs` dir).

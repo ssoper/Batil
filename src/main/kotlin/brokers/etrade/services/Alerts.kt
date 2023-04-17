@@ -70,7 +70,7 @@ class Alerts(
         }
 
         val module = SimpleModule()
-        module.addDeserializer(Instant::class.java, TimestampDeserializer(false))
+        module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
         val service = createClient(AlertsApi::class.java, module)
         val response = execute(service.getAlerts(options))
@@ -96,7 +96,7 @@ class Alerts(
         }
 
         val module = SimpleModule()
-        module.addDeserializer(Instant::class.java, TimestampDeserializer(false))
+        module.addDeserializer(Instant::class.java, TimestampDeserializer())
 
         val service = createClient(AlertsApi::class.java, module)
         val response = execute(service.getAlertDetails(alertId.toString(), options))

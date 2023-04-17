@@ -6,15 +6,20 @@ import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
 import java.io.IOException
 import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
-class TimestampDeserializer(val useMilliseconds: Boolean = true) : JsonDeserializer<Instant>() {
+class TimestampDeserializer() : JsonDeserializer<Instant>() {
     @Throws(IOException::class, JsonProcessingException::class)
     override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): Instant {
         return p?.longValue?.let {
-            if (useMilliseconds) {
-                Instant.ofEpochMilli(it)
-            } else {
+            val instant = Instant.ofEpochMilli(it)
+            val zoned = ZonedDateTime.ofInstant(instant, ZoneId.of("America/New_York"))
+
+            if (zoned.year < 1971) {
                 Instant.ofEpochSecond(it)
+            } else {
+                instant
             }
         } ?: throw TimestampDeserializerException()
     }
