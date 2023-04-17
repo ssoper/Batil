@@ -13,6 +13,8 @@ import testHelper.MockHelper.createServer
 import testHelper.MockHelper.mockSession
 import java.nio.file.Paths
 import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.util.GregorianCalendar
 
 class MarketTest : StringSpec({
@@ -77,6 +79,8 @@ class MarketTest : StringSpec({
 
             data.shouldNotBeNull()
             data.pairs.size.shouldBe(72)
+            data.timeStamp.shouldBeInstanceOf<Instant>()
+            ZonedDateTime.ofInstant(data.timeStamp, ZoneId.of("America/New_York")).year.shouldBe(2021)
 
             val pair = data.pairs.elementAt(0)
             pair.call.symbol.shouldBe("AAPL")
@@ -86,9 +90,10 @@ class MarketTest : StringSpec({
             pair.call.bid.shouldBe(69.8f)
             pair.call.ask.shouldBe(74.0f)
             pair.call.greeks.vega.shouldBe(0.0014f)
-            pair.call.timeStamp.shouldBeInstanceOf<Instant>()
             pair.call.inTheMoney.shouldBeInstanceOf<Boolean>()
             pair.call.inTheMoney.shouldBe(true)
+            pair.call.timeStamp.shouldBeInstanceOf<Instant>()
+            ZonedDateTime.ofInstant(pair.call.timeStamp, ZoneId.of("America/New_York")).year.shouldBe(2021)
 
             pair.put.symbol.shouldBe("AAPL")
             pair.put.optionCategory.shouldBe(OptionCategory.STANDARD)
@@ -97,9 +102,10 @@ class MarketTest : StringSpec({
             pair.put.bid.shouldBe(0.0f)
             pair.put.ask.shouldBe(0.01f)
             pair.put.greeks.vega.shouldBe(0.0001f)
-            pair.put.timeStamp.shouldBeInstanceOf<Instant>()
             pair.put.inTheMoney.shouldBeInstanceOf<Boolean>()
             pair.put.inTheMoney.shouldBe(false)
+            pair.put.timeStamp.shouldBeInstanceOf<Instant>()
+            ZonedDateTime.ofInstant(pair.put.timeStamp, ZoneId.of("America/New_York")).year.shouldBe(2021)
 
             it.takeRequest().path.shouldBe("/v1/market/optionchains?symbol=AAPL")
         }
