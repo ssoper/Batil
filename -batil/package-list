@@ -818,6 +818,7 @@ $dokka.location:com.seansoper.batil.brokers.etrade.api/OptionDetails/askSize/#/P
 $dokka.location:com.seansoper.batil.brokers.etrade.api/OptionDetails/bid/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-option-details/bid.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/OptionDetails/bidSize/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-option-details/bid-size.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/OptionDetails/displaySymbol/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-option-details/display-symbol.html
+$dokka.location:com.seansoper.batil.brokers.etrade.api/OptionDetails/expiration/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-option-details/expiration.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/OptionDetails/greeks/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-option-details/greeks.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/OptionDetails/inTheMoney/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-option-details/in-the-money.html
 $dokka.location:com.seansoper.batil.brokers.etrade.api/OptionDetails/lastPrice/#/PointingToDeclaration/-batil/com.seansoper.batil.brokers.etrade.api/-option-details/last-price.html
