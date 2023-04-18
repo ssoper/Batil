@@ -376,8 +376,6 @@ data class OptionChainRoot(
     val response: OptionChainResponse
 )
 
-// TODO: Rethink using a ZonedDateTime here since technically options don’t expire until midnight
-
 /**
  * @param[year] The four-digit year the option will expire
  * @param[month] The month (1-12) the option will expire
