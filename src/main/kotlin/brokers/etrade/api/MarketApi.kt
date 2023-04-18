@@ -9,6 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
+import java.net.URL
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
@@ -328,7 +329,21 @@ data class OptionDetails(
 
     @JsonProperty("OptionGreeks")
     val greeks: OptionGreeks
-)
+) {
+    val expiration: ZonedDateTime?
+        get() {
+            return quoteDetail?.let {
+                val components = URL(it).path.split('/').last().split(':')
+                val (_, year, month, day) = components
+
+                ZonedDateTime.of(
+                    LocalDate.of(year.toInt(), month.toInt(), day.toInt()),
+                    LocalTime.of(16, 0),
+                    ZoneId.of("America/New_York")
+                )
+            }
+        }
+}
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OptionPair(
@@ -360,6 +375,8 @@ data class OptionChainRoot(
     @JsonProperty("OptionChainResponse")
     val response: OptionChainResponse
 )
+
+// TODO: Rethink using a ZonedDateTime here since technically options don’t expire until midnight
 
 /**
  * @param[year] The four-digit year the option will expire

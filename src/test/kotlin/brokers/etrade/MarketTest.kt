@@ -13,6 +13,7 @@ import testHelper.MockHelper.createServer
 import testHelper.MockHelper.mockSession
 import java.nio.file.Paths
 import java.time.Instant
+import java.time.Month
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.GregorianCalendar
@@ -94,6 +95,10 @@ class MarketTest : StringSpec({
             pair.call.inTheMoney.shouldBe(true)
             pair.call.timeStamp.shouldBeInstanceOf<Instant>()
             ZonedDateTime.ofInstant(pair.call.timeStamp, ZoneId.of("America/New_York")).year.shouldBe(2021)
+            pair.call.expiration.shouldBeInstanceOf<ZonedDateTime>()
+            pair.call.expiration!!.year.shouldBe(2021)
+            pair.call.expiration!!.month.shouldBe(Month.JANUARY)
+            pair.call.expiration!!.dayOfMonth.shouldBe(29)
 
             pair.put.symbol.shouldBe("AAPL")
             pair.put.optionCategory.shouldBe(OptionCategory.STANDARD)
