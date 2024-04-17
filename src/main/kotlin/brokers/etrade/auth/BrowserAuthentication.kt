@@ -9,6 +9,7 @@ import pl.wendigo.chrome.api.dom.GetDocumentRequest
 import pl.wendigo.chrome.api.dom.Node
 import pl.wendigo.chrome.api.dom.QuerySelectorRequest
 import pl.wendigo.chrome.api.dom.SetAttributeValueRequest
+import pl.wendigo.chrome.api.input.DispatchKeyEventRequest
 import pl.wendigo.chrome.api.input.DispatchMouseEventRequest
 import pl.wendigo.chrome.api.input.MouseButton
 import pl.wendigo.chrome.api.network.EnableRequest
@@ -49,6 +50,8 @@ class BrowserAuthentication(
 
     private enum class Screenshot {
         AUTHORIZATION,
+        CONFIRM_MFA_PHONE,
+        CONFIRM_MFA_CODE,
         ACCEPT_TOS,
         VERIFIER_CODE
     }
@@ -102,19 +105,70 @@ class BrowserAuthentication(
                 await { navigateTo(url, target) }
                 val authNode = await { getRootNode(target) }
 
-                await { fillValue(authNode, "input[name='USER']", username, target) }
-                await { fillValue(authNode, "input[name='PASSWORD']", password, target) }
+                await { clickElement(authNode, "input[id='USER']", target) }
+                for (char in username) {
+                    await { typeCharacter(char, target) }
+                    Thread.sleep((100..150).random().toLong())
+                }
+
+                await { clickElement(authNode, "input[id='password']", target) }
+                for (char in password) {
+                    await { typeCharacter(char, target) }
+                    Thread.sleep((100..150).random().toLong())
+                }
 
                 if (verbose) {
                     await { saveScreenshot(Screenshot.AUTHORIZATION, target) }
                 }
 
-                await { clickElement(authNode, "#logon_button", target) }
+                await { clickElement(authNode, "button[id='mfaLogonButton']", target) }
                 Thread.sleep(delay)
+
+                val sendMfaCodeButton = await { elementExists(authNode, "button[id='sendOTPCodeBtn']", target) }
+
+                if (sendMfaCodeButton) {
+                    if (verbose) {
+                        await { saveScreenshot(Screenshot.CONFIRM_MFA_PHONE, target) }
+                    }
+
+                    val sendMfaNode = await { getRootNode(target) }
+                    val mfaPhoneNumber = await { getValue(sendMfaNode, "#application > .container .tiny-header.label", target, "innerText") }
+                    await { clickElement(sendMfaNode, "button[id='sendOTPCodeBtn']", target) }
+
+                    print("\nMFA code sent to $mfaPhoneNumber, enter the code received: ")
+                    val mfaCode = readLine() ?: throw Error("No MFA code provided")
+                    println()
+
+                    Thread.sleep(delay)
+                    val confirmMfaNode = await { getRootNode(target) }
+                    await { clickElement(confirmMfaNode, "input[id='verificationCode']", target) }
+                    for (char in mfaCode) {
+                        await { typeCharacter(char, target) }
+                        Thread.sleep((100..150).random().toLong())
+                    }
+
+                    await { clickElement(confirmMfaNode, "input[id='saveDevice']", target) }
+
+                    if (verbose) {
+                        await { saveScreenshot(Screenshot.CONFIRM_MFA_CODE, target) }
+                    }
+
+                    val submitButtonSelector = "#application > div > div.row > div > div:nth-child(3) > div:nth-child(4) > button"
+                    await { clickElement(confirmMfaNode, submitButtonSelector, target) }
+                    Thread.sleep(delay)
+                }
 
                 if (verbose) {
                     await { saveScreenshot(Screenshot.ACCEPT_TOS, target) }
                 }
+
+                // If redirected to page asking for MFA phone
+                // 1. Get value of phone number
+                // 2. Click Send Code button
+                // 3. Print phone number
+                // 4. Get MFA code from readLine
+                // 5. Input user supplied MFA code, click yes on save device
+                // 6. Press submit
 
                 val tosNode = await { getRootNode(target) }
                 await { clickElement(tosNode, "input[value='Accept']", target) }
@@ -161,6 +215,31 @@ class BrowserAuthentication(
             }
         }
     }
+    private fun typeCharacter(character: Char, target: Target): Single<ResponseFrame> {
+        return target.Input.dispatchKeyEvent(
+            DispatchKeyEventRequest(
+                "keyDown",
+                text = character.toString()
+            )
+        ).flatMap {
+            target.Input.dispatchKeyEvent(
+                DispatchKeyEventRequest(
+                    "keyUp",
+                    text = character.toString()
+                )
+            )
+        }
+    }
+
+    private fun elementExists(rootNode: Node, selector: String, target: Target): Single<Boolean> {
+        return try {
+            target.DOM.querySelector(QuerySelectorRequest(rootNode.nodeId, selector)).flatMap {
+                Single.just(true)
+            }
+        } catch (exception: pl.wendigo.chrome.protocol.RequestFailed) {
+            Single.just(false)
+        }
+    }
 
     private fun clickElement(rootNode: Node, selector: String, target: Target): Single<ResponseFrame> {
         return target.DOM.querySelector(QuerySelectorRequest(rootNode.nodeId, selector)).flatMap { (button) ->
@@ -189,10 +268,10 @@ class BrowserAuthentication(
         }
     }
 
-    private fun getValue(rootNode: Node, selector: String, target: Target): Single<String> {
+    private fun getValue(rootNode: Node, selector: String, target: Target, attribute: String = "value"): Single<String> {
         return target.DOM.querySelector(QuerySelectorRequest(rootNode.nodeId, selector)).flatMap { (element) ->
             target.DOM.getAttributes(GetAttributesRequest(element)).flatMap { (attributes) ->
-                attributes.indexOf("value").let {
+                attributes.indexOf(attribute).let {
                     val found = attributes[it + 1].trim()
                     Single.just(found)
                 }
