@@ -8,7 +8,6 @@ import pl.wendigo.chrome.api.dom.GetBoxModelRequest
 import pl.wendigo.chrome.api.dom.GetDocumentRequest
 import pl.wendigo.chrome.api.dom.Node
 import pl.wendigo.chrome.api.dom.QuerySelectorRequest
-import pl.wendigo.chrome.api.dom.SetAttributeValueRequest
 import pl.wendigo.chrome.api.input.DispatchKeyEventRequest
 import pl.wendigo.chrome.api.input.DispatchMouseEventRequest
 import pl.wendigo.chrome.api.input.MouseButton
