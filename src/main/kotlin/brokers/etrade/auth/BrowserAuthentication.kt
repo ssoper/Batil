@@ -208,13 +208,6 @@ class BrowserAuthentication(
         }
     }
 
-    private fun fillValue(rootNode: Node, selector: String, value: String, target: Target): Single<ResponseFrame> {
-        return target.DOM.querySelector(QuerySelectorRequest(rootNode.nodeId, selector)).flatMap { (fieldUsername) ->
-            target.DOM.setAttributeValue(SetAttributeValueRequest(fieldUsername, "value", value)).flatMap {
-                Single.just(it)
-            }
-        }
-    }
     private fun typeCharacter(character: Char, target: Target): Single<ResponseFrame> {
         return target.Input.dispatchKeyEvent(
             DispatchKeyEventRequest(
